@@ -15,7 +15,7 @@ class Greetz extends Routine {
   void setup(PApplet parent) {
     super.setup(parent);
     font = loadFont("Disorient-" + FONT_SIZE + ".vlw");
-    textFont(font, FONT_SIZE);
+    textFont(font, 7/*FONT_SIZE*/);
     textMode(MODEL);
   }
 
@@ -32,7 +32,7 @@ class Greetz extends Routine {
 
     if (displayHeight/2 > FONT_SIZE) {
 
-      image(get(0, 0, displayWidth, FONT_SIZE), 0, 10, displayWidth, displayHeight/4-10);
+      image(get(0, 0, displayWidth, FONT_SIZE), 0, displayHeight*3/4, displayWidth, displayHeight/4);
       fill(0);
       rect(0, 0, displayWidth, FONT_SIZE);
       //copy(0,0,displayWidth,FONT_SIZE,0,FONT_SIZE,displayWidth,FONT_SIZE/2);
