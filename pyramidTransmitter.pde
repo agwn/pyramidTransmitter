@@ -16,7 +16,7 @@ int displayWidth = 32;
 int displayHeight = 30*4;
 
 boolean VERTICAL = false;
-int FRAMERATE = 10;
+int FRAMERATE = 15;
 int TYPICAL_MODE_TIME = 2048;
 
 Routine drop = new Seizure();
@@ -78,11 +78,13 @@ int[] varRange = {
 };
 
 Routine[] enabledRoutines = new Routine[] {
-  new ColorTest(),
-  new Warp(new WarpSpeedMrSulu(), true, true, 0.1, 0.2), 
+  //new ColorTest(),
+  new RGBRoutine(),
+  
+  new Warp(new WarpSpeedMrSulu(), true, true, 0.2, 0.2), 
   //new WarpSpeedMrSulu(), 
   //new RGBRoutine(), 
-  new Warp(new RGBRoutine(), true, true, 0.1, 0.1), 
+  new Warp(new RGBRoutine(), true, true, 0.3, 0.3), 
   //new RainbowColors(), 
   //new Warp(new RainbowColors(), true, true, 0.5, 0.5), 
   new Warp(null, true, false, 0.3, 0.3), 
