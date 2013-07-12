@@ -17,16 +17,16 @@ class DropTheBomb extends Routine {
   }
 
   void reset() {
-    bombX = displayWidth-bombLength;;
-    bombY = random(displayHeight);
+    bombX = random(displayWidth-1);
+    bombY = bombLength;;
     flashBrightness = 255;
     blastRadius = 0;
   }
 
   void draw() {
-    if (bombX > 0) {
+    if (bombY < displayHeight) {
       drawBomb();
-      bombX -= bombSpeed;
+      bombY += bombSpeed;
     }
     else if (flashBrightness > 0) {
       drawFlash();
@@ -36,9 +36,8 @@ class DropTheBomb extends Routine {
 //      drawBlast();
 //      blastRadius += blastSpeed;
 //    }
-    else {
-      //newMode();
-      newMode(6);
+    else {  // Fire needs to be in list just after the bomb
+      newMode(mode+1);
     }
   }
 
@@ -48,7 +47,7 @@ class DropTheBomb extends Routine {
 
     for (int i=0; i<bombLength; i++) {
       stroke(c);
-      point(bombX+i, bombY);
+      point(bombX, bombY-i);
       c = int(0.75*c);
     }
   }

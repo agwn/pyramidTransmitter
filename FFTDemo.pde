@@ -32,7 +32,7 @@ class FFTDemo extends Routine {
       float barHeight = fft.getBand(i)*6;
       for (float c = 0; c < barHeight; c++) {
         stroke(c/barHeight*255, 0, 255);
-        point(c, i);
+        point(i, displayHeight-c);
       }
     }
 

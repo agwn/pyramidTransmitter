@@ -12,7 +12,7 @@ int transmit_port = 58082;
 float bright = 1.0;  //0.10;  // Global brightness modifier
 
 // Display configuration
-int displayWidth = 32;
+int displayWidth = 2*32;
 int displayHeight = 30*4;
 
 boolean VERTICAL = false;
@@ -79,16 +79,16 @@ int[] varRange = {
 
 Routine[] enabledRoutines = new Routine[] {
   //new ColorTest(),
-  new RGBRoutine(),
+  //new RGBRoutine(),
   
-  new Warp(new WarpSpeedMrSulu(), true, true, 0.2, 0.2), 
+  //new Warp(new WarpSpeedMrSulu(), true, true, 0.2, 0.2), 
   //new WarpSpeedMrSulu(), 
   //new RGBRoutine(), 
   new Warp(new RGBRoutine(), true, true, 0.3, 0.3), 
   //new RainbowColors(), 
   //new Warp(new RainbowColors(), true, true, 0.5, 0.5), 
   new Warp(null, true, false, 0.3, 0.3), 
-  new Waves(), 
+  //new Waves(), 
   //new ColorDrop(), 
   //new Warp(new ColorDrop(), true, true, 0.5, 0.5), 
   //new Bursts(), 
@@ -187,7 +187,7 @@ void newMode(int mode) {
   else {
     if (enabledRoutines.length > 1) {
       while (newMode == mode) {
-        newMode = int((mode+1)%(enabledRoutines.length-1));
+        newMode = int((mode+1)%(enabledRoutines.length-2));
       }
     }
   }
