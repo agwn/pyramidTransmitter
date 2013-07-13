@@ -32,7 +32,8 @@ class Fire extends Routine {
       //Hue goes from 0 to 85: red to yellow
       //Saturation is always the maximum: 255
       //Lightness is 0..255 for x=0..128, and 255 for x=128..255
-      palette[x] = color(x/3, 255, constrain(x*3, 0, 255));
+      palette[x] = color(x/3.5, 255, constrain(x*3, 0, 255));
+      //palette[x] = color(constrain(135+x/2, 0, 255), 255, constrain(x*3, 0, 255));
     }
 
     // Precalculate which pixel values to add during animation loop
@@ -54,18 +55,6 @@ class Fire extends Routine {
   void draw() {
     angle = angle + 0.05;
 
-//    // Rotating wireframe cube
-//    pg.beginDraw();
-//    pg.translate(displayWidth >> 1, displayHeight >> 1);
-//    pg.rotateX(sin(angle/2));
-//    pg.rotateY(cos(angle/2));
-//    pg.background(0);
-//    pg.stroke(128);
-//    pg.scale(25);
-//    pg.noFill();
-//    pg.box(4);
-//    pg.endDraw();
-
     // Randomize the bottom row of the fire buffer
     for (int x = 0; x < displayWidth; x++)
     {
@@ -84,7 +73,7 @@ class Fire extends Routine {
           ((fire[calc3[x]][calc2[y]]
           + fire[calc1[x]][calc2[y]]
           + fire[calc4[x]][calc2[y]]
-          + fire[calc1[x]][calc5[y]]) << 5) / 131; // 129;
+          + fire[calc1[x]][calc5[y]]) << 5) / 130; // 129;
 
         // Output everything to screen using our palette colors
         pixels[counter] = palette[fire[x][y]];

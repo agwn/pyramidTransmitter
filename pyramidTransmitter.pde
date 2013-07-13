@@ -13,7 +13,7 @@ float bright = 1.0;  //0.10;  // Global brightness modifier
 
 // Display configuration
 int displayWidth = 2*32;
-int displayHeight = 30*4;
+int displayHeight = 30*7;
 
 boolean VERTICAL = false;
 int FRAMERATE = 15;
