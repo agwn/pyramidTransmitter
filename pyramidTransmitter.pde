@@ -9,11 +9,14 @@ String transmit_address = "127.0.0.1";
 //String transmit_address = "192.168.111.20";
 int transmit_port = 58082;
 
-float bright = 1.0;  //0.10;  // Global brightness modifier
+//float bright = 0.10;  // Global brightness modifier
+float bright = 1.0;  // For simulation
 
 // Display configuration
 int displayWidth = 2*32;
 int displayHeight = 30*7;
+//int displayWidth = 60;
+//int displayHeight = 24;
 
 boolean VERTICAL = false;
 int FRAMERATE = 15;
@@ -78,9 +81,9 @@ int[] varRange = {
 };
 
 Routine[] enabledRoutines = new Routine[] {
-  //new ColorTest(),
+  //new ColorTest(), 
   //new RGBRoutine(),
-  
+
   //new Warp(new WarpSpeedMrSulu(), true, true, 0.2, 0.2), 
   //new WarpSpeedMrSulu(), 
   //new RGBRoutine(), 
@@ -95,7 +98,6 @@ Routine[] enabledRoutines = new Routine[] {
   new Warp(new Bursts(), true, true, 0.2, 0.2), 
   //new Chase(), 
   new Warp(new Chase(), true, true, 0.3, 0.3), 
-  //new Animator("anim-nyancat", 1, .5, 0, 0, 0), 
   new Greetz(), 
   new FFTDemo(), 
   new DropTheBomb(), 
