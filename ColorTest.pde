@@ -1,8 +1,8 @@
 class ColorTest extends Routine {
   int animationStep = 0;
   int frameCnt = 0;
-  int lineSpacing = 20;
-  int lineSlope = 10;
+  int lineSpacing = 10;
+  int lineSlope = 60;
   float r = 255;
   float g = 0;
   float b = 0;
@@ -24,22 +24,22 @@ class ColorTest extends Routine {
 
     frameCnt++;
 
-    if (0 == frameCnt%4) {
+    if (0 == frameCnt%6) {
       animationStep = (animationStep + 1)%lineSpacing;
     }
     if (0 == frameCnt%(64*4)) {
       if (r>0) {
         r = 0;
-        g = 255;
+        g = 64;
         b = 0;
       }
       else if (g>0) {
         r = 0;
         g = 0;
-        b = 255;
+        b = 64;
       }
       else {
-        r = 255;
+        r = 64;
         g = 0;
         b = 0;
       }
