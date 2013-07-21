@@ -13,7 +13,8 @@ public class CanvasFrame extends Frame {
 
 public class FullCanvas extends PApplet {
   public void setup() {
-    size(480, 210);  // 16 meters * 30 LEDs x 7 meters * 30 LEDs
+    // 16 meters * 30 LEDs - outer padding x 7 meters * 30 LEDs
+    size(474, 210);  
     frameRate(FRAMERATE);
     smooth();
     noLoop();

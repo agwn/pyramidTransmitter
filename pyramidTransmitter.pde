@@ -107,8 +107,8 @@ Routine[] enabledRoutines = new Routine[] {
   //new DropTheBomb(), 
   //new Fire(),
 
-  //new FullCanvasTest(fullCanvas),
-  new Bubbles(fullCanvas, 200),
+  new FullCanvasTest(fullCanvas),
+  //new Bubbles(fullCanvas, 200),
 };
 
 void setup() {
@@ -365,7 +365,7 @@ void draw() {
 */
 
   // With Gap Compensation
-  int offset = 3;
+  int offset = 0;
   for (int col = 0; col < 8; col++) {
     for (int strip = 0; strip < 8; strip++) {
       copy(fullCanvas.get(offset + strip * 3, 0, 1, displayHeight),
