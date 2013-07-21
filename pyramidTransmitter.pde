@@ -353,7 +353,12 @@ void draw() {
   switching_mode = false;
 
   fullCanvas.redraw();
-  copy(fullCanvas.get(0, 0, displayWidth, displayHeight), 0, 0, displayWidth, displayHeight, 0, 0, displayWidth, displayHeight);
+
+  for (int i = 0; i < displayWidth; i++) {
+    copy(fullCanvas.get(i * 3, 0, 1, displayHeight),
+         0, 0, 1, displayHeight,
+         i, 0, 1, displayHeight);
+  }
 
   if (fadeOutFrames > 0) {
     fadeOutFrames--;
