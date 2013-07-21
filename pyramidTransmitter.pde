@@ -366,12 +366,19 @@ void draw() {
   // With Gap Compensation
   int offset = 3;
   for (int col = 0; col < 8; col++) {
-    offset += 33;
     for (int strip = 0; strip < 8; strip++) {
       copy(fullCanvas.get(offset + strip * 3, 0, 1, displayHeight),
            0, 0, 1, displayHeight,
            strip + col * 8, 0, 1, displayHeight);
-    } 
+    }
+
+    // Add gaps
+    offset += 33;
+
+    // Add extra gap in middle
+    if (col == 3) {
+      offset += 30;
+    }
   }
 
   if (fadeOutFrames > 0) {
