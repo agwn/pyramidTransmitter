@@ -374,7 +374,7 @@ void draw() {
     }
 
     // Add gaps
-    offset += 33;
+    offset += 30 + 30;
 
     // Add extra gap in middle
     if (col == 3) {

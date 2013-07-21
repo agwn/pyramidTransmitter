@@ -2,7 +2,7 @@ public class CanvasFrame extends Frame {
   FullCanvas canvas;
 
   public CanvasFrame(FullCanvas targetCanvas) {
-    setBounds(100, 100, 480, 210);
+    setBounds(100, 100, 580, 310);
     canvas = targetCanvas;
     add(canvas);
     canvas.init();
@@ -38,7 +38,7 @@ class FullCanvasTest extends Routine {
     c.rect(0, 0, c.width, c.height);
     c.fill(255);
     c.stroke(255);
-    c.line(0, 0, c.width, c.height);
+    c.line(0, c.height, c.width, 0);
     c.popStyle();
   }
 }
