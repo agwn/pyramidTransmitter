@@ -1,22 +1,30 @@
 /*
-        #########  ##  #########
-        ########## ### ##########
-        ##      ##  ##         ##
-        ##      ##  ##   ########
-        ##      ##  ##   ########
-        ##      ##  ##         ##
-        ##########  ## ##########
-        #########   ## #########
+
+  #########  ##  #########
+  ########## ### ##########
+  ##      ##  ##         ##
+  ##      ##  ##   ########
+  ##      ##  ##   ########
+  ##      ##  ##         ##
+  ##########  ## ##########
+  #########   ## #########
+
 */
 
 class Bubble {
   float posX;
   float posY;
-  float s;     // Size
+  float s;
+  int minSize = 9;
+  int maxSize = 24;
   FullCanvas canvas;
   color pornjPink = color(252, 23, 218);
   color orange = color(255, 128, 0);
+  color white = color(255);
   color thisColor;
+  float flash = 0.0;
+  float flashDecay = 0.25;
+  float speed = 0.125;
 
   Bubble(FullCanvas fullCanvas) {
     canvas = fullCanvas;
@@ -24,23 +32,25 @@ class Bubble {
   }
 
   void init() {
-    s = random(8, 36);
+    s = random(minSize, maxSize);
     posY = canvas.height + s;
     posX = random(-s, canvas.width + s);
     thisColor = canvas.lerpColor(pornjPink, orange, random(1.0));
-    //thisColor = pornjPink;
   }
 
   void update() {
     canvas.pushStyle();
     canvas.noStroke();
-    canvas.fill(thisColor, (s - 2) / 6.0 * 64 + 16);  // Larger bubbles are brighter
-    if (random(1.0) >= 0.8) {
-      canvas.fill(255);
-    }
-    canvas.ellipse(posX, posY, s, s);
 
-    float speed = 0.25;
+    if (random(1.0) >= 0.95) {
+      flash = 1.0;
+    }
+    color temp = canvas.lerpColor(thisColor, white, flash);
+    canvas.fill(temp, (s - minSize) / maxSize * 239 + 16);
+    flash -= flashDecay;
+    flash = flash < 0.0 ? 0.0 : flash;
+
+    canvas.ellipse(posX, posY, s, s);
 
     // Too jittery?
 //    float angle = PI + random(-QUARTER_PI, QUARTER_PI);

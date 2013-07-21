@@ -107,7 +107,7 @@ Routine[] enabledRoutines = new Routine[] {
   //new DropTheBomb(), 
   //new Fire(),
 
-  new Bubbles(fullCanvas, 100),
+  new Bubbles(fullCanvas, 200),
 };
 
 void setup() {
