@@ -108,8 +108,8 @@ Routine[] enabledRoutines = new Routine[] {
   //new Fire(),
 
   //new FullCanvasTest(fullCanvas),
-  //new Bubbles(fullCanvas, 200),
-  new SineColumns(fullCanvas),
+  new Bubbles(fullCanvas, 200),
+  //new SineColumns(fullCanvas),
 };
 
 void setup() {
