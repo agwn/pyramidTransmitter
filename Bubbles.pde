@@ -9,15 +9,15 @@ class Bubble {
 
   void init() {
     s = random(4, 12);
-    posY = height + s;
-    posX = random(-s, width + s);
+    posY = displayHeight + s;
+    posX = random(-s, displayWidth + s);
   }
 
   void update() {
-    pushStyle();
-    noStroke();
-    fill(255, (s - 2) / 6.0 * 128);  // Larger bubbles are brighter
-    ellipse(posX, posY, s / 2, s);
+    trueCanvas.pushStyle();
+    trueCanvas.noStroke();
+    trueCanvas.fill(255, (s - 2) / 6.0 * 128);  // Larger bubbles are brighter
+    trueCanvas.ellipse(posX, posY, s / 2, s);
 
     float speed = 0.25;
     float angle = PI + random(-QUARTER_PI, QUARTER_PI);
@@ -28,7 +28,7 @@ class Bubble {
       init();
     }
 
-    popStyle();
+    trueCanvas.popStyle();
   }
 }
 
@@ -55,8 +55,8 @@ class Bubbles extends Routine {
   }
 
   void draw() {
-    fill(0);
-    rect(0, 0, width, height);
+    trueCanvas.fill(0);
+    trueCanvas.rect(0, 0, displayWidth, displayHeight);
 
     for (int i = 0; i < nBubbles; i++) {
       Bubble d = (Bubble) bubbles.get(i);
