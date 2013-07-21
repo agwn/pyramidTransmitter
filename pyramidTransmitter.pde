@@ -354,10 +354,24 @@ void draw() {
 
   fullCanvas.redraw();
 
+  // No Gap Compensation
+/*
   for (int i = 0; i < displayWidth; i++) {
     copy(fullCanvas.get(i * 3, 0, 1, displayHeight),
          0, 0, 1, displayHeight,
          i, 0, 1, displayHeight);
+  }
+*/
+
+  // With Gap Compensation
+  int offset = 3;
+  for (int col = 0; col < 8; col++) {
+    offset += 33;
+    for (int strip = 0; strip < 8; strip++) {
+      copy(fullCanvas.get(offset + strip * 3, 0, 1, displayHeight),
+           0, 0, 1, displayHeight,
+           strip + col * 8, 0, 1, displayHeight);
+    } 
   }
 
   if (fadeOutFrames > 0) {
