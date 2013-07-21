@@ -80,6 +80,10 @@ int[] varRange = {
   32, 32, 32
 };
 
+FullCanvas fullCanvas = new FullCanvas();
+CanvasFrame canvasFrame = new CanvasFrame(fullCanvas);
+
+//Routine[] enabledRoutines;
 Routine[] enabledRoutines = new Routine[] {
   //new ColorTest(), 
   //new RGBRoutine(),
@@ -103,11 +107,8 @@ Routine[] enabledRoutines = new Routine[] {
   //new DropTheBomb(), 
   //new Fire(),
 
-  new Bubbles(100),
+  new Bubbles(fullCanvas, 100),
 };
-
-PFrame trueFrame;
-secondApplet trueCanvas;
 
 void setup() {
   size(displayWidth, displayHeight);
@@ -139,13 +140,19 @@ void setup() {
     ctrlPort.bufferUntil('\n');
     ctrlPort.write(lf);
   }
+
+//  fullCanvas = new FullCanvas();
+//  canvasFrame = new CanvasFrame(fullCanvas);
+
+//  Routine[] enabledRoutines = new Routine[] {
+//    new Bubbles(fullCanvas, 100),
+//  }
+
   for (Routine r : enabledRoutines) {
     r.setup(this);
   }
 
   drop.setup(this);
-
-  PFrame trueFrame = new PFrame();
 }
 
 void setFadeLayer(int g) {
@@ -345,8 +352,8 @@ void draw() {
   // should test if mode switch is actually done?
   switching_mode = false;
 
-  trueCanvas.redraw();
-  copy(trueCanvas.get(0, 0, displayWidth, displayHeight), 0, 0, displayWidth, displayHeight, 0, 0, displayWidth, displayHeight);
+  fullCanvas.redraw();
+  copy(fullCanvas.get(0, 0, displayWidth, displayHeight), 0, 0, displayWidth, displayHeight, 0, 0, displayWidth, displayHeight);
 
   if (fadeOutFrames > 0) {
     fadeOutFrames--;
@@ -377,22 +384,4 @@ void draw() {
   sign.sendData();
 }
 
-public class PFrame extends Frame {
-  public PFrame() {
-    setBounds(100,100,400,300);
-    trueCanvas = new secondApplet();
-    add(trueCanvas);
-    trueCanvas.init();
-    show();
-  }
-}
-
-  public class secondApplet extends PApplet {
-    public void setup() {
-      size(400, 300);
-      noLoop();
-  }
-
-  public void draw() {}
-}
 
