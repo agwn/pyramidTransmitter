@@ -3,6 +3,9 @@ class Bubble {
   float posY;
   float s;     // Size
   FullCanvas canvas;
+  color pornjPink = color(252, 23, 218);
+  color orange = color(255, 128, 0);
+  color thisColor;
 
   Bubble(FullCanvas fullCanvas) {
     canvas = fullCanvas;
@@ -10,19 +13,27 @@ class Bubble {
   }
 
   void init() {
-    s = random(4, 12);
+    s = random(8, 36);
     posY = canvas.height + s;
     posX = random(-s, canvas.width + s);
+    //thisColor = lerpColor(pornjPink, orange, 0.5);
   }
 
   void update() {
     canvas.pushStyle();
     canvas.noStroke();
-    canvas.fill(255, (s - 2) / 6.0 * 128);  // Larger bubbles are brighter
+    canvas.fill(pornjPink, (s - 2) / 6.0 * 64 + 16);  // Larger bubbles are brighter
+    if (random(1.0) >= 0.8) {
+      canvas.fill(255);
+    }
     canvas.ellipse(posX, posY, s, s);
 
     float speed = 0.25;
-    float angle = PI + random(-QUARTER_PI, QUARTER_PI);
+
+    // Too jittery?
+//    float angle = PI + random(-QUARTER_PI, QUARTER_PI);
+
+    float angle = PI;
     posX += sin(angle) * s * speed;
     posY += cos(angle) * s * speed;
 

@@ -14,6 +14,7 @@ public class FullCanvas extends PApplet {
   public void setup() {
     size(480, 210);  // 16 meters * 30 LEDs x 7 meters * 30 LEDs
     frameRate(FRAMERATE);
+    smooth();
     noLoop();
   }
 
