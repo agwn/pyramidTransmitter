@@ -46,6 +46,8 @@ class Bubble {
       flash = 1.0;
     }
     color tempColor = canvas.lerpColor(thisColor, white, flash);
+
+    // Flash animations start at full opacity/brightness
     float tempAlpha = (s - minSize) / maxSize * 239 + 16;
     float flashAlpha = (255.0 - tempAlpha) * flash + tempAlpha;
     canvas.fill(tempColor, flashAlpha);

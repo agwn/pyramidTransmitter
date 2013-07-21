@@ -20,3 +20,25 @@ public class FullCanvas extends PApplet {
 
   public void draw() {}
 }
+
+
+class FullCanvasTest extends Routine {
+  FullCanvas c;
+  int posX = 0;
+  int posY = 0;
+
+  FullCanvasTest(FullCanvas fullCanvas) {
+    c = fullCanvas;
+  }
+
+  void draw() {
+    c.pushStyle();
+    c.fill(0);
+    c.noStroke();
+    c.rect(0, 0, c.width, c.height);
+    c.fill(255);
+    c.stroke(255);
+    c.line(0, 0, c.width, c.height);
+    c.popStyle();
+  }
+}
