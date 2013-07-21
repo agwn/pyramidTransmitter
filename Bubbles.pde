@@ -45,12 +45,14 @@ class Bubble {
     if (random(1.0) >= 0.95) {
       flash = 1.0;
     }
-    color temp = canvas.lerpColor(thisColor, white, flash);
-    canvas.fill(temp, (s - minSize) / maxSize * 239 + 16);
+    color tempColor = canvas.lerpColor(thisColor, white, flash);
+    float tempAlpha = (s - minSize) / maxSize * 239 + 16;
+    float flashAlpha = (255.0 - tempAlpha) * flash + tempAlpha;
+    canvas.fill(tempColor, flashAlpha);
     flash -= flashDecay;
     flash = flash < 0.0 ? 0.0 : flash;
 
-    canvas.ellipse(posX, posY, s, s);
+    canvas.rect(posX, posY, s, s);
 
     // Too jittery?
 //    float angle = PI + random(-QUARTER_PI, QUARTER_PI);
