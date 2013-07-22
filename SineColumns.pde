@@ -26,8 +26,8 @@ class SineColumns extends Routine {
   int sineTableSize = 128;
   float[] sineTable;
   float phase = 0.0;
-  float inc = 0.01;
-
+  float rate = 2.0 / sineTableSize;
+  float period = 0.25 / sineTableSize;
   SineColumns(FullCanvas fullCanvas) {
     c = fullCanvas;
     initSineTable();
@@ -35,35 +35,42 @@ class SineColumns extends Routine {
 
   void draw() {
     c.pushStyle();
+
     // Clear
     c.fill(0);
     c.noStroke();
     c.rect(0, 0, c.width, c.height);
 
-/*
     // Sanity line
+    c.stroke(64, 0, 0);
     c.line(0, c.height, c.width, 0);
-*/
 
+    // Sine
     c.stroke(255);
     c.strokeWeight(4);
     float amplitude = c.height / 2.0;
-
     c.beginShape(LINES);
-    for (int i = 0; i < c.width; i++) {
-      int realPhase = (int) ((float) (i % sineTableSize) + phase * (float) sineTableSize);
-      if (realPhase >= sineTableSize) {
-        realPhase -= sineTableSize;
-      }
-      c.vertex(i, amplitude + sineTable[realPhase] * amplitude);
+    float drawPhase = phase;
 
+    for (int i = 0; i < c.width; i++) {
+      c.vertex(i, amplitude + sineTable[(int) (drawPhase * sineTableSize)] * amplitude);
+
+      drawPhase += period;
+      while (drawPhase >= 1.0) {
+        drawPhase -= 1.0;
+      }
+      while (drawPhase < 0.0) {
+        drawPhase += 1.0;
+      }
     }
-    phase += inc;
+
+    phase += rate;
+
     if (phase >= 1.0) {
       phase -= 1.0;
     }
-    c.endShape();
 
+    c.endShape();
     c.popStyle(); 
   }
 
