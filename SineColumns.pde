@@ -30,7 +30,7 @@ class SineColumns extends Routine {
   float period = 1.5 / sineTableSize;
   float bias;
   float amplitude;
-  color pornjPink = color(252, 23, 218);
+  color pornj = color(252, 23, 218);
   color orange = color(255, 128, 0);
 
   SineColumns(FullCanvas fullCanvas) {
@@ -53,27 +53,20 @@ class SineColumns extends Routine {
     c.line(0, c.height, c.width, 0);
 
     // Sine
-    c.stroke(orange);
     c.strokeWeight(4);
 
-    c.stroke(pornjPink);
+    c.stroke(pornj, 128);
     drawSine(c.height + 15, 45);
-    c.stroke(orange);
-    drawSine(c.height - 15, 15);
-    c.stroke(pornjPink);
     drawSine(c.height - 45, 45);
-    c.stroke(orange);
-    drawSine(c.height - 75, 15);
-    c.stroke(pornjPink);
     drawSine(c.height - 105, 45);
-    c.stroke(orange);
-    drawSine(c.height - 135, 15);
-    c.stroke(pornjPink);
     drawSine(c.height - 165, 45);
-    c.stroke(orange);
-    drawSine(c.height - 195, 15);
-    c.stroke(pornjPink);
     drawSine(c.height - 225, 45);
+
+    c.stroke(orange, 128);
+    drawSine(c.height - 15, 15);
+    drawSine(c.height - 75, 15);
+    drawSine(c.height - 135, 15);
+    drawSine(c.height - 195, 15);
 
     phase += rate;
 
@@ -84,12 +77,12 @@ class SineColumns extends Routine {
     c.popStyle(); 
   }
 
-  void drawSine(float b, float a) {
+  void drawSine(float bias, float amp) {
     c.beginShape(LINES);
     float drawPhase = phase;
 
     for (int i = 0; i < c.width; i++) {
-      c.vertex(i, b + sineTable[(int) (drawPhase * sineTableSize)] * a);
+      c.vertex(i, bias + sineTable[(int) (drawPhase * sineTableSize)] * amp);
 
       drawPhase += period;
       while (drawPhase >= 1.0) {
