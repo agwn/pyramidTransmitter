@@ -32,8 +32,9 @@ class Bubble {
   color white = color(255);
   color thisColor;
   float flash = 0.0;
-  float flashDecay = 0.25;
-  float speed = 0.125;
+  float flashTriggerOdds = 0.98;
+  float flashDecay = 0.06125;
+  float speed = 1.0 / 8.0;
 
   Bubble(FullCanvas fullCanvas) {
     canvas = fullCanvas;
@@ -51,7 +52,7 @@ class Bubble {
     canvas.pushStyle();
     canvas.noStroke();
 
-    if (random(1.0) >= 0.95) {
+    if (random(1.0) >= flashTriggerOdds) {
       flash = 1.0;
     }
     color tempColor = canvas.lerpColor(thisColor, white, flash);

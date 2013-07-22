@@ -19,7 +19,7 @@ int displayHeight = 30*7;
 //int displayHeight = 24;
 
 boolean VERTICAL = false;
-int FRAMERATE = 15;
+int FRAMERATE = 60;
 int TYPICAL_MODE_TIME = 2048;
 
 Routine drop = new Seizure();
@@ -108,7 +108,7 @@ Routine[] enabledRoutines = new Routine[] {
   //new Fire(),
 
   //new FullCanvasTest(fullCanvas),
-  new Bubbles(fullCanvas, 200),
+  new Bubbles(fullCanvas, 150),
   //new SineColumns(fullCanvas),
 };
 
