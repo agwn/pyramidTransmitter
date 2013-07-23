@@ -30,7 +30,7 @@ class SineColumns extends Routine {
   float period = 1.5 / sineTableSize;
   float bias;
   float amplitude;
-  color pornj = color(252, 23, 218);
+  color pornjPink = color(252, 23, 218);
   color orange = color(255, 128, 0);
 
   SineColumns(FullCanvas fullCanvas) {
@@ -55,7 +55,7 @@ class SineColumns extends Routine {
     // Sine
     c.strokeWeight(4);
 
-    c.stroke(pornj, 128);
+    c.stroke(pornjPink, 128);
     drawSine(c.height + 15, 45);
     drawSine(c.height - 45, 45);
     drawSine(c.height - 105, 45);
