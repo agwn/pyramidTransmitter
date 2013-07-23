@@ -3,14 +3,18 @@ class Canvas {
   int y;
   int w;
   int h;
+  PGraphics pg;
 
   Canvas(int x_, int y_, int w_, int h_) {
     x = x_;
     y = y_;
     w = w_;
     h = h_;
+
+    pg = createGraphics(w, h, P2D);
   }
 }
+
 
 public class CanvasFrame extends Frame {
   FullCanvas canvas;

@@ -25,12 +25,12 @@ class Pxxxls extends CanvasRoutine {
   int nPxxxls = 20;
 
   Pxxxls(Canvas canvas_) {
-    canvas = canvas_;
+    setCanvas(canvas_);
     generatePxxxls();
   }
 
   Pxxxls(Canvas canvas_, int nPxxxls_) {
-    canvas = canvas_;
+    setCanvas(canvas_);
     nPxxxls = nPxxxls_;
     generatePxxxls();
   }
@@ -44,13 +44,16 @@ class Pxxxls extends CanvasRoutine {
   }
 
   void draw() {
-    fill(0);
-    rect(0, 0, canvas.w, canvas.h);
+    pg.beginDraw();
+    pg.fill(0);
+    pg.rect(0, 0, canvas.w, canvas.h);
 
     for (int i = 0; i < nPxxxls; i++) {
       Pxxxl b = (Pxxxl) pxxxls.get(i);
       b.update();
     }
+    pg.endDraw();
+    image(pg, 0, 0);
   }
 }
 
@@ -69,9 +72,12 @@ class Pxxxl {
   float flashDecay = 0.06125;
   float speed = 1.0 / 8.0;
   Canvas canvas;
+  PGraphics pg;
 
   Pxxxl(Canvas canvas_) {
+    // NOTE: Canvas & pg should change if calling object switches to new canvas
     canvas = canvas_;
+    pg = canvas.pg;
     init();
   }
 
@@ -83,8 +89,8 @@ class Pxxxl {
   }
 
   void update() {
-    pushStyle();
-    noStroke();
+    pg.pushStyle();
+    pg.noStroke();
 
     if (random(1.0) >= flashTriggerOdds) {
       flash = 1.0;
@@ -94,11 +100,11 @@ class Pxxxl {
     color tempColor = lerpColor(thisColor, white, flash);
     float tempAlpha = (s - minSize) / maxSize * 239 + 16;
     float flashAlpha = (255.0 - tempAlpha) * flash + tempAlpha;
-    fill(tempColor, flashAlpha);
+    pg.fill(tempColor, flashAlpha);
     flash -= flashDecay;
     flash = flash < 0.0 ? 0.0 : flash;
 
-    rect(posX, posY, s, s);
+    pg.rect(posX, posY, s, s);
     float angle = PI;
     posX += sin(angle) * s * speed;
     posY += cos(angle) * s * speed;
@@ -107,6 +113,6 @@ class Pxxxl {
       init();
     }
 
-    popStyle();
+    pg.popStyle();
   }
 }
