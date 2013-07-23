@@ -83,7 +83,6 @@ int[] varRange = {
 Routine[] enabledRoutines;
 
 void setup() {
-  //size(displayWidth, displayHeight);
   size(538, 420);
   frameRate(FRAMERATE);
 
@@ -146,7 +145,7 @@ void setRoutines() {
     //new Fire(),
 
     //new FullCanvasTest(fullCanvas),
-    new Bubbles(150),
+    new Pxls(150),
     //new SineColumns(fullCanvas),
   };
 }

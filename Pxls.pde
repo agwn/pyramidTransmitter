@@ -20,13 +20,45 @@
 
 */
 
-class Bubble {
+class Pxls extends Routine {
+  ArrayList pxls;
+  int nPxls = 20;
+
+  Pxls() {
+    generatePxls();
+  }
+
+  Pxls(int nPxls_) {
+    nPxls = nPxls_;
+    generatePxls();
+  }
+
+  void generatePxls() {
+    pxls = new ArrayList();
+    for (int i = 0; i < nPxls; i++) {
+      Pxl b = new Pxl();
+      pxls.add(b);
+    }
+  }
+
+  void draw() {
+    fill(0);
+    rect(0, 0, width, height);
+
+    for (int i = 0; i < nPxls; i++) {
+      Pxl b = (Pxl) pxls.get(i);
+      b.update();
+    }
+  }
+}
+
+class Pxl {
   float posX;
   float posY;
   float s;
   int minSize = 9;
   int maxSize = 24;
-  color pornjPink = color(252, 23, 218);
+  color pornj = color(252, 23, 218);
   color orange = color(255, 128, 0);
   color white = color(255);
   color thisColor;
@@ -35,7 +67,7 @@ class Bubble {
   float flashDecay = 0.06125;
   float speed = 1.0 / 8.0;
 
-  Bubble() {
+  Pxl() {
     init();
   }
 
@@ -43,7 +75,7 @@ class Bubble {
     s = random(minSize, maxSize);
     posY = height + s;
     posX = random(-s, width + s);
-    thisColor = lerpColor(pornjPink, orange, random(1.0));
+    thisColor = lerpColor(pornj, orange, random(1.0));
   }
 
   void update() {
@@ -55,7 +87,7 @@ class Bubble {
     }
     color tempColor = lerpColor(thisColor, white, flash);
 
-    // Flash animations start at full opacity/brightness
+    // Flash animations start at full opacity & brightness
     float tempAlpha = (s - minSize) / maxSize * 239 + 16;
     float flashAlpha = (255.0 - tempAlpha) * flash + tempAlpha;
     fill(tempColor, flashAlpha);
@@ -63,10 +95,6 @@ class Bubble {
     flash = flash < 0.0 ? 0.0 : flash;
 
     rect(posX, posY, s, s);
-
-    // Too jittery?
-//    float angle = PI + random(-QUARTER_PI, QUARTER_PI);
-
     float angle = PI;
     posX += sin(angle) * s * speed;
     posY += cos(angle) * s * speed;
@@ -78,37 +106,3 @@ class Bubble {
     popStyle();
   }
 }
-
-class Bubbles extends Routine {
-  ArrayList bubbles;
-  int nBubbles = 20;
-  float QUARTER_PI = PI * 0.125;
-
-  Bubbles() {
-    generateBubbles();
-  }
-
-  Bubbles(int nBubbles_) {
-    nBubbles = nBubbles_;
-    generateBubbles();
-  }
-
-  void generateBubbles() {
-    bubbles = new ArrayList();
-    for (int i = 0; i < nBubbles; i++) {
-      Bubble d = new Bubble();
-      bubbles.add(d);
-    }
-  }
-
-  void draw() {
-    fill(0);
-    rect(0, 0, width, height);
-
-    for (int i = 0; i < nBubbles; i++) {
-      Bubble d = (Bubble) bubbles.get(i);
-      d.update();
-    }
-  }
-}
-

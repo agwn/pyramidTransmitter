@@ -233,7 +233,7 @@ public class LEDDisplay {
         }
       }
     }
-    updatePixels();
+    //updatePixels();
 
     udp.send(buffer, address, port);
   }
