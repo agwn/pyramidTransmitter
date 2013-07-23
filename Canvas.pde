@@ -4,6 +4,7 @@ class Canvas {
   int w;
   int h;
   PGraphics pg;
+  float brightness = 1.0;
 
   Canvas(int x_, int y_, int w_, int h_) {
     x = x_;
@@ -16,11 +17,21 @@ class Canvas {
 
   void sendToOutput() {
     int offset = 0;
+
     canvasOut.pg.beginDraw();
+    PGraphics pgCopy = createGraphics(w, h, P2D);
+    pgCopy.beginDraw();
+    pgCopy.copy(pg.get(), 0, 0, w, h, 0, 0, w, h);
+    pgCopy.fill(0, (1.0 - brightness) * 255);
+    pgCopy.rect(0, 0, w, h);
+    pgCopy.endDraw();
 
     for (int col = 0; col < 8; col++) {
       for (int strip = 0; strip < 8; strip++) {
-        canvasOut.pg.blend(pg.get(offset + strip * 3, 0, 1, h),
+        //PImage temp = pg.get(offset + strip * 3, 0, 1, h) ;
+        PImage temp = pgCopy.get(offset + strip * 3, 0, 1, h) ;
+
+        canvasOut.pg.blend(temp,
              0, 0, 1, h,
              strip + col * 8, 0, 1, canvasOut.h, SCREEN);
       }

@@ -86,9 +86,26 @@ void setupSign() {
   sign.setEnableCIECorrection(true);
 }
 
+float fadePhase = 0.0;
+float fadePhaseInc = 0.01;
+
 void draw() {
   enabledRoutines[0].draw();
   enabledRoutines[1].draw();
+
+  canvas1.brightness = fadePhase;
+  canvas2.brightness = 1.0 - fadePhase;
+
+  fadePhase += fadePhaseInc;
+
+  if (fadePhase > 1.0) {
+    fadePhaseInc *= -1;
+    fadePhase = 1.0 - fadePhaseInc;
+  }
+  if (fadePhase < 0.0) {
+    fadePhaseInc *= -1;
+    fadePhase = fadePhaseInc;
+  }
 
   canvasOut.clear();
   canvas1.sendToOutput();
