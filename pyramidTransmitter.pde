@@ -84,6 +84,7 @@ int[] varRange = {
 CanvasRoutine[] enabledRoutines;
 
 Canvas canvas1 = new Canvas(64, 0, 474, 210);
+Canvas canvas2 = new Canvas(64, 210, 474, 210);
 
 void setup() {
   size(602, 420);
@@ -126,7 +127,7 @@ void setup() {
 void setRoutines() {
   enabledRoutines = new CanvasRoutine[] {
     //new FullCanvasTest(fullCanvas),
-    new Pxxxls(canvas1, 150),
+    new Pxxxls(canvas2, 150),
     //new SineColumns(fullCanvas),
   };
 }
@@ -366,10 +367,7 @@ void draw() {
     }
   }
   else if (currentRoutine != null) {
-    pushMatrix();
-    translate(currentRoutine.canvas.x, currentRoutine.canvas.y);
     currentRoutine.draw();
-    popMatrix();
   }
   else {
     println("Current method is null");

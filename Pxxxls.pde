@@ -53,7 +53,7 @@ class Pxxxls extends CanvasRoutine {
       b.update();
     }
     pg.endDraw();
-    image(pg, 0, 0);
+    renderCanvas();
   }
 }
 
