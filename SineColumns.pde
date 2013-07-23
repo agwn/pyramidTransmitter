@@ -21,7 +21,7 @@
 */
 
 
-class SineColumns extends Routine {
+class SineColumns extends CanvasRoutine {
   FullCanvas c;
   int sineTableSize = 256;
   float[] sineTable;
@@ -33,40 +33,37 @@ class SineColumns extends Routine {
   color pornjPink = color(252, 23, 218);
   color orange = color(255, 128, 0);
 
-  SineColumns(FullCanvas fullCanvas) {
-    c = fullCanvas;
+  SineColumns(Canvas canvas_) {
+    setCanvas(canvas_);
     initSineTable();
-    bias = c.height - 15;
+    bias = pg.height - 15;
     amplitude = 15;
   }
 
   void draw() {
-    c.pushStyle();
+    pg.beginDraw();
+    pg.pushStyle();
 
     // Clear
-    c.fill(0);
-    c.noStroke();
-    c.rect(0, 0, c.width, c.height);
-
-    // Sanity line
-    c.stroke(64, 0, 0);
-    c.line(0, c.height, c.width, 0);
+    pg.fill(0);
+    pg.noStroke();
+    pg.rect(0, 0, pg.width, pg.height);
 
     // Sine
-    c.strokeWeight(4);
+    pg.strokeWeight(4);
 
-    c.stroke(pornjPink, 128);
-    drawSine(c.height + 15, 45);
-    drawSine(c.height - 45, 45);
-    drawSine(c.height - 105, 45);
-    drawSine(c.height - 165, 45);
-    drawSine(c.height - 225, 45);
+    pg.stroke(pornjPink, 128);
+    drawSine(pg.height + 15, 45);
+    drawSine(pg.height - 45, 45);
+    drawSine(pg.height - 105, 45);
+    drawSine(pg.height - 165, 45);
+    drawSine(pg.height - 225, 45);
 
-    c.stroke(orange, 128);
-    drawSine(c.height - 15, 15);
-    drawSine(c.height - 75, 15);
-    drawSine(c.height - 135, 15);
-    drawSine(c.height - 195, 15);
+    pg.stroke(orange, 128);
+    drawSine(pg.height - 15, 15);
+    drawSine(pg.height - 75, 15);
+    drawSine(pg.height - 135, 15);
+    drawSine(pg.height - 195, 15);
 
     phase += rate;
 
@@ -74,15 +71,17 @@ class SineColumns extends Routine {
       phase -= 1.0;
     }
 
-    c.popStyle(); 
+    pg.popStyle();
+    pg.endDraw();
+    renderCanvas();
   }
 
   void drawSine(float bias, float amp) {
-    c.beginShape(LINES);
+    pg.beginShape(LINES);
     float drawPhase = phase;
 
-    for (int i = 0; i < c.width; i++) {
-      c.vertex(i, bias + sineTable[(int) (drawPhase * sineTableSize)] * amp);
+    for (int i = 0; i < pg.width; i++) {
+      pg.vertex(i, bias + sineTable[(int) (drawPhase * sineTableSize)] * amp);
 
       drawPhase += period;
       while (drawPhase >= 1.0) {
@@ -93,7 +92,7 @@ class SineColumns extends Routine {
       }
     }
 
-    c.endShape();
+    pg.endShape();
   }
 
   void initSineTable() {

@@ -60,7 +60,8 @@ void setup() {
 
 void setRoutines() {
   Pxxxls r1 = new Pxxxls(canvas1, 100);
-  CanvasRoutine r2 = new Pxxxls(canvas2, 100);
+  //Pxxxls r2 = new Pxxxls(canvas2, 50);
+  SineColumns r2 = new SineColumns(canvas2);
 
   // Set r1 colors to green for debugging
   for (int i = 0; i < r1.nPxxxls; i++) {
