@@ -13,6 +13,31 @@ class Canvas {
 
     pg = createGraphics(w, h, P2D);
   }
+
+  void sendToOutput() {
+    int offset = 0;
+    canvasOut.pg.beginDraw();
+
+    for (int col = 0; col < 8; col++) {
+      for (int strip = 0; strip < 8; strip++) {
+        canvasOut.pg.copy(pg.get(offset + strip * 3, 0, 1, h),
+             0, 0, 1, h,
+             strip + col * 8, 0, 1, canvasOut.h);
+      }
+
+      // Add gaps
+      offset += 30 + 30;
+
+      // Add extra gap in middle
+      if (col == 3) {
+        offset += 30;
+      }
+    }
+
+    canvasOut.pg.endDraw();
+    image(canvasOut.pg, 0, 0, canvasOut.w, canvasOut.h); 
+  }
+
 }
 
 

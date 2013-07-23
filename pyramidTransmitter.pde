@@ -83,6 +83,7 @@ int[] varRange = {
 
 CanvasRoutine[] enabledRoutines;
 
+Canvas canvasOut = new Canvas(0, 0, displayWidth, displayHeight);
 Canvas canvas1 = new Canvas(64, 0, 474, 210);
 Canvas canvas2 = new Canvas(64, 210, 474, 210);
 
@@ -340,6 +341,7 @@ void draw() {
   }
 */
 
+/*
   // With Gap Compensation
   int offset = 0;
   for (int col = 0; col < 8; col++) {
@@ -357,6 +359,7 @@ void draw() {
       offset += 30;
     }
   }
+*/
 
   if (fadeOutFrames > 0) {
     fadeOutFrames--;
@@ -383,6 +386,8 @@ void draw() {
     currentRoutine.isDone = false;
     //newMode();
   }
+
+  canvas2.sendToOutput();
 
   sign.sendData();
 }
