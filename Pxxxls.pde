@@ -20,39 +20,41 @@
 
 */
 
-class Pxls extends Routine {
-  ArrayList pxls;
-  int nPxls = 20;
+class Pxxxls extends CanvasRoutine {
+  ArrayList pxxxls;
+  int nPxxxls = 20;
 
-  Pxls() {
-    generatePxls();
+  Pxxxls(Canvas canvas_) {
+    canvas = canvas_;
+    generatePxxxls();
   }
 
-  Pxls(int nPxls_) {
-    nPxls = nPxls_;
-    generatePxls();
+  Pxxxls(Canvas canvas_, int nPxxxls_) {
+    canvas = canvas_;
+    nPxxxls = nPxxxls_;
+    generatePxxxls();
   }
 
-  void generatePxls() {
-    pxls = new ArrayList();
-    for (int i = 0; i < nPxls; i++) {
-      Pxl b = new Pxl();
-      pxls.add(b);
+  void generatePxxxls() {
+    pxxxls = new ArrayList();
+    for (int i = 0; i < nPxxxls; i++) {
+      Pxxxl b = new Pxxxl(canvas);
+      pxxxls.add(b);
     }
   }
 
   void draw() {
     fill(0);
-    rect(0, 0, width, height);
+    rect(0, 0, canvas.w, canvas.h);
 
-    for (int i = 0; i < nPxls; i++) {
-      Pxl b = (Pxl) pxls.get(i);
+    for (int i = 0; i < nPxxxls; i++) {
+      Pxxxl b = (Pxxxl) pxxxls.get(i);
       b.update();
     }
   }
 }
 
-class Pxl {
+class Pxxxl {
   float posX;
   float posY;
   float s;
@@ -66,15 +68,17 @@ class Pxl {
   float flashTriggerOdds = 0.98;
   float flashDecay = 0.06125;
   float speed = 1.0 / 8.0;
+  Canvas canvas;
 
-  Pxl() {
+  Pxxxl(Canvas canvas_) {
+    canvas = canvas_;
     init();
   }
 
   void init() {
     s = random(minSize, maxSize);
-    posY = height + s;
-    posX = random(-s, width + s);
+    posY = canvas.h + s;
+    posX = random(-s, canvas.w + s);
     thisColor = lerpColor(pornj, orange, random(1.0));
   }
 
@@ -85,9 +89,9 @@ class Pxl {
     if (random(1.0) >= flashTriggerOdds) {
       flash = 1.0;
     }
-    color tempColor = lerpColor(thisColor, white, flash);
 
     // Flash animations start at full opacity & brightness
+    color tempColor = lerpColor(thisColor, white, flash);
     float tempAlpha = (s - minSize) / maxSize * 239 + 16;
     float flashAlpha = (255.0 - tempAlpha) * flash + tempAlpha;
     fill(tempColor, flashAlpha);

@@ -35,7 +35,8 @@ int mode = 0;
 
 int direction = 1;
 int position = 0;
-Routine currentRoutine = null;
+//Routine currentRoutine = null;
+CanvasRoutine currentRoutine = null;
 
 LEDDisplay sign;
 
@@ -80,10 +81,12 @@ int[] varRange = {
   32, 32, 32
 };
 
-Routine[] enabledRoutines;
+CanvasRoutine[] enabledRoutines;
+
+Canvas canvas1 = new Canvas(64, 0, 474, 210);
 
 void setup() {
-  size(538, 420);
+  size(602, 420);
   frameRate(FRAMERATE);
 
   sign = new LEDDisplay(this, displayWidth, displayHeight, true, transmit_address, transmit_port);
@@ -121,31 +124,9 @@ void setup() {
 }
 
 void setRoutines() {
-  enabledRoutines = new Routine[] {
-    //new ColorTest(), 
-    //new RGBRoutine(),
-
-    //new Warp(new WarpSpeedMrSulu(), true, true, 0.2, 0.2), 
-    //new WarpSpeedMrSulu(), 
-    //new RGBRoutine(), 
-    //new Warp(new RGBRoutine(), true, true, 0.3, 0.3), 
-    //new RainbowColors(), 
-    //new Warp(new RainbowColors(), true, true, 0.5, 0.5), 
-    //new Warp(null, true, false, 0.3, 0.3), 
-    //new Waves(), 
-    //new ColorDrop(), 
-    //new Warp(new ColorDrop(), true, true, 0.5, 0.5), 
-    //new Bursts(), 
-    //new Warp(new Bursts(), true, true, 0.2, 0.2), 
-    //new Chase(), 
-    //new Warp(new Chase(), true, true, 0.3, 0.3), 
-    //new Greetz(), 
-    //new FFTDemo(), 
-    //new DropTheBomb(), 
-    //new Fire(),
-
+  enabledRoutines = new CanvasRoutine[] {
     //new FullCanvasTest(fullCanvas),
-    new Pxls(150),
+    new Pxxxls(canvas1, 150),
     //new SineColumns(fullCanvas),
   };
 }
@@ -385,7 +366,10 @@ void draw() {
     }
   }
   else if (currentRoutine != null) {
+    pushMatrix();
+    translate(currentRoutine.canvas.x, currentRoutine.canvas.y);
     currentRoutine.draw();
+    popMatrix();
   }
   else {
     println("Current method is null");
