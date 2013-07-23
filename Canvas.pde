@@ -38,9 +38,11 @@ class FullCanvasTest extends Routine {
     c.fill(0);
     c.noStroke();
     c.rect(0, 0, c.width, c.height);
-    c.fill(255);
-    c.stroke(255);
+    c.fill(255, 0, 0);
+    c.stroke(255, 0, 0);
+    c.strokeWeight(10);
     c.line(0, c.height, c.width, 0);
+    c.line(0, 0, c.width, c.height);
     c.popStyle();
   }
 }

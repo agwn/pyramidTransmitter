@@ -184,7 +184,7 @@ public class LEDDisplay {
   }
 
   public void sendData() {
-    PImage image = get();
+    PImage image = get(0, 0, w, h);
 
     //if (image.width != w || image.height != h) {
     //  image.resize(w,h);

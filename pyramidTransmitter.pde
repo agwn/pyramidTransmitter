@@ -80,44 +80,49 @@ int[] varRange = {
   32, 32, 32
 };
 
-FullCanvas fullCanvas = new FullCanvas();
-CanvasFrame canvasFrame = new CanvasFrame(fullCanvas);
+//FullCanvas fullCanvas = new FullCanvas();
+//CanvasFrame canvasFrame = new CanvasFrame(fullCanvas);
 
+Routine[] enabledRoutines;
+
+void setRoutines() {
 //Routine[] enabledRoutines;
-Routine[] enabledRoutines = new Routine[] {
-  //new ColorTest(), 
-  //new RGBRoutine(),
+  enabledRoutines = new Routine[] {
+    //new ColorTest(), 
+    //new RGBRoutine(),
 
-  //new Warp(new WarpSpeedMrSulu(), true, true, 0.2, 0.2), 
-  //new WarpSpeedMrSulu(), 
-  //new RGBRoutine(), 
-  //new Warp(new RGBRoutine(), true, true, 0.3, 0.3), 
-  //new RainbowColors(), 
-  //new Warp(new RainbowColors(), true, true, 0.5, 0.5), 
-  //new Warp(null, true, false, 0.3, 0.3), 
-  //new Waves(), 
-  //new ColorDrop(), 
-  //new Warp(new ColorDrop(), true, true, 0.5, 0.5), 
-  //new Bursts(), 
-  //new Warp(new Bursts(), true, true, 0.2, 0.2), 
-  //new Chase(), 
-  //new Warp(new Chase(), true, true, 0.3, 0.3), 
-  //new Greetz(), 
-  //new FFTDemo(), 
-  //new DropTheBomb(), 
-  //new Fire(),
+    //new Warp(new WarpSpeedMrSulu(), true, true, 0.2, 0.2), 
+    //new WarpSpeedMrSulu(), 
+    //new RGBRoutine(), 
+    //new Warp(new RGBRoutine(), true, true, 0.3, 0.3), 
+    //new RainbowColors(), 
+    //new Warp(new RainbowColors(), true, true, 0.5, 0.5), 
+    //new Warp(null, true, false, 0.3, 0.3), 
+    //new Waves(), 
+    //new ColorDrop(), 
+    //new Warp(new ColorDrop(), true, true, 0.5, 0.5), 
+    //new Bursts(), 
+    //new Warp(new Bursts(), true, true, 0.2, 0.2), 
+    //new Chase(), 
+    //new Warp(new Chase(), true, true, 0.3, 0.3), 
+    //new Greetz(), 
+    //new FFTDemo(), 
+    //new DropTheBomb(), 
+    //new Fire(),
 
-  //new FullCanvasTest(fullCanvas),
-  new Bubbles(fullCanvas, 150),
-  //new SineColumns(fullCanvas),
-};
+    //new FullCanvasTest(fullCanvas),
+    new Bubbles(150),
+    //new SineColumns(fullCanvas),
+  };
+}
 
 void setup() {
-  size(displayWidth, displayHeight);
-
+  //size(displayWidth, displayHeight);
+  size(538, 420);
+  setRoutines();
   frameRate(FRAMERATE);
 
-  sign = new LEDDisplay(this, displayHeight, displayWidth, true, transmit_address, transmit_port);
+  sign = new LEDDisplay(this, displayWidth, displayHeight, true, transmit_address, transmit_port);
   sign.setAddressingMode(LEDDisplay.ADDRESSING_HORIZONTAL_NORMAL);
   //sign.setEnableGammaCorrection(true);
   sign.setEnableCIECorrection(true);
@@ -354,7 +359,7 @@ void draw() {
   // should test if mode switch is actually done?
   switching_mode = false;
 
-  fullCanvas.redraw();
+  //fullCanvas.redraw();
 
   // No Gap Compensation
 /*
@@ -369,7 +374,7 @@ void draw() {
   int offset = 0;
   for (int col = 0; col < 8; col++) {
     for (int strip = 0; strip < 8; strip++) {
-      copy(fullCanvas.get(offset + strip * 3, 0, 1, displayHeight),
+      copy(
            0, 0, 1, displayHeight,
            strip + col * 8, 0, 1, displayHeight);
     }
