@@ -80,13 +80,48 @@ int[] varRange = {
   32, 32, 32
 };
 
-//FullCanvas fullCanvas = new FullCanvas();
-//CanvasFrame canvasFrame = new CanvasFrame(fullCanvas);
-
 Routine[] enabledRoutines;
 
+void setup() {
+  //size(displayWidth, displayHeight);
+  size(538, 420);
+  frameRate(FRAMERATE);
+
+  sign = new LEDDisplay(this, displayWidth, displayHeight, true, transmit_address, transmit_port);
+  sign.setAddressingMode(LEDDisplay.ADDRESSING_HORIZONTAL_NORMAL);
+  //sign.setEnableGammaCorrection(true);
+  sign.setEnableCIECorrection(true);
+
+  setRoutines();
+  setMode(0);
+
+  // configure serial input
+  String[] list = Serial.list();
+  delay(20);
+  println("Serial Ports List:");
+  println(list);
+
+  // The first serial port on my mac is the Arduino so I just open that.
+  // Consult the output of println(Serial.list()); to figure out which you
+  // should be using.
+  if (false /*Serial.list().length > 0*/) {
+    //ctrlPort = new Serial(this, Serial.list()[0], 38400);
+    ctrlPort = new Serial(this, "COM51", 38400);
+    //ctrlPort = new Serial(this, "/dev/ttyUSB0", 38400);
+
+    // Fire a serialEvent() when when a linefeed comes in to the serial port.
+    ctrlPort.bufferUntil('\n');
+    ctrlPort.write(lf);
+  }
+
+  for (Routine r : enabledRoutines) {
+    r.setup(this);
+  }
+
+  drop.setup(this);
+}
+
 void setRoutines() {
-//Routine[] enabledRoutines;
   enabledRoutines = new Routine[] {
     //new ColorTest(), 
     //new RGBRoutine(),
@@ -114,52 +149,6 @@ void setRoutines() {
     new Bubbles(150),
     //new SineColumns(fullCanvas),
   };
-}
-
-void setup() {
-  //size(displayWidth, displayHeight);
-  size(538, 420);
-  setRoutines();
-  frameRate(FRAMERATE);
-
-  sign = new LEDDisplay(this, displayWidth, displayHeight, true, transmit_address, transmit_port);
-  sign.setAddressingMode(LEDDisplay.ADDRESSING_HORIZONTAL_NORMAL);
-  //sign.setEnableGammaCorrection(true);
-  sign.setEnableCIECorrection(true);
-
-  setMode(0);
-
-  // configure serial input
-  String[] list = Serial.list();
-  delay(20);
-  println("Serial Ports List:");
-  println(list);
-
-  // The first serial port on my mac is the Arduino so I just open that.
-  // Consult the output of println(Serial.list()); to figure out which you
-  // should be using.
-  if (false /*Serial.list().length > 0*/) {
-    //ctrlPort = new Serial(this, Serial.list()[0], 38400);
-    ctrlPort = new Serial(this, "COM51", 38400);
-    //ctrlPort = new Serial(this, "/dev/ttyUSB0", 38400);
-
-    // Fire a serialEvent() when when a linefeed comes in to the serial port.
-    ctrlPort.bufferUntil('\n');
-    ctrlPort.write(lf);
-  }
-
-//  fullCanvas = new FullCanvas();
-//  canvasFrame = new CanvasFrame(fullCanvas);
-
-//  Routine[] enabledRoutines = new Routine[] {
-//    new Bubbles(fullCanvas, 100),
-//  }
-
-  for (Routine r : enabledRoutines) {
-    r.setup(this);
-  }
-
-  drop.setup(this);
 }
 
 void setFadeLayer(int g) {
