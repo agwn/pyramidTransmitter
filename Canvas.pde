@@ -20,9 +20,9 @@ class Canvas {
 
     for (int col = 0; col < 8; col++) {
       for (int strip = 0; strip < 8; strip++) {
-        canvasOut.pg.copy(pg.get(offset + strip * 3, 0, 1, h),
+        canvasOut.pg.blend(pg.get(offset + strip * 3, 0, 1, h),
              0, 0, 1, h,
-             strip + col * 8, 0, 1, canvasOut.h);
+             strip + col * 8, 0, 1, canvasOut.h, SCREEN);
       }
 
       // Add gaps
@@ -35,9 +35,17 @@ class Canvas {
     }
 
     canvasOut.pg.endDraw();
-    image(canvasOut.pg, 0, 0, canvasOut.w, canvasOut.h); 
   }
 
+  void clear() {
+    pg.beginDraw();
+    pg.pushStyle();
+    pg.fill(0);
+    pg.noStroke();
+    pg.rect(0, 0, w, h);
+    pg.popStyle();
+    pg.endDraw();
+  }
 }
 
 

@@ -34,7 +34,7 @@ String transmit_address = "127.0.0.1";
 int transmit_port = 58082;
 
 //float bright = 0.10;  // Global brightness modifier
-float bright = 1.0;  // For simulation
+float bright = 1.0;     // For simulation
 
 // Display configuration
 int displayWidth = 64;    // 8 columns x 8 pixels
@@ -59,14 +59,20 @@ void setup() {
 }
 
 void setRoutines() {
-  enabledRoutines = new CanvasRoutine[] {
-    //new FullCanvasTest(fullCanvas),
-    new Pxxxls(canvas2, 150),
-    //new SineColumns(fullCanvas),
-  };
+  Pxxxls r1 = new Pxxxls(canvas1, 100);
+  CanvasRoutine r2 = new Pxxxls(canvas2, 100);
 
-  currentRoutine = enabledRoutines[0];
-  currentRoutine.reset();
+  // Set r1 colors to green for debugging
+  for (int i = 0; i < r1.nPxxxls; i++) {
+    Pxxxl b = (Pxxxl) r1.pxxxls.get(i);
+    b.pornj = color(255);
+    b.orange = color(0, 255, 0); 
+  }
+
+  enabledRoutines = new CanvasRoutine[] {
+    r1,
+    r2,
+  };
 
   for (Routine r : enabledRoutines) {
     r.setup(this);
@@ -81,7 +87,12 @@ void setupSign() {
 }
 
 void draw() {
-  currentRoutine.draw();
+  enabledRoutines[0].draw();
+  enabledRoutines[1].draw();
+
+  canvasOut.clear();
+  canvas1.sendToOutput();
   canvas2.sendToOutput();
+  image(canvasOut.pg, 0, 0, canvasOut.w, canvasOut.h);
   sign.sendData();
 }
