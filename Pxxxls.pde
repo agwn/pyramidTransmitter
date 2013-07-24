@@ -45,8 +45,7 @@ class Pxxxls extends CanvasRoutine {
 
   void draw() {
     pg.beginDraw();
-    pg.fill(0);
-    pg.rect(0, 0, canvas.w, canvas.h);
+    pg.background(0);
 
     for (int i = 0; i < nPxxxls; i++) {
       Pxxxl b = (Pxxxl) pxxxls.get(i);

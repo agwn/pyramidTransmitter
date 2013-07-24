@@ -50,12 +50,14 @@ CanvasRoutine[] enabledRoutines;
 Canvas canvasOut = new Canvas(0, 0, displayWidth, displayHeight);
 Canvas canvas1 = new Canvas(64, 0, 474, 210);
 Canvas canvas2 = new Canvas(64, 210, 474, 210);
+//Canvas canvas2 = new Canvas(64, 210, 474, 210, JAVA2D);
 
 void setup() {
-  size(602, 420, P2D);
+  size(602, 420, JAVA2D);
   frameRate(FRAMERATE);
   setupSign();
   setRoutines();
+  background(0);
 }
 
 void setRoutines() {

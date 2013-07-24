@@ -23,11 +23,12 @@
 
 class SineColumns extends CanvasRoutine {
   FullCanvas c;
+  int resolution = 16;  // Higher value = lower resolution
   int sineTableSize = 256;
   float[] sineTable;
   float phase = 0.0;
   float rate = 2.0 / sineTableSize;
-  float period = 1.5 / sineTableSize;
+  float period = 1.5 / sineTableSize * resolution;
   float bias;
   float amplitude;
   color pornjPink = color(252, 23, 218);
@@ -42,14 +43,11 @@ class SineColumns extends CanvasRoutine {
 
   void draw() {
     pg.beginDraw();
+    pg.background(0);
     pg.pushStyle();
 
-    // Clear
-    pg.fill(0);
-    pg.noStroke();
-    pg.rect(0, 0, pg.width, pg.height);
-
     // Sine
+    pg.noFill();
     pg.strokeWeight(4);
 
     pg.stroke(pornjPink, 128);
@@ -77,11 +75,11 @@ class SineColumns extends CanvasRoutine {
   }
 
   void drawSine(float bias, float amp) {
-    pg.beginShape(LINES);
+    pg.beginShape();
     float drawPhase = phase;
 
-    for (int i = 0; i < pg.width; i++) {
-      pg.vertex(i, bias + sineTable[(int) (drawPhase * sineTableSize)] * amp);
+    for (int i = 0; i < canvas.w + resolution; i = i + resolution) {
+      pg.curveVertex(i, bias + sineTable[(int) (drawPhase * sineTableSize)] * amp);
 
       drawPhase += period;
       while (drawPhase >= 1.0) {
