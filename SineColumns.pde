@@ -69,6 +69,9 @@ class SineColumns extends CanvasRoutine {
       phase -= 1.0;
     }
 
+    pg.fill(128);
+    pg.noStroke();
+    pg.rect(0, 0, canvas.w, canvas.h);
     pg.popStyle();
     pg.endDraw();
     renderCanvas();
@@ -78,7 +81,7 @@ class SineColumns extends CanvasRoutine {
     pg.beginShape();
     float drawPhase = phase;
 
-    for (int i = 0; i < canvas.w + resolution; i = i + resolution) {
+    for (int i = -resolution * 2; i <= canvas.w + resolution * 2; i = i + resolution) {
       pg.curveVertex(i, bias + sineTable[(int) (drawPhase * sineTableSize)] * amp);
 
       drawPhase += period;

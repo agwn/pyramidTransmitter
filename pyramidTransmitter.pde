@@ -90,7 +90,7 @@ void setupSign() {
 }
 
 float fadePhase = 0.0;
-float fadePhaseInc = 0.01;
+float fadePhaseInc = 0.005;
 
 void draw() {
   enabledRoutines[0].draw();
