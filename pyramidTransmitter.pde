@@ -52,7 +52,7 @@ Canvas canvas1 = new Canvas(64, 0, 474, 210);
 Canvas canvas2 = new Canvas(64, 210, 474, 210);
 
 void setup() {
-  size(602, 420);
+  size(602, 420, P2D);
   frameRate(FRAMERATE);
   setupSign();
   setRoutines();

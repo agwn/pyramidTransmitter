@@ -15,21 +15,37 @@ class Canvas {
     pg = createGraphics(w, h, P2D);
   }
 
+  Canvas(int x_, int y_, int w_, int h_, String mode) {
+    x = x_;
+    y = y_;
+    w = w_;
+    h = h_;
+
+    pg = createGraphics(w, h, mode);
+  }
+
   void sendToOutput() {
     int offset = 0;
 
+    pg.beginDraw();
+    pg.fill(0, (1.0 - brightness) * 255);
+    pg.rect(0, 0, w, h);
+    pg.endDraw();
+
     canvasOut.pg.beginDraw();
+
+/*
     PGraphics pgCopy = createGraphics(w, h, P2D);
     pgCopy.beginDraw();
     pgCopy.copy(pg.get(), 0, 0, w, h, 0, 0, w, h);
     pgCopy.fill(0, (1.0 - brightness) * 255);
     pgCopy.rect(0, 0, w, h);
     pgCopy.endDraw();
-
+*/
     for (int col = 0; col < 8; col++) {
       for (int strip = 0; strip < 8; strip++) {
-        //PImage temp = pg.get(offset + strip * 3, 0, 1, h) ;
-        PImage temp = pgCopy.get(offset + strip * 3, 0, 1, h) ;
+        PImage temp = pg.get(offset + strip * 3, 0, 1, h) ;
+        //PImage temp = pgCopy.get(offset + strip * 3, 0, 1, h) ;
 
         canvasOut.pg.blend(temp,
              0, 0, 1, h,
