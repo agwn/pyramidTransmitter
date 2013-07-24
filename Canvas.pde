@@ -18,6 +18,7 @@ class Canvas {
   void sendToOutput() {
     int offset = 0;
     int canvasOutHeight = canvasOut.h;
+    PGraphics cpg = canvasOut.pg;
 
     // Apply brightness
     pg.beginDraw();
@@ -26,17 +27,17 @@ class Canvas {
     pg.rect(0, 0, w, h);
     pg.endDraw();
 
-    canvasOut.pg.beginDraw();
+    cpg.beginDraw();
 
     for (int col = 0; col < 8; col++) {
       for (int strip = 0; strip < 8; strip++) {
-        canvasOut.pg.blend(pg.get(offset + strip * 3, 0, 1, h),
+        cpg.blend(pg.get(offset + strip * 3, 0, 1, h),
              0, 0, 1, h,
              strip + col * 8, 0, 1, canvasOutHeight, SCREEN);
       }
 
       // Add gaps
-      offset += 30 + 30;
+      offset += 60;
 
       // Add extra gap in middle
       if (col == 3) {
@@ -44,7 +45,7 @@ class Canvas {
       }
     }
 
-    canvasOut.pg.endDraw();
+    cpg.endDraw();
   }
 
   void clear() {
