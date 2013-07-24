@@ -21,6 +21,7 @@ class Canvas {
 
     // Apply brightness
     pg.beginDraw();
+    pg.noStroke();
     pg.fill(0, (1.0 - brightness) * 255);
     pg.rect(0, 0, w, h);
     pg.endDraw();
