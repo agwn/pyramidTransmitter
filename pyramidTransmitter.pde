@@ -51,6 +51,11 @@ Canvas canvasOut = new Canvas(0, 0, displayWidth, displayHeight);
 Canvas canvas1 = new Canvas(64, 0, 474, 210);
 Canvas canvas2 = new Canvas(64, 210, 474, 210);
 
+float fadePhase = 0.0;
+float fadePhaseInc = 0.005;
+CanvasRoutineController crc;
+SetList setList;
+
 void setup() {
   size(602, 420, P2D);
   frameRate(FRAMERATE);
@@ -58,6 +63,14 @@ void setup() {
   setRoutines();
   background(0);
 }
+
+void setupSign() {
+  sign = new LEDDisplay(this, displayWidth, displayHeight, true, transmit_address, transmit_port);
+  sign.setAddressingMode(LEDDisplay.ADDRESSING_HORIZONTAL_NORMAL);
+  //sign.setEnableGammaCorrection(true);
+  sign.setEnableCIECorrection(true);
+}
+
 
 void setRoutines() {
   Pxxxls r1 = new Pxxxls(canvas1, 100);
@@ -71,6 +84,8 @@ void setRoutines() {
     b.orange = color(0, 255, 0); 
   }
 
+  setList = new SetList();
+/*
   enabledRoutines = new CanvasRoutine[] {
     r1,
     r2,
@@ -79,22 +94,16 @@ void setRoutines() {
   for (Routine r : enabledRoutines) {
     r.setup(this);
   }
+*/
 }
 
-void setupSign() {
-  sign = new LEDDisplay(this, displayWidth, displayHeight, true, transmit_address, transmit_port);
-  sign.setAddressingMode(LEDDisplay.ADDRESSING_HORIZONTAL_NORMAL);
-  //sign.setEnableGammaCorrection(true);
-  sign.setEnableCIECorrection(true);
-}
-
-float fadePhase = 0.0;
-float fadePhaseInc = 0.005;
 
 void draw() {
-  enabledRoutines[0].draw();
-  enabledRoutines[1].draw();
+//  enabledRoutines[0].draw();
+//  enabledRoutines[1].draw();
 
+  setList.update();
+/*
   canvas1.brightness = fadePhase;
   canvas2.brightness = 1.0 - fadePhase;
 
@@ -108,6 +117,9 @@ void draw() {
     fadePhaseInc *= -1;
     fadePhase = fadePhaseInc;
   }
+*/
+
+  // mySetList.update
 
   canvasOut.clear();
   canvas1.sendToOutput();
