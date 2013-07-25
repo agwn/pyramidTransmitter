@@ -1,6 +1,7 @@
 final int DOME_SET_CANVAS = 0;
-final int DOME_WAIT = 1;
+final int DOME_WAIT       = 1;
 final int DOME_DO_NOTHING = 2;
+final int DOME_CROSSFADE  = 3;
 
 class DomeCode {
   int ID = -1;
@@ -10,10 +11,10 @@ class DomeCode {
   DomeCode() { }
 }
 
-class DOMESetCanvas extends DomeCode {
+class DomeSetCanvas extends DomeCode {
   int nParams = 2;
 
-  DOMESetCanvas(Canvas canvas, CanvasRoutine canvasRoutine) {
+  DomeSetCanvas(Canvas canvas, CanvasRoutine canvasRoutine) {
     ID = DOME_SET_CANVAS;
 
     params = new ArrayList();
@@ -22,12 +23,12 @@ class DOMESetCanvas extends DomeCode {
   }
 }
 
-class DOMEWait extends DomeCode {
+class DomeWait extends DomeCode {
   int frames;
   int frameCounter;
   boolean isInitialized = false;
 
-  DOMEWait(int frames_) {
+  DomeWait(int frames_) {
     ID = DOME_WAIT;
     frames = frames_;
   }
@@ -37,13 +38,39 @@ class DOMEWait extends DomeCode {
     frameCounter = frames;
   }
 
-  void finish() {
+  void end() {
     isInitialized = false;
   }
 }
 
-class DOMEDoNothing extends DomeCode {
-  DOMEDoNothing() {
+class DomeCrossfade extends DomeCode {
+  Canvas c0;
+  Canvas c1;
+  int frames;
+  float framesInv;
+  int frameCounter;
+  boolean isInitialized = false;
+
+  DomeCrossfade(int frames_, Canvas c0_, Canvas c1_) {
+    ID = DOME_CROSSFADE;
+    frames = frames_;
+    framesInv = 1.0 / frames;
+    c0 = c0_;
+    c1 = c1_;
+  }
+
+  void init() {
+    isInitialized = true;
+    frameCounter = frames;
+  }
+
+  void end() {
+    isInitialized = false;
+  }
+}
+
+class DomeDoNothing extends DomeCode {
+  DomeDoNothing() {
     ID = DOME_DO_NOTHING;
   }
 }

@@ -49,9 +49,6 @@ Serial ctrlPort;
 Canvas canvasOut = new Canvas(0, 0, displayWidth, displayHeight);
 Canvas canvas1 = new Canvas(64, 0, 474, 210);
 Canvas canvas2 = new Canvas(64, 210, 474, 210);
-
-float fadePhase = 0.0;
-float fadePhaseInc = 0.005;
 SetList setList;
 
 void setup() {
@@ -69,22 +66,6 @@ void setupSign() {
 }
 
 void draw() {
-/*
-  canvas1.brightness = fadePhase;
-  canvas2.brightness = 1.0 - fadePhase;
-
-  fadePhase += fadePhaseInc;
-
-  if (fadePhase > 1.0) {
-    fadePhaseInc *= -1;
-    fadePhase = 1.0 - fadePhaseInc;
-  }
-  if (fadePhase < 0.0) {
-    fadePhaseInc *= -1;
-    fadePhase = fadePhaseInc;
-  }
-*/
-
   setList.update();
   image(canvasOut.pg, 0, 0, canvasOut.w, canvasOut.h);
   sign.sendData();
