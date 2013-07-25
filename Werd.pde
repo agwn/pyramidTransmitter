@@ -23,8 +23,22 @@ class WCSetCanvas extends WerdCode {
 }
 
 class WCWait extends WerdCode {
-  WCWait() {
+  int frames;
+  int frameCounter;
+  boolean isInitialized = false;
+
+  WCWait(int frames_) {
     ID = WC_WAIT;
+    frames = frames_;
+  }
+
+  void init() {
+    isInitialized = true;
+    frameCounter = frames;
+  }
+
+  void finish() {
+    isInitialized = false;
   }
 }
 

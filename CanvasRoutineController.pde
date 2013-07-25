@@ -1,7 +1,6 @@
 class CanvasRoutineController {
   ArrayList werd;
   int index = 0;
-  int waitFrameCounter = 0;
 
   CanvasRoutineController() {
     werd = new ArrayList();
@@ -20,8 +19,8 @@ class CanvasRoutineController {
   }
 
   void wait(float seconds) {
-    waitFrameCounter = (int) (seconds * FRAMERATE);
-    werd.add(new WCWait());
+    int waitFrameCounter = (int) (seconds * FRAMERATE);
+    werd.add(new WCWait(waitFrameCounter));
   }
 
   private void next() {
@@ -56,13 +55,20 @@ class CanvasRoutineController {
   private void doSetCanvas() {
     println("doSetCanvas()  index: " + index);
     next();
+    doWerd();
   };
 
-  private void doWait(WerdCode wc) {
-    waitFrameCounter--;
+  private void doWait(WerdCode wc_) {
+    WCWait wc = (WCWait) wc_;
 
-    if (waitFrameCounter <= 0) {
-      waitFrameCounter = 60;
+    if (!wc.isInitialized) {
+      wc.init();
+    }
+
+    wc.frameCounter--;
+
+    if (wc.frameCounter <= 0) {
+      wc.finish();
       next();
     }
   };
@@ -76,9 +82,9 @@ class SetList extends CanvasRoutineController {
 
     setCanvas(canvas1, r1);
     //setActiveCanvas(0);
+    wait(0.25);
+    setCanvas(canvas1, r2);
     wait(2.0);
-//    setCanvas(canvas1, r2);
-//    wait(2.0);
   }
 }
 
