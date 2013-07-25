@@ -3,6 +3,7 @@ class Canvas {
   int y;
   int w;
   int h;
+  CanvasRoutine cr;
   PGraphics pg;
   float brightness = 1.0;
 
@@ -13,6 +14,10 @@ class Canvas {
     h = h_;
 
     pg = createGraphics(w, h, P2D);
+  }
+
+  void setRoutine(CanvasRoutine cr_) {
+    cr = cr_;
   }
 
   void sendToOutput() {

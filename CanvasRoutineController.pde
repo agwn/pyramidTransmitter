@@ -1,21 +1,41 @@
 class CanvasRoutineController {
   ArrayList werd;
   int index = 0;
+  boolean[] activeCanvases;
 
   CanvasRoutineController() {
     werd = new ArrayList();
+    activeCanvases = new boolean[4];
+    for (int i = 0; i < 4; i++) {
+      activeCanvases[i] = false;
+    }
   }
 
   void programIt() { }  
 
   void update() {
     // Draw all active canvases
+    WCSetCanvas wc = (WCSetCanvas) werd.get(0); 
+    CanvasRoutine cr = (CanvasRoutine) wc.params.get(1);
+
+    if (activeCanvases[0]) {
+      canvas1.cr.draw();
+    }
+    if (activeCanvases[1]) {
+      canvas2.cr.draw();
+    }
 
     doWerd();
   }
 
   void setCanvas(Canvas c, CanvasRoutine cr) {
     werd.add(new WCSetCanvas(c, cr));
+    if (c == canvas1) {
+      activeCanvases[0] = true;
+    }
+    if (c == canvas2) {
+      activeCanvases[1] = true;
+    }
   }
 
   void wait(float seconds) {
@@ -41,7 +61,7 @@ class CanvasRoutineController {
     switch(ID) {
       case WC_SET_CANVAS:
         println("WC_SET_CANVAS");
-        doSetCanvas();
+        doSetCanvas(wc);
         break;
       case WC_WAIT:
         println("WC_WAIT");
@@ -52,8 +72,17 @@ class CanvasRoutineController {
     }
   }
 
-  private void doSetCanvas() {
+  private void doSetCanvas(WerdCode wc_) {
+    WCSetCanvas wc = (WCSetCanvas) wc_;
     println("doSetCanvas()  index: " + index);
+    Canvas c = (Canvas) wc.params.get(0);
+    CanvasRoutine rc = (CanvasRoutine) wc.params.get(1); 
+
+    if (c == canvas1) {
+      c.cr = rc;
+    } 
+
+
     next();
     doWerd();
   };

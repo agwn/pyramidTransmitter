@@ -11,6 +11,7 @@ class CanvasRoutine extends Routine {
 
   void setCanvas(Canvas canvas_) {
     canvas = canvas_;
+    canvas.cr = this;
     pg = canvas.pg;
   }
 

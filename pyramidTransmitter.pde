@@ -119,8 +119,6 @@ void draw() {
   }
 */
 
-  // mySetList.update
-
   canvasOut.clear();
   canvas1.sendToOutput();
   canvas2.sendToOutput();
