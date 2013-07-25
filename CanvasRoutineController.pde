@@ -80,15 +80,15 @@ class CanvasRoutineController {
     DOMESetCanvas wc = (DOMESetCanvas) wc_;
     println("doSetCanvas()  index: " + index);
     Canvas c = (Canvas) wc.params.get(0);
-    CanvasRoutine rc = (CanvasRoutine) wc.params.get(1); 
+    CanvasRoutine cr = (CanvasRoutine) wc.params.get(1); 
 
     if (c == canvas1) {
       println("doSetCanvas() if met  index: " + index);
-      c.cr = rc;
+      canvas1.setRoutine(cr);
     } 
     if (c == canvas2) {
       println("doSetCanvas() if met  index: " + index);
-      c.cr = rc;
+      canvas1.setRoutine(cr);
     } 
 
     next();

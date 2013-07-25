@@ -18,6 +18,7 @@ class Canvas {
 
   void setRoutine(CanvasRoutine cr_) {
     cr = cr_;
+    cr.setCanvas(this);
   }
 
   void sendToOutput() {
