@@ -15,7 +15,7 @@ class CanvasRoutineController {
 
   void update() {
     // Draw all active canvases
-    WCSetCanvas wc = (WCSetCanvas) werd.get(0); 
+    DOMESetCanvas wc = (DOMESetCanvas) werd.get(0); 
     CanvasRoutine cr = (CanvasRoutine) wc.params.get(1);
 
     if (activeCanvases[0]) {
@@ -25,11 +25,11 @@ class CanvasRoutineController {
       canvas2.cr.draw();
     }
 
-    doWerd();
+    doDome();
   }
 
   void setCanvas(Canvas c, CanvasRoutine cr) {
-    werd.add(new WCSetCanvas(c, cr));
+    werd.add(new DOMESetCanvas(c, cr));
     if (c == canvas1) {
       activeCanvases[0] = true;
     }
@@ -40,7 +40,7 @@ class CanvasRoutineController {
 
   void wait(float seconds) {
     int waitFrameCounter = (int) (seconds * FRAMERATE);
-    werd.add(new WCWait(waitFrameCounter));
+    werd.add(new DOMEWait(waitFrameCounter));
   }
 
   private void next() {
@@ -54,26 +54,26 @@ class CanvasRoutineController {
     }
   }
 
-  void doWerd() {
-    WerdCode wc = (WerdCode) werd.get(index);
+  void doDome() {
+    DomeCode wc = (DomeCode) werd.get(index);
     int ID = wc.ID;
 
     switch(ID) {
-      case WC_SET_CANVAS:
-        println("WC_SET_CANVAS");
+      case DOME_SET_CANVAS:
+        println("DOME_SET_CANVAS");
         doSetCanvas(wc);
         break;
-      case WC_WAIT:
-        println("WC_WAIT");
+      case DOME_WAIT:
+        println("DOME_WAIT");
         doWait(wc);
         break;
       default:
-        println("Unrecognized werd code. Werd!");
+        println("Unrecognized werd code. Dome!");
     }
   }
 
-  private void doSetCanvas(WerdCode wc_) {
-    WCSetCanvas wc = (WCSetCanvas) wc_;
+  private void doSetCanvas(DomeCode wc_) {
+    DOMESetCanvas wc = (DOMESetCanvas) wc_;
     println("doSetCanvas()  index: " + index);
     Canvas c = (Canvas) wc.params.get(0);
     CanvasRoutine rc = (CanvasRoutine) wc.params.get(1); 
@@ -84,11 +84,11 @@ class CanvasRoutineController {
 
 
     next();
-    doWerd();
+    doDome();
   };
 
-  private void doWait(WerdCode wc_) {
-    WCWait wc = (WCWait) wc_;
+  private void doWait(DomeCode wc_) {
+    DOMEWait wc = (DOMEWait) wc_;
 
     if (!wc.isInitialized) {
       wc.init();
