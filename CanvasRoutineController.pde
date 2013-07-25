@@ -18,14 +18,18 @@ class CanvasRoutineController {
     DOMESetCanvas wc = (DOMESetCanvas) werd.get(0); 
     CanvasRoutine cr = (CanvasRoutine) wc.params.get(1);
 
+    canvasOut.clear();
+
     if (activeCanvases[0]) {
       canvas1.cr.draw();
+      canvas1.sendToOutput();
     }
     if (activeCanvases[1]) {
       canvas2.cr.draw();
+      canvas2.sendToOutput();
     }
 
-    doDome();
+    doDomeCode();
   }
 
   void setCanvas(Canvas c, CanvasRoutine cr) {
@@ -54,7 +58,7 @@ class CanvasRoutineController {
     }
   }
 
-  void doDome() {
+  void doDomeCode() {
     DomeCode wc = (DomeCode) werd.get(index);
     int ID = wc.ID;
 
@@ -64,7 +68,7 @@ class CanvasRoutineController {
         doSetCanvas(wc);
         break;
       case DOME_WAIT:
-        println("DOME_WAIT");
+        print("DOME_WAIT ");
         doWait(wc);
         break;
       default:
@@ -79,12 +83,16 @@ class CanvasRoutineController {
     CanvasRoutine rc = (CanvasRoutine) wc.params.get(1); 
 
     if (c == canvas1) {
+      println("doSetCanvas() if met  index: " + index);
+      c.cr = rc;
+    } 
+    if (c == canvas2) {
+      println("doSetCanvas() if met  index: " + index);
       c.cr = rc;
     } 
 
-
     next();
-    doDome();
+    doDomeCode();
   };
 
   private void doWait(DomeCode wc_) {
@@ -110,12 +118,9 @@ class SetList extends CanvasRoutineController {
     SineColumns r2 = new SineColumns(canvas2);
 
     setCanvas(canvas1, r1);
-    //setActiveCanvas(0);
-    wait(0.25);
+    wait(2.0);
     setCanvas(canvas1, r2);
     wait(2.0);
   }
 }
-
-
 
