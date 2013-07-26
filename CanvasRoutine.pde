@@ -7,10 +7,12 @@ class CanvasRoutine extends Routine {
   PGraphics pg;
 
   CanvasRoutine() { }
+  void reinit() { }
 
   void setCanvas(Canvas canvas_) {
     canvas = canvas_;
     pg = canvas.pg;
+    reinit();
   }
 
   void renderCanvas() {

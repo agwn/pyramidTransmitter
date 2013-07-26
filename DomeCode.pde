@@ -148,8 +148,6 @@ class DomeDisableCanvas extends DomeCode {
   }
 
   void run() {
-    println("DomeDisableCanvas");
-
     for (int i = 0; i < canvases.length; i++) {
       controller.activeCanvases[i] = false;
       break;

@@ -28,11 +28,7 @@ class Pxxxls extends CanvasRoutine {
     nPxxxls = nPxxxls_;
   }
 
-  void setCanvas(Canvas canvas_) {
-    super.setCanvas(canvas_);
-
-    // TODO: Generate pixels upon object created,
-    //       then update the data for each pxxxl upon canvas update.
+  void reinit() {
     generatePxxxls();
   }
 
@@ -49,8 +45,8 @@ class Pxxxls extends CanvasRoutine {
     pg.background(0);
 
     for (int i = 0; i < nPxxxls; i++) {
-      Pxxxl b = (Pxxxl) pxxxls.get(i);
-      b.update();
+      Pxxxl pxxxl = (Pxxxl) pxxxls.get(i);
+      pxxxl.update();
     }
 
     pg.endDraw();

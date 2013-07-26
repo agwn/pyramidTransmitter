@@ -38,8 +38,7 @@ class SineColumns extends CanvasRoutine {
     initSineTable();
   }
 
-  void setCanvas(Canvas canvas_) {
-    super.setCanvas(canvas_);
+  void reinit() {
     bias = pg.height - 15;
     amplitude = 15;
   }
