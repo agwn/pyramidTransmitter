@@ -130,6 +130,7 @@ class DomeEnableCanvas extends DomeCode {
     for (int i = 0; i < canvases.length; i++) {
       if (canvas == canvases[i]) {
         controller.activeCanvases[i] = true;
+        break;
       } 
     }
 
@@ -151,6 +152,7 @@ class DomeDisableCanvas extends DomeCode {
 
     for (int i = 0; i < canvases.length; i++) {
       controller.activeCanvases[i] = false;
+      break;
     }
 
     controller.next();

@@ -63,6 +63,8 @@ void setupCanvases() {
   canvases = new Canvas[4];
   canvases[0] = new Canvas(64, 0, 474, 210);
   canvases[1] = new Canvas(64, 210, 474, 210);
+  canvases[2] = new Canvas(538, 0, 64, 210);
+  canvases[3] = new Canvas(538, 210, 64, 210);
   canvasOut = new Canvas(0, 0, displayWidth, displayHeight); 
 }
 

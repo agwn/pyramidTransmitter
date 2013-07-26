@@ -22,7 +22,6 @@
 
 
 class SineColumns extends CanvasRoutine {
-  FullCanvas c;
   int resolution = 16;  // Higher value = lower resolution
   int sineTableSize = 256;
   float sineTableSizeInv = 1.0 / sineTableSize;

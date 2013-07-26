@@ -1,3 +1,6 @@
+final int CANVAS_NORMAL = 0;
+final int CANVAS_PROPORTIONAL = 1;
+
 class Canvas {
   int x;
   int y;
@@ -5,6 +8,8 @@ class Canvas {
   int h;
   CanvasRoutine cr;
   PGraphics pg;
+  int writeMode = CANVAS_NORMAL;
+  
   float brightness = 1.0;
 
   Canvas(int x_, int y_, int w_, int h_) {
@@ -22,16 +27,28 @@ class Canvas {
   }
 
   void sendToOutput() {
-    int offset = 0;
-    int canvasOutHeight = canvasOut.h;
-    PGraphics cpg = canvasOut.pg;
-
     // Apply brightness
     pg.beginDraw();
     pg.noStroke();
     pg.fill(0, (1.0 - brightness) * 255);
     pg.rect(0, 0, w, h);
     pg.endDraw();
+
+    if (w == 474) {
+      writeProportional();
+      return;
+    }
+    writeNormal();
+  }
+
+  private void writeNormal() {
+    canvasOut.pg.blend(pg.get(), 0, 0, displayWidth, displayHeight, 0, 0, displayWidth, displayHeight, SCREEN);
+  }
+
+  private void writeProportional() {
+    int offset = 0;
+    int canvasOutHeight = canvasOut.h;
+    PGraphics cpg = canvasOut.pg;
 
     cpg.beginDraw();
 
@@ -61,51 +78,3 @@ class Canvas {
   }
 }
 
-public class CanvasFrame extends Frame {
-  FullCanvas canvas;
-
-  public CanvasFrame(FullCanvas targetCanvas) {
-    setBounds(100, 100, 580, 310);
-    canvas = targetCanvas;
-    add(canvas);
-    canvas.init();
-    show();
-  }
-}
-
-
-public class FullCanvas extends PApplet {
-  public void setup() {
-    // 16 meters * 30 LEDs - outer padding x 7 meters * 30 LEDs
-    size(474, 210);  
-    frameRate(FRAMERATE);
-    smooth();
-    noLoop();
-  }
-
-  public void draw() {}
-}
-
-
-class FullCanvasTest extends Routine {
-  FullCanvas c;
-  int posX = 0;
-  int posY = 0;
-
-  FullCanvasTest(FullCanvas fullCanvas) {
-    c = fullCanvas;
-  }
-
-  void draw() {
-    c.pushStyle();
-    c.fill(0);
-    c.noStroke();
-    c.rect(0, 0, c.width, c.height);
-    c.fill(255, 0, 0);
-    c.stroke(255, 0, 0);
-    c.strokeWeight(10);
-    c.line(0, c.height, c.width, 0);
-    c.line(0, 0, c.width, c.height);
-    c.popStyle();
-  }
-}
