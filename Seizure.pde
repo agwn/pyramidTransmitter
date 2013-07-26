@@ -1,15 +1,10 @@
-class Seizure extends Routine {
-  int count = 0;
+class Seizure extends CanvasRoutine {
+  int brightness = 0;
 
   void draw() {
-    if (count < 1) {
-      background(0, 0, 0);
-    }
-    else {
-      background(255, 255, 255);
-    }
-
-    count = (count + 1) % 2;
+    pg.beginDraw();
+    pg.background(brightness);
+    brightness = 255 - brightness;
+    pg.endDraw();
   }
 }
-

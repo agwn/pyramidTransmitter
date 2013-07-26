@@ -73,7 +73,7 @@ class CanvasRoutineController {
 
 class SetList extends CanvasRoutineController {
   SetList() {
-    RGBRoutine r1 = new RGBRoutine();
+    Seizure r1 = new Seizure();
     //Pxxxls r1 = new Pxxxls(20);
     SineColumns r2 = new SineColumns();
 
