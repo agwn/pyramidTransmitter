@@ -1,25 +1,39 @@
-final int DOME_SET_CANVAS = 0;
-final int DOME_WAIT       = 1;
-final int DOME_DO_NOTHING = 2;
-final int DOME_CROSSFADE  = 3;
-
 class DomeCode {
-  int ID = -1;
-  int nParams = 0;
-  ArrayList params;
+  CanvasRoutineController controller;
 
   DomeCode() { }
+  void doIt() { }
 }
 
 class DomeSetCanvas extends DomeCode {
-  int nParams = 2;
+  Canvas canvas;
+  CanvasRoutine canvasRoutine;
 
-  DomeSetCanvas(Canvas canvas, CanvasRoutine canvasRoutine) {
-    ID = DOME_SET_CANVAS;
+  DomeSetCanvas(CanvasRoutineController controller_, Canvas canvas_, CanvasRoutine canvasRoutine_) {
+    controller = controller_;
+    canvas = canvas_;
+    canvasRoutine = canvasRoutine_;
+  }
 
-    params = new ArrayList();
-    params.add(canvas);
-    params.add(canvasRoutine);
+  void doIt() {
+    canvas.brightness = 1.0;
+
+    if (canvas == canvas1) {
+      controller.activeCanvases[0] = true;
+    }
+    if (canvas == canvas2) {
+      controller.activeCanvases[1] = true;
+    }
+
+    if (canvas == canvas1) {
+      canvas1.setRoutine(canvasRoutine);
+    } 
+    if (canvas == canvas2) {
+      canvas2.setRoutine(canvasRoutine);
+    } 
+
+    controller.next();
+    controller.runDomeCode();
   }
 }
 
@@ -28,9 +42,22 @@ class DomeWait extends DomeCode {
   int frameCounter;
   boolean isInitialized = false;
 
-  DomeWait(int frames_) {
-    ID = DOME_WAIT;
+  DomeWait(CanvasRoutineController controller_, int frames_) {
+    controller = controller_;
     frames = frames_;
+  }
+  
+  void doIt() {
+    if (!isInitialized) {
+      init();
+    }
+
+    frameCounter--;
+
+    if (frameCounter <= 0) {
+      end();
+      controller.next();
+    }
   }
 
   void init() {
@@ -51,12 +78,32 @@ class DomeCrossfade extends DomeCode {
   int frameCounter;
   boolean isInitialized = false;
 
-  DomeCrossfade(int frames_, Canvas c0_, Canvas c1_) {
-    ID = DOME_CROSSFADE;
+  DomeCrossfade(CanvasRoutineController controller_, int frames_, Canvas c0_, Canvas c1_) {
+    controller = controller_;
     frames = frames_;
     framesInv = 1.0 / frames;
     c0 = c0_;
     c1 = c1_;
+  }
+
+  void doIt() {
+    if (!isInitialized) {
+      init();
+      c0.brightness = 1.0;
+      c1.brightness = 0.0;
+    }
+
+    frameCounter--;
+
+    c0.brightness -= framesInv;
+    c1.brightness += framesInv;
+ 
+    if (frameCounter <= 0) {
+      c0.brightness = 0.0;
+      c1.brightness = 1.0;
+      end();
+      controller.next();
+    }
   }
 
   void init() {
@@ -66,12 +113,6 @@ class DomeCrossfade extends DomeCode {
 
   void end() {
     isInitialized = false;
-  }
-}
-
-class DomeDoNothing extends DomeCode {
-  DomeDoNothing() {
-    ID = DOME_DO_NOTHING;
   }
 }
 

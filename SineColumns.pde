@@ -28,7 +28,7 @@ class SineColumns extends CanvasRoutine {
   float sineTableSizeInv = 1.0 / sineTableSize;
   float[] sineTable;
   float phase = 0.0;
-  float rate = 2.0 / sineTableSize;
+  float rate = 2.0 * sineTableSizeInv;
   float period = 1.0 * sineTableSizeInv * resolution;
   float bias;
   float amplitude;
