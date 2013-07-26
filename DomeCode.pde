@@ -18,14 +18,12 @@ class DomeSetCanvas extends DomeCode {
   void run() {
     canvas.brightness = 1.0;
 
-    if (canvas == canvas1) {
-      controller.activeCanvases[0] = true;
-      canvas1.setRoutine(canvasRoutine);
-    } 
-    if (canvas == canvas2) {
-      controller.activeCanvases[1] = true;
-      canvas2.setRoutine(canvasRoutine);
-    } 
+    for (int i = 0; i < canvases.length; i++) {
+      if (canvas == canvases[i]) {
+        controller.activeCanvases[i] = true;
+        canvases[i].setRoutine(canvasRoutine);
+      } 
+    }
 
     controller.next();
     controller.runDomeCode();
@@ -86,8 +84,15 @@ class DomeCrossfade extends DomeCode {
       init();
       c0.brightness = 1.0;
       c1.brightness = 0.0;
-      controller.activeCanvases[0] = true;
-      controller.activeCanvases[1] = true;
+
+      for (int i = 0; i < canvases.length; i++) {
+        if (c0 == canvases[i]) {
+          controller.activeCanvases[i] = true;
+        }
+        if (c1 == canvases[i]) {
+          controller.activeCanvases[i] = true;
+        }
+      }
     }
 
     frameCounter--;
@@ -122,11 +127,10 @@ class DomeEnableCanvas extends DomeCode {
   }
 
   void run() {
-    if (canvas == canvas1) {
-      controller.activeCanvases[0] = true;
-    } 
-    if (canvas == canvas2) {
-      controller.activeCanvases[1] = true;
+    for (int i = 0; i < canvases.length; i++) {
+      if (canvas == canvases[i]) {
+        controller.activeCanvases[i] = true;
+      } 
     }
 
     controller.next();
@@ -143,16 +147,13 @@ class DomeDisableCanvas extends DomeCode {
   }
 
   void run() {
-    if (canvas == canvas1) {
-      controller.activeCanvases[0] = false;
-    } 
-    if (canvas == canvas2) {
-      controller.activeCanvases[1] = false;
+    println("DomeDisableCanvas");
+
+    for (int i = 0; i < canvases.length; i++) {
+      controller.activeCanvases[i] = false;
     }
 
     controller.next();
     controller.runDomeCode();
   }
 }
-
-

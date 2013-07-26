@@ -46,16 +46,24 @@ int TYPICAL_MODE_TIME = 2048;
 CanvasRoutine currentRoutine = null;
 LEDDisplay sign;
 Serial ctrlPort;
-Canvas canvasOut = new Canvas(0, 0, displayWidth, displayHeight);
-Canvas canvas1 = new Canvas(64, 0, 474, 210);
-Canvas canvas2 = new Canvas(64, 210, 474, 210);
+Canvas[] canvases;
+Canvas canvasOut;
+
 SetList setList;
 
 void setup() {
   size(602, 420, P2D);
   frameRate(FRAMERATE);
+  setupCanvases();
   setupSign();
   setList = new SetList();
+}
+
+void setupCanvases() {
+  canvases = new Canvas[4];
+  canvases[0] = new Canvas(64, 0, 474, 210);
+  canvases[1] = new Canvas(64, 210, 474, 210);
+  canvasOut = new Canvas(0, 0, displayWidth, displayHeight); 
 }
 
 void setupSign() {

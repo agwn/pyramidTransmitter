@@ -2,27 +2,29 @@ class CanvasRoutineController {
   ArrayList domeCode;
   int index = 0;
   boolean[] activeCanvases;
+  CanvasRoutineController parentController = null;
 
   CanvasRoutineController() {
     domeCode = new ArrayList();
-    activeCanvases = new boolean[4];
-    for (int i = 0; i < 4; i++) {
+    activeCanvases = new boolean[canvases.length];
+
+    for (int i = 0; i < activeCanvases.length; i++) {
       activeCanvases[i] = false;
     }
   }
 
-  void programIt() { }  
+  CanvasRoutineController(CanvasRoutineController parent) {
+    parentController = parent;
+  }
 
   void update() {
     canvasOut.clear();
 
-    if (activeCanvases[0]) {
-      canvas1.cr.draw();
-      canvas1.sendToOutput();
-    }
-    if (activeCanvases[1]) {
-      canvas2.cr.draw();
-      canvas2.sendToOutput();
+    for (int i = 0; i < canvases.length; i++) {
+      if (activeCanvases[i]) {
+        canvases[i].cr.draw();
+        canvases[i].sendToOutput();
+      }
     }
 
     runDomeCode();
@@ -57,6 +59,7 @@ class CanvasRoutineController {
   }
 
   void disableCanvas(Canvas c) {
+    println("disableCanvas");
     domeCode.add(new DomeDisableCanvas(this, c));
   }
 
@@ -67,20 +70,15 @@ class CanvasRoutineController {
 
 class SetList extends CanvasRoutineController {
   SetList() {
-    println("SetList instantiated");
-    Pxxxls r1 = new Pxxxls(canvas1, 100);
-    SineColumns r2 = new SineColumns(canvas2);
+    Pxxxls r1 = new Pxxxls(canvases[0], 100);
+    SineColumns r2 = new SineColumns(canvases[1]);
 
-    setCanvas(canvas1, r1);
+    setCanvas(canvases[0], r1);
     wait(1.0);
-    setCanvas(canvas2, r2);
-    crossfade(2.0, canvas1, canvas2);
-    disableCanvas(canvas1);
+    setCanvas(canvases[1], r2);
+    crossfade(1.0, canvases[0], canvases[1]);
     wait(1.0);
-    enableCanvas(canvas1);
-    wait(2.0);
-    crossfade(2.0, canvas2, canvas1);
+    crossfade(1.0, canvases[1], canvases[0]);
     wait(1.0);
   }
 }
-
