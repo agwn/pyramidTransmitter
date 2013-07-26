@@ -73,7 +73,7 @@ class Fire extends Routine {
           ((fire[calc3[x]][calc2[y]]
           + fire[calc1[x]][calc2[y]]
           + fire[calc4[x]][calc2[y]]
-          + fire[calc1[x]][calc5[y]]) << 5) / 130; // 129;
+          + fire[calc1[x]][calc5[y]]) << 5) / (128+(abs(x-displayWidth/2))/4); // 129;
 
         // Output everything to screen using our palette colors
         pixels[counter] = palette[fire[x][y]];

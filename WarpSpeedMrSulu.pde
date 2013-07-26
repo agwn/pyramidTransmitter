@@ -1,5 +1,5 @@
 class WarpSpeedMrSulu extends Routine {
-  int NUM_STARS = 100;
+  int NUM_STARS = 200;
   WarpStar[] warpstars;
 
   void setup(PApplet parent) {
