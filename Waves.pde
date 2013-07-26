@@ -1,14 +1,12 @@
-class Waves extends Routine {
-
+class Waves extends CanvasRoutine {
   int NUMBER_OF_WAVES = 5;
   Wave[] waves;
 
-  void setup(PApplet parent) {
-    super.setup(parent);
+  void reinit() {
     if (NUMBER_OF_WAVES > 0) {
       waves = new Wave[NUMBER_OF_WAVES];
       for (int i=0; i<NUMBER_OF_WAVES; i++) {
-        waves[i] = new Wave();
+        waves[i] = new Wave(pg);
       }
     }
   }
@@ -17,15 +15,6 @@ class Waves extends Routine {
     background(0);
     for (int i=0; i<NUMBER_OF_WAVES; i++) {
       waves[i].draw();
-    }
-
-    long frame = frameCount - modeFrameStart;
-    if (frame > frameRate*TYPICAL_MODE_TIME) {
-      for (int i=0; i<NUMBER_OF_WAVES; i++) {
-        waves[i].init();
-      }
-
-      newMode();
     }
   }
 }
@@ -38,22 +27,25 @@ class Wave {
   private int y;
   private boolean t;
   private float s;
+  int w;
+  int h;
 
   PGraphics g;
-
   color c;
 
-  public Wave() {
-    init();
-
-    g = createGraphics(displayWidth, displayHeight, P2D);
+  public Wave(PGraphics pg_) {
+    init(pg_);
+    //g = createGraphics(w, displayHeight, P2D);
   }
 
-  public void init() {
+  public void init(PGraphics pg_) {
+    g = pg_;
+    w = g.width;
+    h = g.height;
     r = random(TWO_PI);
     f = 2*PI/40.0;
-    a = displayWidth/6.0 + random(displayWidth/4.0);
-    y = int(displayWidth/16.0) + int(random(displayWidth - displayWidth/16.0));
+    a = w/6.0 + random(w/4.0);
+    y = int(w/16.0) + int(random(w - w/16.0));
     s = PI/128.0 - random(PI/16.0);
 
     if (random(10)<5) {
@@ -98,8 +90,6 @@ class Wave {
     }
 
     g.endDraw();
-
-    blend(g, 0, 0, displayWidth, displayHeight, 0, 0, displayWidth, displayHeight, SCREEN);
   }
 }
 
