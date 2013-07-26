@@ -11,6 +11,8 @@ class CanvasRoutineController {
     for (int i = 0; i < activeCanvases.length; i++) {
       activeCanvases[i] = false;
     }
+
+    wait(0.0);  // Prevents infinite DomeCode loop
   }
 
   CanvasRoutineController(CanvasRoutineController parent) {
@@ -70,15 +72,18 @@ class CanvasRoutineController {
 
 class SetList extends CanvasRoutineController {
   SetList() {
-    Pxxxls r2 = new Pxxxls(canvases[1], 100);
-    SineColumns r1 = new SineColumns(canvases[2]);
+    Pxxxls r1 = new Pxxxls(100);
+    SineColumns r2 = new SineColumns();
 
-    setCanvas(canvases[2], r1);
-    wait(1.0);
+
+    setCanvas(canvases[0], r1);
+    wait(4.0);
     setCanvas(canvases[1], r2);
-    crossfade(1.0, canvases[2], canvases[1]);
-    wait(1.0);
-    crossfade(1.0, canvases[1], canvases[2]);
-    wait(1.0);
+    wait(4.0);
+    setCanvas(canvases[1], r2);
+    crossfade(4.0, canvases[0], canvases[1]);
+    wait(4.0);
+    crossfade(4.0, canvases[1], canvases[0]);
+    wait(4.0);
   }
 }

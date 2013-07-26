@@ -34,9 +34,12 @@ class SineColumns extends CanvasRoutine {
   color pornjPink = color(252, 23, 218);
   color orange = color(255, 128, 0);
 
-  SineColumns(Canvas canvas_) {
-    setCanvas(canvas_);
+  SineColumns() {
     initSineTable();
+  }
+
+  void setCanvas(Canvas canvas_) {
+    super.setCanvas(canvas_);
     bias = pg.height - 15;
     amplitude = 15;
   }

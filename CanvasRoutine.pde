@@ -6,12 +6,10 @@ class CanvasRoutine extends Routine {
   Canvas canvas;
   PGraphics pg;
 
-  CanvasRoutine() {
-  }
+  CanvasRoutine() { }
 
   void setCanvas(Canvas canvas_) {
     canvas = canvas_;
-    canvas.cr = this;
     pg = canvas.pg;
   }
 
