@@ -30,7 +30,7 @@ class CanvasRoutineController {
 
   void runDomeCode() {
     DomeCode wc = (DomeCode) domeCode.get(index);
-    wc.doIt();
+    wc.run();
   }
 
   private void next() {
@@ -55,6 +55,14 @@ class CanvasRoutineController {
     int waitFrameCounter = (int) (seconds * FRAMERATE);
     domeCode.add(new DomeCrossfade(this, waitFrameCounter, c0, c1));
   }
+
+  void disableCanvas(Canvas c) {
+    domeCode.add(new DomeDisableCanvas(this, c));
+  }
+
+  void enableCanvas(Canvas c) {
+    domeCode.add(new DomeEnableCanvas(this, c));
+  }
 }
 
 class SetList extends CanvasRoutineController {
@@ -64,12 +72,15 @@ class SetList extends CanvasRoutineController {
     SineColumns r2 = new SineColumns(canvas2);
 
     setCanvas(canvas1, r1);
-    wait(4.0);
+    wait(1.0);
     setCanvas(canvas2, r2);
-    crossfade(4.0, canvas1, canvas2);
-    wait(4.0);
-    crossfade(4.0, canvas2, canvas1);
-    wait(4.0);
+    crossfade(2.0, canvas1, canvas2);
+    disableCanvas(canvas1);
+    wait(1.0);
+    enableCanvas(canvas1);
+    wait(2.0);
+    crossfade(2.0, canvas2, canvas1);
+    wait(1.0);
   }
 }
 

@@ -2,7 +2,7 @@ class DomeCode {
   CanvasRoutineController controller;
 
   DomeCode() { }
-  void doIt() { }
+  void run() { }
 }
 
 class DomeSetCanvas extends DomeCode {
@@ -15,20 +15,15 @@ class DomeSetCanvas extends DomeCode {
     canvasRoutine = canvasRoutine_;
   }
 
-  void doIt() {
+  void run() {
     canvas.brightness = 1.0;
 
     if (canvas == canvas1) {
       controller.activeCanvases[0] = true;
-    }
-    if (canvas == canvas2) {
-      controller.activeCanvases[1] = true;
-    }
-
-    if (canvas == canvas1) {
       canvas1.setRoutine(canvasRoutine);
     } 
     if (canvas == canvas2) {
+      controller.activeCanvases[1] = true;
       canvas2.setRoutine(canvasRoutine);
     } 
 
@@ -47,7 +42,7 @@ class DomeWait extends DomeCode {
     frames = frames_;
   }
   
-  void doIt() {
+  void run() {
     if (!isInitialized) {
       init();
     }
@@ -86,11 +81,13 @@ class DomeCrossfade extends DomeCode {
     c1 = c1_;
   }
 
-  void doIt() {
+  void run() {
     if (!isInitialized) {
       init();
       c0.brightness = 1.0;
       c1.brightness = 0.0;
+      controller.activeCanvases[0] = true;
+      controller.activeCanvases[1] = true;
     }
 
     frameCounter--;
@@ -115,4 +112,47 @@ class DomeCrossfade extends DomeCode {
     isInitialized = false;
   }
 }
+
+class DomeEnableCanvas extends DomeCode {
+  Canvas canvas;
+
+  DomeEnableCanvas(CanvasRoutineController controller_, Canvas canvas_) {
+    controller = controller_;
+    canvas = canvas_;
+  }
+
+  void run() {
+    if (canvas == canvas1) {
+      controller.activeCanvases[0] = true;
+    } 
+    if (canvas == canvas2) {
+      controller.activeCanvases[1] = true;
+    }
+
+    controller.next();
+    controller.runDomeCode();
+  }
+}
+
+class DomeDisableCanvas extends DomeCode {
+  Canvas canvas;
+
+  DomeDisableCanvas(CanvasRoutineController controller_, Canvas canvas_) {
+    controller = controller_;
+    canvas = canvas_;
+  }
+
+  void run() {
+    if (canvas == canvas1) {
+      controller.activeCanvases[0] = false;
+    } 
+    if (canvas == canvas2) {
+      controller.activeCanvases[1] = false;
+    }
+
+    controller.next();
+    controller.runDomeCode();
+  }
+}
+
 
