@@ -35,8 +35,8 @@ class Pxxxls extends CanvasRoutine {
   void generatePxxxls() {
     pxxxls = new ArrayList();
     for (int i = 0; i < nPxxxls; i++) {
-      Pxxxl b = new Pxxxl(canvas);
-      pxxxls.add(b);
+      Pxxxl pxxxl = new Pxxxl(pg);
+      pxxxls.add(pxxxl);
     }
   }
 
@@ -67,20 +67,17 @@ class Pxxxl {
   float flashTriggerOdds = 0.98;
   float flashDecay = 0.06125;
   float speed = 1.0 / 8.0;
-  Canvas canvas;
   PGraphics pg;
 
-  Pxxxl(Canvas canvas_) {
-    // NOTE: Canvas & pg should change if calling object switches to new canvas
-    canvas = canvas_;
-    pg = canvas.pg;
+  Pxxxl(PGraphics pg_) {
+    pg = pg_;
     init();
   }
 
   void init() {
     s = random(minSize, maxSize);
-    posY = canvas.h + s;
-    posX = random(-s, canvas.w + s);
+    posY = pg.height + s;
+    posX = random(-s, pg.width + s);
     thisColor = lerpColor(pornj, orange, random(1.0));
   }
 

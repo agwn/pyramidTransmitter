@@ -76,14 +76,14 @@ class SetList extends CanvasRoutineController {
     Pxxxls r1 = new Pxxxls(20);
     SineColumns r2 = new SineColumns();
 
-    setCanvas(canvases[2], r1);
+    setCanvas(canvases[0], r1);
     wait(4.0);
-    setCanvas(canvases[3], r2);
+    setCanvas(canvases[1], r2);
     wait(4.0);
-    setCanvas(canvases[3], r2);
-    crossfade(4.0, canvases[2], canvases[3]);
+    setCanvas(canvases[1], r2);
+    crossfade(4.0, canvases[0], canvases[1]);
     wait(4.0);
-    crossfade(4.0, canvases[3], canvases[2]);
+    crossfade(4.0, canvases[1], canvases[0]);
     wait(4.0);
   }
 }

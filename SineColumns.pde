@@ -31,6 +31,8 @@ class SineColumns extends CanvasRoutine {
   float period = 1.0 * sineTableSizeInv * resolution;
   float bias;
   float amplitude;
+  int w;
+  int h;
   color pornjPink = color(252, 23, 218);
   color orange = color(255, 128, 0);
 
@@ -39,7 +41,9 @@ class SineColumns extends CanvasRoutine {
   }
 
   void reinit() {
-    bias = pg.height - 15;
+    w = pg.width;
+    h = pg.height;
+    bias = h - 15;
     amplitude = 15;
   }
 
@@ -53,17 +57,17 @@ class SineColumns extends CanvasRoutine {
     pg.strokeWeight(4);
 
     pg.stroke(pornjPink, 128);
-    drawSine(pg.height + 15, 45);
-    drawSine(pg.height - 45, 45);
-    drawSine(pg.height - 105, 45);
-    drawSine(pg.height - 165, 45);
-    drawSine(pg.height - 225, 45);
+    drawSine(h + 15, 45);
+    drawSine(h - 45, 45);
+    drawSine(h - 105, 45);
+    drawSine(h - 165, 45);
+    drawSine(h - 225, 45);
 
     pg.stroke(orange, 128);
-    drawSine(pg.height - 15, 15);
-    drawSine(pg.height - 75, 15);
-    drawSine(pg.height - 135, 15);
-    drawSine(pg.height - 195, 15);
+    drawSine(h - 15, 15);
+    drawSine(h - 75, 15);
+    drawSine(h - 135, 15);
+    drawSine(h - 195, 15);
 
     phase += rate;
 
@@ -72,7 +76,7 @@ class SineColumns extends CanvasRoutine {
     }
 
     pg.noStroke();
-    pg.rect(0, 0, canvas.w, canvas.h);
+    pg.rect(0, 0, w, h);
     pg.popStyle();
     pg.endDraw();
   }
@@ -81,7 +85,7 @@ class SineColumns extends CanvasRoutine {
     pg.beginShape();
     float drawPhase = phase;
 
-    for (int i = -resolution; i <= canvas.w + resolution * 2; i = i + resolution) {
+    for (int i = -resolution; i <= w + resolution * 2; i = i + resolution) {
       pg.curveVertex(i, bias + sineTable[(int) (drawPhase * sineTableSize)] * amp);
 
       drawPhase += period;
@@ -104,4 +108,3 @@ class SineColumns extends CanvasRoutine {
     }
   }
 }
-
