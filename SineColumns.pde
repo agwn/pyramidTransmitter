@@ -75,7 +75,6 @@ class SineColumns extends CanvasRoutine {
     pg.rect(0, 0, canvas.w, canvas.h);
     pg.popStyle();
     pg.endDraw();
-    renderCanvas();
   }
 
   void drawSine(float bias, float amp) {

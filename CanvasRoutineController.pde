@@ -25,6 +25,7 @@ class CanvasRoutineController {
     for (int i = 0; i < canvases.length; i++) {
       if (activeCanvases[i]) {
         canvases[i].cr.draw();
+        canvases[i].cr.renderCanvas();
         canvases[i].sendToOutput();
       }
     }

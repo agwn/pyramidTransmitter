@@ -50,7 +50,6 @@ class Pxxxls extends CanvasRoutine {
     }
 
     pg.endDraw();
-    renderCanvas();
   }
 }
 
