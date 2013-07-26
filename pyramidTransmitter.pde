@@ -19,7 +19,7 @@ int displayHeight = 30*7;
 //int displayHeight = 24;
 
 boolean VERTICAL = false;
-int FRAMERATE = 15;
+int FRAMERATE = 30;
 int TYPICAL_MODE_TIME = 2048;
 
 Routine drop = new Seizure();
@@ -59,7 +59,7 @@ final float bOffset = PWM_DEF_VAL/float(PWM_MAX_VAL);
 
 // modulating background color
 //float oSpeed = .000075;
-float oSpeed = 0.0005;
+float oSpeed = 0.00025;
 
 // values set by user imput
 int[] setVarMin = {
@@ -81,13 +81,14 @@ int[] varRange = {
 };
 
 Routine[] enabledRoutines = new Routine[] {
+  new Fire(),
   //new ColorTest(), 
   //new RGBRoutine(),
 
-  //new Warp(new WarpSpeedMrSulu(), true, true, 0.2, 0.2), 
+  new Warp(new WarpSpeedMrSulu(), true, true, 0.3, 0.2), 
   //new WarpSpeedMrSulu(), 
   //new RGBRoutine(), 
-  new Warp(new RGBRoutine(), true, true, 0.3, 0.3), 
+  //new Warp(new RGBRoutine(), true, true, 0.15, 0.2), 
   //new RainbowColors(), 
   //new Warp(new RainbowColors(), true, true, 0.5, 0.5), 
   new Warp(null, true, false, 0.3, 0.3), 
@@ -312,21 +313,23 @@ void serialEvent(Serial ctrlPort) {
 void updateColor() {
   float tm = oSpeed * millis();
 
+  /*
   // modulate between bounds
-  varMin[0] = (int)constrain(setVarMin[0]+(varRange[0]*(sin(tm)/2+rOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
-  varMax[0] = (int)constrain(setVarMax[0]+(varRange[0]*(sin(tm)/2+rOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
-  varMin[1] = (int)constrain(setVarMin[1]+(varRange[1]*(sin(tm+TWO_PI/3)/2+gOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
-  varMax[1] = (int)constrain(setVarMax[1]+(varRange[1]*(sin(tm+TWO_PI/3)/2+gOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
-  varMin[2] = (int)constrain(setVarMin[2]+(varRange[2]*(sin(tm+2*TWO_PI/3)/2+bOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
-  varMax[2] = (int)constrain(setVarMax[2]+(varRange[2]*(sin(tm+2*TWO_PI/3)/2+bOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
+   varMin[0] = (int)constrain(setVarMin[0]+(varRange[0]*(sin(tm)/2+rOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
+   varMax[0] = (int)constrain(setVarMax[0]+(varRange[0]*(sin(tm)/2+rOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
+   varMin[1] = (int)constrain(setVarMin[1]+(varRange[1]*(sin(tm+TWO_PI/3)/2+gOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
+   varMax[1] = (int)constrain(setVarMax[1]+(varRange[1]*(sin(tm+TWO_PI/3)/2+gOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
+   varMin[2] = (int)constrain(setVarMin[2]+(varRange[2]*(sin(tm+2*TWO_PI/3)/2+bOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
+   varMax[2] = (int)constrain(setVarMax[2]+(varRange[2]*(sin(tm+2*TWO_PI/3)/2+bOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
+   */
 
-  //  // modulate across full range
-  //  varMin[0] = (int)constrain(setVarMin[0]+(PWM_DEF_VAL*(sin(tm)/2+rOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
-  //  varMax[0] = (int)constrain(setVarMax[0]+(PWM_DEF_VAL*(sin(tm)/2+rOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
-  //  varMin[1] = (int)constrain(setVarMin[1]+(PWM_DEF_VAL*(sin(tm+TWO_PI/3)/2+gOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
-  //  varMax[1] = (int)constrain(setVarMax[1]+(PWM_DEF_VAL*(sin(tm+TWO_PI/3)/2+gOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
-  //  varMin[2] = (int)constrain(setVarMin[2]+(PWM_DEF_VAL*(sin(tm+2*TWO_PI/3)/2+bOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
-  //  varMax[2] = (int)constrain(setVarMax[2]+(PWM_DEF_VAL*(sin(tm+2*TWO_PI/3)/2+bOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
+  // modulate across full range
+  varMin[0] = (int)constrain(setVarMin[0]+(PWM_DEF_VAL*(sin(tm)/2+rOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
+  varMax[0] = (int)constrain(setVarMax[0]+(PWM_DEF_VAL*(sin(tm)/2+rOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
+  varMin[1] = (int)constrain(setVarMin[1]+(PWM_DEF_VAL*(sin(tm+TWO_PI/3)/2+gOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
+  varMax[1] = (int)constrain(setVarMax[1]+(PWM_DEF_VAL*(sin(tm+TWO_PI/3)/2+gOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
+  varMin[2] = (int)constrain(setVarMin[2]+(PWM_DEF_VAL*(sin(tm+2*TWO_PI/3)/2+bOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
+  varMax[2] = (int)constrain(setVarMax[2]+(PWM_DEF_VAL*(sin(tm+2*TWO_PI/3)/2+bOffset)), PWM_MIN_VAL, PWM_MAX_VAL);
 }
 
 boolean switching_mode = false; // if true, we already switched modes, so don't do it again this frame (don't freeze the display if someone holds the b button)
