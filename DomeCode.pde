@@ -21,13 +21,17 @@ class DomeSetCanvas extends DomeCode {
     for (int i = 0; i < canvases.length; i++) {
       if (canvas == canvases[i]) {
         controller.activeCanvases[i] = true;
-        canvases[i].setRoutine(canvasRoutine);
+        //canvases[i].setRoutine(canvasRoutine);
+        canvases[i].setRoutineX(canvasRoutine);
       } 
     }
 
     controller.next();
     controller.runDomeCode();
   }
+}
+
+class DomePushCanvas extends DomeCode {
 }
 
 class DomeWait extends DomeCode {

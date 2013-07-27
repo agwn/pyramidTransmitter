@@ -1,6 +1,3 @@
-final int CANVAS_NORMAL = 0;
-final int CANVAS_PROPORTIONAL = 1;
-
 class Canvas {
   int x;
   int y;
@@ -8,7 +5,9 @@ class Canvas {
   int h;
   CanvasRoutine cr;
   PGraphics pg;
-  int writeMode = CANVAS_NORMAL;
+  PGraphics pgFlat;
+  ArrayList routines;
+
   
   float brightness = 1.0;
 
@@ -18,7 +17,9 @@ class Canvas {
     w = w_;
     h = h_;
 
+    routines = new ArrayList();
     pg = createGraphics(w, h, P2D);
+    pgFlat = createGraphics(w, h, P2D);
   }
 
   void setRoutine(CanvasRoutine cr_) {
@@ -26,7 +27,18 @@ class Canvas {
     cr.setCanvas(this);
   }
 
+  void setRoutineX(CanvasRoutine cr_) {
+    routines.add(cr_);
+    //cr = cr_;
+    cr_.setCanvas(this);
+  }
+
+
   void sendToOutput() {
+    if (this != canvasOut) {
+      image(pgFlat, x, y);
+    }
+
     // Apply brightness
     pg.beginDraw();
     pg.noStroke();
@@ -42,7 +54,7 @@ class Canvas {
   }
 
   private void writeNormal() {
-    canvasOut.pg.blend(pg.get(), 0, 0, displayWidth, displayHeight, 0, 0, displayWidth, displayHeight, SCREEN);
+    canvasOut.pg.blend(pgFlat.get(), 0, 0, displayWidth, displayHeight, 0, 0, displayWidth, displayHeight, SCREEN);
   }
 
   private void writeProportional() {
@@ -54,7 +66,7 @@ class Canvas {
 
     for (int col = 0; col < 8; col++) {
       for (int strip = 0; strip < 8; strip++) {
-        cpg.blend(pg.get(offset + strip * 3, 0, 1, h),
+        cpg.blend(pgFlat.get(offset + strip * 3, 0, 1, h),
              0, 0, 1, h,
              strip + col * 8, 0, 1, canvasOutHeight, SCREEN);
       }

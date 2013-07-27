@@ -24,8 +24,27 @@ class CanvasRoutineController {
 
     for (int i = 0; i < canvases.length; i++) {
       if (activeCanvases[i]) {
-        canvases[i].cr.draw();
-        canvases[i].cr.renderCanvas();
+        //canvases[i].cr.draw();
+        //canvases[i].cr.renderCanvas();
+
+        Canvas canvas = canvases[i];
+        PGraphics pgFlat = canvas.pgFlat;
+
+        pgFlat.beginDraw();
+        pgFlat.noStroke();
+        pgFlat.fill(0, 64, 0);
+        pgFlat.rect(0, 0, canvas.w, canvas.h);
+
+        // Render each routine in the canvases routine stack
+        for (int j = 0; j < canvases[i].routines.size(); j++) {
+          CanvasRoutine cr = (CanvasRoutine) canvas.routines.get(j);
+          
+          cr.draw();
+//          cr.renderCanvas();
+            pgFlat.blend(cr.pg.get(), 0, 0, canvas.w, canvas.h, 0, 0, canvas.w, canvas.h, SCREEN);
+        }
+
+        pgFlat.endDraw(); 
         canvases[i].sendToOutput();
       }
     }
@@ -49,6 +68,9 @@ class CanvasRoutineController {
 
   void setCanvas(Canvas c, CanvasRoutine cr) {
     domeCode.add(new DomeSetCanvas(this, c, cr));
+  }
+  
+  void pushCanvas(Canvas c, CanvasRoutine cr) {
   }
 
   void wait(float seconds) {
@@ -79,7 +101,11 @@ class SetList extends CanvasRoutineController {
     SineColumns r2 = new SineColumns();
 
     setCanvas(canvases[2], r1);
+    setCanvas(canvases[2], r2);
+    //pushCanvas(canvases[2]. r2);
     wait(4.0);
+
+    /*
     setCanvas(canvases[1], r2);
     wait(4.0);
     setCanvas(canvases[1], r2);
@@ -87,5 +113,6 @@ class SetList extends CanvasRoutineController {
     wait(4.0);
     crossfade(4.0, canvases[1], canvases[2]);
     wait(4.0);
+    */
   }
 }
