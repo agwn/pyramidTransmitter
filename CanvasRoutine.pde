@@ -1,14 +1,12 @@
-// Got something backwards.
-// Canvas should have member CanvasRoutine,
-// not CanvasRoutine having a Canvas.
-
-class CanvasRoutine extends Routine {
+class CanvasRoutine {
   Canvas canvas;
   PGraphics pg;
   PGraphics pgFlat;
+  Boolean blendLayers = true;
 
   CanvasRoutine() { }
   void reinit() { }
+  void draw() { }
 
   void setCanvas(Canvas canvas_) {
     canvas = canvas_;
@@ -17,3 +15,4 @@ class CanvasRoutine extends Routine {
     reinit();
   }
 }
+

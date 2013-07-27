@@ -28,9 +28,9 @@ class Canvas {
     cr.setCanvas(this);
   }
 
-  void pushRoutine(CanvasRoutine cr_) {
-    routines.add(cr_);
-    cr_.setCanvas(this);
+  void pushRoutine(CanvasRoutine cr) {
+    routines.add(cr);
+    cr.setCanvas(this);
   }
 
   void sendToOutput() {

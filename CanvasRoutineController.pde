@@ -37,7 +37,13 @@ class CanvasRoutineController {
           CanvasRoutine cr = (CanvasRoutine) canvas.routines.get(j);
           
           cr.draw();
-          pgFlat.blend(cr.pg.get(), 0, 0, w, h, 0, 0, w, h, SCREEN);
+         
+          if (cr.blendLayers) {
+            pgFlat.blend(cr.pg.get(), 0, 0, w, h, 0, 0, w, h, SCREEN);
+          }
+          else {
+            pgFlat.copy(cr.pg.get(), 0, 0, w, h, 0, 0, w, h);
+          }
         }
 
         pgFlat.endDraw(); 
@@ -94,9 +100,11 @@ class SetList extends CanvasRoutineController {
   SetList() {
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
     SineColumns sines = new SineColumns();
+    sines.period *= 4.0;
     Pxxxls pxxxls = new Pxxxls(100);
     Waves waves = new Waves();
     Seizure seizure = new Seizure();
+    Mirror mirror = new Mirror();
 
     float w = 5.0;
     Canvas c0 = canvases[0];
@@ -104,6 +112,10 @@ class SetList extends CanvasRoutineController {
     Canvas c2 = canvases[2];
     Canvas c3 = canvases[3];
 
+    setCanvas(c2, sines);
+    pushCanvas(c2, mirror);
+    wait(4.0);
+/*
     setCanvas(c0, pxxxls);
     wait(w);
     setCanvas(c2, warpSpeed);
@@ -134,5 +146,6 @@ class SetList extends CanvasRoutineController {
     setCanvas(c2, seizure);
     wait(0.25);
     disableCanvas(c2);
+*/
   }
 }
