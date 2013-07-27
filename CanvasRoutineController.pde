@@ -73,7 +73,8 @@ class CanvasRoutineController {
 
 class SetList extends CanvasRoutineController {
   SetList() {
-    Waves r1 = new Waves();
+    WarpSpeedMrSulu r1 = new WarpSpeedMrSulu();
+    //Waves r1 = new Waves();
     //Pxxxls r1 = new Pxxxls(20);
     SineColumns r2 = new SineColumns();
 
