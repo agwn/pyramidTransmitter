@@ -76,7 +76,17 @@ void setupSign() {
 }
 
 void draw() {
+  noStroke();
+  fill(64);
+  rect(0, 0, width, height);
+
   setList.update();
   image(canvasOut.pg, 0, 0, canvasOut.w, canvasOut.h);
   sign.sendData();
+
+  strokeWeight(1);
+  stroke(128);
+  line(0, 210, width, 210); 
+  line(64, 0, 64, 420);
+  line(538, 0, 538, 420);
 }
