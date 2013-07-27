@@ -92,27 +92,47 @@ class CanvasRoutineController {
 
 class SetList extends CanvasRoutineController {
   SetList() {
-    WarpSpeedMrSulu r1 = new WarpSpeedMrSulu();
-    SineColumns r2 = new SineColumns();
-    Pxxxls r3 = new Pxxxls(100);
-    Waves r4 = new Waves();
+    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
+    SineColumns sines = new SineColumns();
+    Pxxxls pxxxls = new Pxxxls(100);
+    Waves waves = new Waves();
+    Seizure seizure = new Seizure();
 
-    int current = 0;
+    float w = 5.0;
+    Canvas c0 = canvases[0];
+    Canvas c1 = canvases[1];
+    Canvas c2 = canvases[2];
+    Canvas c3 = canvases[3];
 
-    setCanvas(canvases[current], r2);
-    pushCanvas(canvases[0], r3);
-    //pushCanvas(canvases[0], r2);
-    //pushCanvas(canvases[current], r1);
-    wait(4.0);
-
-    /*
-    setCanvas(canvases[1], r2);
-    wait(4.0);
-    setCanvas(canvases[1], r2);
-    crossfade(4.0, canvases[2], canvases[1]);
-    wait(4.0);
-    crossfade(4.0, canvases[1], canvases[2]);
-    wait(4.0);
-    */
+    setCanvas(c0, pxxxls);
+    wait(w);
+    setCanvas(c2, warpSpeed);
+    wait(w);
+    setCanvas(c1, waves);
+    wait(w);
+    setCanvas(c3, sines);
+    wait(w);
+    disableCanvas(c0); 
+    wait(w);
+    disableCanvas(c2); 
+    wait(w);
+    disableCanvas(c1); 
+    wait(w);
+    crossfade(w, c3, c0);
+    crossfade(w, c0, c1);
+    crossfade(w, c1, c2);
+    wait(w);
+    pushCanvas(c2, waves);
+    wait(w);
+    pushCanvas(c2, sines);
+    wait(w);
+    pushCanvas(c2, pxxxls);
+    wait(w);
+    disableCanvas(c0);
+    disableCanvas(c1);
+    disableCanvas(c3);
+    setCanvas(c2, seizure);
+    wait(0.25);
+    disableCanvas(c2);
   }
 }

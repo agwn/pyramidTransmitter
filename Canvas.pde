@@ -22,10 +22,10 @@ class Canvas {
     pgFlat = createGraphics(w, h, P2D);
   }
 
-  void setRoutine(CanvasRoutine cr_) {
+  void setRoutine(CanvasRoutine cr) {
     routines.clear();
-    routines.add(cr_);
-    cr_.setCanvas(this);
+    routines.add(cr);
+    cr.setCanvas(this);
   }
 
   void pushRoutine(CanvasRoutine cr_) {
@@ -39,11 +39,11 @@ class Canvas {
     }
 
     // Apply brightness
-    pg.beginDraw();
-    pg.noStroke();
-    pg.fill(0, (1.0 - brightness) * 255);
-    pg.rect(0, 0, w, h);
-    pg.endDraw();
+    pgFlat.beginDraw();
+    pgFlat.noStroke();
+    pgFlat.fill(0, (1.0 - brightness) * 255);
+    pgFlat.rect(0, 0, w, h);
+    pgFlat.endDraw();
 
     if (w == 474) {
       writeProportional();

@@ -12,7 +12,7 @@ class Waves extends CanvasRoutine {
   }
 
   void draw() {
-    background(0);
+    pg.background(0);
     for (int i=0; i<NUMBER_OF_WAVES; i++) {
       waves[i].draw();
     }

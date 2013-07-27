@@ -14,8 +14,8 @@ class WarpSpeedMrSulu extends CanvasRoutine {
 
   void draw() {
     pg.beginDraw();
-    background(0);
-    stroke(255);
+    pg.background(0);
+    pg.stroke(255);
 
     for (int i=0; i<NUM_STARS; i++) {
       warpstars[i].draw();
