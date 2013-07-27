@@ -100,7 +100,6 @@ class SetList extends CanvasRoutineController {
   SetList() {
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
     SineColumns sines = new SineColumns();
-    sines.period *= 4.0;
     Pxxxls pxxxls = new Pxxxls(100);
     Waves waves = new Waves();
     Seizure seizure = new Seizure();
@@ -112,10 +111,6 @@ class SetList extends CanvasRoutineController {
     Canvas c2 = canvases[2];
     Canvas c3 = canvases[3];
 
-    setCanvas(c2, sines);
-    pushCanvas(c2, mirror);
-    wait(4.0);
-/*
     setCanvas(c0, pxxxls);
     wait(w);
     setCanvas(c2, warpSpeed);
@@ -138,14 +133,15 @@ class SetList extends CanvasRoutineController {
     wait(w);
     pushCanvas(c2, sines);
     wait(w);
+    pushCanvas(c2, mirror);
+    wait(w);
     pushCanvas(c2, pxxxls);
     wait(w);
     disableCanvas(c0);
     disableCanvas(c1);
     disableCanvas(c3);
     setCanvas(c2, seizure);
-    wait(0.25);
+    wait(1.0);
     disableCanvas(c2);
-*/
   }
 }
