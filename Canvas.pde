@@ -23,16 +23,15 @@ class Canvas {
   }
 
   void setRoutine(CanvasRoutine cr_) {
-    cr = cr_;
-    cr.setCanvas(this);
-  }
-
-  void setRoutineX(CanvasRoutine cr_) {
+    routines.clear();
     routines.add(cr_);
-    //cr = cr_;
     cr_.setCanvas(this);
   }
 
+  void pushRoutine(CanvasRoutine cr_) {
+    routines.add(cr_);
+    cr_.setCanvas(this);
+  }
 
   void sendToOutput() {
     if (this != canvasOut) {

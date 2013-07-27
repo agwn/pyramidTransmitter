@@ -18,11 +18,10 @@ class DomeSetCanvas extends DomeCode {
   void run() {
     canvas.brightness = 1.0;
 
-    for (int i = 0; i < canvases.length; i++) {
+    for (int i = 0; i < controller.nCanvases; i++) {
       if (canvas == canvases[i]) {
         controller.activeCanvases[i] = true;
-        //canvases[i].setRoutine(canvasRoutine);
-        canvases[i].setRoutineX(canvasRoutine);
+        canvases[i].setRoutine(canvasRoutine);
       } 
     }
 
@@ -32,6 +31,28 @@ class DomeSetCanvas extends DomeCode {
 }
 
 class DomePushCanvas extends DomeCode {
+  Canvas canvas;
+  CanvasRoutine canvasRoutine;
+
+  DomePushCanvas(CanvasRoutineController controller_, Canvas canvas_, CanvasRoutine canvasRoutine_) {
+    controller = controller_;
+    canvas = canvas_;
+    canvasRoutine = canvasRoutine_;
+  }
+
+  void run() {
+    canvas.brightness = 1.0;
+
+    for (int i = 0; i < canvases.length; i++) {
+      if (canvas == canvases[i]) {
+        controller.activeCanvases[i] = true;
+        canvases[i].pushRoutine(canvasRoutine);
+      } 
+    }
+
+    controller.next();
+    controller.runDomeCode();
+  }
 }
 
 class DomeWait extends DomeCode {

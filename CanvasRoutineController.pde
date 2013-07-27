@@ -2,50 +2,46 @@ class CanvasRoutineController {
   ArrayList domeCode;
   int index = 0;
   boolean[] activeCanvases;
-  CanvasRoutineController parentController = null;
+  int nCanvases;
 
   CanvasRoutineController() {
     domeCode = new ArrayList();
-    activeCanvases = new boolean[canvases.length];
+    nCanvases = canvases.length;
+    activeCanvases = new boolean[nCanvases];
 
-    for (int i = 0; i < activeCanvases.length; i++) {
+    for (int i = 0; i < nCanvases; i++) {
       activeCanvases[i] = false;
     }
 
     wait(0.0);  // Prevents infinite DomeCode loop
   }
 
-  CanvasRoutineController(CanvasRoutineController parent) {
-    parentController = parent;
-  }
-
   void update() {
     canvasOut.clear();
 
-    for (int i = 0; i < canvases.length; i++) {
+    for (int i = 0; i < nCanvases; i++) {
       if (activeCanvases[i]) {
-        //canvases[i].cr.draw();
-        //canvases[i].cr.renderCanvas();
-
         Canvas canvas = canvases[i];
+        int w = canvas.w;
+        int h = canvas.h;
+        int nRoutines = canvas.routines.size();
         PGraphics pgFlat = canvas.pgFlat;
 
         pgFlat.beginDraw();
         pgFlat.noStroke();
-        pgFlat.fill(0, 64, 0);
-        pgFlat.rect(0, 0, canvas.w, canvas.h);
+        pgFlat.fill(0);
+        pgFlat.rect(0, 0, w, h);
 
         // Render each routine in the canvases routine stack
-        for (int j = 0; j < canvases[i].routines.size(); j++) {
+        for (int j = 0; j < nRoutines; j++) {
           CanvasRoutine cr = (CanvasRoutine) canvas.routines.get(j);
           
           cr.draw();
-//          cr.renderCanvas();
-            pgFlat.blend(cr.pg.get(), 0, 0, canvas.w, canvas.h, 0, 0, canvas.w, canvas.h, SCREEN);
+          pgFlat.blend(cr.pg.get(), 0, 0, w, h, 0, 0, w, h, SCREEN);
         }
 
         pgFlat.endDraw(); 
-        canvases[i].sendToOutput();
+        canvas.sendToOutput();
       }
     }
 
@@ -71,6 +67,7 @@ class CanvasRoutineController {
   }
   
   void pushCanvas(Canvas c, CanvasRoutine cr) {
+    domeCode.add(new DomePushCanvas(this, c, cr));
   }
 
   void wait(float seconds) {
@@ -96,13 +93,16 @@ class CanvasRoutineController {
 class SetList extends CanvasRoutineController {
   SetList() {
     WarpSpeedMrSulu r1 = new WarpSpeedMrSulu();
-    //Waves r1 = new Waves();
-    //Pxxxls r1 = new Pxxxls(20);
     SineColumns r2 = new SineColumns();
+    Pxxxls r3 = new Pxxxls(100);
+    Waves r4 = new Waves();
 
-    setCanvas(canvases[2], r1);
-    setCanvas(canvases[2], r2);
-    //pushCanvas(canvases[2]. r2);
+    int current = 0;
+
+    setCanvas(canvases[current], r2);
+    pushCanvas(canvases[0], r3);
+    //pushCanvas(canvases[0], r2);
+    //pushCanvas(canvases[current], r1);
     wait(4.0);
 
     /*
