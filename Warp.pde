@@ -12,7 +12,7 @@ class Warp extends CanvasRoutine {
   public Warp() {
     warpHorizontal = true;
     warpVertical = true;
-    warpSpeed = 0.1;
+    warpSpeed = 0.2;
     warpFactor = 0.5;
     setPaintMode(OVERWRITE);
   }
@@ -52,7 +52,6 @@ class Warp extends CanvasRoutine {
   }
 
   void drawBackground() {
-    pg.background(0);
     pg.noFill();
     pg.ellipseMode(RADIUS);
     for (int i=0; i<10; i++) {
@@ -81,5 +80,6 @@ class Warp extends CanvasRoutine {
 
       rofs += 0.0314 * warpSpeed;
     }
+    pgFlat.background(0);
   }
 }
