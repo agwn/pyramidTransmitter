@@ -1,85 +1,87 @@
 class Warp extends CanvasRoutine {
-  float r;
-  float rofs;
-  float warpSpeed;
-  boolean warpHorizontal;
-  boolean warpVertical;
-  float warpFactor;
   int w;
   int h;
-  PImage temp;
+  boolean warpHorizontal;
+  boolean warpVertical;
+  int sineTableSize = 256;
+  float sineTableSizeInv = 1.0 / sineTableSize;
+  float[] sineTable;
+  float hAmp = 1.0;
+  float hCycles = 0.3;
+  float hPhaseInc = hCycles * 1.0 / 210.0; 
+  float hPhase = 0.0;
+  float vAmp = 0.333;
+  float vCycles = 0.1;
+  float vPhaseInc = vCycles * 1.0 / 64.0; 
+  float vPhase = 0.25;
 
   public Warp() {
+    initSineTable();
     warpHorizontal = true;
     warpVertical = true;
-    warpSpeed = 0.2;
-    warpFactor = 0.5;
-    setPaintMode(OVERWRITE);
+    setPaintMode(DIRECT);
   }
-
-/*
-  public Warp(Routine subroutine, boolean warpHorizontal, boolean warpVertical, float warpSpeed, float warpFactor) {
-    this.subroutine = subroutine;
-    this.warpHorizontal = warpHorizontal;
-    this.warpVertical = warpVertical;
-    this.warpSpeed = warpSpeed;
-    this.warpFactor = warpFactor;
-  }
-*/
 
   void reinit() {
     w = pg.width;
     h = pg.height;
-    temp = pgFlat.get();
-  }
-
-  void hshift(int y, int xofs) {
-    if (xofs < 0)
-      xofs = w + xofs;
-
-    PImage tmp = pgFlat.get(w-xofs, y, xofs, 1);
-    pg.copy(0, y, w-xofs, 1, xofs, y, w-xofs, 1);
-    pg.image(tmp, 0, y);
-  }
-
-  void vshift(int x, int yofs) {
-    if (yofs < 0)
-      yofs = h + yofs;
-
-    PImage tmp = pgFlat.get(x, h-yofs, 1, yofs);
-    pg.copy(x, 0, 1, h-yofs, x, yofs, 1, h-yofs);
-    pg.image(tmp, x, 0);
-  }
-
-  void drawBackground() {
-    pg.noFill();
-    pg.ellipseMode(RADIUS);
-    for (int i=0; i<10; i++) {
-      pg.stroke(i%2==0 ? color(varMin[0], varMin[1], varMin[2]) : color(varMax[0], varMax[1], varMax[2]));
-      pg.ellipse(w/2, h/2, i*(w/10), i*(h/10));
-    }
   }
 
   void draw() {
-    //drawBackground();
-    pg.background(0);
     if (warpVertical) {
-      for (int x=0; x<w; x++) {
-        r = x*1.0/h*PI + rofs;
-        vshift(x, int(sin(r)*(h*warpFactor)));
+      float tempPhase = vPhase;
+      for (int x = 0; x < w; x++) {
+        float v = sineTable[(int) (tempPhase * sineTableSize)] / 2.0 + 0.5;
+        tempPhase += vPhaseInc;
+        if (tempPhase >= 1.0) {
+          tempPhase -= 1.0;
+        }
+
+        int offset = (int) (v * vAmp * h);
+        int length = h - offset;
+
+        PImage tmp = pg.get(x, offset, 1, length);
+        pg.copy(pg.get(), x, 0, 1, offset,
+                x, length, 1, offset);
+        pg.image(tmp, x, 0, 1, length);
       }
 
-      rofs += 0.0314 * warpSpeed;
+      vPhase += vPhaseInc;
+      if (vPhase >= 1.0) {
+        vPhase -= 1.0;
+      }      
     }
 
     if (warpHorizontal) {
-      for (int y=0; y<h; y++) {
-        r = y*1.0/w*PI + rofs;
-        hshift(y, int(sin(r)*(w*warpFactor)));
+      float tempPhase = hPhase;
+      for (int y = 0; y < h; y++) {
+        float v = sineTable[(int) (tempPhase * sineTableSize)] / 2.0 + 0.5;
+        tempPhase += hPhaseInc;
+        if (tempPhase >= 1.0) {
+          tempPhase -= 1.0;
+        }
+
+        int offset = (int) (v * hAmp * w);
+        int length = w - offset;
+
+        PImage tmp = pg.get(offset, y, length, 1);
+        pg.copy(pg.get(), 0, y, offset, 1,
+                length, y, offset, 1);
+        pg.image(tmp, 0, y, length, 1);
       }
 
-      rofs += 0.0314 * warpSpeed;
+      hPhase += hPhaseInc;
+      if (hPhase >= 1.0) {
+        hPhase -= 1.0;
+      }      
     }
-    pgFlat.background(0);
+  }
+
+  void initSineTable() {
+    sineTable = new float[sineTableSize];
+
+    for (int i = 0; i < sineTableSize; i++) {
+      sineTable[i] = sin(i * sineTableSizeInv * TWO_PI);
+    }
   }
 }
