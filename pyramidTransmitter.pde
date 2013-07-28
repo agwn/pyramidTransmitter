@@ -49,14 +49,14 @@ Serial ctrlPort;
 Canvas[] canvases;
 Canvas canvasOut;
 
-SetList setList;
+TechDemo setList;
 
 void setup() {
   size(602, 420, P2D);
   frameRate(FRAMERATE);
   setupCanvases();
   setupSign();
-  setList = new SetList();
+  setList = new TechDemo();
 }
 
 void setupCanvases() {
