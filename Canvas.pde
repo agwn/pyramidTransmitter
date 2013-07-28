@@ -34,9 +34,6 @@ class Canvas {
   }
 
   void sendToOutput() {
-    if (this != canvasOut) {
-      image(pgFlat, x, y);
-    }
 
     // Apply brightness
     pgFlat.beginDraw();
@@ -44,6 +41,10 @@ class Canvas {
     pgFlat.fill(0, (1.0 - brightness) * 255);
     pgFlat.rect(0, 0, w, h);
     pgFlat.endDraw();
+
+    if (this != canvasOut) {
+      image(pgFlat, x, y);
+    }
 
     if (w == 474) {
       writeProportional();

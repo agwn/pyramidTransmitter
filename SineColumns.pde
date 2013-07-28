@@ -33,11 +33,10 @@ class SineColumns extends CanvasRoutine {
   float amplitude;
   int w;
   int h;
-  color pornjPink = color(252, 23, 218);
-  color orange = color(255, 128, 0);
 
   SineColumns() {
     initSineTable();
+    setPaintMode(DIRECT);
   }
 
   void reinit() {
@@ -49,21 +48,20 @@ class SineColumns extends CanvasRoutine {
 
   void draw() {
     pg.beginDraw();
-    pg.background(0);
     pg.pushStyle();
 
     // Sine
     pg.noFill();
     pg.strokeWeight(4);
 
-    pg.stroke(pornjPink, 128);
+    pg.stroke(pornj, 128);
     drawSine(h + 15, 45);
     drawSine(h - 45, 45);
     drawSine(h - 105, 45);
     drawSine(h - 165, 45);
     drawSine(h - 225, 45);
 
-    pg.stroke(orange, 128);
+    pg.stroke(disorientOrange, 128);
     drawSine(h - 15, 15);
     drawSine(h - 75, 15);
     drawSine(h - 135, 15);

@@ -6,6 +6,11 @@ class WarpSpeedMrSulu extends CanvasRoutine {
     warpstars = new WarpStar[NUM_STARS];
   }
 
+  WarpSpeedMrSulu(int nStars) {
+    NUM_STARS = nStars;
+    warpstars = new WarpStar[NUM_STARS];
+  }
+
   void reinit() {
     for (int i = 0; i<NUM_STARS; i++) {
       warpstars[i] = new WarpStar(pg);

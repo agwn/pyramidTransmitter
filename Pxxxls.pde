@@ -26,6 +26,7 @@ class Pxxxls extends CanvasRoutine {
 
   Pxxxls(int nPxxxls_) {
     nPxxxls = nPxxxls_;
+    setPaintMode(DIRECT);
   }
 
   void reinit() {
@@ -42,7 +43,6 @@ class Pxxxls extends CanvasRoutine {
 
   void draw() {
     pg.beginDraw();
-    pg.background(0);
 
     for (int i = 0; i < nPxxxls; i++) {
       Pxxxl pxxxl = (Pxxxl) pxxxls.get(i);
@@ -59,9 +59,6 @@ class Pxxxl {
   float s;
   int minSize = 9;
   int maxSize = 24;
-  color pornj = color(252, 23, 218);
-  color orange = color(255, 128, 0);
-  color white = color(255);
   color thisColor;
   float flash = 0.0;
   float flashTriggerOdds = 0.98;
@@ -78,7 +75,7 @@ class Pxxxl {
     s = random(minSize, maxSize);
     posY = pg.height + s;
     posX = random(-s, pg.width + s);
-    thisColor = lerpColor(pornj, orange, random(1.0));
+    thisColor = lerpColor(pornj, disorientOrange, random(1.0));
   }
 
   void update() {
@@ -90,7 +87,7 @@ class Pxxxl {
     }
 
     // Flash animations start at full opacity & brightness
-    color tempColor = lerpColor(thisColor, white, flash);
+    color tempColor = lerpColor(thisColor, color(255), flash);
     float tempAlpha = (s - minSize) / maxSize * 239 + 16;
     float flashAlpha = (255.0 - tempAlpha) * flash + tempAlpha;
     pg.fill(tempColor, flashAlpha);
