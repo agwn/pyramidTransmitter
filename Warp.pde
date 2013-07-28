@@ -1,20 +1,23 @@
-class Warp extends Routine {
+class Warp extends CanvasRoutine {
   float r;
   float rofs;
   float warpSpeed;
-  Routine subroutine;
   boolean warpHorizontal;
   boolean warpVertical;
   float warpFactor;
+  int w;
+  int h;
+  PImage temp;
 
   public Warp() {
-    this.subroutine = null;
-    warpHorizontal = false;
+    warpHorizontal = true;
     warpVertical = true;
-    warpSpeed = 2;
-    warpFactor = 1;
+    warpSpeed = 0.1;
+    warpFactor = 0.5;
+    setPaintMode(OVERWRITE);
   }
 
+/*
   public Warp(Routine subroutine, boolean warpHorizontal, boolean warpVertical, float warpSpeed, float warpFactor) {
     this.subroutine = subroutine;
     this.warpHorizontal = warpHorizontal;
@@ -22,72 +25,61 @@ class Warp extends Routine {
     this.warpSpeed = warpSpeed;
     this.warpFactor = warpFactor;
   }
+*/
 
-  void setup(PApplet parent) {
-    super.setup(parent);
-
-    if (this.subroutine != null) {
-      this.subroutine.setup(parent);
-    }
+  void reinit() {
+    w = pg.width;
+    h = pg.height;
+    temp = pgFlat.get();
   }
 
   void hshift(int y, int xofs) {
     if (xofs < 0)
-      xofs = displayWidth + xofs;
+      xofs = w + xofs;
 
-    PImage tmp = get(displayWidth-xofs, y, xofs, 1);
-    copy(0, y, displayWidth-xofs, 1, xofs, y, displayWidth-xofs, 1);
-    image(tmp, 0, y);
+    PImage tmp = pgFlat.get(w-xofs, y, xofs, 1);
+    pg.copy(0, y, w-xofs, 1, xofs, y, w-xofs, 1);
+    pg.image(tmp, 0, y);
   }
 
   void vshift(int x, int yofs) {
     if (yofs < 0)
-      yofs = displayHeight + yofs;
+      yofs = h + yofs;
 
-    PImage tmp = get(x, displayHeight-yofs, 1, yofs);
-    copy(x, 0, 1, displayHeight-yofs, x, yofs, 1, displayHeight-yofs);
-    image(tmp, x, 0);
+    PImage tmp = pgFlat.get(x, h-yofs, 1, yofs);
+    pg.copy(x, 0, 1, h-yofs, x, yofs, 1, h-yofs);
+    pg.image(tmp, x, 0);
   }
 
   void drawBackground() {
-    if (subroutine != null) {
-      subroutine.draw();
-
-      if (subroutine.isDone) {
-        newMode();
-      }
-    }
-    else {
-      background(0);
-      noFill();
-      ellipseMode(RADIUS);
-      for (int i=0; i<10; i++) {
-        stroke(i%2==0 ? color(varMin[0], varMin[1], varMin[2]) : color(varMax[0], varMax[1], varMax[2]));
-        ellipse(displayWidth/2, displayHeight/2, i*(displayWidth/10), i*(displayHeight/10));
-      }
+    pg.background(0);
+    pg.noFill();
+    pg.ellipseMode(RADIUS);
+    for (int i=0; i<10; i++) {
+      pg.stroke(i%2==0 ? color(varMin[0], varMin[1], varMin[2]) : color(varMax[0], varMax[1], varMax[2]));
+      pg.ellipse(w/2, h/2, i*(w/10), i*(h/10));
     }
   }
 
   void draw() {
-    drawBackground();
-
+    //drawBackground();
+    pg.background(0);
     if (warpVertical) {
-      for (int x=0; x<displayWidth; x++) {
-        r = x*1.0/displayHeight*PI + rofs;
-        vshift(x, int(sin(r)*(displayHeight*warpFactor)));
+      for (int x=0; x<w; x++) {
+        r = x*1.0/h*PI + rofs;
+        vshift(x, int(sin(r)*(h*warpFactor)));
       }
 
       rofs += 0.0314 * warpSpeed;
     }
 
     if (warpHorizontal) {
-      for (int y=0; y<displayHeight; y++) {
-        r = y*1.0/displayWidth*PI + rofs;
-        hshift(y, int(sin(r)*(displayWidth*warpFactor)));
+      for (int y=0; y<h; y++) {
+        r = y*1.0/w*PI + rofs;
+        hshift(y, int(sin(r)*(w*warpFactor)));
       }
 
       rofs += 0.0314 * warpSpeed;
     }
   }
 }
-
