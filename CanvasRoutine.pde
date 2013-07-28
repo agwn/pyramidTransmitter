@@ -1,8 +1,16 @@
+final int CANVAS_ROUTINE_DIRECT = 0;
+final int CANVAS_ROUTINE_BLEND = 1;
+final int CANVAS_ROUTINE_OVERWRITE = 2;
+
 class CanvasRoutine {
+  final int DIRECT = CANVAS_ROUTINE_DIRECT;
+  final int BLEND = CANVAS_ROUTINE_BLEND;
+  final int OVERWRITE = CANVAS_ROUTINE_OVERWRITE;
+
   Canvas canvas;
   PGraphics pg;
   PGraphics pgFlat;
-  Boolean blendLayers = true;
+  private int paintMode = BLEND;
 
   CanvasRoutine() { }
   void reinit() { }
@@ -10,9 +18,32 @@ class CanvasRoutine {
 
   void setCanvas(Canvas canvas_) {
     canvas = canvas_;
-    pg = canvas.pg;
-    pgFlat = canvas.pgFlat;
+    setCanvasMode();
     reinit();
+  }
+
+  private void setCanvasMode() {
+    pgFlat = canvas.pgFlat;
+
+    switch(paintMode) {
+      case BLEND:
+        pg = canvas.pg;
+        break;
+      case OVERWRITE:
+        pg = canvas.pg;
+        break;
+      case DIRECT:
+        pg = canvas.pgFlat;
+        break;
+    }
+  }
+
+  void setPaintMode(int m) {
+    paintMode = m;
+  }
+
+  int getPaintMode() {
+    return paintMode;
   }
 }
 

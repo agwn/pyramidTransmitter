@@ -37,12 +37,16 @@ class CanvasRoutineController {
           CanvasRoutine cr = (CanvasRoutine) canvas.routines.get(j);
           
           cr.draw();
-         
-          if (cr.blendLayers) {
-            pgFlat.blend(cr.pg.get(), 0, 0, w, h, 0, 0, w, h, SCREEN);
-          }
-          else {
-            pgFlat.copy(cr.pg.get(), 0, 0, w, h, 0, 0, w, h);
+        
+          switch(cr.getPaintMode()) {
+            case CANVAS_ROUTINE_BLEND:
+              pgFlat.blend(cr.pg.get(), 0, 0, w, h, 0, 0, w, h, SCREEN);
+              break;
+            case CANVAS_ROUTINE_OVERWRITE:
+              pgFlat.copy(cr.pg.get(), 0, 0, w, h, 0, 0, w, h);
+              break;
+            case CANVAS_ROUTINE_DIRECT:
+              break;
           }
         }
 
