@@ -35,7 +35,7 @@ class CanvasRoutineController {
         // Render each routine in the canvases routine stack
         for (int j = 0; j < nRoutines; j++) {
           CanvasRoutine cr = (CanvasRoutine) canvas.routines.get(j);
-          
+
           cr.draw();
         
           switch(cr.getPaintMode()) {

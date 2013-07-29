@@ -1,6 +1,6 @@
 class Grid extends CanvasRoutine {
   int xSpacing = 8;
-  int ySpacing = 8;
+  int ySpacing = 10;
 
   void draw() {
     pg.beginDraw();

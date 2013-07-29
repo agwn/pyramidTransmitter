@@ -22,6 +22,14 @@ class CanvasRoutine {
     reinit();
   }
 
+  void setPaintMode(int m) {
+    paintMode = m;
+  }
+
+  int getPaintMode() {
+    return paintMode;
+  }
+
   private void setCanvasMode() {
     pgFlat = canvas.pgFlat;
 
@@ -36,14 +44,6 @@ class CanvasRoutine {
         pg = canvas.pgFlat;
         break;
     }
-  }
-
-  void setPaintMode(int m) {
-    paintMode = m;
-  }
-
-  int getPaintMode() {
-    return paintMode;
   }
 }
 

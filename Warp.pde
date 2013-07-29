@@ -3,16 +3,14 @@ class Warp extends CanvasRoutine {
   int h;
   boolean warpHorizontal;
   boolean warpVertical;
-  int sineTableSize = 256;
-  float sineTableSizeInv = 1.0 / sineTableSize;
-  float[] sineTable;
+  int sineTableNormSize = 256;
+  float sineTableNormSizeInv = 1.0 / sineTableNormSize;
+  float[] sineTableNorm;
   float hAmp = 1.0;
   float hCycles = 0.3;
-  float hPhaseInc = hCycles * 1.0 / 210.0; 
   float hPhase = 0.0;
   float vAmp = 0.333;
   float vCycles = 0.1;
-  float vPhaseInc = vCycles * 1.0 / 64.0; 
   float vPhase = 0.25;
 
   public Warp() {
@@ -29,21 +27,24 @@ class Warp extends CanvasRoutine {
 
   void draw() {
     if (warpVertical) {
+      float vPhaseInc = vCycles * 1.0 / w; 
       float tempPhase = vPhase;
+      float amp = vAmp * w;
+
       for (int x = 0; x < w; x++) {
-        float v = sineTable[(int) (tempPhase * sineTableSize)] / 2.0 + 0.5;
+        float v = sineTableNorm[(int) (tempPhase * sineTableNormSize)];
         tempPhase += vPhaseInc;
         if (tempPhase >= 1.0) {
           tempPhase -= 1.0;
         }
 
-        int offset = (int) (v * vAmp * h);
+        int offset = (int) (v * amp);
         int length = h - offset;
 
-        PImage tmp = pg.get(x, offset, 1, length);
+        PImage imageSlice = pg.get(x, offset, 1, length);
         pg.copy(pg.get(), x, 0, 1, offset,
                 x, length, 1, offset);
-        pg.image(tmp, x, 0, 1, length);
+        pg.image(imageSlice, x, 0, 1, length);
       }
 
       vPhase += vPhaseInc;
@@ -53,21 +54,24 @@ class Warp extends CanvasRoutine {
     }
 
     if (warpHorizontal) {
+      float hPhaseInc = hCycles * 1.0 / h; 
       float tempPhase = hPhase;
+      float amp = hAmp * w;
+
       for (int y = 0; y < h; y++) {
-        float v = sineTable[(int) (tempPhase * sineTableSize)] / 2.0 + 0.5;
+        float v = sineTableNorm[(int) (tempPhase * sineTableNormSize)];
         tempPhase += hPhaseInc;
         if (tempPhase >= 1.0) {
           tempPhase -= 1.0;
         }
 
-        int offset = (int) (v * hAmp * w);
+        int offset = (int) (v * amp);
         int length = w - offset;
 
-        PImage tmp = pg.get(offset, y, length, 1);
+        PImage imageSlice = pg.get(offset, y, length, 1);
         pg.copy(pg.get(), 0, y, offset, 1,
                 length, y, offset, 1);
-        pg.image(tmp, 0, y, length, 1);
+        pg.image(imageSlice, 0, y, length, 1);
       }
 
       hPhase += hPhaseInc;
@@ -78,10 +82,10 @@ class Warp extends CanvasRoutine {
   }
 
   void initSineTable() {
-    sineTable = new float[sineTableSize];
+    sineTableNorm = new float[sineTableNormSize];
 
-    for (int i = 0; i < sineTableSize; i++) {
-      sineTable[i] = sin(i * sineTableSizeInv * TWO_PI);
+    for (int i = 0; i < sineTableNormSize; i++) {
+      sineTableNorm[i] = sin(i * sineTableNormSizeInv * TWO_PI) * 0.5 + 0.5;
     }
   }
 }

@@ -50,13 +50,12 @@ class TechDemo extends CanvasRoutineController {
 
 class CRCDebugging extends CanvasRoutineController {
   CRCDebugging() {
-    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu(400);
+    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu(100);
     SineColumns sines = new SineColumns();
     Pxxxls pxxxls = new Pxxxls(16);
     Waves waves = new Waves();
     Seizure seizure = new Seizure();
     Mirror mirror = new Mirror();
-    Mirror mirror2 = new Mirror();
     Warp warp = new Warp();
     Grid grid = new Grid();
 
@@ -68,9 +67,9 @@ class CRCDebugging extends CanvasRoutineController {
 
     setCanvas(c2, warpSpeed);
     
-    //pushCanvas(c2, grid);
+    pushCanvas(c2, grid);
     pushCanvas(c2, warp);
     //pushCanvas(c2, mirror);
-    wait(1000.0);
+    wait(30.0);
   }
 }
