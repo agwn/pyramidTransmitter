@@ -7,11 +7,13 @@ class Warp extends CanvasRoutine {
   float sineTableNormSizeInv = 1.0 / sineTableNormSize;
   float[] sineTableNorm;
   float hAmp = 1.0;
-  float hCycles = 0.3;
-  float hPhase = 0.0;
-  float vAmp = 0.333;
-  float vCycles = 0.1;
+  float hCycles = 0.25;
+  float hPhase = 0.25;
+  float hBias = 0.0;
+  float vAmp = 1.0;
+  float vCycles = 0.25;
   float vPhase = 0.25;
+  float vBias = 0.0;
 
   public Warp() {
     initSineTable();
@@ -29,7 +31,7 @@ class Warp extends CanvasRoutine {
     if (warpVertical) {
       float vPhaseInc = vCycles * 1.0 / w; 
       float tempPhase = vPhase;
-      float amp = vAmp * w;
+      float amp = vAmp * h;
 
       for (int x = 0; x < w; x++) {
         float v = sineTableNorm[(int) (tempPhase * sineTableNormSize)];
@@ -39,6 +41,8 @@ class Warp extends CanvasRoutine {
         }
 
         int offset = (int) (v * amp);
+        offset += vBias * amp;
+        offset -= (offset / h) * h;
         int length = h - offset;
 
         PImage imageSlice = pg.get(x, offset, 1, length);
@@ -66,6 +70,8 @@ class Warp extends CanvasRoutine {
         }
 
         int offset = (int) (v * amp);
+        offset += hBias * amp;
+        offset -= (offset / w) * w;
         int length = w - offset;
 
         PImage imageSlice = pg.get(offset, y, length, 1);

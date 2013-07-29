@@ -69,12 +69,15 @@ class CRCDebugging extends CanvasRoutineController {
     pxxxls.setBlendMode(DODGE);
     pxxxls.setPaintMode(pxxxls.BLEND);
     seizure.setBlendMode(DODGE);
-    warp.warpVertical = false;
+    warp.warpVertical = true;
+    warp.warpHorizontal = true;
+    warp.vAmp = 2.0;
+    warp.hAmp = 3.0;
     setCanvas(c2, fire);
 
 //    setCanvas(c2, waves);
 //    pushCanvas(c2, pxxxls);
-//    pushCanvas(c2, warpSpeed); 
+    //pushCanvas(c2, grid); 
     pushCanvas(c2, warp);
 //    pushCanvas(c2, mirror);
     wait(1000.0);
