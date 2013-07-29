@@ -11,6 +11,7 @@ class CanvasRoutine {
   PGraphics pg;
   PGraphics pgFlat;
   private int paintMode = BLEND;
+  int blendMode = SCREEN;
 
   CanvasRoutine() { }
   void reinit() { }
@@ -28,6 +29,10 @@ class CanvasRoutine {
 
   int getPaintMode() {
     return paintMode;
+  }
+
+  void setBlendMode(int blendMode_) {
+    blendMode = blendMode_;
   }
 
   private void setCanvasMode() {

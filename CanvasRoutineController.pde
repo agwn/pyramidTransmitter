@@ -40,7 +40,7 @@ class CanvasRoutineController {
         
           switch(cr.getPaintMode()) {
             case CANVAS_ROUTINE_BLEND:
-              pgFlat.blend(cr.pg.get(), 0, 0, w, h, 0, 0, w, h, SCREEN);
+              pgFlat.blend(cr.pg.get(), 0, 0, w, h, 0, 0, w, h, cr.blendMode);
               break;
             case CANVAS_ROUTINE_OVERWRITE:
               pgFlat.copy(cr.pg.get(), 0, 0, w, h, 0, 0, w, h);
