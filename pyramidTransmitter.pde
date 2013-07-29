@@ -50,7 +50,8 @@ Canvas[] canvases;
 Canvas canvasOut;
 
 //TechDemo setList;
-CRCDebugging setList;
+//CRCDebugging setList;
+Demo setList;
 
 void setup() {
   size(602, 420, P2D);
@@ -58,7 +59,8 @@ void setup() {
   setupCanvases();
   setupSign();
 //  setList = new TechDemo();
-  setList = new CRCDebugging();
+//  setList = new CRCDebugging();
+  setList = new Demo();
 }
 
 void setupCanvases() {
