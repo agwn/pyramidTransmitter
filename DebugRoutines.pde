@@ -4,7 +4,6 @@ class Grid extends CanvasRoutine {
 
   void draw() {
     pg.beginDraw();
-    pg.background(0);
     pg.stroke(255, 64);
 
     for (int i = 0; i < pg.height; i = i + ySpacing) {

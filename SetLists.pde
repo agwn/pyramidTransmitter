@@ -58,6 +58,7 @@ class CRCDebugging extends CanvasRoutineController {
     Mirror mirror = new Mirror();
     Warp warp = new Warp();
     Grid grid = new Grid();
+    Fire fire = new Fire();
 
     float w = 5.0;
     Canvas c0 = canvases[0];
@@ -65,6 +66,10 @@ class CRCDebugging extends CanvasRoutineController {
     Canvas c2 = canvases[2];
     Canvas c3 = canvases[3];
 
+    setCanvas(c2, fire);
+    wait(10.0);
+
+/*
     pxxxls.setBlendMode(DODGE);
     pxxxls.setPaintMode(pxxxls.BLEND);
     seizure.setBlendMode(DODGE);
@@ -75,5 +80,6 @@ class CRCDebugging extends CanvasRoutineController {
     pushCanvas(c2, warp);
     pushCanvas(c2, mirror);
     wait(10.0);
+*/
   }
 }
