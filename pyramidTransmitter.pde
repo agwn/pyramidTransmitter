@@ -3,6 +3,7 @@ import processing.opengl.*;
 import java.lang.reflect.Method;
 import hypermedia.net.*;
 import java.io.*;
+import codeanticode.gsvideo.*;
 
 // *** DEPRECATED!! ***
 // If removed, the entire thing breaks.
@@ -50,17 +51,21 @@ Canvas[] canvases;
 Canvas canvasOut;
 
 //TechDemo setList;
-//CRCDebugging setList;
-Demo setList;
+CRCDebugging setList;
+//Demo setList;
+
 
 void setup() {
   size(602, 420, P2D);
+
   frameRate(FRAMERATE);
   setupCanvases();
   setupSign();
+//  setupMyMovie();
+
 //  setList = new TechDemo();
-//  setList = new CRCDebugging();
-  setList = new Demo();
+  setList = new CRCDebugging();
+//  setList = new Demo();
 }
 
 void setupCanvases() {

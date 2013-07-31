@@ -124,41 +124,38 @@ class Demo extends CanvasRoutineController {
 
 class CRCDebugging extends CanvasRoutineController {
   CRCDebugging() {
-    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu(100);
-    SineColumns sines = new SineColumns();
-    Pxxxls pxxxls = new Pxxxls(50);
-    Waves waves = new Waves();
-    Seizure seizure = new Seizure();
-    Mirror mirror = new Mirror();
-    Warp warp = new Warp();
-    Grid grid = new Grid();
-    Fire fire = new Fire();
-
-    float w = 5.0;
     Canvas c0 = canvases[0];
     Canvas c1 = canvases[1];
     Canvas c2 = canvases[2];
     Canvas c3 = canvases[3];
 
-//    pxxxls.setBlendMode(DODGE);
-//    pxxxls.setPaintMode(pxxxls.BLEND);
-    seizure.setBlendMode(DODGE);
-    warp.warpVertical = true;
-    warp.warpHorizontal = true;
-    warp.vAmp = 2.333;
-    warp.hBias = 0.25;
-    warp.hAmp = 0.75;
-    warp.hCycles = 0.25;
-    warp.vCycles = 0.125;
+    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu(100);
+    SineColumns sines = new SineColumns();
+    Pxxxls pxxxls = new Pxxxls(150);
+    Pxxxls pxxxlFilter = new Pxxxls(50);
+    pxxxlFilter.setBlendMode(DODGE);
+    pxxxlFilter.setPaintMode(pxxxlFilter.BLEND);
+    Waves waves = new Waves();
+    Seizure seizure = new Seizure();
+    Mirror mirror = new Mirror();
+    Warp warp = new Warp();
+    warp.hAmp = 2.0;
+    warp.vAmp = 1.5;
+    warp.hCycles = 0.1;
+    warp.vCycles = 0.13;
+    Grid grid = new Grid();
+    Fire fire = new Fire();
 
-    //setCanvas(c2, warpSpeed);
-    setCanvas(c2, fire);
+    MoviePlayer moviePlayer = new MoviePlayer(myMovie);
+    moviePlayer.setBlendMode(DODGE);
+    moviePlayer.setPaintMode(moviePlayer.BLEND);
 
-//    setCanvas(c2, waves);
-    //pushCanvas(c2, pxxxls);
-    //pushCanvas(c2, grid); 
+    float w = 5.0;
+
+    setCanvas(c2, waves);
+//    pushCanvas(c2, moviePlayer);
     pushCanvas(c2, warp);
-    //pushCanvas(c2, mirror);
-    wait(1000.0);
+    pushCanvas(c2, mirror);
+    wait(10.0);
   }
 }
