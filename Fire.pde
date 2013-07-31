@@ -76,6 +76,7 @@ class Fire extends CanvasRoutine {
           + fire[calc1[x]][calc2[y]]
           + fire[calc4[x]][calc2[y]]
           + fire[calc1[x]][calc5[y]]) << 5) / (128+(abs(x-displayWidth/2))/4); // 129;
+
         // Output everything to screen using our palette colors
         pgTemp.pixels[counter] = palette[fire[x][y]];
 

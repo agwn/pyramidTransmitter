@@ -54,7 +54,6 @@ Canvas canvasOut;
 CRCDebugging setList;
 //Demo setList;
 
-
 void setup() {
   size(602, 420, P2D);
 
