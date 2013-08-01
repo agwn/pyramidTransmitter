@@ -122,8 +122,8 @@ class Demo extends SetList {
   }
 }
 
-class CRCDebugging extends SetList {
-  CRCDebugging() {
+class DebuggingSetList extends SetList {
+  DebuggingSetList() {
     Canvas c0 = canvases[0];
     Canvas c1 = canvases[1];
     Canvas c2 = canvases[2];
