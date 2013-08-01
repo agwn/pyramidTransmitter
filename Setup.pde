@@ -11,6 +11,11 @@ int TYPICAL_MODE_TIME = 2048;
 LEDDisplay sign;
 Serial ctrlPort;
 Canvas[] canvases;
+Canvas canvas0;
+Canvas canvas1;
+Canvas canvas2;
+Canvas canvas3;
+
 Canvas canvasOut;
 
 void setupPyramid() {
@@ -24,6 +29,10 @@ void setupCanvases() {
   canvases[1] = new Canvas(64, 210, 474, 210);
   canvases[2] = new Canvas(538, 0, 64, 210);
   canvases[3] = new Canvas(538, 210, 64, 210);
+  canvas0 = canvases[0];
+  canvas1 = canvases[1];
+  canvas2 = canvases[2];
+  canvas3 = canvases[3];
   canvasOut = new Canvas(0, 0, displayWidth, displayHeight); 
 }
 

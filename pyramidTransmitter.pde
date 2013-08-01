@@ -9,6 +9,7 @@ SetList setList;
 
 // Step 1. Create set list variable
 TutorialNoisePlayer tutorialNoise;
+TutMovingLineSet tutMovingLine;
 Demo demo;
 
 void setup() {
@@ -18,10 +19,11 @@ void setup() {
 
   // Step 2. Instantiate set list.
   tutorialNoise = new TutorialNoisePlayer();
+  tutMovingLine = new TutMovingLineSet();
   demo = new Demo();
 
   // Step 3. Set active player to set list
-  setList = tutorialNoise;
+  setList = tutMovingLine;
 }
 
 void draw() {
