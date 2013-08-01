@@ -1,4 +1,4 @@
-class TechDemo extends CanvasRoutineController {
+class TechDemo extends SetList {
   TechDemo() {
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
     SineColumns sines = new SineColumns();
@@ -48,7 +48,7 @@ class TechDemo extends CanvasRoutineController {
   }
 }
 
-class Demo extends CanvasRoutineController {
+class Demo extends SetList {
   Demo() {
     // Shorter variables for less typing
     Canvas c0 = canvases[0];
@@ -75,7 +75,7 @@ class Demo extends CanvasRoutineController {
 
     This demonstrates that each canvas is a queue of routines. As routines
     are added to a canvas, they create chain. During the draw phase of
-    the CanvasRoutineController loop, the routines are executed in the
+    the SetList loop, the routines are executed in the
     order in which they were added to the canvas.
 
     This first chain starts with warpSpeed, then adds warp, them mirror.    
@@ -122,7 +122,7 @@ class Demo extends CanvasRoutineController {
   }
 }
 
-class CRCDebugging extends CanvasRoutineController {
+class CRCDebugging extends SetList {
   CRCDebugging() {
     Canvas c0 = canvases[0];
     Canvas c1 = canvases[1];

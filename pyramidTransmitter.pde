@@ -5,7 +5,7 @@ import hypermedia.net.*;
 import java.io.*;
 import codeanticode.gsvideo.*;
 
-CanvasRoutineController activePlayer;
+SetList setList;
 
 // Step 1. Create set list variable
 TutorialNoisePlayer tutorialNoise;
@@ -21,12 +21,12 @@ void setup() {
   demo = new Demo();
 
   // Step 3. Set active player to set list
-  activePlayer = tutorialNoise;
+  setList = tutorialNoise;
 }
 
 void draw() {
   background(64);
-  activePlayer.update();
+  setList.update();
   image(canvasOut.pg, 0, 0, canvasOut.w, canvasOut.h);
   sign.sendData();
   drawWindowBorders();

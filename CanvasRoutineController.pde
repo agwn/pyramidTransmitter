@@ -1,3 +1,5 @@
+class SetList extends CanvasRoutineController { }
+
 class CanvasRoutineController {
   ArrayList domeCode;
   int index = 0;

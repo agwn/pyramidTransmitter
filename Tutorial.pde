@@ -1,4 +1,4 @@
-class TutorialNoisePlayer extends CanvasRoutineController {
+class TutorialNoisePlayer extends SetList {
   TutorialNoisePlayer() {
     TutorialNoise noise = new TutorialNoise();
     noise.nPixels = 100;
