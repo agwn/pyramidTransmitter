@@ -1,29 +1,22 @@
-class TutorialPlayer extends CanvasRoutineController {
-  TutorialPlayer() {
-    TutorialNoise tutorialNoise = new TutorialNoise();
+class TutorialNoisePlayer extends CanvasRoutineController {
+  TutorialNoisePlayer() {
+    TutorialNoise noise = new TutorialNoise();
+    noise.nPixels = 100;
 
-    setCanvas(canvases[2], tutorialNoise);
-    wait(30.0);
+    setCanvas(canvases[2], noise);
   }
 }
 
 class TutorialNoise extends CanvasRoutine {
-  int nPixels = 100;
-  int w;
-  int h;
-
-  void reinit() {
-    w = pg.width;
-    h = pg.height;
-  }
+  int nPixels = 1;
 
   void draw() {
     pg.beginDraw();
     pg.background(0);
+    pg.stroke(255);
 
     for (int i = 0; i < nPixels; i++) {
-      pg.stroke(random(255));
-      pg.point(random(w), random(h));
+      pg.point(random(pg.width), random(pg.height));
     }
 
     pg.endDraw();

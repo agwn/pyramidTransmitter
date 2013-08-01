@@ -13,6 +13,11 @@ Serial ctrlPort;
 Canvas[] canvases;
 Canvas canvasOut;
 
+void setupPyramid() {
+  setupCanvases();
+  setupSign();
+}
+
 void setupCanvases() {
   canvases = new Canvas[4];
   canvases[0] = new Canvas(64, 0, 474, 210);
