@@ -87,6 +87,7 @@ public class LEDDisplay {
   boolean enableGammaCorrection = false;
   boolean enableCIECorrection = false;
   boolean isRGB = false;
+  float bright = 1.0;
 
   public LEDDisplay(PApplet parent, int w, int h, boolean isRGB, String address, int port) {
     this.parent = parent;
@@ -238,4 +239,3 @@ public class LEDDisplay {
     udp.send(buffer, address, port);
   }
 }
-
