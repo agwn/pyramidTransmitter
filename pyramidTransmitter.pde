@@ -27,7 +27,7 @@ void setup() {
   debuggingSetList = new DebuggingSetList();
 
   // Step 3. Set active player to set list
-  setList = demo;
+  setList = tutorialNoise;
 }
 
 void draw() {
