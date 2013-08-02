@@ -66,3 +66,44 @@ class TutMovingLines extends CanvasRoutine {
     pg.endDraw();
   }
 }
+
+/*-----------------------------------------------------------------------*/
+
+class TutorialSimpleSequence extends SetList {
+  TutorialSimpleSequence() {
+    TutorialNoise noise = new TutorialNoise();
+    TutMovingLines movingLines = new TutMovingLines();
+    Warp warp = new Warp();
+
+    noise.nPixels = 50;
+
+    // Part I - Mixing
+    setCanvas(canvas2, noise);
+    wait(5.0);
+    setCanvas(canvas3, movingLines);
+    wait(5.0);
+    disableCanvas(canvas2);
+    wait(5.0);
+    disableCanvas(canvas3);
+    wait(5.0);
+
+    // Part II - Crossfading
+    setCanvas(canvas2, noise);
+    wait(5.0);
+    setCanvas(canvas3, movingLines);
+    crossfade(5.0, canvas2, canvas3);
+    wait(5.0);
+    disableCanvas(canvas3);
+    wait(5.0);
+
+    // Part III - Routine Chaining
+    setCanvas(canvas2, noise);
+    wait(5.0);
+    pushCanvas(canvas2, movingLines);
+    wait(5.0);
+    pushCanvas(canvas2, warp);
+    wait(5.0);
+    disableCanvas(canvas2);
+    wait(5.0);
+  }
+}
