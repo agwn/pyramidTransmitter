@@ -29,16 +29,17 @@ class TutorialNoise extends CanvasRoutine {
 
 /*-----------------------------------------------------------------------*/
 
-class TutMovingLineSet extends SetList {
-  TutMovingLineSet() {
-    TutMovingLine rl = new TutMovingLine();
+class TutMovingLinesSet extends SetList {
+  TutMovingLinesSet() {
+    TutMovingLines rl = new TutMovingLines();
 
     setCanvas(canvas2, rl);
   }
 }
 
-class TutMovingLine extends CanvasRoutine {
-  int position = 0;
+class TutMovingLines extends CanvasRoutine {
+  int xPos = 0;
+  int yPos = 0;
 
   void draw() {
     pg.beginDraw();
@@ -46,14 +47,20 @@ class TutMovingLine extends CanvasRoutine {
     // Set background to black
     pg.background(0);
 
-    // Draw line
+    // Draw lines
     pg.stroke(255);
-    pg.line(0, position, pg.width, position);
+    pg.line(0, xPos, pg.width, xPos);
+    pg.line(yPos, 0, yPos, pg.height);
 
-    // Update positionition;
-    position++;
-    if (position >= pg.height) {
-      position = 0;
+    // Update positions
+    xPos++;
+    if (xPos >= pg.height) {
+      xPos = 0;
+    }
+
+    yPos++;
+    if (yPos >= pg.width) {
+      yPos = 0;
     }
 
     pg.endDraw();

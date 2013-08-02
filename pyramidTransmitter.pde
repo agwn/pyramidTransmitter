@@ -9,7 +9,7 @@ SetList setList;
 
 // Step 1. Create set list variable
 TutorialNoisePlayer tutorialNoise;
-TutMovingLineSet tutMovingLine;
+TutMovingLinesSet tutMovingLines;
 TechDemo techDemo;
 Demo demo;
 DebuggingSetList debuggingSetList;
@@ -21,13 +21,13 @@ void setup() {
 
   // Step 2. Instantiate set list.
   tutorialNoise = new TutorialNoisePlayer();
-  tutMovingLine = new TutMovingLineSet();
+  tutMovingLines = new TutMovingLinesSet();
   techDemo = new TechDemo();
   demo = new Demo();
   debuggingSetList = new DebuggingSetList();
 
   // Step 3. Set active player to set list
-  setList = tutorialNoise;
+  setList = tutMovingLines;
 }
 
 void draw() {
