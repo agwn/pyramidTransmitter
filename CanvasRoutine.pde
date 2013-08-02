@@ -9,7 +9,6 @@ class CanvasRoutine {
 
   Canvas canvas;
   PGraphics pg;
-  PGraphics pgFlat;
   private int paintMode = BLEND;
   int blendMode = SCREEN;
 
@@ -36,8 +35,6 @@ class CanvasRoutine {
   }
 
   private void setCanvasMode() {
-    pgFlat = canvas.pgFlat;
-
     switch(paintMode) {
       case BLEND:
         pg = canvas.pg;
@@ -46,7 +43,7 @@ class CanvasRoutine {
         pg = canvas.pg;
         break;
       case DIRECT:
-        pg = canvas.pgFlat;
+        pg = canvas.pgMaster;
         break;
     }
   }

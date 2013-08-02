@@ -27,12 +27,10 @@ class CanvasRoutineController {
         int w = canvas.w;
         int h = canvas.h;
         int nRoutines = canvas.routines.size();
-        PGraphics pgFlat = canvas.pgFlat;
+        PGraphics pgMaster = canvas.pgMaster;
 
-        pgFlat.beginDraw();
-        pgFlat.noStroke();
-        pgFlat.fill(0);
-        pgFlat.rect(0, 0, w, h);
+        pgMaster.beginDraw();
+        pgMaster.background(0);
 
         // Render each routine in the canvases routine stack
         for (int j = 0; j < nRoutines; j++) {
@@ -42,17 +40,17 @@ class CanvasRoutineController {
         
           switch(cr.getPaintMode()) {
             case CANVAS_ROUTINE_BLEND:
-              pgFlat.blend(cr.pg.get(), 0, 0, w, h, 0, 0, w, h, cr.blendMode);
+              pgMaster.blend(cr.pg.get(), 0, 0, w, h, 0, 0, w, h, cr.blendMode);
               break;
             case CANVAS_ROUTINE_OVERWRITE:
-              pgFlat.copy(cr.pg.get(), 0, 0, w, h, 0, 0, w, h);
+              pgMaster.copy(cr.pg.get(), 0, 0, w, h, 0, 0, w, h);
               break;
             case CANVAS_ROUTINE_DIRECT:
               break;
           }
         }
 
-        pgFlat.endDraw(); 
+        pgMaster.endDraw(); 
         canvas.sendToOutput();
       }
     }
