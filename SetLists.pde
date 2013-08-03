@@ -127,7 +127,7 @@ class DebuggingSetList extends SetList {
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu(20);
     SineColumns sines = new SineColumns();
     Pxxxls pxxxls = new Pxxxls(15);
-    Pxxxls pxxxlFilter = new Pxxxls(50);
+    Pxxxls pxxxlFilter = new Pxxxls(100);
     Waves waves = new Waves();
     Seizure seizure = new Seizure();
     Mirror mirror = new Mirror();
@@ -148,9 +148,9 @@ class DebuggingSetList extends SetList {
     pxxxlFilter.setPaintMode(pxxxlFilter.BLEND);
     warp.hAmp = 2.0;
     warp.vAmp = 1.0;
-    warp.hCycles = 0.17;
-    warp.vCycles = 0.24;
-    trails.fade = 64;
+    warp.hCycles = 0.17 * 0.25;
+    warp.vCycles = 0.24 * 0.25;
+    trails.fade = 240;
     sparkle.threshold = 16;
     sparkle.nDots = 1200;
     sparkle.dotToCrossRatio = 0.95;
@@ -172,14 +172,48 @@ class DebuggingSetList extends SetList {
     pushCanvas(canvas2, trails);
     pushCanvas(canvas2, mirror);
 */
-    //setCanvas(canvas3, pxxxls);
-    setCanvas(canvas3, sines);
-    //setCanvas(canvas3, waves);
+
+    /* The Pornjscach Inkblotter Tests */
+
+    setCanvas(canvas3, pxxxls);
+    pushCanvas(canvas3, warp);
+    pushCanvas(canvas3, trails);
+    pushCanvas(canvas3, sparkle);
+    pushCanvas(canvas3, breather);
+    pushCanvas(canvas3, trails);
+    pushCanvas(canvas3, pxxxlFilter);
+    pushCanvas(canvas3, mirror);
+    pushCanvas(canvas3, sparkle2);
+    wait(15.0);
+
+    setCanvas(canvas3, pxxxls);
     pushCanvas(canvas3, warp);
     pushCanvas(canvas3, trails);
     pushCanvas(canvas3, mirror);
     pushCanvas(canvas3, sparkle);
     pushCanvas(canvas3, breather);
+    pushCanvas(canvas3, trails);
+    pushCanvas(canvas3, pxxxlFilter);
+    pushCanvas(canvas3, sparkle2);
+    wait(15.0);
+
+    setCanvas(canvas3, pxxxls);
+    pushCanvas(canvas3, warp);
+    pushCanvas(canvas3, trails);
+    pushCanvas(canvas3, mirror);
+    pushCanvas(canvas3, sparkle);
+    pushCanvas(canvas3, breather);
+    pushCanvas(canvas3, pxxxlFilter);
+    pushCanvas(canvas3, sparkle2);
+    wait(15.0);
+
+    setCanvas(canvas3, waves);
+    pushCanvas(canvas3, warp);
+    pushCanvas(canvas3, trails);
+    pushCanvas(canvas3, mirror);
+    pushCanvas(canvas3, sparkle);
+    pushCanvas(canvas3, breather);
+    pushCanvas(canvas3, pxxxlFilter);
     pushCanvas(canvas3, sparkle2);
     wait(15.0);
   }
