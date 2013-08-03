@@ -138,7 +138,9 @@ class DebuggingSetList extends SetList {
     Trails trails2 = new Trails();
     Bursts bursts = new Bursts();
     Sparkle sparkle = new Sparkle();
+    Sparkle sparkle2 = new Sparkle();
     MoviePlayer moviePlayer = new MoviePlayer(myMovie);
+    Breather breather = new Breather();
 
     moviePlayer.setBlendMode(DODGE);
     moviePlayer.setPaintMode(moviePlayer.BLEND);
@@ -154,7 +156,12 @@ class DebuggingSetList extends SetList {
     sparkle.dotToCrossRatio = 0.95;
     sparkle.setBlendMode(sparkle.DIRECT);
     sparkle.c = color(255, 128);
+    sparkle2.nDots = 200;
     sines.theStrokeWeight = 2;
+    breather.setBlendMode(MULTIPLY);
+    breather.c0 = color(pornj);
+    breather.c1 = color(disorientOrange);
+    breather.phaseInc = 0.01;
 
 /*
     //setCanvas(c2, warpSpeed);
@@ -172,6 +179,8 @@ class DebuggingSetList extends SetList {
     pushCanvas(canvas3, trails);
     pushCanvas(canvas3, mirror);
     pushCanvas(canvas3, sparkle);
+    pushCanvas(canvas3, breather);
+    pushCanvas(canvas3, sparkle2);
     wait(15.0);
   }
 }

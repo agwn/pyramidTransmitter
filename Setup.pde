@@ -19,6 +19,7 @@ Canvas canvas3;
 Canvas canvasOut;
 
 void setupPyramid() {
+  setupGlobals();
   setupCanvases();
   setupSign();
 }

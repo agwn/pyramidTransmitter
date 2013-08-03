@@ -6,7 +6,7 @@ int sineTableSize = 256;
 float sineTableSizeInv = 1.0 / sineTableSize;
 float[] sineTable;
 
-void initGlobals() {
+void setupGlobals() {
   initSineTable();
 }
 
