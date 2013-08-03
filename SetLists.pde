@@ -129,7 +129,7 @@ class DebuggingSetList extends SetList {
     Canvas c2 = canvases[2];
     Canvas c3 = canvases[3];
 
-    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu(100);
+    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu(20);
     SineColumns sines = new SineColumns();
     Pxxxls pxxxls = new Pxxxls(150);
     Pxxxls pxxxlFilter = new Pxxxls(50);
@@ -141,18 +141,19 @@ class DebuggingSetList extends SetList {
     Warp warp = new Warp();
     warp.hAmp = 1.0;
     warp.vAmp = 1.0;
-    warp.hCycles = 0.2;
-    warp.vCycles = 0.17;
+    warp.hCycles = 0.07;
+    warp.vCycles = 0.06;
     Grid grid = new Grid();
     Fire fire = new Fire();
     Trails trails = new Trails();
+    Trails trails2 = new Trails();
 
     MoviePlayer moviePlayer = new MoviePlayer(myMovie);
     moviePlayer.setBlendMode(DODGE);
     moviePlayer.setPaintMode(moviePlayer.BLEND);
 
     float w = 5.0;
-    trails.fade = 16;
+    trails.fade = 8;
 
     //setCanvas(c2, warpSpeed);
     setCanvas(c2, waves);
