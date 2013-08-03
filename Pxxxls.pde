@@ -26,7 +26,7 @@ class Pxxxls extends CanvasRoutine {
 
   Pxxxls(int nPxxxls_) {
     nPxxxls = nPxxxls_;
-    setPaintMode(DIRECT);
+//    setPaintMode(DIRECT);
   }
 
   void reinit() {

@@ -124,45 +124,45 @@ class Demo extends SetList {
 
 class DebuggingSetList extends SetList {
   DebuggingSetList() {
-    Canvas c0 = canvases[0];
-    Canvas c1 = canvases[1];
-    Canvas c2 = canvases[2];
-    Canvas c3 = canvases[3];
-
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu(20);
     SineColumns sines = new SineColumns();
-    Pxxxls pxxxls = new Pxxxls(150);
+    Pxxxls pxxxls = new Pxxxls(15);
     Pxxxls pxxxlFilter = new Pxxxls(50);
-    pxxxlFilter.setBlendMode(DODGE);
-    pxxxlFilter.setPaintMode(pxxxlFilter.BLEND);
     Waves waves = new Waves();
     Seizure seizure = new Seizure();
     Mirror mirror = new Mirror();
     Warp warp = new Warp();
-    warp.hAmp = 1.0;
-    warp.vAmp = 1.0;
-    warp.hCycles = 0.07;
-    warp.vCycles = 0.06;
     Grid grid = new Grid();
     Fire fire = new Fire();
     Trails trails = new Trails();
     Trails trails2 = new Trails();
     Bursts bursts = new Bursts();
-
+    Sparkle sparkle = new Sparkle();
     MoviePlayer moviePlayer = new MoviePlayer(myMovie);
+
     moviePlayer.setBlendMode(DODGE);
     moviePlayer.setPaintMode(moviePlayer.BLEND);
-
-    float w = 5.0;
+    pxxxlFilter.setBlendMode(DODGE);
+    pxxxlFilter.setPaintMode(pxxxlFilter.BLEND);
+    warp.hAmp = 1.0;
+    warp.vAmp = 1.0;
+    warp.hCycles = 0.07;
+    warp.vCycles = 0.06;
     trails.fade = 8;
+    sparkle.threshold = 16;
+    sparkle.nDots = 160;
 
+/*
     //setCanvas(c2, warpSpeed);
-    //setCanvas(c2, waves);
-    setCanvas(c2, bursts);
-    //pushCanvas(c2, pxxxlFilter);
-    //pushCanvas(c2, warp);
-    //pushCanvas(c2, trails);
-    //pushCanvas(c2, mirror);
+    setCanvas(canvas2, waves);
+    //setCanvas(canvas2, bursts);
+    pushCanvas(canvas2, pxxxlFilter);
+    pushCanvas(canvas2, warp);
+    pushCanvas(canvas2, trails);
+    pushCanvas(canvas2, mirror);
+*/
+    setCanvas(canvas3, pxxxls);
+    pushCanvas(canvas3, sparkle);
     wait(15.0);
   }
 }

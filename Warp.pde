@@ -28,6 +28,8 @@ class Warp extends CanvasRoutine {
   }
 
   void draw() {
+    pg.beginDraw();
+
     if (warpVertical) {
       float vPhaseInc = vCycles * 1.0 / w; 
       float tempPhase = vPhase;
@@ -85,6 +87,8 @@ class Warp extends CanvasRoutine {
         hPhase -= 1.0;
       }      
     }
+
+    pg.endDraw();
   }
 
   void initSineTable() {
