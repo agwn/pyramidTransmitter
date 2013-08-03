@@ -31,6 +31,7 @@ class SineColumns extends CanvasRoutine {
   float period = 1.0 * sineTableSizeInv * resolution;
   float bias;
   float amplitude;
+  float theStrokeWeight = 4;
   int w;
   int h;
 
@@ -52,7 +53,7 @@ class SineColumns extends CanvasRoutine {
 
     // Sine
     pg.noFill();
-    pg.strokeWeight(4);
+    pg.strokeWeight(theStrokeWeight);
 
     pg.stroke(pornj, 128);
     drawSine(h + 15, 45);

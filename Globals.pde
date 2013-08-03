@@ -2,8 +2,21 @@ color pornj = color(252, 23, 218);
 color disorientOrange = color(255, 128, 0);
 
 
+int sineTableSize = 256;
+float sineTableSizeInv = 1.0 / sineTableSize;
+float[] sineTable;
 
+void initGlobals() {
+  initSineTable();
+}
 
+void initSineTable() {
+  sineTable = new float[sineTableSize];
+
+  for (int i = 0; i < sineTableSize; i++) {
+    sineTable[i] = sin(i * sineTableSizeInv * TWO_PI);
+  }
+}
 
 
 

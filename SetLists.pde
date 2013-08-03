@@ -144,16 +144,17 @@ class DebuggingSetList extends SetList {
     moviePlayer.setPaintMode(moviePlayer.BLEND);
     pxxxlFilter.setBlendMode(DODGE);
     pxxxlFilter.setPaintMode(pxxxlFilter.BLEND);
-    warp.hAmp = 1.0;
+    warp.hAmp = 2.0;
     warp.vAmp = 1.0;
-    warp.hCycles = 0.07;
-    warp.vCycles = 0.06;
+    warp.hCycles = 0.17;
+    warp.vCycles = 0.24;
     trails.fade = 64;
     sparkle.threshold = 16;
     sparkle.nDots = 1200;
     sparkle.dotToCrossRatio = 0.95;
     sparkle.setBlendMode(sparkle.DIRECT);
     sparkle.c = color(255, 128);
+    sines.theStrokeWeight = 2;
 
 /*
     //setCanvas(c2, warpSpeed);
@@ -167,7 +168,7 @@ class DebuggingSetList extends SetList {
     //setCanvas(canvas3, pxxxls);
     setCanvas(canvas3, sines);
     //setCanvas(canvas3, waves);
-    //pushCanvas(canvas3, warp);
+    pushCanvas(canvas3, warp);
     pushCanvas(canvas3, trails);
     pushCanvas(canvas3, mirror);
     pushCanvas(canvas3, sparkle);
