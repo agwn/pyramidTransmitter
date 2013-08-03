@@ -1,12 +1,11 @@
-class Bursts extends Routine {
+class Bursts extends CanvasRoutine {
   int NUMBER_OF_BURSTS = 8;
   Burst[] bursts;
 
-  void setup(PApplet parent) {
-    super.setup(parent);
+  void reinit() {
     bursts = new Burst[NUMBER_OF_BURSTS];
     for (int i = 0; i<NUMBER_OF_BURSTS; i++) {
-      bursts[i] = new Burst();
+      bursts[i] = new Burst(pg);
     }
   }
 
@@ -15,14 +14,10 @@ class Bursts extends Routine {
 
   void draw()
   {
-    background(0);
+    pg.background(0);
 
     for (int i=0; i<NUMBER_OF_BURSTS; i++) {
       bursts[i].draw();
-    }
-
-    if (frameCount - modeFrameStart > FRAMERATE*TYPICAL_MODE_TIME) {
-      newMode();
     }
   }
 }
@@ -37,14 +32,22 @@ class Burst {
   float maxd;
   float speed;
   int intensity;
+  int[] varMin = { 64, 64, 64 };
+  int[] varMax = { 128, 128, 128 };
 
   float r;
   float g;
   float b;
+  int w;
+  int h;
+  PGraphics pg;
 
-  public Burst()
+  public Burst(PGraphics pg_)
   {
     init();
+    pg = pg_; 
+    w = pg.width;
+    h = pg.height;
   }
 
   public void reset()
@@ -56,8 +59,8 @@ class Burst {
     g = random(varMin[1], varMax[1]);
     b = random(varMin[2], varMax[2]);
 
-    x = random(displayWidth);
-    y = random(displayHeight);
+    x = random(w);
+    y = random(h);
 
     float max_speed = .15;
     xv = random(max_speed) - max_speed/2.0;
@@ -78,9 +81,9 @@ class Burst {
     while (widt > 1 && heigh > 1) {
       float target_brightness = random(.97, 1.03);
       c = color(red(c)*target_brightness, green(c)*target_brightness, blue(c)*target_brightness);
-      fill(c);
-      stroke(c);
-      ellipse(x, y, widt, heigh);
+      pg.fill(c);
+      pg.stroke(c);
+      pg.ellipse(x, y, widt, heigh);
       widt -= 1;
       heigh -= 1;
     }
@@ -89,9 +92,9 @@ class Burst {
   public void draw()
   {
     // Draw multiple elipses, to handle wrapping in the y direction.
-    draw_ellipse(x, y, d*(.5-.3*y/displayHeight), d*2, color(r, g, b));
-    draw_ellipse(x-displayWidth, y, d*(.5-.3*y/displayHeight), d*0.75, color(r, g, b));
-    draw_ellipse(x+displayWidth, y, d*(.5-.3*y/displayHeight), d*0.75, color(r, g, b));
+    draw_ellipse(x, y, d*(.5-.3*y/h), d*2, color(r, g, b));
+    draw_ellipse(x-w, y, d*(.5-.3*y/h), d*0.75, color(r, g, b));
+    draw_ellipse(x+w, y, d*(.5-.3*y/h), d*0.75, color(r, g, b));
 
     d+= speed;
 
@@ -111,17 +114,13 @@ class Burst {
     }
 
     // add speed, try to scale slower at the bottom...
-    x +=xv*(displayHeight - y/3)/displayHeight;
-    y +=yv*(displayHeight - y/3)/displayHeight;
+    x +=xv*(h - y/3)/h;
+    y +=yv*(h - y/3)/h;
 
     if ((intensity <= 0) || (false)) {
       reset();
     }
 
-    long frame = frameCount - modeFrameStart;
-    if (frame > FRAMERATE*TYPICAL_MODE_TIME) {
-      newMode();
-    }
   }
 }
 

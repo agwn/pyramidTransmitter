@@ -147,6 +147,7 @@ class DebuggingSetList extends SetList {
     Fire fire = new Fire();
     Trails trails = new Trails();
     Trails trails2 = new Trails();
+    Bursts bursts = new Bursts();
 
     MoviePlayer moviePlayer = new MoviePlayer(myMovie);
     moviePlayer.setBlendMode(DODGE);
@@ -156,11 +157,12 @@ class DebuggingSetList extends SetList {
     trails.fade = 8;
 
     //setCanvas(c2, warpSpeed);
-    setCanvas(c2, waves);
-    pushCanvas(c2, pxxxlFilter);
-    pushCanvas(c2, warp);
-    pushCanvas(c2, trails);
-    pushCanvas(c2, mirror);
+    //setCanvas(c2, waves);
+    setCanvas(c2, bursts);
+    //pushCanvas(c2, pxxxlFilter);
+    //pushCanvas(c2, warp);
+    //pushCanvas(c2, trails);
+    //pushCanvas(c2, mirror);
     wait(15.0);
   }
 }
