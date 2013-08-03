@@ -139,23 +139,27 @@ class DebuggingSetList extends SetList {
     Seizure seizure = new Seizure();
     Mirror mirror = new Mirror();
     Warp warp = new Warp();
-    warp.hAmp = 2.0;
-    warp.vAmp = 1.5;
-    warp.hCycles = 0.1;
-    warp.vCycles = 0.13;
+    warp.hAmp = 1.0;
+    warp.vAmp = 1.0;
+    warp.hCycles = 0.2;
+    warp.vCycles = 0.17;
     Grid grid = new Grid();
     Fire fire = new Fire();
+    Trails trails = new Trails();
 
     MoviePlayer moviePlayer = new MoviePlayer(myMovie);
     moviePlayer.setBlendMode(DODGE);
     moviePlayer.setPaintMode(moviePlayer.BLEND);
 
     float w = 5.0;
+    trails.fade = 16;
 
+    //setCanvas(c2, warpSpeed);
     setCanvas(c2, waves);
-//    pushCanvas(c2, moviePlayer);
+    pushCanvas(c2, pxxxlFilter);
     pushCanvas(c2, warp);
+    pushCanvas(c2, trails);
     pushCanvas(c2, mirror);
-    wait(10.0);
+    wait(15.0);
   }
 }

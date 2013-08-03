@@ -29,7 +29,7 @@ void setup() {
   debuggingSetList = new DebuggingSetList();
 
   // Step 3. Set active player to set list
-  setList = tutorialSimpleSequence;
+  setList = debuggingSetList;
 }
 
 void draw() {
