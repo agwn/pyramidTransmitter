@@ -7,10 +7,9 @@ class Sparkle extends CanvasRoutine {
   PGraphics pgMaster;
   int xSize = 4;
   int ySize = 8;
+  color c = color(255);
 
-  public Sparkle() {
-    //setBlendMode(DIRECT);
-  }
+  public Sparkle() { }
 
   void reinit() {
     w = pg.width;
@@ -20,8 +19,7 @@ class Sparkle extends CanvasRoutine {
   void draw() {
     pg.beginDraw();
     pg.background(0);
-    pg.fill(255);
-    pg.stroke(255);
+    pg.stroke(c);
 
     for (int i = 0; i < nDots; i++) {
       int xPos = (int) random(w);

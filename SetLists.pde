@@ -148,9 +148,12 @@ class DebuggingSetList extends SetList {
     warp.vAmp = 1.0;
     warp.hCycles = 0.07;
     warp.vCycles = 0.06;
-    trails.fade = 8;
+    trails.fade = 64;
     sparkle.threshold = 16;
-    sparkle.nDots = 160;
+    sparkle.nDots = 1200;
+    sparkle.dotToCrossRatio = 0.95;
+    sparkle.setBlendMode(sparkle.DIRECT);
+    sparkle.c = color(255, 128);
 
 /*
     //setCanvas(c2, warpSpeed);
@@ -161,7 +164,12 @@ class DebuggingSetList extends SetList {
     pushCanvas(canvas2, trails);
     pushCanvas(canvas2, mirror);
 */
-    setCanvas(canvas3, pxxxls);
+    //setCanvas(canvas3, pxxxls);
+    setCanvas(canvas3, sines);
+    //setCanvas(canvas3, waves);
+    //pushCanvas(canvas3, warp);
+    pushCanvas(canvas3, trails);
+    pushCanvas(canvas3, mirror);
     pushCanvas(canvas3, sparkle);
     wait(15.0);
   }
