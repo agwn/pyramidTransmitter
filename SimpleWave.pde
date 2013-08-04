@@ -40,8 +40,11 @@ class SimpleWave extends CanvasRoutine {
     }
 
     phase += freq * (1.0 / FRAMERATE) * nWaves;
-    if (phase >= 1.0) {
+    while (phase >= 1.0) {
       phase -= 1.0;
+    }
+    while (phase < 0.0) {
+      phase += 1.0;
     }
 
     pg.endDraw();

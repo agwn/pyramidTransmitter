@@ -165,10 +165,11 @@ class DebuggingSetList extends SetList {
     breather.c1 = color(disorientOrange);
     breather.phaseInc = 0.005;
     simpleWave.amp = 0.125;
-    simpleWave.spread = 1.0;
+    simpleWave.spread = 1.5;
     simpleWave.nWaves = 2;
     simpleWave.bias = 0.25;
     simpleWave.theColor = color(255, 180);
+    simpleWave.freq = -1.0;
 
     setCanvas(canvas2, simpleWave);
     pushCanvas(canvas2, breather);
