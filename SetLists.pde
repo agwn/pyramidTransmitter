@@ -141,6 +141,7 @@ class DebuggingSetList extends SetList {
     Sparkle sparkle2 = new Sparkle();
     MoviePlayer moviePlayer = new MoviePlayer(myMovie);
     Breather breather = new Breather();
+    SimpleWave simpleWave = new SimpleWave();
 
     moviePlayer.setBlendMode(DODGE);
     moviePlayer.setPaintMode(moviePlayer.BLEND);
@@ -148,73 +149,33 @@ class DebuggingSetList extends SetList {
     pxxxlFilter.setPaintMode(pxxxlFilter.BLEND);
     warp.hAmp = 2.0;
     warp.vAmp = 1.0;
-    warp.hCycles = 0.17 * 0.25;
-    warp.vCycles = 0.24 * 0.25;
-    trails.fade = 240;
+    warp.hCycles = 0.17;
+    warp.vCycles = 0.24;
+    trails.fade = 64;
     sparkle.threshold = 16;
     sparkle.nDots = 1200;
     sparkle.dotToCrossRatio = 0.95;
     sparkle.setBlendMode(sparkle.DIRECT);
     sparkle.c = color(255, 128);
     sparkle2.nDots = 200;
+    sparkle2.threshold = 16;
     sines.theStrokeWeight = 2;
     breather.setBlendMode(MULTIPLY);
     breather.c0 = color(pornj);
     breather.c1 = color(disorientOrange);
-    breather.phaseInc = 0.01;
+    breather.phaseInc = 0.005;
+    simpleWave.amp = 0.125;
+    simpleWave.spread = 1.0;
+    simpleWave.nWaves = 2;
+    simpleWave.bias = 0.25;
+    simpleWave.theColor = color(255, 180);
 
-/*
-    //setCanvas(c2, warpSpeed);
-    setCanvas(canvas2, waves);
-    //setCanvas(canvas2, bursts);
-    pushCanvas(canvas2, pxxxlFilter);
+    setCanvas(canvas2, simpleWave);
+    pushCanvas(canvas2, breather);
     pushCanvas(canvas2, warp);
     pushCanvas(canvas2, trails);
     pushCanvas(canvas2, mirror);
-*/
-
-    /* The Pornjscach Inkblotter Tests */
-
-    setCanvas(canvas3, pxxxls);
-    pushCanvas(canvas3, warp);
-    pushCanvas(canvas3, trails);
-    pushCanvas(canvas3, sparkle);
-    pushCanvas(canvas3, breather);
-    pushCanvas(canvas3, trails);
-    pushCanvas(canvas3, pxxxlFilter);
-    pushCanvas(canvas3, mirror);
-    pushCanvas(canvas3, sparkle2);
-    wait(15.0);
-
-    setCanvas(canvas3, pxxxls);
-    pushCanvas(canvas3, warp);
-    pushCanvas(canvas3, trails);
-    pushCanvas(canvas3, mirror);
-    pushCanvas(canvas3, sparkle);
-    pushCanvas(canvas3, breather);
-    pushCanvas(canvas3, trails);
-    pushCanvas(canvas3, pxxxlFilter);
-    pushCanvas(canvas3, sparkle2);
-    wait(15.0);
-
-    setCanvas(canvas3, pxxxls);
-    pushCanvas(canvas3, warp);
-    pushCanvas(canvas3, trails);
-    pushCanvas(canvas3, mirror);
-    pushCanvas(canvas3, sparkle);
-    pushCanvas(canvas3, breather);
-    pushCanvas(canvas3, pxxxlFilter);
-    pushCanvas(canvas3, sparkle2);
-    wait(15.0);
-
-    setCanvas(canvas3, waves);
-    pushCanvas(canvas3, warp);
-    pushCanvas(canvas3, trails);
-    pushCanvas(canvas3, mirror);
-    pushCanvas(canvas3, sparkle);
-    pushCanvas(canvas3, breather);
-    pushCanvas(canvas3, pxxxlFilter);
-    pushCanvas(canvas3, sparkle2);
-    wait(15.0);
+    pushCanvas(canvas2, sparkle2);
+    wait(20.0);
   }
 }

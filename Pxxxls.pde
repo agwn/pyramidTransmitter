@@ -20,26 +20,30 @@
 
 */
 
+
+
 class Pxxxls extends CanvasRoutine {
   ArrayList pxxxls;
   int nPxxxls;
 
   Pxxxls(int nPxxxls_) {
     nPxxxls = nPxxxls_;
-//    setPaintMode(DIRECT);
   }
 
   void reinit() {
-    generatePxxxls();
+    breedPixxls();
   }
 
-  void generatePxxxls() {
+  void breedPixxls() {
     pxxxls = new ArrayList();
     for (int i = 0; i < nPxxxls; i++) {
       Pxxxl pxxxl = new Pxxxl(pg);
       pxxxls.add(pxxxl);
     }
   }
+
+
+
 
   void draw() {
     pg.beginDraw();
