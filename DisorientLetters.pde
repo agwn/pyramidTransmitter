@@ -42,6 +42,37 @@ class Bitmap {
     }
   }
 
+  PImage getAsPImage(color c, int wPad, int hPad, boolean isHorizontal) {
+    int imgWidth = w + w * wPad;
+    int imgHeight = h + h * hPad;
+    PImage img;
+
+    if (isHorizontal) {
+      img = createImage(imgWidth, imgHeight, ARGB);
+
+      for (int y = 0; y < h; y++) {
+        for (int x = 0; x < w; x++) {
+          if (data[y][x] == 1) {
+            img.set(x * (wPad + 1), y * (hPad + 1), c);
+          }
+        }
+      }
+    }
+    else {
+      img = createImage(imgHeight, imgWidth, ARGB);
+
+      for (int y = 0; y < h; y++) {
+        for (int x = 0; x < w; x++) {
+          if (data[y][x] == 1) {
+            img.set((h - y - 1) * (hPad + 1), x * (wPad + 1), c);
+          }
+        }
+      }
+    }
+
+    return img;
+  }
+
   void printToConsole() {
     for (int i = 0; i < h; i++) {
       for (int j = 0; j < w; j++) {
@@ -54,8 +85,6 @@ class Bitmap {
 }
 
 class DisorientFont extends HashMap {
-  Bitmap disorient;
-
   DisorientFont() {
     put("d", new Bitmap(LETTER_D, 10, 8));
     put("i", new Bitmap(LETTER_I, 2, 8));
@@ -67,12 +96,12 @@ class DisorientFont extends HashMap {
     put("n", new Bitmap(LETTER_N, 10, 8));
     put("t", new Bitmap(LETTER_T, 10, 8));
     put("3", new Bitmap(LETTER_3, 10, 8));
-    generateDisorientBitmap();
+    generateBitmap("disorient");
+    generateBitmap("disor13nt");
   }
 
-  private void generateDisorientBitmap() {
+  private void generateBitmap(String s) {
     int bitmapWidth = 0;
-    String s = "disorient";
 
     // Get width of new Bitmap
     for (char c : s.toCharArray()) {
@@ -101,7 +130,7 @@ class DisorientFont extends HashMap {
     Bitmap newBitmap = new Bitmap(newArray, bitmapWidth, 8);
     put(s, newBitmap);
   }
-  
+
   void printAllToConsole() {
     Iterator i = this.entrySet().iterator(); 
 
@@ -115,17 +144,24 @@ class DisorientFont extends HashMap {
 
 class DisplayDisorient extends CanvasRoutine {
   PImage disorient;
+  PImage disorientV;
 
   void reinit() {
     Bitmap b = (Bitmap) disFont.get("disorient");
-    disorient = b.getAsPImage(true);
+    //disorient = b.getAsPImage(true);
+    disorient = b.getAsPImage(color(255), 0, 2, true);
+    disorientV = b.getAsPImage(color(255), 1, 0, false);
   }
 
   void draw() {
     pg.beginDraw();
+    pg.background(0);
     int disWidth = disorient.width;
     int disHeight = disorient.height;
-    pg.copy(disorient, 0, 0, disWidth, disHeight, 32, 0, disWidth, disHeight); 
+    int disVWidth = disorientV.width;
+    int disVHeight = disorientV.height;
+    pg.copy(disorient, 0, 0, disWidth, disHeight, 0, 180, disWidth, disHeight); 
+    pg.copy(disorientV, 0, 0, disVWidth, disVHeight, 24, 0, disVWidth, disVHeight); 
     pg.endDraw();
   }
 }
