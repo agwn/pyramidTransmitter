@@ -156,21 +156,53 @@ class DisplayDisorient extends CanvasRoutine {
   boolean doRotate = false;
   boolean xFlip = false;
   boolean yFlip = false;
+  int w;
+  int h;
 
   DisplayDisorient() {
-    reinit();
   }
 
   void reinit() {
     bitmap = (Bitmap) disFont.get("disorient");
     bitmap = bitmap.getBitmap(doRotate, xFlip, yFlip);
     img = bitmap.getAsPImage(c, xPad, yPad);
+    w = pg.width;
+    h = pg.height;
   }
 
   void draw() {
     pg.beginDraw();
     pg.background(0);
     pg.copy(img, 0, 0, img.width, img.height, x, y, img.width, img.height); 
+    pg.endDraw();
+  }
+}
+
+class DisorientScroll extends DisplayDisorient {
+  int xSpeed = 0;
+  int ySpeed = 0;
+
+  void draw() {
+    pg.beginDraw();
+    pg.background(0);
+    pg.copy(img, 0, 0, img.width, img.height, x, y, img.width, img.height); 
+
+    x += xSpeed;
+    if (x >= w) {
+      x = -img.width;
+    }
+    if (x < -img.width) {
+      x = w;
+    }
+
+    y += ySpeed;
+    if (y >= h) {
+      y = -img.height;
+    }
+    if (y < -img.height) {
+      y = h;
+    }
+
     pg.endDraw();
   }
 }

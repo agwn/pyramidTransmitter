@@ -146,6 +146,8 @@ class DebuggingSetList extends SetList {
     SimpleWave simpleWave = new SimpleWave();
     DisplayDisorient displayDisorient = new DisplayDisorient();
     DisplayDisorient displayDisorient2 = new DisplayDisorient();
+    DisorientScroll disorientScroll = new DisorientScroll();
+    DisorientScroll disorientScroll2 = new DisorientScroll();
 
     moviePlayer.setBlendMode(DODGE);
     moviePlayer.setPaintMode(moviePlayer.BLEND);
@@ -153,16 +155,17 @@ class DebuggingSetList extends SetList {
     pxxxlFilter.setPaintMode(pxxxlFilter.BLEND);
     warp.hAmp = 1.0;
     warp.vAmp = 1.0;
-    warp.hCycles = 0.17 * 0.5;
-    warp.vCycles = 0.14 * 0.5;
-    trails.fade = 64;
+    warp.hCycles = 0.17;
+    warp.vCycles = 0.14;
+    trails.fade = 0;
     sparkle.threshold = 16;
     sparkle.nDots = 1200;
     sparkle.dotToCrossRatio = 0.95;
     //sparkle.setBlendMode(sparkle.DIRECT);
     sparkle.c = color(255, 128);
-    sparkle2.nDots = 200;
+    sparkle2.nDots = 2000;
     sparkle2.threshold = 16;
+    sparkle2.setBlendMode(sparkle.DIRECT);
     sines.theStrokeWeight = 2;
     breather.setBlendMode(MULTIPLY);
     breather.c0 = color(pornj, 255);
@@ -193,13 +196,33 @@ class DebuggingSetList extends SetList {
     displayDisorient2.doRotate = true;
     displayDisorient2.yFlip = true;
 
-    setCanvas(canvas2, pxxxls);
+
+    disorientScroll.x = 24;
+    disorientScroll.y = 210;
+    disorientScroll.xPad = 0;
+    disorientScroll.doRotate = true;
+    disorientScroll.xFlip = true;
+    disorientScroll.yPad = 1;
+    disorientScroll.ySpeed = -4;
+
+    disorientScroll2.x = 32;
+    disorientScroll2.y = 210; 
+    disorientScroll2.xPad = 0;
+    disorientScroll2.yPad = 1;
+    disorientScroll2.doRotate = true;
+    disorientScroll2.yFlip = true;
+    disorientScroll2.ySpeed = 4;
+
+
+    setCanvas(canvas2, sines);
     pushCanvas(canvas2, breather2);
     //pushCanvas(canvas2, warp2);
     pushCanvas(canvas2, sparkle2);
 
-    setCanvas(canvas3, displayDisorient);
-    pushCanvas(canvas3, displayDisorient2);
+
+    setCanvas(canvas3, disorientScroll);
+    //pushCanvas(canvas3, displayDisorient2);
+    pushCanvas(canvas3, disorientScroll2);
     pushCanvas(canvas3, breather);
     pushCanvas(canvas3, sparkle);
     wait(60.0);
