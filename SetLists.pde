@@ -157,13 +157,13 @@ class DebuggingSetList extends SetList {
     warp.vAmp = 1.0;
     warp.hCycles = 0.17;
     warp.vCycles = 0.14;
-    trails.fade = 0;
+    trails.fade = 32;
     sparkle.threshold = 16;
     sparkle.nDots = 1200;
-    sparkle.dotToCrossRatio = 0.95;
+    sparkle.dotToCrossRatio = 1.0;
     //sparkle.setBlendMode(sparkle.DIRECT);
     sparkle.c = color(255, 128);
-    sparkle2.nDots = 2000;
+    sparkle2.nDots = 1000;
     sparkle2.threshold = 16;
     sparkle2.setBlendMode(sparkle.DIRECT);
     sines.theStrokeWeight = 2;
@@ -172,8 +172,8 @@ class DebuggingSetList extends SetList {
     breather.c1 = color(disorientOrange, 255);
     breather.phaseInc = 0.025;
     breather2.setBlendMode(MULTIPLY);
-    breather2.c0 = color(pornj);
-    breather2.c1 = color(disorientOrange);
+    breather2.c0 = color(lerpColor(pornj, color(0), 0.8));
+    breather2.c1 = color(lerpColor(disorientOrange, color(0), 0.9));
     breather2.phaseInc = 0.01;
     simpleWave.amp = 0.125;
     simpleWave.spread = 1.5;
@@ -203,7 +203,7 @@ class DebuggingSetList extends SetList {
     disorientScroll.doRotate = true;
     disorientScroll.xFlip = true;
     disorientScroll.yPad = 1;
-    disorientScroll.ySpeed = -4;
+    disorientScroll.ySpeed = -2;
 
     disorientScroll2.x = 32;
     disorientScroll2.y = 210; 
@@ -211,13 +211,15 @@ class DebuggingSetList extends SetList {
     disorientScroll2.yPad = 1;
     disorientScroll2.doRotate = true;
     disorientScroll2.yFlip = true;
-    disorientScroll2.ySpeed = 4;
+    disorientScroll2.ySpeed = 2;
 
 
-    setCanvas(canvas2, sines);
+    setCanvas(canvas2, simpleWave);
+    pushCanvas(canvas2, warp);
+    pushCanvas(canvas2, sparkle2);
+    pushCanvas(canvas2, trails);
     pushCanvas(canvas2, breather2);
     //pushCanvas(canvas2, warp2);
-    pushCanvas(canvas2, sparkle2);
 
 
     setCanvas(canvas3, disorientScroll);
