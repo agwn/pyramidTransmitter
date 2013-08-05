@@ -39,8 +39,8 @@ class Sparkle extends CanvasRoutine {
 
           pg.line(xPos, yPos - yHalf, xPos, yPos + yHalf);
           pg.line(xPos - xHalf, yPos, xPos + xHalf, yPos);
-          //pg.line(xPos - quarter, yPos - quarter, xPos + quarter, yPos + quarter);
-          //pg.line(xPos + quarter, yPos - quarter, xPos - quarter, yPos + quarter);
+          //pg.line(xPos - xQuarter, yPos - yQuarter, xPos + xQuarter, yPos + yQuarter);
+          //pg.line(xPos + xQuarter, yPos - yQuarter, xPos - xQuarter, yPos + yQuarter);
         }
       } 
     }

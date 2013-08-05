@@ -1,13 +1,14 @@
 color pornj = color(252, 23, 218);
 color disorientOrange = color(255, 128, 0);
 
-
 int sineTableSize = 256;
 float sineTableSizeInv = 1.0 / sineTableSize;
 float[] sineTable;
+HashMap letterMap;
 
 void setupGlobals() {
   initSineTable();
+  initDisorientLetters();
 }
 
 void initSineTable() {
@@ -17,14 +18,6 @@ void initSineTable() {
     sineTable[i] = sin(i * sineTableSizeInv * TWO_PI);
   }
 }
-
-
-
-
-
-
-
-
 
 // ----------------------------------------------------------------------
 // DEPRECATED!!

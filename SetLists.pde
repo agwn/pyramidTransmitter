@@ -147,10 +147,10 @@ class DebuggingSetList extends SetList {
     moviePlayer.setPaintMode(moviePlayer.BLEND);
     pxxxlFilter.setBlendMode(DODGE);
     pxxxlFilter.setPaintMode(pxxxlFilter.BLEND);
-    warp.hAmp = 2.0;
+    warp.hAmp = 1.0;
     warp.vAmp = 1.0;
-    warp.hCycles = 0.17;
-    warp.vCycles = 0.24;
+    warp.hCycles = 0.17 * 0.5;
+    warp.vCycles = 0.14 * 0.5;
     trails.fade = 64;
     sparkle.threshold = 16;
     sparkle.nDots = 1200;
@@ -161,8 +161,8 @@ class DebuggingSetList extends SetList {
     sparkle2.threshold = 16;
     sines.theStrokeWeight = 2;
     breather.setBlendMode(MULTIPLY);
-    breather.c0 = color(pornj);
-    breather.c1 = color(disorientOrange);
+    breather.c0 = color(pornj, 255);
+    breather.c1 = color(disorientOrange, 255);
     breather.phaseInc = 0.005;
     simpleWave.amp = 0.125;
     simpleWave.spread = 1.5;
@@ -171,6 +171,48 @@ class DebuggingSetList extends SetList {
     simpleWave.theColor = color(255, 180);
     simpleWave.freq = -1.0;
 
+    setCanvas(canvas3, pxxxls);
+    pushCanvas(canvas3, warp);
+    pushCanvas(canvas3, trails);
+    pushCanvas(canvas3, sparkle);
+    pushCanvas(canvas3, breather);
+    pushCanvas(canvas3, trails);
+    pushCanvas(canvas3, pxxxlFilter);
+    pushCanvas(canvas3, mirror);
+    pushCanvas(canvas3, sparkle2);
+    wait(15.0);
+
+    setCanvas(canvas3, pxxxls);
+    pushCanvas(canvas3, warp);
+    pushCanvas(canvas3, trails);
+    pushCanvas(canvas3, mirror);
+    pushCanvas(canvas3, sparkle);
+    pushCanvas(canvas3, breather);
+    pushCanvas(canvas3, trails);
+    pushCanvas(canvas3, pxxxlFilter);
+    pushCanvas(canvas3, sparkle2);
+    wait(15.0);
+
+    setCanvas(canvas3, pxxxls);
+    pushCanvas(canvas3, warp);
+    pushCanvas(canvas3, trails);
+    pushCanvas(canvas3, mirror);
+    pushCanvas(canvas3, sparkle);
+    pushCanvas(canvas3, breather);
+    pushCanvas(canvas3, pxxxlFilter);
+    pushCanvas(canvas3, sparkle2);
+    wait(15.0);
+
+    setCanvas(canvas3, waves);
+    pushCanvas(canvas3, warp);
+    pushCanvas(canvas3, trails);
+    pushCanvas(canvas3, mirror);
+    pushCanvas(canvas3, sparkle);
+    pushCanvas(canvas3, breather);
+    pushCanvas(canvas3, pxxxlFilter);
+    pushCanvas(canvas3, sparkle2);
+    wait(15.0);
+/*
     setCanvas(canvas2, simpleWave);
     pushCanvas(canvas2, breather);
     pushCanvas(canvas2, warp);
@@ -178,5 +220,6 @@ class DebuggingSetList extends SetList {
     pushCanvas(canvas2, mirror);
     pushCanvas(canvas2, sparkle2);
     wait(20.0);
+*/
   }
 }

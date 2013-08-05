@@ -4,9 +4,9 @@ class SimpleWave extends CanvasRoutine {
   float phase;
   float amp = 0.5;
   float bias = 0.5;
-  float period;
   float spread = 0;
   float freq = 1.0;
+  private float period;
 
   int w;
   int h;
