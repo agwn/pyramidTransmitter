@@ -9,6 +9,54 @@ class Bitmap {
     h = h_;
   }
 
+  Bitmap getBitmap(boolean doRotate, boolean xFlip, boolean yFlip) {
+    int theWidth = w;
+    int theHeight = h;
+
+    if (doRotate) {
+      theWidth = h;
+      theHeight = w;
+    }
+
+    byte[][] newArray = new byte[theHeight][theWidth];
+
+    for (int y = 0; y < h; y++) {
+      for (int x = 0; x < w; x++) {
+        if (doRotate) {
+          newArray[x][y] = data[y][x];
+        }
+        else {
+          for (int i = 0; i < data.length; i++) {
+            newArray[y][x] = data[y][x];
+          }
+        }
+      }
+    }
+
+    // Do flipping
+    if (xFlip) {
+      for (int y = 0; y < theHeight; y++) {
+        for (int x = 0; x < theWidth / 2; x++) {
+          byte temp = newArray[y][x];
+          newArray[y][x] = newArray[y][theWidth - x - 1];
+          newArray[y][theWidth - x - 1] = temp;
+        }
+      }
+    }
+
+    if (yFlip) {
+      for (int y = 0; y < theHeight / 2; y++) {
+        for (int x = 0; x < theWidth; x++) {
+          byte temp = newArray[y][x];
+          newArray[y][x] = newArray[theHeight - y - 1][x];
+          newArray[theHeight - y - 1][x] = temp;
+        }
+      }
+    }
+ 
+    return new Bitmap(newArray, theWidth, theHeight);
+  }
+
   PImage getAsPImage() {
     PImage img = createImage(w, h, RGB);
     for (int y = 0; y < h; y++) {
@@ -42,30 +90,18 @@ class Bitmap {
     }
   }
 
-  PImage getAsPImage(color c, int wPad, int hPad, boolean isHorizontal) {
-    int imgWidth = w + w * wPad;
-    int imgHeight = h + h * hPad;
+  PImage getAsPImage(color c, int xPad, int yPad, boolean isHorizontal) {
+    Bitmap b = getBitmap(true, true, true);
+    int imgWidth = b.w + b.w * xPad;
+    int imgHeight = b.h + b.h * yPad;
     PImage img;
 
-    if (isHorizontal) {
-      img = createImage(imgWidth, imgHeight, ARGB);
+    img = createImage(imgWidth, imgHeight, ARGB);
 
-      for (int y = 0; y < h; y++) {
-        for (int x = 0; x < w; x++) {
-          if (data[y][x] == 1) {
-            img.set(x * (wPad + 1), y * (hPad + 1), c);
-          }
-        }
-      }
-    }
-    else {
-      img = createImage(imgHeight, imgWidth, ARGB);
-
-      for (int y = 0; y < h; y++) {
-        for (int x = 0; x < w; x++) {
-          if (data[y][x] == 1) {
-            img.set((h - y - 1) * (hPad + 1), x * (wPad + 1), c);
-          }
+    for (int y = 0; y < b.h; y++) {
+      for (int x = 0; x < b.w; x++) {
+        if (b.data[y][x] == 1) {
+          img.set(x * (xPad + 1), y * (yPad + 1), c);
         }
       }
     }
@@ -143,25 +179,24 @@ class DisorientFont extends HashMap {
 }
 
 class DisplayDisorient extends CanvasRoutine {
-  PImage disorient;
-  PImage disorientV;
+  PImage img;
+  Bitmap bitmap;
+  int x;
+  int y;
+  int orientation = 0;
+  color c = color(255);
+  int wPad = 2;
+  int hPad = 0;
 
   void reinit() {
-    Bitmap b = (Bitmap) disFont.get("disorient");
-    //disorient = b.getAsPImage(true);
-    disorient = b.getAsPImage(color(255), 0, 2, true);
-    disorientV = b.getAsPImage(color(255), 1, 0, false);
+    bitmap = (Bitmap) disFont.get("disorient");
+    img = bitmap.getAsPImage(c, wPad, hPad, true);
   }
 
   void draw() {
     pg.beginDraw();
     pg.background(0);
-    int disWidth = disorient.width;
-    int disHeight = disorient.height;
-    int disVWidth = disorientV.width;
-    int disVHeight = disorientV.height;
-    pg.copy(disorient, 0, 0, disWidth, disHeight, 0, 180, disWidth, disHeight); 
-    pg.copy(disorientV, 0, 0, disVWidth, disVHeight, 24, 0, disVWidth, disVHeight); 
+    pg.copy(img, 0, 0, img.width, img.height, x, y, img.width, img.height); 
     pg.endDraw();
   }
 }
