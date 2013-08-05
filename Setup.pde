@@ -6,7 +6,7 @@ int transmit_port = 58082;
 // Display configuration
 int displayWidth = 64;    // 8 columns x 8 pixels
 int displayHeight = 210;  // 7 rows x 30 pixels
-int FRAMERATE = 60;
+int FRAMERATE = 30;
 int TYPICAL_MODE_TIME = 2048;
 LEDDisplay sign;
 Serial ctrlPort;

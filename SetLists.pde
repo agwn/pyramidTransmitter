@@ -171,6 +171,11 @@ class DebuggingSetList extends SetList {
     simpleWave.theColor = color(255, 180);
     simpleWave.freq = -1.0;
 
+    DisplayDisorient displayDisorient = new DisplayDisorient();
+
+    setCanvas(canvas2, displayDisorient);
+    wait(60.0);
+
     setCanvas(canvas3, pxxxls);
     pushCanvas(canvas3, warp);
     pushCanvas(canvas3, trails);

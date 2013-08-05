@@ -4,11 +4,12 @@ color disorientOrange = color(255, 128, 0);
 int sineTableSize = 256;
 float sineTableSizeInv = 1.0 / sineTableSize;
 float[] sineTable;
-HashMap letterMap;
+DisorientFont disFont;
 
 void setupGlobals() {
   initSineTable();
-  initDisorientLetters();
+  disFont = new DisorientFont();
+  disFont.printAllToConsole();
 }
 
 void initSineTable() {
