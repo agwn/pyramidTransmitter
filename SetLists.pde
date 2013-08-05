@@ -197,21 +197,51 @@ class DebuggingSetList extends SetList {
     displayDisorient2.yFlip = true;
 
 
+
     disorientScroll.x = 24;
     disorientScroll.y = 210;
     disorientScroll.xPad = 0;
     disorientScroll.doRotate = true;
     disorientScroll.xFlip = true;
-    disorientScroll.yPad = 1;
-    disorientScroll.ySpeed = -2;
+    disorientScroll.yPad = 2;
+    disorientScroll.ySpeed = -4;
 
     disorientScroll2.x = 32;
     disorientScroll2.y = 210; 
     disorientScroll2.xPad = 0;
-    disorientScroll2.yPad = 1;
+    disorientScroll2.yPad = 2;
     disorientScroll2.doRotate = true;
     disorientScroll2.yFlip = true;
-    disorientScroll2.ySpeed = 2;
+    disorientScroll2.ySpeed = 4;
+
+    ArrayList dsa = new ArrayList();
+
+    for (int i = 0; i < 8; i++) {
+      DisorientScroll ds = new DisorientScroll();
+      ds.xPad = 0;
+      ds.yPad = 2;
+      ds.x = i * 8;
+      ds.y = 210;
+      if (i < 4) {
+        ds.yLimitTop = 180 - i * 60;
+      }
+      else {
+        ds.yLimitTop = 180 - (7 - i) * 60;
+      }
+      ds.yLimitBottom = 210;
+      ds.doRotate = true;
+
+      if (i % 2 == 0) {
+        ds.xFlip = true;
+        ds.ySpeed = -4;
+      }
+      else {
+        ds.yFlip = true;
+        ds.ySpeed = 4;
+      }
+
+      dsa.add(ds);
+    }
 
 
     setCanvas(canvas2, simpleWave);
@@ -221,12 +251,22 @@ class DebuggingSetList extends SetList {
     pushCanvas(canvas2, breather2);
     //pushCanvas(canvas2, warp2);
 
+    setCanvas(canvas3, (DisorientScroll) dsa.get(0));
 
+    for (int i = 1; i < 8; i++) {
+      pushCanvas(canvas3, (DisorientScroll) dsa.get(i));
+    }
+
+    pushCanvas(canvas3, breather);
+    pushCanvas(canvas3, sparkle);
+/*
     setCanvas(canvas3, disorientScroll);
     //pushCanvas(canvas3, displayDisorient2);
     pushCanvas(canvas3, disorientScroll2);
     pushCanvas(canvas3, breather);
     pushCanvas(canvas3, sparkle);
+*/
+
     wait(60.0);
 
 /*

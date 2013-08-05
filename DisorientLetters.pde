@@ -181,6 +181,14 @@ class DisplayDisorient extends CanvasRoutine {
 class DisorientScroll extends DisplayDisorient {
   int xSpeed = 0;
   int ySpeed = 0;
+  int yLimitBottom;
+  int yLimitTop;
+
+  void reinit() {
+    super.reinit();
+    int yLimitBottom = h;
+    int yLimitTop = 0;
+  }
 
   void draw() {
     pg.beginDraw();
@@ -192,15 +200,15 @@ class DisorientScroll extends DisplayDisorient {
       x = -img.width;
     }
     if (x < -img.width) {
-      x = w;
+      x = w - 1;
     }
 
     y += ySpeed;
-    if (y >= h) {
-      y = -img.height;
+    if (y >= yLimitBottom) {
+      y = -img.height + yLimitTop;
     }
-    if (y < -img.height) {
-      y = h;
+    if (y < -img.height + yLimitTop) {
+      y = yLimitBottom - 1;
     }
 
     pg.endDraw();
