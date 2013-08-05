@@ -57,39 +57,6 @@ class Bitmap {
     return new Bitmap(newArray, theWidth, theHeight);
   }
 
-  PImage getAsPImage() {
-    PImage img = createImage(w, h, RGB);
-    for (int y = 0; y < h; y++) {
-      for (int x = 0; x < w; x++) {
-        if (data[y][x] == 1) {
-          img.set(x, y, color(255));
-        }
-        else {
-        }
-      }
-    }
-    return img;
-  }
-
-  PImage getAsPImage(boolean isVertical) {
-    if (isVertical) {
-      PImage img = createImage(h, w, RGB);
-      for (int y = 0; y < h; y++) {
-        for (int x = 0; x < w; x++) {
-          if (data[y][x] == 1) {
-            img.set(h - y - 1, x, color(255));
-          }
-          else {
-          }
-        }
-      }
-      return img;
-    }
-    else {
-      return getAsPImage();
-    }
-  }
-
   PImage getAsPImage(color c, int xPad, int yPad) {
     int imgWidth = w + w * xPad;
     int imgHeight = h + h * yPad;
