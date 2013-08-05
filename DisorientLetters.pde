@@ -90,17 +90,16 @@ class Bitmap {
     }
   }
 
-  PImage getAsPImage(color c, int xPad, int yPad, boolean isHorizontal) {
-    Bitmap b = getBitmap(true, true, true);
-    int imgWidth = b.w + b.w * xPad;
-    int imgHeight = b.h + b.h * yPad;
+  PImage getAsPImage(color c, int xPad, int yPad) {
+    int imgWidth = w + w * xPad;
+    int imgHeight = h + h * yPad;
     PImage img;
 
     img = createImage(imgWidth, imgHeight, ARGB);
 
-    for (int y = 0; y < b.h; y++) {
-      for (int x = 0; x < b.w; x++) {
-        if (b.data[y][x] == 1) {
+    for (int y = 0; y < h; y++) {
+      for (int x = 0; x < w; x++) {
+        if (data[y][x] == 1) {
           img.set(x * (xPad + 1), y * (yPad + 1), c);
         }
       }
@@ -185,12 +184,20 @@ class DisplayDisorient extends CanvasRoutine {
   int y;
   int orientation = 0;
   color c = color(255);
-  int wPad = 2;
-  int hPad = 0;
+  int xPad = 0;
+  int yPad = 0;
+  boolean doRotate = false;
+  boolean xFlip = false;
+  boolean yFlip = false;
+
+  DisplayDisorient() {
+    reinit();
+  }
 
   void reinit() {
     bitmap = (Bitmap) disFont.get("disorient");
-    img = bitmap.getAsPImage(c, wPad, hPad, true);
+    bitmap = bitmap.getBitmap(doRotate, xFlip, yFlip);
+    img = bitmap.getAsPImage(c, xPad, yPad);
   }
 
   void draw() {

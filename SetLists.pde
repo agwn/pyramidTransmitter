@@ -144,6 +144,8 @@ class DebuggingSetList extends SetList {
     Breather breather = new Breather();
     Breather breather2 = new Breather();
     SimpleWave simpleWave = new SimpleWave();
+    DisplayDisorient displayDisorient = new DisplayDisorient();
+    DisplayDisorient displayDisorient2 = new DisplayDisorient();
 
     moviePlayer.setBlendMode(DODGE);
     moviePlayer.setPaintMode(moviePlayer.BLEND);
@@ -157,7 +159,7 @@ class DebuggingSetList extends SetList {
     sparkle.threshold = 16;
     sparkle.nDots = 1200;
     sparkle.dotToCrossRatio = 0.95;
-    sparkle.setBlendMode(sparkle.DIRECT);
+    //sparkle.setBlendMode(sparkle.DIRECT);
     sparkle.c = color(255, 128);
     sparkle2.nDots = 200;
     sparkle2.threshold = 16;
@@ -165,7 +167,7 @@ class DebuggingSetList extends SetList {
     breather.setBlendMode(MULTIPLY);
     breather.c0 = color(pornj, 255);
     breather.c1 = color(disorientOrange, 255);
-    breather.phaseInc = 0.005;
+    breather.phaseInc = 0.025;
     breather2.setBlendMode(MULTIPLY);
     breather2.c0 = color(pornj);
     breather2.c1 = color(disorientOrange);
@@ -177,13 +179,32 @@ class DebuggingSetList extends SetList {
     simpleWave.theColor = color(255, 180);
     simpleWave.freq = -1.0;
 
-    DisplayDisorient displayDisorient = new DisplayDisorient();
+    displayDisorient.x = 24;
+    displayDisorient.y = 30; 
+    displayDisorient.xPad = 0;
+    displayDisorient.doRotate = true;
+    displayDisorient.xFlip = true;
+    displayDisorient.yPad = 1;
 
-    setCanvas(canvas2, displayDisorient);
+    displayDisorient2.x = 32;
+    displayDisorient2.y = 30; 
+    displayDisorient2.xPad = 0;
+    displayDisorient2.yPad = 1;
+    displayDisorient2.doRotate = true;
+    displayDisorient2.yFlip = true;
+
+    setCanvas(canvas2, pxxxls);
     pushCanvas(canvas2, breather2);
     //pushCanvas(canvas2, warp2);
     pushCanvas(canvas2, sparkle2);
 
+    setCanvas(canvas3, displayDisorient);
+    pushCanvas(canvas3, displayDisorient2);
+    pushCanvas(canvas3, breather);
+    pushCanvas(canvas3, sparkle);
+    wait(60.0);
+
+/*
     if (false) {
       setCanvas(canvas3, pxxxls);
       pushCanvas(canvas3, warp);
@@ -227,6 +248,7 @@ class DebuggingSetList extends SetList {
       pushCanvas(canvas3, sparkle2);
       wait(15.0);
     }
+*/
 /*
     setCanvas(canvas2, simpleWave);
     pushCanvas(canvas2, breather);
