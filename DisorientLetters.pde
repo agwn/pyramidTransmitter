@@ -56,74 +56,23 @@ class DisorientFont extends HashMap {
   }
 }
 
-class DisplayDisorient extends CanvasRoutine {
-  PImage img;
-  Bitmap bitmap;
-  int x;
-  int y;
-  int orientation = 0;
-  color c = color(255);
-  int xPad = 0;
-  int yPad = 0;
-  boolean doRotate = false;
-  boolean xFlip = false;
-  boolean yFlip = false;
-  int w;
-  int h;
-
-  DisplayDisorient() {
-  }
-
-  void reinit() {
-    bitmap = (Bitmap) disFont.get("disorient");
-    bitmap = bitmap.getBitmap(doRotate, xFlip, yFlip);
-    img = bitmap.getAsPImage(c, xPad, yPad);
-    w = pg.width;
-    h = pg.height;
-  }
-
-  void draw() {
-    pg.beginDraw();
-    pg.background(0);
-    pg.copy(img, 0, 0, img.width, img.height, x, y, img.width, img.height); 
-    pg.endDraw();
-  }
-}
-
-class DisorientScroll extends DisplayDisorient {
-  int xSpeed = 0;
-  int ySpeed = 0;
-  int yLimitBottom;
-  int yLimitTop;
+class DisplayDisorient extends DisplayImage {
+  DisplayDisorient() { }
 
   void reinit() {
     super.reinit();
-    int yLimitBottom = h;
-    int yLimitTop = 0;
+    Bitmap bitmap = (Bitmap) disFont.get("disorient");
+    bitmap = bitmap.getBitmap(doRotate, xFlip, yFlip);
+    img = bitmap.getAsPImage(c, xPad, yPad);
   }
+}
 
-  void draw() {
-    pg.beginDraw();
-    pg.background(0);
-    pg.copy(img, 0, 0, img.width, img.height, x, y, img.width, img.height); 
-
-    x += xSpeed;
-    if (x >= w) {
-      x = -img.width;
-    }
-    if (x < -img.width) {
-      x = w - 1;
-    }
-
-    y += ySpeed;
-    if (y >= yLimitBottom) {
-      y = -img.height + yLimitTop;
-    }
-    if (y < -img.height + yLimitTop) {
-      y = yLimitBottom - 1;
-    }
-
-    pg.endDraw();
+class DisorientScroll extends ScrollImage {
+  void reinit() {
+    super.reinit();
+    Bitmap bitmap = (Bitmap) disFont.get("disorient");
+    bitmap = bitmap.getBitmap(doRotate, xFlip, yFlip);
+    img = bitmap.getAsPImage(c, xPad, yPad);
   }
 }
 
