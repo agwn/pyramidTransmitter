@@ -146,10 +146,12 @@ class DebuggingSetList extends SetList {
     SimpleWave simpleWave = new SimpleWave();
     DisplayDisorient displayDisorient = new DisplayDisorient();
     DisplayDisorient displayDisorient2 = new DisplayDisorient();
-    DisorientScroll disorientScroll = new DisorientScroll();
-    DisorientScroll disorientScroll2 = new DisorientScroll();
+    ScrollDisorient scrollDisorient = new ScrollDisorient();
+    ScrollDisorient scrollDisorient2 = new ScrollDisorient();
     DisplayImage displayImage = new DisplayImage(selfPortraitMap.getAsPImage(color(255), 0, 0));
     ScrollImage scrollImage = new ScrollImage(selfPortraitMap.getAsPImage(color(255), 0, 4));
+    //PointPopping pointPopping = new PointPopping(selfPortraitMap.getBitPoints());
+    PointPopping pointPopping = new PointPopping(disFont.getBitmap("disorient").getBitmap(true, true, false).getBitPoints());
 
     moviePlayer.setBlendMode(DODGE);
     moviePlayer.setPaintMode(moviePlayer.BLEND);
@@ -171,7 +173,7 @@ class DebuggingSetList extends SetList {
     sines.theStrokeWeight = 2;
     breather.setBlendMode(MULTIPLY);
     breather.c0 = color(pornj, 255);
-    breather.c1 = color(disorientOrange, 255);
+    breather.c1 = color(lerpColor(pornj, color(0), 0.7));
     breather.phaseInc = 0.025;
     breather2.setBlendMode(MULTIPLY);
     breather2.c0 = color(lerpColor(pornj, color(0), 0.8));
@@ -198,28 +200,36 @@ class DebuggingSetList extends SetList {
     displayDisorient2.doRotate = true;
     displayDisorient2.yFlip = true;
 
-    disorientScroll.x = 24;
-    disorientScroll.y = 210;
-    disorientScroll.xPad = 0;
-    disorientScroll.doRotate = true;
-    disorientScroll.xFlip = true;
-    disorientScroll.yPad = 2;
-    disorientScroll.ySpeed = -4;
+    scrollDisorient.x = 24;
+    scrollDisorient.y = 210;
+    scrollDisorient.xPad = 0;
+    scrollDisorient.doRotate = true;
+    scrollDisorient.xFlip = true;
+    scrollDisorient.yPad = 1;
+    scrollDisorient.ySpeed = -4;
 
-    disorientScroll2.x = 32;
-    disorientScroll2.y = 210; 
-    disorientScroll2.xPad = 0;
-    disorientScroll2.yPad = 2;
-    disorientScroll2.doRotate = true;
-    disorientScroll2.yFlip = true;
-    disorientScroll2.ySpeed = 4;
+    scrollDisorient2.x = 32;
+    scrollDisorient2.y = 210; 
+    scrollDisorient2.xPad = 0;
+    scrollDisorient2.yPad = 2;
+    scrollDisorient2.doRotate = true;
+    scrollDisorient2.yFlip = true;
+    scrollDisorient2.ySpeed = 4;
 
     scrollImage.x = -32;
     scrollImage.y = 50;
     scrollImage.xSpeed = 1;
 
-    setCanvas(canvas2, scrollImage); 
-    setCanvas(canvas3, disorientScroll); 
+    pointPopping.x = 24;
+    pointPopping.y = 30;
+    pointPopping.yPad = 1;
+    pointPopping.pointsPerFrame = 4;
+
+    setCanvas(canvas2, pointPopping); 
+    pushCanvas(canvas2, breather);
+    pushCanvas(canvas2, sparkle);
+
+    //setCanvas(canvas3, scrollDisorient2); 
     wait(60.0);
   }
 }

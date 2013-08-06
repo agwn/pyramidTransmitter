@@ -73,7 +73,7 @@ class DisplayDisorient extends DisplayImage {
   }
 }
 
-class DisorientScroll extends ScrollImage {
+class ScrollDisorient extends ScrollImage {
   int xPad = 0;
   int yPad = 0;
 

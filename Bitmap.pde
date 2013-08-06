@@ -9,6 +9,20 @@ class Bitmap {
     h = h_;
   }
 
+  ArrayList<BitPoint> getBitPoints() {
+    ArrayList<BitPoint> bps = new ArrayList<BitPoint>();
+
+    for (int y = 0; y < h; y++) {
+      for (int x = 0; x < w; x++) {
+        if (data[y][x] == 1) {
+          bps.add(new BitPoint(x, y, color(255)));
+        }
+      }
+    }
+
+    return bps;
+  }
+
   Bitmap getBitmap(boolean doRotate, boolean xFlip, boolean yFlip) {
     int theWidth = w;
     int theHeight = h;
@@ -26,14 +40,11 @@ class Bitmap {
           newArray[x][y] = data[y][x];
         }
         else {
-          for (int i = 0; i < data.length; i++) {
-            newArray[y][x] = data[y][x];
-          }
+          newArray[y][x] = data[y][x];
         }
       }
     }
 
-    // Do flipping
     if (xFlip) {
       for (int y = 0; y < theHeight; y++) {
         for (int x = 0; x < theWidth / 2; x++) {
@@ -84,5 +95,17 @@ class Bitmap {
       println();
     }
     println();
+  }
+}
+
+class BitPoint {
+  int x;
+  int y;
+  color c;
+
+  BitPoint (int x_, int y_, color c_) {
+    x = x_;
+    y = y_;
+    c = c_;
   }
 }
