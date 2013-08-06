@@ -37,15 +37,19 @@ class ScrollImage extends DisplayImage {
   int yLimitBottom;
   int yLimitTop;
 
+  ScrollImage() { }
+
+  ScrollImage(PImage img_) {
+    super(img_);
+  }
+
   void reinit() {
     super.reinit();
-    int yLimitBottom = h;
-    int yLimitTop = 0;
+    yLimitBottom = h;
+    yLimitTop = 0;
   }
 
   void draw() {
-    println("ScrollImage");
-    println("img.width: " + img);
     pg.beginDraw();
     pg.background(0);
     pg.copy(img, 0, 0, img.width, img.height, x, y, img.width, img.height); 

@@ -14,12 +14,16 @@ class DisorientFont extends HashMap {
     generateBitmap("disor13nt");
   }
 
+  Bitmap getBitmap(String s) {
+    return (Bitmap) get(s);
+  }
+
   private void generateBitmap(String s) {
     int bitmapWidth = 0;
 
     // Get width of new Bitmap
     for (char c : s.toCharArray()) {
-      Bitmap b = (Bitmap) get(Character.toString(c));
+      Bitmap b = getBitmap(Character.toString(c));
       bitmapWidth += b.w;
     }
 
@@ -61,7 +65,7 @@ class DisplayDisorient extends DisplayImage {
 
   void reinit() {
     super.reinit();
-    Bitmap bitmap = (Bitmap) disFont.get("disorient");
+    Bitmap bitmap = disFont.getBitmap("disorient");
     bitmap = bitmap.getBitmap(doRotate, xFlip, yFlip);
     img = bitmap.getAsPImage(c, xPad, yPad);
   }

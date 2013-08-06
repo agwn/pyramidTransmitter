@@ -148,6 +148,8 @@ class DebuggingSetList extends SetList {
     DisplayDisorient displayDisorient2 = new DisplayDisorient();
     DisorientScroll disorientScroll = new DisorientScroll();
     DisorientScroll disorientScroll2 = new DisorientScroll();
+    DisplayImage displayImage = new DisplayImage(selfPortraitMap.getAsPImage(color(255), 0, 0));
+    ScrollImage scrollImage = new ScrollImage(selfPortraitMap.getAsPImage(color(255), 0, 4));
 
     moviePlayer.setBlendMode(DODGE);
     moviePlayer.setPaintMode(moviePlayer.BLEND);
@@ -196,8 +198,6 @@ class DebuggingSetList extends SetList {
     displayDisorient2.doRotate = true;
     displayDisorient2.yFlip = true;
 
-
-
     disorientScroll.x = 24;
     disorientScroll.y = 210;
     disorientScroll.xPad = 0;
@@ -214,114 +214,11 @@ class DebuggingSetList extends SetList {
     disorientScroll2.yFlip = true;
     disorientScroll2.ySpeed = 4;
 
-    ArrayList dsa = new ArrayList();
+    scrollImage.x = -32;
+    scrollImage.y = 50;
+    scrollImage.xSpeed = 1;
 
-    for (int i = 0; i < 8; i++) {
-      DisorientScroll ds = new DisorientScroll();
-      ds.xPad = 0;
-      ds.yPad = 2;
-      ds.x = i * 8;
-      ds.y = 210;
-      if (i < 4) {
-        ds.yLimitTop = 180 - i * 60;
-      }
-      else {
-        ds.yLimitTop = 180 - (7 - i) * 60;
-      }
-      ds.yLimitBottom = 210;
-      ds.doRotate = true;
-
-      if (i % 2 == 0) {
-        ds.xFlip = true;
-        ds.ySpeed = -4;
-      }
-      else {
-        ds.yFlip = true;
-        ds.ySpeed = 4;
-      }
-
-      dsa.add(ds);
-    }
-
-
-    setCanvas(canvas2, simpleWave);
-    pushCanvas(canvas2, warp);
-    pushCanvas(canvas2, sparkle2);
-    pushCanvas(canvas2, trails);
-    pushCanvas(canvas2, breather2);
-    //pushCanvas(canvas2, warp2);
-
-    setCanvas(canvas3, (DisorientScroll) dsa.get(0));
-
-    for (int i = 1; i < 8; i++) {
-      pushCanvas(canvas3, (DisorientScroll) dsa.get(i));
-    }
-
-    pushCanvas(canvas3, breather);
-    pushCanvas(canvas3, sparkle);
-/*
-    setCanvas(canvas3, disorientScroll);
-    //pushCanvas(canvas3, displayDisorient2);
-    pushCanvas(canvas3, disorientScroll2);
-    pushCanvas(canvas3, breather);
-    pushCanvas(canvas3, sparkle);
-*/
-
+    setCanvas(canvas2, scrollImage); 
     wait(60.0);
-
-/*
-    if (false) {
-      setCanvas(canvas3, pxxxls);
-      pushCanvas(canvas3, warp);
-      pushCanvas(canvas3, trails);
-      pushCanvas(canvas3, sparkle);
-      pushCanvas(canvas3, breather);
-      pushCanvas(canvas3, trails);
-      pushCanvas(canvas3, pxxxlFilter);
-      pushCanvas(canvas3, mirror);
-      pushCanvas(canvas3, sparkle2);
-      wait(15.0);
-
-      setCanvas(canvas3, pxxxls);
-      pushCanvas(canvas3, warp);
-      pushCanvas(canvas3, trails);
-      pushCanvas(canvas3, mirror);
-      pushCanvas(canvas3, sparkle);
-      pushCanvas(canvas3, breather);
-      pushCanvas(canvas3, trails);
-      pushCanvas(canvas3, pxxxlFilter);
-      pushCanvas(canvas3, sparkle2);
-      wait(15.0);
-
-      setCanvas(canvas3, pxxxls);
-      pushCanvas(canvas3, warp);
-      pushCanvas(canvas3, trails);
-      pushCanvas(canvas3, mirror);
-      pushCanvas(canvas3, sparkle);
-      pushCanvas(canvas3, breather);
-      pushCanvas(canvas3, pxxxlFilter);
-      pushCanvas(canvas3, sparkle2);
-      wait(15.0);
-
-      setCanvas(canvas3, waves);
-      pushCanvas(canvas3, warp);
-      pushCanvas(canvas3, trails);
-      pushCanvas(canvas3, mirror);
-      pushCanvas(canvas3, sparkle);
-      pushCanvas(canvas3, breather);
-      pushCanvas(canvas3, pxxxlFilter);
-      pushCanvas(canvas3, sparkle2);
-      wait(15.0);
-    }
-*/
-/*
-    setCanvas(canvas2, simpleWave);
-    pushCanvas(canvas2, breather);
-    pushCanvas(canvas2, warp);
-    pushCanvas(canvas2, trails);
-    pushCanvas(canvas2, mirror);
-    pushCanvas(canvas2, sparkle2);
-    wait(20.0);
-*/
   }
 }
