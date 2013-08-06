@@ -5,11 +5,12 @@ int sineTableSize = 256;
 float sineTableSizeInv = 1.0 / sineTableSize;
 float[] sineTable;
 DisorientFont disFont;
+Bitmap selfPortraitMap;
 
 void setupGlobals() {
   initSineTable();
   disFont = new DisorientFont();
-  disFont.printAllToConsole();
+  selfPortraitMap = new Bitmap(SELF_PORTRAIT, 32, 32);
 }
 
 void initSineTable() {
@@ -19,6 +20,7 @@ void initSineTable() {
     sineTable[i] = sin(i * sineTableSizeInv * TWO_PI);
   }
 }
+
 
 // ----------------------------------------------------------------------
 // DEPRECATED!!
