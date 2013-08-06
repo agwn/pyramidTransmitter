@@ -62,6 +62,8 @@ class DisorientFont extends HashMap {
 
 class DisplayDisorient extends DisplayImage {
   DisplayDisorient() { }
+  int xPad = 0;
+  int yPad = 0;
 
   void reinit() {
     super.reinit();
@@ -72,6 +74,9 @@ class DisplayDisorient extends DisplayImage {
 }
 
 class DisorientScroll extends ScrollImage {
+  int xPad = 0;
+  int yPad = 0;
+
   void reinit() {
     super.reinit();
     Bitmap bitmap = (Bitmap) disFont.get("disorient");

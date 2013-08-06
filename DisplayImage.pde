@@ -4,8 +4,6 @@ class DisplayImage extends CanvasRoutine {
   int y;
   int orientation = 0;
   color c = color(255);
-  int xPad = 0;
-  int yPad = 0;
   boolean doRotate = false;
   boolean xFlip = false;
   boolean yFlip = false;

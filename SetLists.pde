@@ -219,6 +219,7 @@ class DebuggingSetList extends SetList {
     scrollImage.xSpeed = 1;
 
     setCanvas(canvas2, scrollImage); 
+    setCanvas(canvas3, disorientScroll); 
     wait(60.0);
   }
 }
