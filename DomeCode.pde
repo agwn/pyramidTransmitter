@@ -192,3 +192,4 @@ class DomeDisableCanvas extends DomeCode {
     controller.runDomeCode();
   }
 }
+

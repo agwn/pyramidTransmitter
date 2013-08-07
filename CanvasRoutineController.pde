@@ -1,10 +1,17 @@
-class SetList extends CanvasRoutineController { }
+class SetList extends CanvasRoutineController {
+  SetList(CanvasRoutineController crc) {
+    super(crc);
+  }
+
+  SetList() { }
+}
 
 class CanvasRoutineController {
   ArrayList domeCode;
   int index = 0;
   boolean[] activeCanvases;
   int nCanvases;
+  CanvasRoutineController masterControl = this;
 
   CanvasRoutineController() {
     domeCode = new ArrayList();
@@ -15,7 +22,24 @@ class CanvasRoutineController {
       activeCanvases[i] = false;
     }
 
+    disableCanvases();
     wait(0.0);  // Prevents infinite DomeCode loop
+    setup();
+  }
+
+  CanvasRoutineController(CanvasRoutineController parent) {
+    domeCode = parent.domeCode;
+    nCanvases = parent.nCanvases;
+    activeCanvases = parent.activeCanvases;
+    masterControl = parent;
+
+    for (int i = 0; i < nCanvases; i++) {
+      activeCanvases[i] = false;
+    }
+    setup();
+  }
+
+  void setup() {
   }
 
   void update() {
@@ -73,28 +97,36 @@ class CanvasRoutineController {
   }
 
   void setCanvas(Canvas c, CanvasRoutine cr) {
-    domeCode.add(new DomeSetCanvas(this, c, cr));
+    domeCode.add(new DomeSetCanvas(masterControl, c, cr));
   }
   
   void pushCanvas(Canvas c, CanvasRoutine cr) {
-    domeCode.add(new DomePushCanvas(this, c, cr));
+    domeCode.add(new DomePushCanvas(masterControl, c, cr));
   }
 
   void wait(float seconds) {
     int waitFrameCounter = (int) (seconds * FRAMERATE);
-    domeCode.add(new DomeWait(this, waitFrameCounter));
+    domeCode.add(new DomeWait(masterControl, waitFrameCounter));
   }
 
   void crossfade(float seconds, Canvas c0, Canvas c1) {
     int waitFrameCounter = (int) (seconds * FRAMERATE);
-    domeCode.add(new DomeCrossfade(this, waitFrameCounter, c0, c1));
+    domeCode.add(new DomeCrossfade(masterControl, waitFrameCounter, c0, c1));
   }
 
   void disableCanvas(Canvas c) {
-    domeCode.add(new DomeDisableCanvas(this, c));
+    domeCode.add(new DomeDisableCanvas(masterControl, c));
   }
 
   void enableCanvas(Canvas c) {
-    domeCode.add(new DomeEnableCanvas(this, c));
+    domeCode.add(new DomeEnableCanvas(masterControl, c));
   }
+
+  void disableCanvases() {
+    for (int i = 0; i < nCanvases; i++) {
+      disableCanvas(canvases[i]);
+    }
+  }
+
+  void playSetList(CanvasRoutineController CRC) { }
 }

@@ -33,8 +33,8 @@ class PointPopping extends CanvasRoutine {
 
     int vSize = visible.size();
     int bSize = bitPoints.size();
-
     int counter = pointsPerFrame;
+
     while (counter > 0 && vSize < bSize) {
       visible.add(bitPoints.get(vSize));
       counter--;

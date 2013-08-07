@@ -1,5 +1,11 @@
 class TechDemo extends SetList {
-  TechDemo() {
+  TechDemo(SetList setList) {
+    super(setList);
+  }
+
+  TechDemo() { }
+
+  void setup() {
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
     SineColumns sines = new SineColumns();
     Pxxxls pxxxls = new Pxxxls(50);
@@ -49,7 +55,13 @@ class TechDemo extends SetList {
 }
 
 class Demo extends SetList {
-  Demo() {
+  Demo(SetList setList) {
+    super(setList);
+  }
+
+  Demo() { } 
+
+  void setup() {
     // Shorter variables for less typing
     Canvas c0 = canvases[0];
     Canvas c1 = canvases[1];
@@ -123,7 +135,13 @@ class Demo extends SetList {
 }
 
 class DebuggingSetList extends SetList {
-  DebuggingSetList() {
+  DebuggingSetList(SetList setList) {
+    super(setList);
+  }
+
+  DebuggingSetList() { }
+
+  void setup() {
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu(20);
     SineColumns sines = new SineColumns();
     Pxxxls pxxxls = new Pxxxls(15);
@@ -228,8 +246,22 @@ class DebuggingSetList extends SetList {
     setCanvas(canvas2, pointPopping); 
     pushCanvas(canvas2, breather);
     pushCanvas(canvas2, sparkle);
+    wait(1.0);
+    playSetList(new Foo(this));
+    playSetList(new TechDemo(this));
+    playSetList(new Demo(this));
+  }
+}
 
-    //setCanvas(canvas3, scrollDisorient2); 
-    wait(60.0);
+class Foo extends SetList {
+  Foo(SetList setList) {
+    super(setList);
+  }
+
+  void setup() {
+    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu(20);
+    setCanvas(canvas3, warpSpeed);
+    wait(1.0);
+    disableCanvases();
   }
 }
