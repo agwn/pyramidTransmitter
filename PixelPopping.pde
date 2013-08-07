@@ -1,4 +1,4 @@
-class PointPopping extends CanvasRoutine {
+class PixelPopping extends CanvasRoutine {
   ArrayList<BitPoint> bitPoints;
   ArrayList<BitPoint> visible;
   int x = 0;
@@ -9,7 +9,7 @@ class PointPopping extends CanvasRoutine {
   int h;
   int pointsPerFrame = 1;
 
-  PointPopping(ArrayList<BitPoint> bitPoints_) {
+  PixelPopping(ArrayList<BitPoint> bitPoints_) {
     bitPoints = bitPoints_;
     Collections.shuffle(bitPoints);
   }

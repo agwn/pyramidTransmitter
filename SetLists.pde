@@ -14,52 +14,48 @@ class TechDemo extends SetList {
     Mirror mirror = new Mirror();
 
     float w = 5.0;
-    Canvas c0 = canvases[0];
-    Canvas c1 = canvases[1];
-    Canvas c2 = canvases[2];
-    Canvas c3 = canvases[3];
 
-    setCanvas(c0, pxxxls);
+    setCanvas(canvas0, pxxxls);
     wait(w);
-    setCanvas(c2, warpSpeed);
+    setCanvas(canvas2, warpSpeed);
     wait(w);
-    setCanvas(c1, waves);
+    setCanvas(canvas1, waves);
     wait(w);
-    setCanvas(c3, sines);
+    setCanvas(canvas3, sines);
     wait(w);
-    disableCanvas(c0); 
+    disableCanvas(canvas0); 
     wait(w);
-    disableCanvas(c2); 
+    disableCanvas(canvas2); 
     wait(w);
-    disableCanvas(c1); 
+    disableCanvas(canvas1); 
     wait(w);
-    crossfade(w, c3, c0);
-    crossfade(w, c0, c1);
-    crossfade(w, c1, c2);
+    crossfade(w, canvas3, canvas0);
+    crossfade(w, canvas0, canvas1);
+    crossfade(w, canvas1, canvas2);
     wait(w);
-    pushCanvas(c2, waves);
+    pushCanvas(canvas2, waves);
     wait(w);
-    pushCanvas(c2, sines);
+    pushCanvas(canvas2, sines);
     wait(w);
-    pushCanvas(c2, mirror);
+    pushCanvas(canvas2, mirror);
     wait(w);
-    pushCanvas(c2, pxxxls);
+    pushCanvas(canvas2, pxxxls);
     wait(w);
-    disableCanvas(c0);
-    disableCanvas(c1);
-    disableCanvas(c3);
-    setCanvas(c2, seizure);
+    disableCanvas(canvas0);
+    disableCanvas(canvas1);
+    disableCanvas(canvas3);
+    setCanvas(canvas2, seizure);
     wait(1.0);
-    disableCanvas(c2);
+    disableCanvas(canvas2);
   }
 }
 
 class Demo extends SetList {
+  Demo() { } 
+
   Demo(SetList setList) {
     super(setList);
   }
-
-  Demo() { } 
 
   void setup() {
     float w = 10.0;  // Wait time between routines
@@ -104,27 +100,32 @@ class DebuggingSetList extends SetList {
   }
 
   void setup() {
-    PointPopping pointPopping = new PointPopping(disFont.getBitmap("disorient").getBitmap(true, true, false).getBitPoints());
+    PixelPopping pixelPopping = new PixelPopping(disFont.getBitmap("disorient").getBitmap(true, true, false).getBitPoints());
     Breather breather = new Breather();
+    Warp warp = new Warp();
     Sparkle sparkle = new Sparkle();
 
-    pointPopping.x = 24;
-    pointPopping.y = 30;
-    pointPopping.yPad = 1;
-    pointPopping.pointsPerFrame = 4;
+    pixelPopping.x = 24;
+    pixelPopping.y = 30;
+    pixelPopping.yPad = 1;
+    pixelPopping.pointsPerFrame = 4;
     breather.setBlendMode(MULTIPLY);
     breather.c0 = color(pornj, 255);
     breather.c1 = color(lerpColor(pornj, color(0), 0.7));
-    breather.phaseInc = 0.025;
+    breather.freq = 2.0;
     sparkle.threshold = 16;
     sparkle.nDots = 1200;
     sparkle.dotToCrossRatio = 1.0;
     sparkle.c = color(255, 128);
-
-    setCanvas(canvas2, pointPopping); 
+    warp.yFreq = 1.0;
+    warp.xFreq = 0.5;
+    warp.xAmp = 0.1;
+  
+    setCanvas(canvas2, pixelPopping); 
     pushCanvas(canvas2, breather);
+    pushCanvas(canvas2, warp);
     pushCanvas(canvas2, sparkle);
-    wait(6.0);
+    wait(60.0);
     playSetList(new Testing123(this));
     playSetList(new TechDemo(this));
     playSetList(new Demo(this));
@@ -142,6 +143,5 @@ class Testing123 extends SetList {
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu(20);
     setCanvas(canvas3, warpSpeed);
     wait(1.0);
-    disableCanvases();
   }
 }

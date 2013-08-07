@@ -113,8 +113,7 @@ class CanvasRoutineController {
   }
 
   private void runDomeCode() {
-    DomeCode dc = domeCode.get(index);
-    dc.run();
+    domeCode.get(index).run();
   }
 
   private void next() {

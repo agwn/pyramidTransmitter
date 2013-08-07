@@ -5,7 +5,6 @@ class Breather extends CanvasRoutine {
   color c1 = color(0);
   float phase = 0.0;
   float freq = 1.0;
-  float phaseInc = 0.05;
 
   public Breather() { }
 
@@ -13,6 +12,7 @@ class Breather extends CanvasRoutine {
     w = pg.width;
     h = pg.height;
   }
+
   void draw() {
     pg.beginDraw();
 
@@ -20,10 +20,14 @@ class Breather extends CanvasRoutine {
     color theColor = lerpColor(c0, c1, v);
     pg.background(theColor);
 
-    phase += phaseInc;
-    if (phase >= 1.0) {
+    phase += freq / FRAMERATE;
+    while (phase >= 1.0) {
       phase -= 1.0;
     }
+    while (phase < 0.0) {
+      phase += 1.0;
+    }
+
     pg.endDraw();
   }
 }

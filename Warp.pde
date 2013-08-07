@@ -6,14 +6,14 @@ class Warp extends CanvasRoutine {
   int sineTableNormSize = 256;
   float sineTableNormSizeInv = 1.0 / sineTableNormSize;
   float[] sineTableNorm;
-  float hAmp = 1.0;
-  float hCycles = 0.25;
-  float hPhase = 0.25;
-  float hBias = 0.0;
-  float vAmp = 1.0;
-  float vCycles = 0.25;
-  float vPhase = 0.25;
-  float vBias = 0.0;
+  float yAmp = 1.0;
+  float yFreq = 0.25;
+  float yPhase = 0.25;
+  float yBias = 0.0;
+  float xAmp = 1.0;
+  float xFreq = 0.25;
+  float xPhase = 0.25;
+  float xBias = 0.0;
 
   public Warp() {
     initSineTable();
@@ -31,19 +31,19 @@ class Warp extends CanvasRoutine {
     pg.beginDraw();
 
     if (warpVertical) {
-      float vPhaseInc = vCycles * 1.0 / w; 
-      float tempPhase = vPhase;
-      float amp = vAmp * h;
+      float xPhaseInc = xFreq * 1.0 / w; 
+      float tempPhase = xPhase;
+      float amp = xAmp * h;
 
       for (int x = 0; x < w; x++) {
         float v = sineTableNorm[(int) (tempPhase * sineTableNormSize)];
-        tempPhase += vPhaseInc;
+        tempPhase += xPhaseInc;
         if (tempPhase >= 1.0) {
           tempPhase -= 1.0;
         }
 
         int offset = (int) (v * amp);
-        offset += vBias * amp;
+        offset += xBias * amp;
         offset -= (offset / h) * h;
         int length = h - offset;
 
@@ -53,26 +53,26 @@ class Warp extends CanvasRoutine {
         pg.image(imageSlice, x, 0, 1, length);
       }
 
-      vPhase += vPhaseInc;
-      if (vPhase >= 1.0) {
-        vPhase -= 1.0;
+      xPhase += xFreq / FRAMERATE;
+      if (xPhase >= 1.0) {
+        xPhase -= 1.0;
       }      
     }
 
     if (warpHorizontal) {
-      float hPhaseInc = hCycles * 1.0 / h; 
-      float tempPhase = hPhase;
-      float amp = hAmp * w;
+      float yPhaseInc = yFreq * 1.0 / h; 
+      float tempPhase = yPhase;
+      float amp = yAmp * w;
 
       for (int y = 0; y < h; y++) {
         float v = sineTableNorm[(int) (tempPhase * sineTableNormSize)];
-        tempPhase += hPhaseInc;
+        tempPhase += yPhaseInc;
         if (tempPhase >= 1.0) {
           tempPhase -= 1.0;
         }
 
         int offset = (int) (v * amp);
-        offset += hBias * amp;
+        offset += yBias * amp;
         offset -= (offset / w) * w;
         int length = w - offset;
 
@@ -82,9 +82,9 @@ class Warp extends CanvasRoutine {
         pg.image(imageSlice, 0, y, length, 1);
       }
 
-      hPhase += hPhaseInc;
-      if (hPhase >= 1.0) {
-        hPhase -= 1.0;
+      yPhase += yFreq / FRAMERATE;
+      if (yPhase >= 1.0) {
+        yPhase -= 1.0;
       }      
     }
 
