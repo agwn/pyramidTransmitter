@@ -1,11 +1,6 @@
 class Warp extends CanvasRoutine {
-  int w;
-  int h;
   boolean warpHorizontal;
   boolean warpVertical;
-  int sineTableNormSize = 256;
-  float sineTableNormSizeInv = 1.0 / sineTableNormSize;
-  float[] sineTableNorm;
   float yAmp = 1.0;
   float yFreq = 0.25;
   float yPhase = 0.25;
@@ -14,9 +9,10 @@ class Warp extends CanvasRoutine {
   float xFreq = 0.25;
   float xPhase = 0.25;
   float xBias = 0.0;
+  private int w;
+  private int h;
 
   public Warp() {
-    initSineTable();
     warpHorizontal = true;
     warpVertical = true;
     setPaintMode(DIRECT);
@@ -36,7 +32,7 @@ class Warp extends CanvasRoutine {
       float amp = xAmp * h;
 
       for (int x = 0; x < w; x++) {
-        float v = sineTableNorm[(int) (tempPhase * sineTableNormSize)];
+        float v = sineTableNorm[(int) (tempPhase * sineTableSize)];
         tempPhase += xPhaseInc;
         if (tempPhase >= 1.0) {
           tempPhase -= 1.0;
@@ -65,7 +61,7 @@ class Warp extends CanvasRoutine {
       float amp = yAmp * w;
 
       for (int y = 0; y < h; y++) {
-        float v = sineTableNorm[(int) (tempPhase * sineTableNormSize)];
+        float v = sineTableNorm[(int) (tempPhase * sineTableSize)];
         tempPhase += yPhaseInc;
         if (tempPhase >= 1.0) {
           tempPhase -= 1.0;
@@ -89,13 +85,5 @@ class Warp extends CanvasRoutine {
     }
 
     pg.endDraw();
-  }
-
-  void initSineTable() {
-    sineTableNorm = new float[sineTableNormSize];
-
-    for (int i = 0; i < sineTableNormSize; i++) {
-      sineTableNorm[i] = sin(i * sineTableNormSizeInv * TWO_PI) * 0.5 + 0.5;
-    }
   }
 }

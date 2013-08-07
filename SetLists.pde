@@ -104,6 +104,7 @@ class DebuggingSetList extends SetList {
     Breather breather = new Breather();
     Warp warp = new Warp();
     Sparkle sparkle = new Sparkle();
+    SineColumns sines = new SineColumns();
 
     pixelPopping.x = 24;
     pixelPopping.y = 30;
@@ -118,12 +119,19 @@ class DebuggingSetList extends SetList {
     sparkle.dotToCrossRatio = 1.0;
     sparkle.c = color(255, 128);
     warp.yFreq = 1.0;
+    warp.yAmp = 0.125;
     warp.xFreq = 0.5;
     warp.xAmp = 0.1;
-  
+    sines.resolution = 1;
+    sines.freq = -0.25; 
+    sines.strokeWeight0 = 2;
+    sines.c0 = color(255, 255, 0, 16);
+    sines.c1 = color(255, 0, 0, 64);
+    sines.nCycles = 0.333;
+
     setCanvas(canvas2, pixelPopping); 
     pushCanvas(canvas2, breather);
-    pushCanvas(canvas2, warp);
+    pushCanvas(canvas2, sines);
     pushCanvas(canvas2, sparkle);
     wait(60.0);
     playSetList(new Testing123(this));

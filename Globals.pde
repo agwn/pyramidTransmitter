@@ -4,6 +4,8 @@ color disorientOrange = color(255, 128, 0);
 int sineTableSize = 256;
 float sineTableSizeInv = 1.0 / sineTableSize;
 float[] sineTable;
+float sineTableNormSizeInv = 1.0 / sineTableSize;
+float[] sineTableNorm;
 DisorientFont disFont;
 Bitmap selfPortraitMap;
 
@@ -15,9 +17,11 @@ void setupGlobals() {
 
 void initSineTable() {
   sineTable = new float[sineTableSize];
+  sineTableNorm = new float[sineTableSize];
 
   for (int i = 0; i < sineTableSize; i++) {
     sineTable[i] = sin(i * sineTableSizeInv * TWO_PI);
+    sineTableNorm[i] = sin(i * sineTableNormSizeInv * TWO_PI) * 0.5 + 0.5;
   }
 }
 

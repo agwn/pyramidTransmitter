@@ -1,42 +1,30 @@
 /*
-
-  .........  ..  .........  ........  .........  ..  ........  .........  ..........
-  .......... .. .......... .......... .......... .. .......... .......... ..........
-  ..      ..    ..         ..      .. ..      ..    ..      .. ..      ..     ..
-  ..      .. .. .........  ..      .. ..      .. .. .......... ..      ..     ..
-  ..      .. ..  ......... ..      .. .........  .. .......... ..      ..     ..
-  ..      .. ..         .. ..      .. .........  .. ..         ..      ..     ..
-  .......... .. .......... .......... ..     ... .. .........  ..      ..     ..
-  .........  .. .........   ........  ..      .. ..  ........  ..      ..     ..
-
-  .........  ..  .........
-  .......... ... ..........               /]    /]
-  ..      ..  ..         ..               /]    /]
-  ..      ..  ..   ........           /]  /]    /]  /]
-  ..      ..  ..   ........           /]  /]    /]  /]
-  ..      ..  ..         ..       /]  /]  /]    /]  /]  /]
-  ..........  .. ..........       /]  /]  /]    /]  /]  /]
-  .........   .. .........    /]  /]  /]  /]    /]  /]  /]  /]
-
+  .........  ..  .........  ........  .........  ..  .........  .........  ..........
+  .......... .. .......... .......... .......... ... .......... .......... ..........
+  ..      ..    ..         ..      .. ..      ..  ..         .. ..      ..     ..
+  ..      .. .. .........  ..      .. ..      ..  .. .......... ..      ..     ..
+  ..      .. ..  ......... ..      .. .........   .. .......... ..      ..     ..
+  ..      .. ..         .. ..      .. .........   ..         .. ..      ..     ..
+  .......... .. .......... .......... ..     ...  .. .......... ..      ..     ..
+  .........  .. .........   ........  ..      ..  .. ........   ..      ..     ..
 */
 
 
 class SineColumns extends CanvasRoutine {
-  int resolution = 16;  // Higher value = lower resolution
-  int sineTableSize = 256;
-  float sineTableSizeInv = 1.0 / sineTableSize;
-  float[] sineTable;
+  int resolution = 1;  // Higher value = lower resolution
   float phase = 0.0;
-  float rate = 2.0 * sineTableSizeInv;
-  float period = 1.0 * sineTableSizeInv * resolution;
-  float bias;
-  float amplitude;
-  float theStrokeWeight = 4;
-  int w;
-  int h;
+  float strokeWeight0 = 4;
+  float strokeWeight1 = 4;
+  color c0 = color(pornj, 128);
+  color c1 = color(disorientOrange, 128);
+  float freq = 1.0;
+  float nCycles = 1.0;
+  private float bias;
+  private float amp;
+  private int w;
+  private int h;
 
   SineColumns() {
-    initSineTable();
     setPaintMode(DIRECT);
   }
 
@@ -44,38 +32,38 @@ class SineColumns extends CanvasRoutine {
     w = pg.width;
     h = pg.height;
     bias = h - 15;
-    amplitude = 15;
+    amp = 15;
   }
 
   void draw() {
     pg.beginDraw();
     pg.pushStyle();
-
-    // Sine
+    pg.background(0);
     pg.noFill();
-    pg.strokeWeight(theStrokeWeight);
 
-    pg.stroke(pornj, 128);
+    pg.strokeWeight(strokeWeight0);
+    pg.stroke(c0);
     drawSine(h + 15, 45);
     drawSine(h - 45, 45);
     drawSine(h - 105, 45);
     drawSine(h - 165, 45);
     drawSine(h - 225, 45);
 
-    pg.stroke(disorientOrange, 128);
+    pg.strokeWeight(strokeWeight1);
+    pg.stroke(c1);
     drawSine(h - 15, 15);
     drawSine(h - 75, 15);
     drawSine(h - 135, 15);
     drawSine(h - 195, 15);
 
-    phase += rate;
-
-    if (phase >= 1.0) {
+    phase += freq / FRAMERATE;
+    while (phase >= 1.0) {
       phase -= 1.0;
     }
+    while (phase < 0.0) {
+      phase += 1.0;
+    }
 
-    pg.noStroke();
-    pg.rect(0, 0, w, h);
     pg.popStyle();
     pg.endDraw();
   }
@@ -83,11 +71,12 @@ class SineColumns extends CanvasRoutine {
   void drawSine(float bias, float amp) {
     pg.beginShape();
     float drawPhase = phase;
+    float drawPhaseInc = nCycles / ((float) w / resolution);
 
     for (int i = -resolution; i <= w + resolution * 2; i = i + resolution) {
       pg.curveVertex(i, bias + sineTable[(int) (drawPhase * sineTableSize)] * amp);
 
-      drawPhase += period;
+      drawPhase += drawPhaseInc;
       while (drawPhase >= 1.0) {
         drawPhase -= 1.0;
       }
@@ -97,13 +86,5 @@ class SineColumns extends CanvasRoutine {
     }
 
     pg.endShape();
-  }
-
-  void initSineTable() {
-    sineTable = new float[sineTableSize];
-
-    for (int i = 0; i < sineTableSize; i++) {
-      sineTable[i] = sin(i * sineTableSizeInv * TWO_PI);
-    }
   }
 }
