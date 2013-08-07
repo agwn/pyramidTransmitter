@@ -1,9 +1,9 @@
 class TechDemo extends SetList {
+  TechDemo() { }
+
   TechDemo(SetList setList) {
     super(setList);
   }
-
-  TechDemo() { }
 
   void setup() {
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
@@ -62,14 +62,7 @@ class Demo extends SetList {
   Demo() { } 
 
   void setup() {
-    // Shorter variables for less typing
-    Canvas c0 = canvases[0];
-    Canvas c1 = canvases[1];
-    Canvas c2 = canvases[2];
-    Canvas c3 = canvases[3];
-
-    // Global wait time between routine changes
-    float w = 10.0;
+    float w = 10.0;  // Wait time between routines
 
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu(100);
     Warp warp = new Warp();
@@ -81,180 +74,67 @@ class Demo extends SetList {
     pxxxlFilter.setBlendMode(DODGE);
     pxxxlFilter.setPaintMode(pxxxlFilter.BLEND);
 
-
-/*
-    Part I
-
-    This demonstrates that each canvas is a queue of routines. As routines
-    are added to a canvas, they create chain. During the draw phase of
-    the SetList loop, the routines are executed in the
-    order in which they were added to the canvas.
-
-    This first chain starts with warpSpeed, then adds warp, them mirror.    
-*/
-    setCanvas(c2, warpSpeed);  // Start warpSpeed routine
-    wait(w);                   // Wait
-    pushCanvas(c2, warp);      // Push the warp filter onto the canvas queue,
-                               // applying the fx to warpSpeed
+    setCanvas(canvas2, warpSpeed);
     wait(w);
-    pushCanvas(c2, mirror);    // Push the mirror filter to the canvas queue,
-                               // applying to warpSpeed + warp 
+    pushCanvas(canvas2, warp);
+    wait(w);
+    pushCanvas(canvas2, mirror);
     wait(w);
 
-/*
-    Part II
-
-    Routines for generating patterns can also be used to filter patterns
-    generated earlier in the chain. This is accomplished by setting 
-
-    For example, let's start with the Wave pattern. Then after a pause,
-    the pxxxl pattern will be added. If you go back to the top of this
-    class, you'll notice that I set the blend mode to DODGE and paint
-    mode to BLEND. The change you'll see is that the pixxxls are combined
-    inside of the shape of the wave.
-
-    One last point. I add wrap and mirror filters, and shortly after wards add
-    the warpSpeed routine. Since the mirror was added before warpSpeed,
-    the warpSpeed routine is not mirrored.
-*/
-
-    setCanvas(c2, pxxxls);      // Just to show what the pxxls look like
+    setCanvas(canvas2, pxxxls);
     wait(w);
-    setCanvas(c2, waves);      // SetCanvas restarts the canvas queue.
+    setCanvas(canvas2, waves);
     wait(w);
-    pushCanvas(c2, pxxxlFilter);
+    pushCanvas(canvas2, pxxxlFilter);
     wait(w);
-    pushCanvas(c2, warp);       // Now it's warped
+    pushCanvas(canvas2, warp);
     wait(w);
-    pushCanvas(c2, mirror);     // Now it's mirrored.
+    pushCanvas(canvas2, mirror);
     wait(w);
-    pushCanvas(c2, warpSpeed);  // Since this comes after the mirror filter,
-                                // warpSpeed is not mirrored.
+    pushCanvas(canvas2, warpSpeed);
     wait(w);
   }
 }
 
 class DebuggingSetList extends SetList {
+  DebuggingSetList() { }
+
   DebuggingSetList(SetList setList) {
     super(setList);
   }
 
-  DebuggingSetList() { }
-
   void setup() {
-    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu(20);
-    SineColumns sines = new SineColumns();
-    Pxxxls pxxxls = new Pxxxls(15);
-    Pxxxls pxxxlFilter = new Pxxxls(100);
-    Waves waves = new Waves();
-    Seizure seizure = new Seizure();
-    Mirror mirror = new Mirror();
-    Warp warp = new Warp();
-    Warp warp2 = new Warp();
-    Grid grid = new Grid();
-    Fire fire = new Fire();
-    Trails trails = new Trails();
-    Trails trails2 = new Trails();
-    Bursts bursts = new Bursts();
-    Sparkle sparkle = new Sparkle();
-    Sparkle sparkle2 = new Sparkle();
-    MoviePlayer moviePlayer = new MoviePlayer(myMovie);
-    Breather breather = new Breather();
-    Breather breather2 = new Breather();
-    SimpleWave simpleWave = new SimpleWave();
-    DisplayDisorient displayDisorient = new DisplayDisorient();
-    DisplayDisorient displayDisorient2 = new DisplayDisorient();
-    ScrollDisorient scrollDisorient = new ScrollDisorient();
-    ScrollDisorient scrollDisorient2 = new ScrollDisorient();
-    DisplayImage displayImage = new DisplayImage(selfPortraitMap.getAsPImage(color(255), 0, 0));
-    ScrollImage scrollImage = new ScrollImage(selfPortraitMap.getAsPImage(color(255), 0, 4));
-    //PointPopping pointPopping = new PointPopping(selfPortraitMap.getBitPoints());
     PointPopping pointPopping = new PointPopping(disFont.getBitmap("disorient").getBitmap(true, true, false).getBitPoints());
-
-    moviePlayer.setBlendMode(DODGE);
-    moviePlayer.setPaintMode(moviePlayer.BLEND);
-    pxxxlFilter.setBlendMode(DODGE);
-    pxxxlFilter.setPaintMode(pxxxlFilter.BLEND);
-    warp.hAmp = 1.0;
-    warp.vAmp = 1.0;
-    warp.hCycles = 0.17;
-    warp.vCycles = 0.14;
-    trails.fade = 32;
-    sparkle.threshold = 16;
-    sparkle.nDots = 1200;
-    sparkle.dotToCrossRatio = 1.0;
-    //sparkle.setBlendMode(sparkle.DIRECT);
-    sparkle.c = color(255, 128);
-    sparkle2.nDots = 1000;
-    sparkle2.threshold = 16;
-    sparkle2.setBlendMode(sparkle.DIRECT);
-    sines.theStrokeWeight = 2;
-    breather.setBlendMode(MULTIPLY);
-    breather.c0 = color(pornj, 255);
-    breather.c1 = color(lerpColor(pornj, color(0), 0.7));
-    breather.phaseInc = 0.025;
-    breather2.setBlendMode(MULTIPLY);
-    breather2.c0 = color(lerpColor(pornj, color(0), 0.8));
-    breather2.c1 = color(lerpColor(disorientOrange, color(0), 0.9));
-    breather2.phaseInc = 0.01;
-    simpleWave.amp = 0.125;
-    simpleWave.spread = 1.5;
-    simpleWave.nWaves = 2;
-    simpleWave.bias = 0.25;
-    simpleWave.theColor = color(255, 180);
-    simpleWave.freq = -1.0;
-
-    displayDisorient.x = 24;
-    displayDisorient.y = 30; 
-    displayDisorient.xPad = 0;
-    displayDisorient.doRotate = true;
-    displayDisorient.xFlip = true;
-    displayDisorient.yPad = 1;
-
-    displayDisorient2.x = 32;
-    displayDisorient2.y = 30; 
-    displayDisorient2.xPad = 0;
-    displayDisorient2.yPad = 1;
-    displayDisorient2.doRotate = true;
-    displayDisorient2.yFlip = true;
-
-    scrollDisorient.x = 24;
-    scrollDisorient.y = 210;
-    scrollDisorient.xPad = 0;
-    scrollDisorient.doRotate = true;
-    scrollDisorient.xFlip = true;
-    scrollDisorient.yPad = 1;
-    scrollDisorient.ySpeed = -4;
-
-    scrollDisorient2.x = 32;
-    scrollDisorient2.y = 210; 
-    scrollDisorient2.xPad = 0;
-    scrollDisorient2.yPad = 2;
-    scrollDisorient2.doRotate = true;
-    scrollDisorient2.yFlip = true;
-    scrollDisorient2.ySpeed = 4;
-
-    scrollImage.x = -32;
-    scrollImage.y = 50;
-    scrollImage.xSpeed = 1;
+    Breather breather = new Breather();
+    Sparkle sparkle = new Sparkle();
 
     pointPopping.x = 24;
     pointPopping.y = 30;
     pointPopping.yPad = 1;
     pointPopping.pointsPerFrame = 4;
+    breather.setBlendMode(MULTIPLY);
+    breather.c0 = color(pornj, 255);
+    breather.c1 = color(lerpColor(pornj, color(0), 0.7));
+    breather.phaseInc = 0.025;
+    sparkle.threshold = 16;
+    sparkle.nDots = 1200;
+    sparkle.dotToCrossRatio = 1.0;
+    sparkle.c = color(255, 128);
 
     setCanvas(canvas2, pointPopping); 
     pushCanvas(canvas2, breather);
     pushCanvas(canvas2, sparkle);
-    wait(1.0);
-    playSetList(new Foo(this));
+    wait(6.0);
+    playSetList(new Testing123(this));
     playSetList(new TechDemo(this));
     playSetList(new Demo(this));
   }
 }
 
-class Foo extends SetList {
-  Foo(SetList setList) {
+class Testing123 extends SetList {
+  Testing123() { }
+
+  Testing123(SetList setList) {
     super(setList);
   }
 
