@@ -7,40 +7,30 @@ class SetList extends CanvasRoutineController {
 }
 
 class CanvasRoutineController {
-  ArrayList domeCode;
-  int index = 0;
+  CanvasRoutineController masterControl = this;  // Red spinning cylinder 
+  ArrayList<DomeCode> domeCode;
   boolean[] activeCanvases;
   int nCanvases;
-  CanvasRoutineController masterControl = this;
+  int index = 0;                                 // Current position in DomeCode
 
   CanvasRoutineController() {
-    domeCode = new ArrayList();
+    domeCode = new ArrayList<DomeCode>();
     nCanvases = canvases.length;
     activeCanvases = new boolean[nCanvases];
 
-    for (int i = 0; i < nCanvases; i++) {
-      activeCanvases[i] = false;
-    }
-
-    disableCanvases();
-    wait(0.0);  // Prevents infinite DomeCode loop
-    setup();
+    initDomeCode();
   }
 
   CanvasRoutineController(CanvasRoutineController parent) {
+    masterControl = parent;
     domeCode = parent.domeCode;
     nCanvases = parent.nCanvases;
     activeCanvases = parent.activeCanvases;
-    masterControl = parent;
 
-    for (int i = 0; i < nCanvases; i++) {
-      activeCanvases[i] = false;
-    }
-    setup();
+    initDomeCode();
   }
 
-  void setup() {
-  }
+  void setup() { }
 
   void update() {
     canvasOut.clear();
@@ -82,20 +72,6 @@ class CanvasRoutineController {
     runDomeCode();
   }
 
-  void runDomeCode() {
-    DomeCode wc = (DomeCode) domeCode.get(index);
-    wc.run();
-  }
-
-  private void next() {
-    index++;
-
-    if (index >= domeCode.size()) {
-      index = 0;
-      // if is child, return to parent
-    }
-  }
-
   void setCanvas(Canvas c, CanvasRoutine cr) {
     domeCode.add(new DomeSetCanvas(masterControl, c, cr));
   }
@@ -129,4 +105,23 @@ class CanvasRoutineController {
   }
 
   void playSetList(CanvasRoutineController CRC) { }
+
+  private void initDomeCode() {
+    disableCanvases();  // Resets canvases at beginning of loop
+    wait(0.0);          // Prevents infinite DomeCode loop
+    setup();
+  }
+
+  private void runDomeCode() {
+    DomeCode dc = domeCode.get(index);
+    dc.run();
+  }
+
+  private void next() {
+    index++;
+
+    if (index >= domeCode.size()) {
+      index = 0;
+    }
+  }
 }
