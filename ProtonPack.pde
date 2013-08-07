@@ -10,7 +10,7 @@
 */
 
 
-class SineColumns extends CanvasRoutine {
+class ProtonPack extends CanvasRoutine {
   int resolution = 1;  // Higher value = lower resolution
   float phase = 0.0;
   float strokeWeight0 = 4;
@@ -23,10 +23,6 @@ class SineColumns extends CanvasRoutine {
   private float amp;
   private int w;
   private int h;
-
-  SineColumns() {
-    setPaintMode(DIRECT);
-  }
 
   void reinit() {
     w = pg.width;

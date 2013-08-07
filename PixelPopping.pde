@@ -1,13 +1,13 @@
 class PixelPopping extends CanvasRoutine {
-  ArrayList<BitPoint> bitPoints;
-  ArrayList<BitPoint> visible;
   int x = 0;
   int y = 0;
   int xPad = 0;
   int yPad = 0;
-  int w;
-  int h;
   int pointsPerFrame = 1;
+  private ArrayList<BitPoint> bitPoints;
+  private ArrayList<BitPoint> visible;
+  private int w;
+  private int h;
 
   PixelPopping(ArrayList<BitPoint> bitPoints_) {
     bitPoints = bitPoints_;

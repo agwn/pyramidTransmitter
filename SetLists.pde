@@ -7,7 +7,7 @@ class TechDemo extends SetList {
 
   void setup() {
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
-    SineColumns sines = new SineColumns();
+    ProtonPack protonPack = new ProtonPack();
     Pxxxls pxxxls = new Pxxxls(50);
     Waves waves = new Waves();
     Seizure seizure = new Seizure();
@@ -21,7 +21,7 @@ class TechDemo extends SetList {
     wait(w);
     setCanvas(canvas1, waves);
     wait(w);
-    setCanvas(canvas3, sines);
+    setCanvas(canvas3, protonPack);
     wait(w);
     disableCanvas(canvas0); 
     wait(w);
@@ -35,7 +35,7 @@ class TechDemo extends SetList {
     wait(w);
     pushCanvas(canvas2, waves);
     wait(w);
-    pushCanvas(canvas2, sines);
+    pushCanvas(canvas2, protonPack);
     wait(w);
     pushCanvas(canvas2, mirror);
     wait(w);
@@ -104,7 +104,7 @@ class DebuggingSetList extends SetList {
     Breather breather = new Breather();
     Warp warp = new Warp();
     Sparkle sparkle = new Sparkle();
-    SineColumns sines = new SineColumns();
+    ProtonPack protonPack = new ProtonPack();
 
     pixelPopping.x = 24;
     pixelPopping.y = 30;
@@ -122,16 +122,16 @@ class DebuggingSetList extends SetList {
     warp.yAmp = 0.125;
     warp.xFreq = 0.5;
     warp.xAmp = 0.1;
-    sines.resolution = 1;
-    sines.freq = -0.25; 
-    sines.strokeWeight0 = 2;
-    sines.c0 = color(255, 255, 0, 16);
-    sines.c1 = color(255, 0, 0, 64);
-    sines.nCycles = 0.333;
+    protonPack.resolution = 1;
+    protonPack.freq = -0.25; 
+    protonPack.strokeWeight0 = 2;
+    protonPack.c0 = color(255, 255, 0, 16);
+    protonPack.c1 = color(255, 0, 0, 64);
+    protonPack.nCycles = 0.333;
 
     setCanvas(canvas2, pixelPopping); 
     pushCanvas(canvas2, breather);
-    pushCanvas(canvas2, sines);
+    pushCanvas(canvas2, protonPack);
     pushCanvas(canvas2, sparkle);
     wait(60.0);
     playSetList(new Testing123(this));

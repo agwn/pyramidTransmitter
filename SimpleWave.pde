@@ -1,15 +1,14 @@
 class SimpleWave extends CanvasRoutine {
   color theColor = color(255);
   float nWaves = 1;
-  float phase;
+  float phase = 0.0;
   float amp = 0.5;
   float bias = 0.5;
-  float spread = 0;
+  float spread = 0.0;
   float freq = 1.0;
   private float period;
-
-  int w;
-  int h;
+  private int w;
+  private int h;
 
   void reinit() {
     w = pg.width;
