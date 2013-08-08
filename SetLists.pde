@@ -101,27 +101,31 @@ class DebuggingSetList extends SetList {
 
   void setup() {
     PixelPopping pixelPopping = new PixelPopping(disFont.getBitmap("disorient").getBitmap(true, true, false).getBitPoints());
+    PixelPopping pixelPopping2 = new PixelPopping(disFont.getBitmap("disorient").getBitmap(true, false, false).getBitPoints());
     Breather breather = new Breather();
-    Warp warp = new Warp();
     Sparkle sparkle = new Sparkle();
     ProtonPack protonPack = new ProtonPack();
 
     pixelPopping.x = 24;
-    pixelPopping.y = 30;
+    pixelPopping.y = 26;
     pixelPopping.yPad = 1;
     pixelPopping.pointsPerFrame = 4;
+
+    pixelPopping2.x = 32;
+    pixelPopping2.y = 26;
+    pixelPopping2.yPad = 1;
+    pixelPopping2.pointsPerFrame = 4;
+
     breather.setBlendMode(MULTIPLY);
-    breather.c0 = color(pornj, 255);
-    breather.c1 = color(lerpColor(pornj, color(0), 0.7));
-    breather.freq = 2.0;
+    breather.c0 = color(pornj);
+    breather.c1 = color(lerpColor(disorientOrange, color(0), 0.7));
+    breather.freq = 0.5;
+
     sparkle.threshold = 16;
     sparkle.nDots = 1200;
     sparkle.dotToCrossRatio = 1.0;
     sparkle.c = color(255, 128);
-    warp.yFreq = 1.0;
-    warp.yAmp = 0.125;
-    warp.xFreq = 0.5;
-    warp.xAmp = 0.1;
+
     protonPack.resolution = 1;
     protonPack.freq = -0.25; 
     protonPack.strokeWeight0 = 2;
@@ -130,6 +134,7 @@ class DebuggingSetList extends SetList {
     protonPack.nCycles = 0.333;
 
     setCanvas(canvas2, pixelPopping); 
+    pushCanvas(canvas2, pixelPopping2);
     pushCanvas(canvas2, breather);
     pushCanvas(canvas2, protonPack);
     pushCanvas(canvas2, sparkle);
