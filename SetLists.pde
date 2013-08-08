@@ -19,6 +19,8 @@ class PyramidPartyDemo extends SetList {
 
   void setup() {
     playSetList(new DisorientProtonInto(this));
+    playSetList(new DoSeizure(this));
+    playSetList(new DisorientAllTheThings(this));
     playSetList(new PornjscachInkBlotter(this));
     wait(1.0);
   }
@@ -171,6 +173,116 @@ class DisorientProtonInto extends SetList {
 
     fadeOut(5.0, canvas3);
     wait(6.0);
+  }
+}
+
+class DoSeizure extends SetList {
+  DoSeizure() { }
+
+  DoSeizure(SetList setList) {
+    super(setList);
+  }
+
+  void setup() {
+    Seizure seizure = new Seizure();
+    setCanvas(canvas2, seizure);
+    wait(0.25);
+  }
+}
+
+class DisorientAllTheThings extends SetList {
+  DisorientAllTheThings() { }
+
+  DisorientAllTheThings(SetList setList) {
+    super(setList);
+  }
+  
+  void setup() {
+    Waves waves = new Waves();
+    Warp warp = new Warp();
+    Trails trails = new Trails();
+    Trails trails2 = new Trails();
+    Sparkle sparkle = new Sparkle();
+    Sparkle sparkle2 = new Sparkle();
+    Breather breather = new Breather();
+    Breather breather2 = new Breather();
+    SimpleWave simpleWave = new SimpleWave();
+    DisplayDisorient displayDisorient = new DisplayDisorient();
+    DisplayDisorient displayDisorient2 = new DisplayDisorient();
+    ScrollDisorient disorientScroll = new ScrollDisorient();
+    ScrollDisorient disorientScroll2 = new ScrollDisorient();
+
+    warp.yAmp = 1.0;
+    warp.xAmp = 1.0;
+    warp.yFreq = 0.17;
+    warp.xFreq = 0.14;
+    trails.fade = 32;
+    sparkle.threshold = 16;
+    sparkle.nDots = 1200;
+    sparkle.dotToCrossRatio = 1.0;
+    sparkle.c = color(255, 128);
+    sparkle2.nDots = 1000;
+    sparkle2.threshold = 16;
+    sparkle2.setBlendMode(sparkle.DIRECT);
+    breather.setBlendMode(MULTIPLY);
+    breather.c0 = color(pornj, 255);
+    breather.c1 = color(disorientOrange, 255);
+    breather.freq = 0.25;
+    breather2.setBlendMode(MULTIPLY);
+    breather2.c0 = color(lerpColor(pornj, color(0), 0.8));
+    breather2.c1 = color(lerpColor(disorientOrange, color(0), 0.9));
+    breather2.freq = 0.333;
+    simpleWave.amp = 0.125;
+    simpleWave.spread = 1.5;
+    simpleWave.nWaves = 2;
+    simpleWave.bias = 0.25;
+    simpleWave.theColor = color(255, 180);
+    simpleWave.freq = -1.0;
+
+    ArrayList dsa = new ArrayList();
+
+    for (int i = 0; i < 8; i++) {
+      ScrollDisorient ds = new ScrollDisorient();
+      ds.xPad = 0;
+      ds.yPad = 2;
+      ds.x = i * 8;
+      ds.y = 210;
+      if (i < 4) {
+        ds.yLimitTop = 180 - i * 60;
+      }
+      else {
+        ds.yLimitTop = 180 - (7 - i) * 60;
+      }
+      ds.yLimitBottom = 210;
+      ds.doRotate = true;
+
+      if (i % 2 == 0) {
+        ds.xFlip = true;
+        ds.ySpeed = -4;
+      }
+      else {
+        ds.yFlip = true;
+        ds.ySpeed = 4;
+      }
+
+      dsa.add(ds);
+    }
+
+    setCanvas(canvas2, simpleWave);
+    pushCanvas(canvas2, warp);
+    pushCanvas(canvas2, sparkle2);
+    pushCanvas(canvas2, trails);
+    pushCanvas(canvas2, breather2);
+
+    setCanvas(canvas3, (ScrollDisorient) dsa.get(0));
+
+    for (int i = 1; i < 8; i++) {
+      pushCanvas(canvas3, (ScrollDisorient) dsa.get(i));
+    }
+
+    pushCanvas(canvas3, breather);
+    pushCanvas(canvas3, sparkle);
+    wait(30.0);
   }
 }
 
