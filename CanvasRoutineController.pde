@@ -90,6 +90,16 @@ class CanvasRoutineController {
     domeCode.add(new DomeCrossfade(masterControl, waitFrameCounter, c0, c1));
   }
 
+  void fadeIn(float seconds, Canvas canvas) {
+    int waitFrameCounter = (int) (seconds * FRAMERATE);
+    domeCode.add(new DomeFadeIn(masterControl, waitFrameCounter, canvas));
+  }
+
+  void fadeOut(float seconds, Canvas canvas) {
+    int waitFrameCounter = (int) (seconds * FRAMERATE);
+    domeCode.add(new DomeFadeOut(masterControl, waitFrameCounter, canvas));
+  }
+
   void disableCanvas(Canvas c) {
     domeCode.add(new DomeDisableCanvas(masterControl, c));
   }

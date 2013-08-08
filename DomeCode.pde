@@ -151,6 +151,108 @@ class DomeCrossfade extends DomeCode {
   }
 }
 
+class DomeFadeIn extends DomeCode {
+  Canvas canvas;
+  int frames;
+  float framesInv;
+  int frameCounter;
+  boolean isInitialized = false;
+
+  DomeFadeIn(CanvasRoutineController controller_, int frames_, Canvas canvas_) {
+    controller = controller_;
+    frames = frames_;
+    framesInv = 1.0 / frames;
+    canvas = canvas_;
+  }
+
+  void run() {
+    if (!isInitialized) {
+      init();
+      canvas.brightness = 0.0;
+    }
+
+    frameCounter--;
+
+    canvas.brightness += framesInv;
+ 
+    if (frameCounter <= 0) {
+      canvas.brightness = 1.0;
+      end();
+      controller.next();
+    }
+  }
+
+  void init() {
+    isInitialized = true;
+    frameCounter = frames;
+
+    for (int i = 0; i < canvases.length; i++) {
+      if (canvas == canvases[i]) {
+        controller.activeCanvases[i] = true;
+        break;
+      }
+    }
+  }
+
+  void end() {
+    isInitialized = false;
+  }
+}
+
+class DomeFadeOut extends DomeCode {
+  Canvas canvas;
+  int frames;
+  float framesInv;
+  int frameCounter;
+  boolean isInitialized = false;
+
+  DomeFadeOut(CanvasRoutineController controller_, int frames_, Canvas canvas_) {
+    controller = controller_;
+    frames = frames_;
+    framesInv = 1.0 / frames;
+    canvas = canvas_;
+  }
+
+  void run() {
+    if (!isInitialized) {
+      init();
+      canvas.brightness = 1.0;
+    }
+
+    frameCounter--;
+
+    canvas.brightness -= framesInv;
+ 
+    if (frameCounter <= 0) {
+      canvas.brightness = 0.0;
+      end();
+      controller.next();
+
+      for (int i = 0; i < canvases.length; i++) {
+        if (canvas == canvases[i]) {
+          controller.activeCanvases[i] = false;
+          break;
+        }
+      }
+    }
+  }
+
+  void init() {
+    isInitialized = true;
+    frameCounter = frames;
+
+    for (int i = 0; i < canvases.length; i++) {
+      if (canvas == canvases[i]) {
+        controller.activeCanvases[i] = true;
+        break;
+      }
+    }
+  }
+
+  void end() {
+    isInitialized = false;
+  }
+}
 class DomeEnableCanvas extends DomeCode {
   Canvas canvas;
 

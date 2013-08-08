@@ -8,6 +8,7 @@ import codeanticode.gsvideo.*;
 SetList setList;
 
 // Step 1. Create set list variable
+PyramidPartyDemo pyramidPartyDemo;
 TutorialNoisePlayer tutorialNoise;
 TutMovingLinesSet tutMovingLines;
 TutorialSimpleSequence tutorialSimpleSequence;
@@ -21,6 +22,7 @@ void setup() {
   setupPyramid();
 
   // Step 2. Instantiate set list.
+  pyramidPartyDemo = new PyramidPartyDemo();
   tutorialNoise = new TutorialNoisePlayer();
   tutMovingLines = new TutMovingLinesSet();
   tutorialSimpleSequence = new TutorialSimpleSequence();
@@ -29,7 +31,7 @@ void setup() {
   debuggingSetList = new DebuggingSetList();
 
   // Step 3. Set active player to set list
-  setList = debuggingSetList;
+  setList = pyramidPartyDemo;
 }
 
 void draw() {
