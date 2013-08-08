@@ -18,13 +18,80 @@ class PyramidPartyDemo extends SetList {
   }
 
   void setup() {
-//    playSetList(new Other(this));
     playSetList(new DisorientProtonInto(this));
     playSetList(new DoSeizure(this));
     playSetList(new DisorientAllTheThings(this));
+    playSetList(new Other(this));
     playSetList(new PortalGel(this));
     playSetList(new PornjscachInkBlotter(this));
-    wait(1.0);
+  }
+}
+
+class Other extends SetList {
+  Other() { }
+
+  Other(SetList setList) {
+    super(setList);
+  }
+
+  void setup() {
+    Pxxxls pxxxls = new Pxxxls(100);
+    ProtonPack protonPack = new ProtonPack();
+    Sparkle sparkle = new Sparkle();
+    Mirror mirror = new Mirror();
+    Warp warp = new Warp();
+    Warp warp2 = new Warp();
+    Fire fire = new Fire();
+    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu(200);
+    Breather breather = new Breather();
+
+    protonPack.strokeWeight0 = 3;
+    protonPack.strokeWeight1 = 3;
+    protonPack.freq = 0.333;
+    protonPack.nCycles = 0.5;
+
+    sparkle.nDots = 100;
+
+    warp.xFreq = 0.45;
+    warp.yFreq = 0.333;
+    warp.xAmp = 0.65;
+    warp.yAmp = 0.633;
+
+    warp.xFreq = 0.1;
+    warp.yFreq = 0.3;
+    warp.xAmp = 0.45;
+    warp.yAmp = 1.0;
+
+    breather.c0 = color(pornj);
+    breather.c1 = color(disorientOrange);
+    breather.freq = 0.333;
+    breather.setBlendMode(MULTIPLY);
+
+    setCanvas(canvas0, pxxxls);
+    wait(30.0);
+
+    setCanvas(canvas2, protonPack);
+    pushCanvas(canvas2, sparkle);
+    crossfade(5.0, canvas0, canvas2); 
+    wait(15.0);
+
+    pushCanvas(canvas2, warp);
+    pushCanvas(canvas2, mirror);
+    wait(30.0);
+
+    setCanvas(canvas3, fire);
+    crossfade(5.0, canvas2, canvas3);
+    wait(10.0);
+
+    setCanvas(canvas2, warpSpeed);
+    pushCanvas(canvas2, warp);
+    pushCanvas(canvas2, breather);
+    fadeIn(10.0, canvas2);
+    wait(15.0);
+
+    fadeOut(5.0, canvas3);
+    wait(20.0);
+    fadeOut(5.0, canvas2);
   }
 }
 
