@@ -18,9 +18,11 @@ class PyramidPartyDemo extends SetList {
   }
 
   void setup() {
+//    playSetList(new Other(this));
     playSetList(new DisorientProtonInto(this));
     playSetList(new DoSeizure(this));
     playSetList(new DisorientAllTheThings(this));
+    playSetList(new PortalGel(this));
     playSetList(new PornjscachInkBlotter(this));
     wait(1.0);
   }
@@ -36,7 +38,8 @@ class PornjscachInkBlotter extends SetList {
   void setup() {
     Pxxxls pxxxls = new Pxxxls(15);
     Pxxxls pxxxlFilter = new Pxxxls(100);
-    Waves waves = new Waves();
+    //Waves waves = new Waves();
+    SimpleWave waves = new SimpleWave();
     Mirror mirror = new Mirror();
     Warp warp = new Warp();
     Grid grid = new Grid();
@@ -285,6 +288,56 @@ class DisorientAllTheThings extends SetList {
     wait(30.0);
   }
 }
+
+class PortalGel extends SetList {
+  PortalGel() { }
+
+  PortalGel(SetList setList) {
+    super(setList);
+  }
+
+  void setup() {
+    Mirror mirror = new Mirror();
+    Warp warp = new Warp();
+    Trails trails = new Trails();
+    Sparkle sparkle2 = new Sparkle();
+    Breather breather = new Breather();
+    SimpleWave simpleWave = new SimpleWave();
+
+    warp.yAmp = 0.25;
+    warp.xAmp = 1.5;
+    warp.yFreq = 0.17;
+    warp.xFreq = 0.24;
+
+    trails.fade = 64;
+
+    sparkle2.nDots = 200;
+    sparkle2.threshold = 16;
+
+    breather.setBlendMode(MULTIPLY);
+    breather.c0 = color(pornj);
+    breather.c1 = color(disorientOrange);
+    breather.freq = 0.125;
+
+    simpleWave.amp = 0.125;
+    simpleWave.spread = 0.5;
+    simpleWave.nWaves = 2;
+    simpleWave.bias = 0.25;
+    simpleWave.theColor = color(255, 180);
+    simpleWave.freq = -0.5;
+
+    setCanvas(canvas2, simpleWave);
+    pushCanvas(canvas2, breather);
+    pushCanvas(canvas2, warp);
+    pushCanvas(canvas2, trails);
+    pushCanvas(canvas2, mirror);
+    pushCanvas(canvas2, sparkle2);
+    wait(30.0);
+  }
+}
+
+
+
 
 class TechDemo extends SetList {
   TechDemo() { }
