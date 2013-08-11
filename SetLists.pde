@@ -552,3 +552,27 @@ class DebuggingSetList extends SetList {
   }
 }
 
+class UncertainSetList extends SetList {
+  UncertainSetList() { }
+
+  UncertainSetList(SetList setList) {
+    super(setList);
+  }
+
+  void setup() {
+   
+    Trails trails = new Trails();
+
+    int maxHeartsPow = 5; // 2^5=32
+
+    for (int i=0; i<maxHeartsPow; i++) {
+      int numberOfHearts = (int)pow(2,i);
+      float secondsPerOneBeat = 3.0f/numberOfHearts; // as number of hears grow, speed goes up!
+      DisorientHeartBeat heart = new DisorientHeartBeat(numberOfHearts, secondsPerOneBeat);
+    
+      setCanvas(canvas2, heart  ); 
+      pushCanvas(canvas2, trails);
+      wait(9.0);
+    }
+  }
+}
