@@ -1,24 +1,23 @@
 class Flash extends CanvasRoutine {
-  color c = color(255);
+  ModFloat minNextTime;
+  ModFloat maxNextTime;
   float decayTime = 1.0;;
-  float minNextTime = 0;
-  float maxNextTime = 60.0;
+  color c = color(255);
 
   private int nextCounter;
   private int decayCounter = 0;
   private int w;
   private int h;
 
-  public Flash() {
-    //setPaintMode(DIRECT);
-    //setBlendMode(SCREEN);
+  Flash() {
+    minNextTime = new ModFloat(0.0);
+    maxNextTime = new ModFloat(1.0);
   }
 
   void reinit() {
     w = pg.width;
     h = pg.height;
-
-  }
+}
 
   void draw() {
     pg.beginDraw();
@@ -37,6 +36,6 @@ class Flash extends CanvasRoutine {
   }
 
   private void setNextTime() {
-    nextCounter = (int) (random(minNextTime, maxNextTime) * FRAMERATE);
+    nextCounter = (int) (random(minNextTime.get(), maxNextTime.get()) * FRAMERATE);
   }
 }

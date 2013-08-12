@@ -116,6 +116,10 @@ class CanvasRoutineController {
 
   void playSetList(CanvasRoutineController CRC) { }
 
+  void setParam(ModFloat m, float v) {
+    domeCode.add(new DomeSetParameter(masterControl, m, v));
+  }
+
   private void initDomeCode() {
     disableCanvases();  // Resets canvases at beginning of loop
 //    wait(0.0);          // Prevents infinite DomeCode loop
