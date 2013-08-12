@@ -52,13 +52,13 @@ class Other extends SetList {
 
     sparkle.nDots = 100;
 
-    warp.xFreq = 0.45;
-    warp.yFreq = 0.333;
+    warp.xFreq.set(0.45);
+    warp.yFreq.set(0.333);
     warp.xAmp.set(0.65);
     warp.yAmp.set(0.633);
 
-    warp.xFreq = 0.1;
-    warp.yFreq = 0.3;
+    warp.xFreq.set(0.1);
+    warp.yFreq.set(0.3);
     warp.xAmp.set(0.45);
     warp.yAmp.set(1.0);
 
@@ -120,8 +120,8 @@ class PornjscachInkBlotter extends SetList {
 
     pxxxlFilter.setPaintMode(pxxxlFilter.BLEND);
 
-    warp.yFreq = 0.17;
-    warp.xFreq = 0.24;
+    warp.yFreq.set(0.17);
+    warp.xFreq.set(0.24);
 
     trails.fade = 240;
 
@@ -280,8 +280,8 @@ class DisorientAllTheThings extends SetList {
     ScrollDisorient disorientScroll = new ScrollDisorient();
     ScrollDisorient disorientScroll2 = new ScrollDisorient();
 
-    warp.yFreq = 0.17;
-    warp.xFreq = 0.14;
+    warp.yFreq.set(0.17);
+    warp.xFreq.set(0.14);
     trails.fade = 32;
     sparkle.threshold = 16;
     sparkle.nDots = 1200;
@@ -369,8 +369,8 @@ class PortalGel extends SetList {
 
     warp.yAmp.set(0.25);
     warp.xAmp.set(1.5);
-    warp.yFreq = 0.17;
-    warp.xFreq = 0.24;
+    warp.yFreq.set(0.17);
+    warp.xFreq.set(0.24);
 
     trails.fade = 64;
 
@@ -598,4 +598,3 @@ class Tester extends SetList {
     wait(16.0);
   }
 }
-
