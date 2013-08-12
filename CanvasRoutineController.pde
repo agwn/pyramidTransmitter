@@ -117,7 +117,11 @@ class CanvasRoutineController {
   void playSetList(CanvasRoutineController CRC) { }
 
   void setParam(ModFloat m, float v) {
-    domeCode.add(new DomeSetParameter(masterControl, m, v));
+    domeCode.add(new DomeSetModFloat(masterControl, m, v));
+  }
+
+  void setParam(ModColor c, color v) {
+    domeCode.add(new DomeSetModColor(masterControl, c, v));
   }
 
   private void initDomeCode() {

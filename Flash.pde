@@ -1,8 +1,8 @@
 class Flash extends CanvasRoutine {
   ModFloat minNextTime;
   ModFloat maxNextTime;
-  float decayTime = 1.0;;
-  color c = color(255);
+  ModFloat decayTime;
+  ModColor c;
 
   private int nextCounter;
   private int decayCounter = 0;
@@ -12,6 +12,8 @@ class Flash extends CanvasRoutine {
   Flash() {
     minNextTime = new ModFloat(0.0);
     maxNextTime = new ModFloat(1.0);
+    decayTime = new ModFloat(1.0);
+    c = new ModColor(color(255));
   }
 
   void reinit() {
@@ -22,14 +24,16 @@ class Flash extends CanvasRoutine {
   void draw() {
     pg.beginDraw();
 
-    pg.background(lerpColor(color(c, 0), c, constrain((float) decayCounter / (decayTime * FRAMERATE), 0.0, 1.0)));
+    color thisColor = c.get();
+
+    pg.background(lerpColor(color(thisColor, 0), thisColor, constrain((float) decayCounter / (decayTime.get() * FRAMERATE), 0.0, 1.0)));
 
     nextCounter--;
     decayCounter--;
 
     if (nextCounter <= 0) {
       setNextTime();
-      decayCounter = (int) (decayTime * FRAMERATE);
+      decayCounter = (int) (decayTime.get() * FRAMERATE);
     }
 
     pg.endDraw();

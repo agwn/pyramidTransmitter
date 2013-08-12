@@ -13,3 +13,19 @@ class ModFloat {
     return value;
   }
 }
+
+class ModColor {
+  private color c;
+
+  ModColor(color c_) {
+    c = c_;
+  }
+
+  void set(color c_) {
+    c = c_;
+  }
+
+  color get() {
+    return c;
+  }
+}

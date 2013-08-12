@@ -295,11 +295,11 @@ class DomeDisableCanvas extends DomeCode {
   }
 }
 
-class DomeSetParameter extends DomeCode {
+class DomeSetModFloat extends DomeCode {
   ModFloat m;
   float v;
 
-  DomeSetParameter(CanvasRoutineController controller_, ModFloat m_, float v_) {
+  DomeSetModFloat(CanvasRoutineController controller_, ModFloat m_, float v_) {
     controller = controller_;
     m = m_;
     v = v_;
@@ -307,6 +307,23 @@ class DomeSetParameter extends DomeCode {
 
   void run() {
     m.set(v);
+    controller.next();
+    controller.runDomeCode();
+  }
+}
+
+class DomeSetModColor extends DomeCode {
+  ModColor c;
+  color v;
+
+  DomeSetModColor(CanvasRoutineController controller_, ModColor c_, color v_) {
+    controller = controller_;
+    c = c_;
+    v = v_;
+  }
+
+  void run() {
+    c.set(v);
     controller.next();
     controller.runDomeCode();
   }

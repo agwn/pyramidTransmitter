@@ -588,17 +588,15 @@ class Tester extends SetList {
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
     Flash flash = new Flash();
 
-//    flash.minNextTime = 0.5;
-//    flash.maxNextTime = 0.5;
-    flash.decayTime = 0.25;
-    flash.c = color(disorientOrange, 128);
-
-
+    setParam(flash.c, pornj);
+    setParam(flash.decayTime, 0.05);
     setParam(flash.minNextTime, 0.125);
     setParam(flash.maxNextTime, 0.125);
     setCanvas(canvas2, warpSpeed);
     pushCanvas(canvas2, flash);
     wait(2.0);
+    setParam(flash.c, disorientOrange);
+    setParam(flash.decayTime, 0.125);
     setParam(flash.minNextTime, 0.25);
     setParam(flash.maxNextTime, 0.25);
     wait(2.0);
