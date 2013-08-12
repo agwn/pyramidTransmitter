@@ -27,7 +27,6 @@ class ModLine extends ModEvent {
   }
 
   void run() {
-    println(frameCounter);
     if (!isInitialized) {
       init();
     }
@@ -38,7 +37,6 @@ class ModLine extends ModEvent {
     }
 
     modFloat.set(modFloat.get() - change);
-    println("mf: " + modFloat.get());
     frameCounter--;
   }
 

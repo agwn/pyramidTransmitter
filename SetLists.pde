@@ -54,13 +54,13 @@ class Other extends SetList {
 
     warp.xFreq = 0.45;
     warp.yFreq = 0.333;
-    warp.xAmp = 0.65;
-    warp.yAmp = 0.633;
+    warp.xAmp.set(0.65);
+    warp.yAmp.set(0.633);
 
     warp.xFreq = 0.1;
     warp.yFreq = 0.3;
-    warp.xAmp = 0.45;
-    warp.yAmp = 1.0;
+    warp.xAmp.set(0.45);
+    warp.yAmp.set(1.0);
 
     breather.c0 = color(pornj);
     breather.c1 = color(disorientOrange);
@@ -120,8 +120,6 @@ class PornjscachInkBlotter extends SetList {
 
     pxxxlFilter.setPaintMode(pxxxlFilter.BLEND);
 
-    warp.yAmp = 1.0;
-    warp.xAmp = 1.0;
     warp.yFreq = 0.17;
     warp.xFreq = 0.24;
 
@@ -282,8 +280,6 @@ class DisorientAllTheThings extends SetList {
     ScrollDisorient disorientScroll = new ScrollDisorient();
     ScrollDisorient disorientScroll2 = new ScrollDisorient();
 
-    warp.yAmp = 1.0;
-    warp.xAmp = 1.0;
     warp.yFreq = 0.17;
     warp.xFreq = 0.14;
     trails.fade = 32;
@@ -371,8 +367,8 @@ class PortalGel extends SetList {
     Breather breather = new Breather();
     SimpleWave simpleWave = new SimpleWave();
 
-    warp.yAmp = 0.25;
-    warp.xAmp = 1.5;
+    warp.yAmp.set(0.25);
+    warp.xAmp.set(1.5);
     warp.yFreq = 0.17;
     warp.xFreq = 0.24;
 
@@ -586,22 +582,20 @@ class Tester extends SetList {
 
   void setup() {
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
-    Flash flash = new Flash();
+    Warp warp = new Warp();
 
-    setParam(flash.c, pornj);
-    setParam(flash.decayTime, 0.05);
-    setParam(flash.minNextTime, 0.25);
-    setParam(flash.maxNextTime, 0.25);
+    setParam(warp.xAmp, 0.0);
+    setParam(warp.yAmp, 0.0);
     setCanvas(canvas2, warpSpeed);
-    pushCanvas(canvas2, flash);
-    line(4.0, flash.decayTime, 0.25, 0.1); 
-    wait(4.0);
-    line(4.0, flash.decayTime, 0.1, 0.25); 
-    setParam(flash.c, disorientOrange);
-    setParam(flash.decayTime, 0.125);
-    setParam(flash.minNextTime, 0.25);
-    setParam(flash.maxNextTime, 0.25);
-    wait(4.0);
+    pushCanvas(canvas2, warp);
+    wait(1.0);
+    line(16.0, warp.yAmp, 0.0, 4.0);
+    wait(16.0);
+    line(16.0, warp.yAmp, 4.0, 0.0);
+    line(16.0, warp.xAmp, 0.0, 4.0);
+    wait(16.0);
+    line(16.0, warp.xAmp, 4.0, 0.0);
+    wait(16.0);
   }
 }
 

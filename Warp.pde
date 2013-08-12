@@ -1,11 +1,11 @@
 class Warp extends CanvasRoutine {
   boolean warpHorizontal;
   boolean warpVertical;
-  float yAmp = 1.0;
+  ModFloat yAmp;
   float yFreq = 0.25;
   float yPhase = 0.25;
   float yBias = 0.0;
-  float xAmp = 1.0;
+  ModFloat xAmp;
   float xFreq = 0.25;
   float xPhase = 0.25;
   float xBias = 0.0;
@@ -15,6 +15,8 @@ class Warp extends CanvasRoutine {
   public Warp() {
     warpHorizontal = true;
     warpVertical = true;
+    yAmp = new ModFloat(1.0);
+    xAmp = new ModFloat(1.0);
     setPaintMode(DIRECT);
   }
 
@@ -29,7 +31,7 @@ class Warp extends CanvasRoutine {
     if (warpVertical) {
       float xPhaseInc = xFreq * 1.0 / w; 
       float tempPhase = xPhase;
-      float amp = xAmp * h;
+      float amp = xAmp.get() * h;
 
       for (int x = 0; x < w; x++) {
         float v = sineTableNorm[(int) (tempPhase * sineTableSize)];
@@ -58,7 +60,7 @@ class Warp extends CanvasRoutine {
     if (warpHorizontal) {
       float yPhaseInc = yFreq * 1.0 / h; 
       float tempPhase = yPhase;
-      float amp = yAmp * w;
+      float amp = yAmp.get() * w;
 
       for (int y = 0; y < h; y++) {
         float v = sineTableNorm[(int) (tempPhase * sineTableSize)];
