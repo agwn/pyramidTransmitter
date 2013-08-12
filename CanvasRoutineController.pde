@@ -9,6 +9,8 @@ class SetList extends CanvasRoutineController {
 class CanvasRoutineController {
   CanvasRoutineController masterControl = this;  // Red spinning cylinder 
   ArrayList<DomeCode> domeCode;
+  ArrayList<ModEvent> modEvents;
+  ArrayList<ModEvent> modEventsGarbage;
   boolean[] activeCanvases;
   int nCanvases;
   int index = 0;                                 // Current position in DomeCode
@@ -17,6 +19,8 @@ class CanvasRoutineController {
     domeCode = new ArrayList<DomeCode>();
     nCanvases = canvases.length;
     activeCanvases = new boolean[nCanvases];
+    modEvents = new ArrayList<ModEvent>();
+    modEventsGarbage = new ArrayList<ModEvent>();
 
     initDomeCode();
   }
@@ -26,6 +30,7 @@ class CanvasRoutineController {
     domeCode = parent.domeCode;
     nCanvases = parent.nCanvases;
     activeCanvases = parent.activeCanvases;
+    modEvents = parent.modEvents;
 
     initDomeCode();
   }
@@ -33,6 +38,8 @@ class CanvasRoutineController {
   void setup() { }
 
   void update() {
+    runModEvents();
+    cleanupModEvents();
     canvasOut.clear();
 
     for (int i = 0; i < nCanvases; i++) {
@@ -124,6 +131,25 @@ class CanvasRoutineController {
     domeCode.add(new DomeSetModColor(masterControl, c, v));
   }
 
+  void line(float seconds, ModFloat m, float start, float end) {
+    ModLine modLine = new ModLine(masterControl, m, (int) (seconds * FRAMERATE), start, end);
+    domeCode.add(new DomeLine(masterControl, modLine));
+  }
+
+  void removeModEvent(ModEvent m) {
+    modEventsGarbage.add(m);
+  }
+
+  void cleanupModEvents() {
+    for (ModEvent m : modEventsGarbage) {
+      while (modEvents.contains(m)) {
+        modEvents.remove(m);
+      }
+    }
+
+    modEventsGarbage.clear();
+  }
+
   private void initDomeCode() {
     disableCanvases();  // Resets canvases at beginning of loop
 //    wait(0.0);          // Prevents infinite DomeCode loop
@@ -132,6 +158,12 @@ class CanvasRoutineController {
 
   private void runDomeCode() {
     domeCode.get(index).run();
+  }
+
+  private void runModEvents() {
+    for (ModEvent e : modEvents) {
+      e.run();
+    }
   }
 
   private void next() {

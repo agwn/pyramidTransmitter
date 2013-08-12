@@ -590,16 +590,18 @@ class Tester extends SetList {
 
     setParam(flash.c, pornj);
     setParam(flash.decayTime, 0.05);
-    setParam(flash.minNextTime, 0.125);
-    setParam(flash.maxNextTime, 0.125);
+    setParam(flash.minNextTime, 0.25);
+    setParam(flash.maxNextTime, 0.25);
     setCanvas(canvas2, warpSpeed);
     pushCanvas(canvas2, flash);
-    wait(2.0);
+    line(4.0, flash.decayTime, 0.25, 0.1); 
+    wait(4.0);
+    line(4.0, flash.decayTime, 0.1, 0.25); 
     setParam(flash.c, disorientOrange);
     setParam(flash.decayTime, 0.125);
     setParam(flash.minNextTime, 0.25);
     setParam(flash.maxNextTime, 0.25);
-    wait(2.0);
+    wait(4.0);
   }
 }
 

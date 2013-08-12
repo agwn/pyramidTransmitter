@@ -328,3 +328,19 @@ class DomeSetModColor extends DomeCode {
     controller.runDomeCode();
   }
 }
+
+class DomeLine extends DomeCode {
+  ModLine modLine;
+
+  DomeLine(CanvasRoutineController controller_, ModLine modLine_) {
+    controller = controller_;
+    modLine = modLine_;
+  }
+
+  void run() {
+    modLine.init();
+    controller.modEvents.add(modLine);  
+    controller.next();
+    controller.runDomeCode();
+  }
+}
