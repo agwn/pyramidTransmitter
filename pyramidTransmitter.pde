@@ -17,6 +17,7 @@ Demo demo;
 DebuggingSetList debuggingSetList;
 DisorientProtonInto disorientProtonInto;
 UncertainSetList uncertainSetList;
+Tester tester;
 
 void setup() {
   size(602, 420, P2D);
@@ -33,9 +34,12 @@ void setup() {
   debuggingSetList = new DebuggingSetList();
   disorientProtonInto = new DisorientProtonInto();
   uncertainSetList = new UncertainSetList();
+  tester = new Tester();
+
   // Step 3. Set active player to set list
   //setList = pyramidPartyDemo;
-  setList = uncertainSetList;
+  //setList = uncertainSetList;
+  setList = tester;
 }
 
 void draw() {

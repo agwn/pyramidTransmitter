@@ -576,3 +576,35 @@ class UncertainSetList extends SetList {
     }
   }
 }
+
+class Tester extends SetList {
+  Tester() { }
+
+  Tester(SetList setList) {
+    super(setList);
+  }
+
+  void setup() {
+    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
+    ProtonPack protonPack = new ProtonPack();
+    Flash flash = new Flash();
+    Flash flash2 = new Flash();
+
+    flash.minNextTime = 0.5;
+    flash.maxNextTime = 0.5;
+    flash.decayTime = 0.25;
+    flash.c = color(disorientOrange, 128);
+
+    flash2.minNextTime = 1.0;
+    flash2.maxNextTime = 1.0;
+    flash2.decayTime = 0.25;
+    flash2.c = color(pornj, 128);
+
+    setCanvas(canvas2, warpSpeed);
+    //pushCanvas(canvas2, protonPack);
+    pushCanvas(canvas2, flash);
+    pushCanvas(canvas2, flash2);
+    wait(10.0);
+  }
+}
+

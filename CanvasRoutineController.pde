@@ -118,7 +118,7 @@ class CanvasRoutineController {
 
   private void initDomeCode() {
     disableCanvases();  // Resets canvases at beginning of loop
-    wait(0.0);          // Prevents infinite DomeCode loop
+//    wait(0.0);          // Prevents infinite DomeCode loop
     setup();
   }
 
