@@ -4,6 +4,7 @@ class TutorialNoisePlayer extends SetList {
     noise.nPixels = 100;
 
     setCanvas(canvas2, noise);
+    wait(5.0);
   }
 }
 
