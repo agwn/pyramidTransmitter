@@ -582,28 +582,25 @@ class Tester extends SetList {
 
   void setup() {
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
-    Warp warp = new Warp();
+    PixelCreation pc = new PixelCreation(disFont.getBitmap("disorient").getBitmap(true, true, false).getBitPoints());
     Mirror mirror = new Mirror();
+    Sparkle sparkle = new Sparkle();
 
-    setParam(warp.xAmp, 0.0);
-    setParam(warp.yAmp, 0.0);
-    setCanvas(canvas2, warpSpeed);
-    pushCanvas(canvas2, warp);
+    pc.x = 24;
+    pc.y = 26;
+    pc.yPad = 1;
+    pc.pointsPerFrame = 2;
+    pc.frames = 20;
+    pc.cStart = color(disorientOrange, 0);
+    pc.cEnd = pornj;
+    pc.verticalToHorizontalRatio = 0.5;
+
+    sparkle.nDots = 500;
+    sparkle.dotToCrossRatio = 1.0;
+
+    setCanvas(canvas2, pc);
     pushCanvas(canvas2, mirror);
-
-    wait(1.0);
-
-    line(16.0, warp.yAmp, 0.0, 1.0);
-    line(16.0, warp.yFreq, 0.1, 1.1);
-
-    wait(16.0);
-
-    line(16.0, warp.yAmp, 1.0, 0.0);
-    line(16.0, warp.xAmp, 0.0, 1.0);
-
-    wait(16.0);
-
-    line(16.0, warp.xAmp, 1.0, 0.0);
-    wait(16.0);
+    pushCanvas(canvas2, sparkle);
+    wait(10.0);
   }
 }
