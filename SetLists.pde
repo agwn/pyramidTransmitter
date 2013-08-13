@@ -560,7 +560,20 @@ class UncertainSetList extends SetList {
   }
 
   void setup() {
-
+    // StarBand demo
+    {
+      int secondsToHoldTheBand = 6;
+      int PercentBandWidthMin = 2;
+      int PercentBandWidthMax = 15;
+        StarBand starBand = new StarBand(secondsToHoldTheBand,PercentBandWidthMin, PercentBandWidthMax);
+      
+      for(int i = 0; i < 3; i++) { 
+        setCanvas(canvas0, starBand); 
+        wait(3.0);
+        fadeOut(3.0, canvas0);
+      }
+    }
+    
     // Simple Circles demo
     {
       float secondsPerOneTravel = 6;
