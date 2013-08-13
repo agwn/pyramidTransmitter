@@ -1,4 +1,4 @@
-class PixelCreation extends CanvasRoutine {
+class Energize extends CanvasRoutine {
   int x = 0;
   int y = 0;
   int xPad = 0;
@@ -10,12 +10,12 @@ class PixelCreation extends CanvasRoutine {
   float verticalToHorizontalRatio = 1.0;
   private ArrayList<BitPoint> bitPoints;
   private ArrayList<BitPoint> visible;
-  private ArrayList<PixelCreationAnimation> animations;
-  private ArrayList<PixelCreationAnimation> animationGarbage;
+  private ArrayList<EnergizeAnimation> animations;
+  private ArrayList<EnergizeAnimation> animationGarbage;
   private int w;
   private int h;
 
-  PixelCreation(ArrayList<BitPoint> bitPoints_) {
+  Energize(ArrayList<BitPoint> bitPoints_) {
     bitPoints = bitPoints_;
     Collections.shuffle(bitPoints);
   }
@@ -24,8 +24,8 @@ class PixelCreation extends CanvasRoutine {
     w = pg.width;
     h = pg.height;
     visible = new ArrayList<BitPoint>();
-    animations = new ArrayList<PixelCreationAnimation>();
-    animationGarbage = new ArrayList<PixelCreationAnimation>();
+    animations = new ArrayList<EnergizeAnimation>();
+    animationGarbage = new ArrayList<EnergizeAnimation>();
   }
 
   void draw() {
@@ -53,12 +53,11 @@ class PixelCreation extends CanvasRoutine {
   }
 
   void doAnimations() {
-    println(frameCount);
-    for (PixelCreationAnimation a : animations) {
+    for (EnergizeAnimation a : animations) {
       a.run();
     }
 
-    for (PixelCreationAnimation a : animationGarbage) {
+    for (EnergizeAnimation a : animationGarbage) {
       animations.remove(a);
     }
 
@@ -72,19 +71,19 @@ class PixelCreation extends CanvasRoutine {
       isVertical = false;
     } 
 
-    animations.add(new PixelCreationAnimation(this, bp, frames, isVertical, cStart, cEnd));
+    animations.add(new EnergizeAnimation(this, bp, frames, isVertical, cStart, cEnd));
   }
 
-  void endAnimation(PixelCreationAnimation a) {
+  void endAnimation(EnergizeAnimation a) {
     a.bp.c = cEnd;
     visible.add(a.bp);
     animationGarbage.add(a);
   }
 }
 
-class PixelCreationAnimation {
+class EnergizeAnimation {
   int frameCounter;
-  PixelCreation parent;
+  Energize parent;
   BitPoint bp;
   int frames;
   int size = 8;
@@ -93,7 +92,7 @@ class PixelCreationAnimation {
   color cEnd;
   PGraphics pg;
  
-  PixelCreationAnimation(PixelCreation parent_, BitPoint bp_, int frameCounter_, boolean isVertical_, color cStart_, color cEnd_) {
+  EnergizeAnimation(Energize parent_, BitPoint bp_, int frameCounter_, boolean isVertical_, color cStart_, color cEnd_) {
     parent = parent_;
     bp = bp_;
     frameCounter = frameCounter_;
