@@ -18,7 +18,6 @@ class Energize extends CanvasRoutine {
 
   Energize(ArrayList<BitPoint> bitPoints_) {
     bitPoints = bitPoints_;
-    Collections.shuffle(bitPoints);
   }
 
   void reinit() {

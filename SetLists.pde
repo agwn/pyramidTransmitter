@@ -615,8 +615,10 @@ class Tester extends SetList {
   }
 
   void setup() {
+    ArrayList<BitPoint> disorientBitPoints = disFont.getBitmap("disorient").getBitmap(true, true, false).getBitPoints();
+
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
-    Energize energize = new Energize(disFont.getBitmap("disorient").getBitmap(true, true, false).getBitPoints());
+    Energize energize = new Energize(disorientBitPoints);
     Mirror mirror = new Mirror();
     Sparkle sparkle = new Sparkle();
 
