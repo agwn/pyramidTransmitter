@@ -589,8 +589,8 @@ class Tester extends SetList {
     pc.x = 24;
     pc.y = 26;
     pc.yPad = 1;
-    pc.pointsPerFrame = 2;
-    pc.frames = 20;
+    pc.pointsPerFrame = 30;
+    pc.frames = 5;
     pc.cStart = color(disorientOrange, 0);
     pc.cEnd = pornj;
     pc.verticalToHorizontalRatio = 0.5;
@@ -600,7 +600,7 @@ class Tester extends SetList {
 
     setCanvas(canvas2, pc);
     pushCanvas(canvas2, mirror);
-    pushCanvas(canvas2, sparkle);
+    //pushCanvas(canvas2, sparkle);
     wait(10.0);
   }
 }
