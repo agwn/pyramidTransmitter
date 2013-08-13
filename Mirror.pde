@@ -6,11 +6,11 @@ class Mirror extends CanvasRoutine {
   void draw() {
     pg.beginDraw();
     PImage halfImage = pg.get(0, 0, pg.width / 2, pg.height);
-    pg.pushMatrix();
-    pg.scale(-1.0, 1.0);
-    pg.image(halfImage, -halfImage.width, 0);
-    pg.popMatrix();
-    pg.copy(halfImage, 0, 0, pg.width / 2, pg.height, pg.width / 2, 0, pg.width / 2, pg.height);
+
+    for (int i = 0; i < pg.width >> 1; i++) {
+      pg.copy(halfImage, i, 0, 1, pg.height, pg.width - i - 1, 0, 1, pg.height);
+    }
+
     pg.endDraw();
   }
 }

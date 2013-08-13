@@ -583,11 +583,13 @@ class Tester extends SetList {
   void setup() {
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
     Warp warp = new Warp();
+    Mirror mirror = new Mirror();
 
     setParam(warp.xAmp, 0.0);
     setParam(warp.yAmp, 0.0);
     setCanvas(canvas2, warpSpeed);
     pushCanvas(canvas2, warp);
+    pushCanvas(canvas2, mirror);
 
     wait(1.0);
 
