@@ -8,6 +8,7 @@ class Energize extends CanvasRoutine {
   color cStart = color(255, 0);
   color cEnd = color(255);
   float verticalToHorizontalRatio = 1.0;
+  int size = 8;
   private ArrayList<BitPoint> bitPoints;
   private ArrayList<BitPoint> visible;
   private ArrayList<EnergizeAnimation> animations;
@@ -71,7 +72,7 @@ class Energize extends CanvasRoutine {
       isVertical = false;
     } 
 
-    animations.add(new EnergizeAnimation(this, bp, frames, isVertical, cStart, cEnd));
+    animations.add(new EnergizeAnimation(this, bp, frames, isVertical, cStart, cEnd, size));
   }
 
   void endAnimation(EnergizeAnimation a) {
@@ -92,7 +93,7 @@ class EnergizeAnimation {
   color cEnd;
   PGraphics pg;
  
-  EnergizeAnimation(Energize parent_, BitPoint bp_, int frameCounter_, boolean isVertical_, color cStart_, color cEnd_) {
+  EnergizeAnimation(Energize parent_, BitPoint bp_, int frameCounter_, boolean isVertical_, color cStart_, color cEnd_, int size_) {
     parent = parent_;
     bp = bp_;
     frameCounter = frameCounter_;
@@ -101,6 +102,7 @@ class EnergizeAnimation {
     cStart = cStart_;
     cEnd = cEnd_;
     pg = parent.pg;
+    size = size_;
   }
 
   void run() {

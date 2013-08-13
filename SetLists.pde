@@ -628,7 +628,7 @@ class Tester extends SetList {
     energize.cStart = color(disorientOrange, 0);
     energize.cEnd = pornj;
     energize.verticalToHorizontalRatio = 0.5;
-
+    energize.size = 9;
     sparkle.nDots = 900;
     sparkle.dotToCrossRatio = 0.99;
 
