@@ -53,6 +53,7 @@ class PixelCreation extends CanvasRoutine {
   }
 
   void doAnimations() {
+    println(frameCount);
     for (PixelCreationAnimation a : animations) {
       a.run();
     }
@@ -90,6 +91,7 @@ class PixelCreationAnimation {
   boolean isVertical = true;
   color cStart;
   color cEnd;
+  PGraphics pg;
  
   PixelCreationAnimation(PixelCreation parent_, BitPoint bp_, int frameCounter_, boolean isVertical_, color cStart_, color cEnd_) {
     parent = parent_;
@@ -99,15 +101,16 @@ class PixelCreationAnimation {
     isVertical = isVertical_;
     cStart = cStart_;
     cEnd = cEnd_;
+    pg = parent.pg;
   }
 
   void run() {
-    frameCounter--;
-    PGraphics pg = parent.pg;
     int thisX = bp.x + parent.x + parent.xPad * bp.x;
     int thisY = bp.y + parent.y + parent.yPad * bp.y;
     float ratio = (float) frameCounter / frames;
     int thisSize = (int) pow(2.0, ratio * size); 
+
+    frameCounter--;
 
     pg.pushStyle();
     pg.strokeWeight(1);
