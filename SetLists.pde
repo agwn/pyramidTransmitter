@@ -588,13 +588,20 @@ class Tester extends SetList {
     setParam(warp.yAmp, 0.0);
     setCanvas(canvas2, warpSpeed);
     pushCanvas(canvas2, warp);
+
     wait(1.0);
-    line(16.0, warp.yAmp, 0.0, 4.0);
+
+    line(16.0, warp.yAmp, 0.0, 1.0);
+    line(16.0, warp.yFreq, 0.1, 1.1);
+
     wait(16.0);
-    line(16.0, warp.yAmp, 4.0, 0.0);
-    line(16.0, warp.xAmp, 0.0, 4.0);
+
+    line(16.0, warp.yAmp, 1.0, 0.0);
+    line(16.0, warp.xAmp, 0.0, 1.0);
+
     wait(16.0);
-    line(16.0, warp.xAmp, 4.0, 0.0);
+
+    line(16.0, warp.xAmp, 1.0, 0.0);
     wait(16.0);
   }
 }

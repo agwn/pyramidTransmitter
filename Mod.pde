@@ -8,6 +8,7 @@ class ModEvent {
   void run() { }
 }
 
+
 class ModLine extends ModEvent {
   float duration;
   float frameCounter;
@@ -18,12 +19,12 @@ class ModLine extends ModEvent {
   float endValue;
   float change;
 
-  ModLine(CanvasRoutineController controller_, ModFloat m_, int frames_, float startValue_, float endValue_) {
+  ModLine(CanvasRoutineController controller_, ModFloat modFloat_, int frames_, float startValue_, float endValue_) {
     controller = controller_;
     frames = frames_;
     startValue = startValue_;
     endValue = endValue_;
-    modFloat = m_;
+    modFloat = modFloat_;
   }
 
   void run() {

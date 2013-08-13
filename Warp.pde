@@ -3,11 +3,11 @@ class Warp extends CanvasRoutine {
   boolean warpVertical;
   ModFloat yAmp;
   ModFloat yFreq;
-  float yPhase = 0.25;
+  float yPhase = 0.0;
   float yBias = 0.0;
   ModFloat xAmp;
   ModFloat xFreq;
-  float xPhase = 0.25;
+  float xPhase = 0.0;
   float xBias = 0.0;
   private int w;
   private int h;
