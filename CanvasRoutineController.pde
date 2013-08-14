@@ -31,6 +31,7 @@ class CanvasRoutineController {
     nCanvases = parent.nCanvases;
     activeCanvases = parent.activeCanvases;
     modEvents = parent.modEvents;
+    modEventsGarbage = parent.modEventsGarbage;
 
     initDomeCode();
   }
@@ -116,9 +117,7 @@ class CanvasRoutineController {
   }
 
   void disableCanvases() {
-    for (int i = 0; i < nCanvases; i++) {
-      disableCanvas(canvases[i]);
-    }
+    domeCode.add(new DomeDisableCanvases(masterControl));
   }
 
   void playSetList(CanvasRoutineController CRC) { }
@@ -152,12 +151,12 @@ class CanvasRoutineController {
 
   private void initDomeCode() {
     disableCanvases();  // Resets canvases at beginning of loop
-//    wait(0.0);          // Prevents infinite DomeCode loop
     setup();
+    disableCanvases();  // Resets canvases at beginning of loop
   }
 
   private void runDomeCode() {
-    domeCode.get(index).run();
+    domeCode.get(masterControl.index).run();
   }
 
   private void runModEvents() {
@@ -167,10 +166,10 @@ class CanvasRoutineController {
   }
 
   private void next() {
-    index++;
+    masterControl.index++;
 
-    if (index >= domeCode.size()) {
-      index = 0;
+    if (masterControl.index >= domeCode.size()) {
+      masterControl.index = 0;
     }
   }
 }

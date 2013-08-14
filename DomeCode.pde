@@ -295,6 +295,21 @@ class DomeDisableCanvas extends DomeCode {
   }
 }
 
+class DomeDisableCanvases extends DomeCode {
+  DomeDisableCanvases(CanvasRoutineController controller_) {
+    controller = controller_;
+  }
+
+  void run() {
+    for (int i = 0; i < controller.nCanvases; i++) {
+      controller.activeCanvases[i] = false;
+    }
+
+    controller.next();
+    controller.runDomeCode();
+  }
+}
+
 class DomeSetModFloat extends DomeCode {
   ModFloat m;
   float v;

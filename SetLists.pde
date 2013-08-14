@@ -18,11 +18,11 @@ class PyramidPartyDemo extends SetList {
   }
 
   void setup() {
-    playSetList(new DisorientProtonInto(this));
-    playSetList(new DoSeizure(this));
-    playSetList(new DisorientAllTheThings(this));
-    playSetList(new Other(this));
-    playSetList(new PortalGel(this));
+//    playSetList(new DisorientProtonInto(this));
+//    playSetList(new DoSeizure(this));
+//    playSetList(new DisorientAllTheThings(this));
+//    playSetList(new Other(this));
+//    playSetList(new PortalGel(this));
     playSetList(new PornjscachInkBlotter(this));
   }
 }
@@ -114,7 +114,8 @@ class PornjscachInkBlotter extends SetList {
     Sparkle sparkle = new Sparkle();
     Sparkle sparkle2 = new Sparkle();
     Breather breather = new Breather();
-    float waitTime = 30.0;
+    //float waitTime = 30.0;
+    float waitTime = 1.0;
 
     pxxxlFilter.setBlendMode(DODGE);
 
@@ -630,10 +631,11 @@ class Tester extends SetList {
     energize.cStart = color(disorientOrange, 0);
     energize.cEnd = pornj;
     energize.verticalToHorizontalRatio = 0.5;
-    energize.size = 9;
+    energize.size = 8;
     sparkle.nDots = 900;
     sparkle.dotToCrossRatio = 0.99;
 
+    playSetList(new PyramidPartyDemo(this));
     setCanvas(canvas2, energize);
     pushCanvas(canvas2, mirror);
     pushCanvas(canvas2, sparkle);
