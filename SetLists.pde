@@ -604,7 +604,7 @@ class UncertainSetList extends SetList {
         pushCanvas(canvas2, trails);
         wait(9.0);
       }
-     }
+    }
   }
 }
 
@@ -622,6 +622,7 @@ class Tester extends SetList {
     Energize energize = new Energize(disorientBitPoints);
     Mirror mirror = new Mirror();
     Sparkle sparkle = new Sparkle();
+    Conway conway = new Conway();
 
     energize.x = 24;
     energize.y = 26;
@@ -635,9 +636,17 @@ class Tester extends SetList {
     sparkle.nDots = 900;
     sparkle.dotToCrossRatio = 0.99;
 
-    setCanvas(canvas2, energize);
-    pushCanvas(canvas2, mirror);
-    pushCanvas(canvas2, sparkle);
+    conway.c0 = color(pornj, 128);
+    conway.c1 = color(disorientOrange, 128);
+    conway.sizeX = 1;
+    conway.sizeY = 1;
+
+    setCanvas(canvas2, conway);
+    //pushCanvas(canvas2, sparkle);
+    wait(6.0);
+    //setCanvas(canvas3, energize);
+    //pushCanvas(canvas3, mirror);
+    //pushCanvas(canvas3, sparkle);
     wait(10.0);
   }
 }

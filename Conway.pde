@@ -10,16 +10,20 @@ class Conway extends CanvasRoutine {
   boolean WRAP_VERT = true;		// grid is endless along the vertical axis
   double DENSITY = 0.3;		// percentage of cells to populate in initial grid
   int MAX_GEN = 1500;
+  color c0 = pornj;
+  color c1 = disorientOrange;
+  int sizeX = 1;
+  int sizeY = 1;
 
   boolean[][] _grid;	// the game board
   int _generations;	// the number of generations run so far
   
-  Conway(int width, int height) { 
-    _w = width;
-    _h = height;
+  void reinit() {
+    _w = pg.width;
+    _h = pg.height;
     initializeGrid();
-  } 
-  
+  }
+
   private void initializeGrid() {
     populateGrid();
     _generations = 1;
@@ -62,8 +66,12 @@ class Conway extends CanvasRoutine {
       for(int j = 0; j < _h; j++) {
         if(_grid[i][j]) { // it's alive!!
           setStrokeByLocation(i, j);
-          //pg.point(i, j);
-          pg.ellipse(i, j, 2, 2); // use more LEDs than a point
+          if (sizeX == 1 && sizeY == 1) {
+            pg.point(i, j);
+          }
+          else {
+            pg.ellipse(i, j, sizeX, sizeY); // use more LEDs than a point
+          }
         }
       }
     }
@@ -73,7 +81,12 @@ class Conway extends CanvasRoutine {
       int randJ = (int)Math.floor(Math.random() * _h);
       _grid[randI][randJ] = true;
       setStrokeByLocation(randI, randJ);
-      pg.ellipse(randI, randJ, 2, 2);
+      if (sizeX == 1 && sizeY == 1) {
+        pg.point(randI, randJ);
+      }
+      else {
+        pg.ellipse(randI, randJ, sizeX, sizeY);
+      }
     }
   }
   
@@ -82,7 +95,7 @@ class Conway extends CanvasRoutine {
   }
   
   private void setStrokeByLocation(int i, int j) {
-      color c = (i / 8 + _generations / 17 + j / 105 + oneOrZero(0.1)) % 2 == 0 ? pornj : disorientOrange;
+      color c = (i / 8 + _generations / 17 + j / 105 + oneOrZero(0.1)) % 2 == 0 ? c0 : c1;
       pg.stroke(c);
   }
   
@@ -148,16 +161,14 @@ class Conway extends CanvasRoutine {
 }
 
 class ConwayPlayer extends SetList {
-  
-  ConwayPlayer() { 
-  }
+  ConwayPlayer() { }
 
   ConwayPlayer(SetList setList) {
     super(setList);
   }
   
   void setup() {
-    Conway conway = new Conway(64, 210); // should be the correct dimensions
+    Conway conway = new Conway();
 
     setCanvas(canvas2, conway);
     wait(20.0);
