@@ -616,16 +616,14 @@ class Tester extends SetList {
   }
 
   void setup() {
-    ArrayList<BitPoint> disorientBitPoints = disFont.getBitmap("disorient").getBitmap(true, true, false).getBitPoints();
+    ArrayList<BitPoint> disorientBitPoints = disFont.getBitmap("disorient_3s").getBitmap(true, true, false).getBitPoints();
 
-    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
     Energize energize = new Energize(disorientBitPoints);
     Mirror mirror = new Mirror();
     Sparkle sparkle = new Sparkle();
-    Conway conway = new Conway();
 
     energize.x = 24;
-    energize.y = 26;
+    energize.y = 9;
     energize.yPad = 1;
     energize.pointsPerFrame = 2;
     energize.frames = 20;
@@ -636,17 +634,9 @@ class Tester extends SetList {
     sparkle.nDots = 900;
     sparkle.dotToCrossRatio = 0.99;
 
-    conway.c0 = color(pornj, 128);
-    conway.c1 = color(disorientOrange, 128);
-    conway.sizeX = 1;
-    conway.sizeY = 1;
-
-    setCanvas(canvas2, conway);
-    //pushCanvas(canvas2, sparkle);
-    wait(600.0);
-    //setCanvas(canvas3, energize);
-    //pushCanvas(canvas3, mirror);
-    //pushCanvas(canvas3, sparkle);
+    setCanvas(canvas3, energize);
+    pushCanvas(canvas3, mirror);
+    pushCanvas(canvas3, sparkle);
     wait(10.0);
   }
 }

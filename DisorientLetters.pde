@@ -11,6 +11,8 @@ class DisorientFont extends HashMap {
     put("t", new Bitmap(LETTER_T, 10, 8));
     put("3", new Bitmap(LETTER_3, 10, 8));
     generateBitmap("disorient");
+    generateBitmap("disorient_3s", "disorient", 3);
+    generateBitmap("disorient_4s", "disorient", 4);
     generateBitmap("disor13nt");
   }
 
@@ -19,21 +21,25 @@ class DisorientFont extends HashMap {
   }
 
   private void generateBitmap(String s) {
+    generateBitmap(s, s, 1);
+  }
+
+  private void generateBitmap(String key, String value, int spaceWidth) {
     int bitmapWidth = 0;
 
     // Get width of new Bitmap
-    for (char c : s.toCharArray()) {
+    for (char c : value.toCharArray()) {
       Bitmap b = getBitmap(Character.toString(c));
       bitmapWidth += b.w;
     }
 
-    bitmapWidth += s.length() - 1;
+    bitmapWidth += (value.length() - 1) * spaceWidth;
 
     // Create new Bitmap
     byte[][] newArray = new byte[8][bitmapWidth];
     int offset = 0;
 
-    for (char c : s.toCharArray()) {
+    for (char c : value.toCharArray()) {
       Bitmap b = (Bitmap) get(Character.toString(c));
 
       for (int y = 0; y < b.h; y++) {
@@ -42,11 +48,11 @@ class DisorientFont extends HashMap {
         }
       }
       
-      offset += b.w + 1;
+      offset += b.w + spaceWidth;
     }
 
     Bitmap newBitmap = new Bitmap(newArray, bitmapWidth, 8);
-    put(s, newBitmap);
+    put(key, newBitmap);
   }
 
   void printAllToConsole() {
