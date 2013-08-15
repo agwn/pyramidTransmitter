@@ -643,7 +643,7 @@ class Tester extends SetList {
 
     setCanvas(canvas2, conway);
     //pushCanvas(canvas2, sparkle);
-    wait(6.0);
+    wait(600.0);
     //setCanvas(canvas3, energize);
     //pushCanvas(canvas3, mirror);
     //pushCanvas(canvas3, sparkle);

@@ -1,5 +1,11 @@
 class TutorialNoisePlayer extends SetList {
-  TutorialNoisePlayer() {
+  TutorialNoisePlayer() { }
+
+  TutorialNoisePlayer(SetList setList) {
+    super(setList);
+  }
+
+  void setup() {
     TutorialNoise noise = new TutorialNoise();
     noise.nPixels = 100;
 
@@ -31,7 +37,13 @@ class TutorialNoise extends CanvasRoutine {
 /*-----------------------------------------------------------------------*/
 
 class TutMovingLinesSet extends SetList {
-  TutMovingLinesSet() {
+  TutMovingLinesSet() { }
+
+  TutMovingLinesSet(SetList setList) {
+    super(setList);
+  }
+
+  void setup() {
     TutMovingLines rl = new TutMovingLines();
 
     setCanvas(canvas2, rl);
@@ -71,7 +83,13 @@ class TutMovingLines extends CanvasRoutine {
 /*-----------------------------------------------------------------------*/
 
 class TutorialSimpleSequence extends SetList {
-  TutorialSimpleSequence() {
+  TutorialSimpleSequence() { }
+
+  TutorialSimpleSequence(SetList setList) {
+    super(setList);
+  }
+
+  void setup() {
     TutorialNoise noise = new TutorialNoise();
     TutMovingLines movingLines = new TutMovingLines();
     Warp warp = new Warp();
