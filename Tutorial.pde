@@ -47,6 +47,7 @@ class TutMovingLinesSet extends SetList {
     TutMovingLines rl = new TutMovingLines();
 
     setCanvas(canvas2, rl);
+    wait(0.0);
   }
 }
 

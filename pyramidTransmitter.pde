@@ -14,7 +14,7 @@ void setup() {
   setupPyramid();
 
   // Set the SetList sequence here
-  theSetList = new TutorialSimpleSequence();
+  theSetList = new TutMovingLinesSet();
 }
 
 void draw() {
