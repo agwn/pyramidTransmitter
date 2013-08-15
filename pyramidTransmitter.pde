@@ -15,7 +15,7 @@ TutorialSimpleSequence tutorialSimpleSequence;
 TechDemo techDemo;
 Demo demo;
 DebuggingSetList debuggingSetList;
-DisorientProtonInto disorientProtonInto;
+DisorientProtonIntro disorientProtonIntro;
 UncertainSetList uncertainSetList;
 Tester tester;
 
@@ -32,7 +32,7 @@ void setup() {
   techDemo = new TechDemo();
   demo = new Demo();
   debuggingSetList = new DebuggingSetList();
-  disorientProtonInto = new DisorientProtonInto();
+  disorientProtonIntro = new DisorientProtonIntro();
   uncertainSetList = new UncertainSetList();
   tester = new Tester();
 
@@ -48,4 +48,4 @@ void draw() {
   image(canvasOut.pg, 0, 0, canvasOut.w, canvasOut.h);
   sign.sendData();
   drawWindowBorders();
-  }
+}

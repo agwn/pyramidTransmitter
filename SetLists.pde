@@ -18,11 +18,11 @@ class PyramidPartyDemo extends SetList {
   }
 
   void setup() {
-//    playSetList(new DisorientProtonInto(this));
-//    playSetList(new DoSeizure(this));
-//    playSetList(new DisorientAllTheThings(this));
-//    playSetList(new Other(this));
-//    playSetList(new PortalGel(this));
+    playSetList(new DisorientProtonIntro(this));
+    playSetList(new DoSeizure(this));
+    playSetList(new DisorientAllTheThings(this));
+    playSetList(new Other(this));
+    playSetList(new PortalGel(this));
     playSetList(new PornjscachInkBlotter(this));
   }
 }
@@ -183,10 +183,10 @@ class PornjscachInkBlotter extends SetList {
   }
 }
 
-class DisorientProtonInto extends SetList {
-  DisorientProtonInto() { }
+class DisorientProtonIntro extends SetList {
+  DisorientProtonIntro() { }
 
-  DisorientProtonInto(SetList setList) {
+  DisorientProtonIntro(SetList setList) {
     super(setList);
   }
 
@@ -635,7 +635,6 @@ class Tester extends SetList {
     sparkle.nDots = 900;
     sparkle.dotToCrossRatio = 0.99;
 
-    playSetList(new PyramidPartyDemo(this));
     setCanvas(canvas2, energize);
     pushCanvas(canvas2, mirror);
     pushCanvas(canvas2, sparkle);

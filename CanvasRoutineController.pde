@@ -58,7 +58,9 @@ class CanvasRoutineController {
         for (int j = 0; j < nRoutines; j++) {
           CanvasRoutine cr = (CanvasRoutine) canvas.routines.get(j);
 
+          cr.pg.pushStyle();
           cr.draw();
+          cr.pg.popStyle();
         
           switch(cr.getPaintMode()) {
             case CANVAS_ROUTINE_BLEND:
