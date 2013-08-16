@@ -635,8 +635,8 @@ class Tester extends SetList {
     sparkle.dotToCrossRatio = 0.99;
 
     setCanvas(canvas3, energize);
-    pushCanvas(canvas3, mirror);
-    pushCanvas(canvas3, sparkle);
+    //pushCanvas(canvas3, mirror);
+    //pushCanvas(canvas3, sparkle);
     wait(10.0);
   }
 }
