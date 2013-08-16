@@ -97,7 +97,7 @@ class PlantFractal extends CanvasRoutine {
     }
     n++;
     
-    if (n >= secondsToHold*FRAMERATE) 
+    if (n >= SecondsToHold*FRAMERATE) 
     {
       n = 0;
     }

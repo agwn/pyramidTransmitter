@@ -14,14 +14,14 @@ class CrazyBars extends CanvasRoutine {
   private int _groupSize;
   private int _groupWidth;
   
-  CrazyBars(int width, int height) { 
-    _w = width;
-    _h = height; 
+  void reinit() {
+    _w = pg.width;
+    _h = pg.height;
     _iterations = 0;
     _period = getRandomInt(PERIOD_MAX) + 1;
     setGroupSizeAndGroupWidth();
-  }
-  
+  } 
+
   private void setGroupSizeAndGroupWidth() {
     _groupSize = GROUP_SIZES[(int) Math.floor(Math.random() * GROUP_SIZES.length)];
     _groupWidth = _w / _groupSize;
@@ -94,16 +94,14 @@ class CrazyBars extends CanvasRoutine {
 }
 
 class CrazyBarsPlayer extends SetList {
-  
-  CrazyBarsPlayer() { 
-  }
+  CrazyBarsPlayer() { }
 
   CrazyBarsPlayer(SetList setList) {
     super(setList);
   }
   
   void setup() {
-    CrazyBars crazyBars = new CrazyBars(64, 210);
+    CrazyBars crazyBars = new CrazyBars();
 
     setCanvas(canvas2, crazyBars);
     wait(5.0);

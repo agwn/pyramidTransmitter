@@ -562,7 +562,7 @@ class UncertainSetList extends SetList {
       int secondsToHoldTheBand = 6;
       int PercentBandWidthMin = 2;
       int PercentBandWidthMax = 15;
-        PlantFractal plantFractal = new PlantFractal();
+        PlantFractal plantFractal = new PlantFractal(1);
         setCanvas(canvas0, plantFractal); 
         wait(18.0);
     }
