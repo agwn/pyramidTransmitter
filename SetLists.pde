@@ -560,6 +560,16 @@ class UncertainSetList extends SetList {
   }
 
   void setup() {
+    // PlantFractal demo
+    {
+      int secondsToHoldTheBand = 6;
+      int PercentBandWidthMin = 2;
+      int PercentBandWidthMax = 15;
+        PlantFractal plantFractal = new PlantFractal();
+        setCanvas(canvas0, plantFractal); 
+        wait(18.0);
+    }
+    
     // StarBand demo
     {
       int secondsToHoldTheBand = 6;
