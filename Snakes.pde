@@ -35,7 +35,7 @@ public class Snakes extends CanvasRoutine {
         _segments.add(getDirectedPoint(_initDirection, head));
       }
     }
-    
+
     private int getRandomLength() {
       return (int) Math.floor((Math.random() * (MAX_LENGTH - MIN_LENGTH)) + MIN_LENGTH);
     }
@@ -128,12 +128,12 @@ public class Snakes extends CanvasRoutine {
     public color getHeadColor() { return _headColor; }
   }
   
-  Snakes(int width, int height) { 
-    _w = width;
-    _h = height;
+  void reinit() {
+    _w = pg.width;
+    _h = pg.height;
     populateSnakes();
-  } 
-  
+  }
+ 
   private void populateSnakes() {
     _snakes = new LinkedList<Snake>();
     for(int i = 0; i < INIT_SNAKES; i++) {
@@ -201,7 +201,7 @@ class SnakesPlayer extends SetList {
   }
   
   void setup() {
-    Snakes snakes = new Snakes(64, 210);
+    Snakes snakes = new Snakes();
 
     setCanvas(canvas2, snakes);
     wait(60.0);

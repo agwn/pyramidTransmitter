@@ -14,7 +14,7 @@ void setup() {
   setupPyramid();
 
   // Set the SetList sequence here
-  theSetList = new CrazyBarsPlayer();
+  theSetList = new SnakesPlayer();
 }
 
 void draw() {

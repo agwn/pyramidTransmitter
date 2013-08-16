@@ -631,6 +631,8 @@ class Tester extends SetList {
     Energize energize = new Energize(disorientBitPoints);
     Mirror mirror = new Mirror();
     Sparkle sparkle = new Sparkle();
+    CrazyBars crazyBars = new CrazyBars();
+    Warp warp = new Warp();
 
     energize.x = 24;
     energize.y = 9;
@@ -644,8 +646,13 @@ class Tester extends SetList {
     sparkle.nDots = 900;
     sparkle.dotToCrossRatio = 0.99;
 
-    setCanvas(canvas3, energize);
-    //pushCanvas(canvas3, mirror);
+    crazyBars.setBlendMode(OVERLAY);
+
+    setCanvas(canvas2, energize);
+    pushCanvas(canvas2, crazyBars);
+    //pushCanvas(canvas2, warp);
+    pushCanvas(canvas2, mirror);
+
     //pushCanvas(canvas3, sparkle);
     wait(10.0);
   }
