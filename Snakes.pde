@@ -9,13 +9,13 @@ public class Snakes extends CanvasRoutine {
   boolean WRAP_HORIZ = true;		// grid is endless along the horizontal axis
   boolean WRAP_VERT = true;		// grid is endless along the vertical axis
   int INIT_SNAKES = 1;
-  int MAX_SNAKES = 400;
+  int MAX_SNAKES = 450;
   private LinkedList<Snake> _snakes; 
   private int MIN_LENGTH = 10;  // min and max snake lengths
   private int MAX_LENGTH = 100; // max will be MAX_LENGTH - 1 actually
   private final int[] DIRECTIONS = {0, 1, 2, 3};
   private int _generations = 0;	// the number of generations run so far
-  private int FREQUENCY = 5; // add a snake every FREQUENCY generations
+  private int FREQUENCY = 10; // add a snake every FREQUENCY generations
 
   private class Snake {
     private LinkedList<PVector> _segments;
