@@ -59,7 +59,7 @@ class CanvasRoutineController {
           CanvasRoutine cr = (CanvasRoutine) canvas.routines.get(j);
 
           cr.draw();
-        
+  
           switch(cr.getPaintMode()) {
             case CANVAS_ROUTINE_BLEND:
               pgMaster.blend(cr.pg.get(), 0, 0, w, h, 0, 0, w, h, cr.blendMode);
