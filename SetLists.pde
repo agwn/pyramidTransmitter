@@ -1,5 +1,6 @@
 class SetListTemplate extends SetList {
-  SetListTemplate() { }
+  SetListTemplate() {
+  }
 
   SetListTemplate(SetList setList) {
     super(setList);
@@ -11,7 +12,8 @@ class SetListTemplate extends SetList {
 }
 
 class PyramidPartyDemo extends SetList {
-  PyramidPartyDemo() { }
+  PyramidPartyDemo() {
+  }
 
   PyramidPartyDemo(SetList setList) {
     super(setList);
@@ -28,7 +30,8 @@ class PyramidPartyDemo extends SetList {
 }
 
 class Other extends SetList {
-  Other() { }
+  Other() {
+  }
 
   Other(SetList setList) {
     super(setList);
@@ -96,7 +99,8 @@ class Other extends SetList {
 }
 
 class PornjscachInkBlotter extends SetList {
-  PornjscachInkBlotter() { }
+  PornjscachInkBlotter() {
+  }
 
   PornjscachInkBlotter(SetList setList) {
     super(setList);
@@ -184,7 +188,8 @@ class PornjscachInkBlotter extends SetList {
 }
 
 class DisorientProtonIntro extends SetList {
-  DisorientProtonIntro() { }
+  DisorientProtonIntro() {
+  }
 
   DisorientProtonIntro(SetList setList) {
     super(setList);
@@ -246,7 +251,8 @@ class DisorientProtonIntro extends SetList {
 }
 
 class DoSeizure extends SetList {
-  DoSeizure() { }
+  DoSeizure() {
+  }
 
   DoSeizure(SetList setList) {
     super(setList);
@@ -260,12 +266,13 @@ class DoSeizure extends SetList {
 }
 
 class DisorientAllTheThings extends SetList {
-  DisorientAllTheThings() { }
+  DisorientAllTheThings() {
+  }
 
   DisorientAllTheThings(SetList setList) {
     super(setList);
   }
-  
+
   void setup() {
     Waves waves = new Waves();
     Warp warp = new Warp();
@@ -354,7 +361,8 @@ class DisorientAllTheThings extends SetList {
 }
 
 class PortalGel extends SetList {
-  PortalGel() { }
+  PortalGel() {
+  }
 
   PortalGel(SetList setList) {
     super(setList);
@@ -404,7 +412,8 @@ class PortalGel extends SetList {
 
 
 class TechDemo extends SetList {
-  TechDemo() { }
+  TechDemo() {
+  }
 
   TechDemo(SetList setList) {
     super(setList);
@@ -456,7 +465,8 @@ class TechDemo extends SetList {
 }
 
 class Demo extends SetList {
-  Demo() { } 
+  Demo() {
+  } 
 
   Demo(SetList setList) {
     super(setList);
@@ -498,7 +508,8 @@ class Demo extends SetList {
 }
 
 class DebuggingSetList extends SetList {
-  DebuggingSetList() { }
+  DebuggingSetList() {
+  }
 
   DebuggingSetList(SetList setList) {
     super(setList);
@@ -550,7 +561,8 @@ class DebuggingSetList extends SetList {
 }
 
 class UncertainSetList extends SetList {
-  UncertainSetList() { }
+  UncertainSetList() {
+  }
 
   UncertainSetList(SetList setList) {
     super(setList);
@@ -562,25 +574,25 @@ class UncertainSetList extends SetList {
       int secondsToHoldTheBand = 6;
       int PercentBandWidthMin = 2;
       int PercentBandWidthMax = 15;
-        PlantFractal plantFractal = new PlantFractal();
-        setCanvas(canvas0, plantFractal); 
-        wait(18.0);
+      PlantFractal plantFractal = new PlantFractal(5);
+      setCanvas(canvas0, plantFractal); 
+      wait(18.0);
     }
-    
+
     // StarBand demo
     {
       int secondsToHoldTheBand = 6;
       int PercentBandWidthMin = 2;
       int PercentBandWidthMax = 15;
-        StarBand starBand = new StarBand(secondsToHoldTheBand,PercentBandWidthMin, PercentBandWidthMax);
-      
-      for(int i = 0; i < 3; i++) { 
+      StarBand starBand = new StarBand(secondsToHoldTheBand, PercentBandWidthMin, PercentBandWidthMax);
+
+      for (int i = 0; i < 3; i++) { 
         setCanvas(canvas0, starBand); 
         wait(3.0);
         fadeOut(3.0, canvas0);
       }
     }
-    
+
     // Simple Circles demo
     {
       float secondsPerOneTravel = 6;
@@ -595,21 +607,21 @@ class UncertainSetList extends SetList {
       setCanvas(canvas0, simpleCircles); 
       pushCanvas(canvas0, breather);
       wait(18.0);
-      
-     fadeOut(5.0, canvas0);
-   }
-    
+
+      fadeOut(5.0, canvas0);
+    }
+
     // HeartBeat demo
     {
       Trails trails = new Trails();
-  
+
       int maxHeartsPow = 5; // 2^5=32
-  
+
       for (int i=0; i<maxHeartsPow; i++) {
-        int numberOfHearts = (int)pow(2,i);
+        int numberOfHearts = (int)pow(2, i);
         float secondsPerOneBeat = 3.0f/numberOfHearts; // as number of hears grow, speed goes up!
         DisorientHeartBeat heart = new DisorientHeartBeat(numberOfHearts, secondsPerOneBeat);
-      
+
         setCanvas(canvas2, heart  ); 
         pushCanvas(canvas2, trails);
         wait(9.0);
@@ -619,7 +631,8 @@ class UncertainSetList extends SetList {
 }
 
 class Tester extends SetList {
-  Tester() { }
+  Tester() {
+  }
 
   Tester(SetList setList) {
     super(setList);
@@ -650,3 +663,4 @@ class Tester extends SetList {
     wait(10.0);
   }
 }
+
