@@ -88,6 +88,10 @@ class CanvasRoutineController {
     domeCode.add(new DomePushCanvas(masterControl, c, cr));
   }
 
+  void popCanvas(Canvas c) {
+    domeCode.add(new DomePopCanvas(masterControl, c));
+  }
+
   void wait(float seconds) {
     int waitFrameCounter = (int) (seconds * FRAMERATE);
     domeCode.add(new DomeWait(masterControl, waitFrameCounter));

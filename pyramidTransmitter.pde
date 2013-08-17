@@ -14,7 +14,7 @@ void setup() {
   setupPyramid();
 
   // Set the SetList sequence here
-  theSetList = new SnakesPlayer();
+  theSetList = new Tester();
 }
 
 void draw() {

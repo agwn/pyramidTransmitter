@@ -55,6 +55,27 @@ class DomePushCanvas extends DomeCode {
   }
 }
 
+class DomePopCanvas extends DomeCode {
+  Canvas canvas;
+
+  DomePopCanvas(CanvasRoutineController controller_, Canvas canvas_) {
+    controller = controller_;
+    canvas = canvas_;
+  }
+
+  void run() {
+    for (int i = 0; i < canvases.length; i++) {
+      if (canvas == canvases[i]) {
+        canvases[i].popRoutine();
+        break;
+      } 
+    }
+
+    controller.next();
+    controller.runDomeCode();
+  }
+}
+
 class DomeWait extends DomeCode {
   int frames;
   int frameCounter;

@@ -31,6 +31,12 @@ class Canvas {
     cr.setCanvas(this);
   }
 
+  void popRoutine() {
+    if (!routines.isEmpty()) {
+      routines.remove(routines.size() - 1);
+    }
+  }
+
   void sendToOutput() {
 
     // Apply brightness

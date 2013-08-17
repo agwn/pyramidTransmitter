@@ -663,10 +663,17 @@ class Tester extends SetList {
 
     setCanvas(canvas2, energize);
     pushCanvas(canvas2, crazyBars);
-    //pushCanvas(canvas2, warp);
     pushCanvas(canvas2, mirror);
-
-    //pushCanvas(canvas3, sparkle);
-    wait(10.0);
+    wait(1.0);
+    popCanvas(canvas2);
+    wait(1.0);
+    pushCanvas(canvas2, mirror);
+    wait(1.0);
+    popCanvas(canvas2);
+    wait(1.0);
+    pushCanvas(canvas2, mirror);
+    wait(1.0);
+    popCanvas(canvas2);
+    wait(1.0);
   }
 }
