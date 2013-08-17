@@ -108,13 +108,14 @@ class WarpStar {
 
       _x = int(x);
       _y = int(y);
+      _a = int(a);
+
       for (int i=1; i<len; i++) {
         float scaler = pow(0.93, i);
 
         _r = int(scaler*r);
         _g = int(scaler*g);
         _b = int(scaler*b);
-        _a = int(scaler*a);
         pg.stroke(color(_r, _g, _b, _a));
 
         _x = int(x-(i*vx));

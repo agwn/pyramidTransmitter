@@ -640,11 +640,11 @@ class Tester extends SetList {
 
   void setup() {
     GenLerpColor thisLerpColor = new GenLerpColor();
-    thisLerpColor.c0 = color(255, 0, 0, 255);
-    thisLerpColor.c1 = color(255, 255, 0, 255);
+    thisLerpColor.c0 = color(255, 0, 0, 64);
+    thisLerpColor.c1 = color(255, 255, 0, 64);
 
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
-    //warpSpeed.generateColor = thisLerpColor;
+    warpSpeed.generateColor = thisLerpColor;
     setCanvas(canvas2, warpSpeed);
     wait(1.0);
   }
