@@ -9,6 +9,11 @@ float[] sineTableNorm;
 DisorientFont disFont;
 Bitmap selfPortraitMap;
 
+SineTable gSineTable = new SineTable(256);
+SineTableNorm gSineTableNorm = new SineTableNorm(256);
+PhasorTable gPhasorTable = new PhasorTable(256);
+
+
 void setupGlobals() {
   initSineTable();
   disFont = new DisorientFont();

@@ -9,6 +9,8 @@ class Warp extends CanvasRoutine {
   ModFloat xFreq;
   float xPhase = 0.0;
   float xBias = 0.0;
+  WaveTable xWaveTable;
+  WaveTable yWaveTable;
   private int w;
   private int h;
 
@@ -20,6 +22,8 @@ class Warp extends CanvasRoutine {
     yFreq = new ModFloat(1.0);
     xFreq = new ModFloat(1.0);
     setPaintMode(DIRECT);
+    xWaveTable = gSineTableNorm;
+    yWaveTable = gSineTableNorm;
   }
 
   void reinit() {
@@ -36,8 +40,11 @@ class Warp extends CanvasRoutine {
       float tempPhase = xPhase;
       float amp = xAmp.get() * h;
 
+      float size = xWaveTable.getSize();
+      float[] table = xWaveTable.getData();
+
       for (int x = 0; x < w; x++) {
-        float v = sineTableNorm[(int) (tempPhase * sineTableSize)];
+        float v = table[(int) (tempPhase * size)];
         tempPhase += xPhaseInc;
         if (tempPhase >= 1.0) {
           tempPhase -= 1.0;
@@ -65,9 +72,11 @@ class Warp extends CanvasRoutine {
       float yPhaseInc = thisYFreq * 1.0 / h; 
       float tempPhase = yPhase;
       float amp = yAmp.get() * w;
+      float size = yWaveTable.getSize();
+      float[] table = yWaveTable.getData();
 
       for (int y = 0; y < h; y++) {
-        float v = sineTableNorm[(int) (tempPhase * sineTableSize)];
+        float v = table[(int) (tempPhase * size)];
         tempPhase += yPhaseInc;
         if (tempPhase >= 1.0) {
           tempPhase -= 1.0;

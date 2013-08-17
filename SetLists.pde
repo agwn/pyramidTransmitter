@@ -646,9 +646,11 @@ class Tester extends SetList {
 
     warpSpeed.generateColor = campColor;
     speckle.amount = 1.0;
+    warp.xWaveTable = gPhasorTable;
+    warp.yWaveTable = gPhasorTable;
 
-    setParam(warp.xAmp, 0.25);
-    setParam(warp.yAmp, 0.25);
+    setParam(warp.xAmp, 1.0);
+    setParam(warp.yAmp, 1.0);
     setParam(warp.xFreq, 0.25);
     setParam(warp.yFreq, 0.25);
     setCanvas(canvas2, warpSpeed);
