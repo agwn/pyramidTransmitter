@@ -666,11 +666,13 @@ class Tester extends SetList {
     WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
     Warp warp = new Warp();
     Speckle speckle = new Speckle();
+    Breather breather = new Breather();
 
     warpSpeed.generateColor = campColor;
     speckle.amount = 1.0;
     warp.xWaveTable = gPhasorTable;
 //    warp.yWaveTable = gPhasorTable;
+    breather.waveTable = gPhasorTable;
 
     setParam(warp.xAmp, 1.0);
     setParam(warp.yAmp, 0.25);
@@ -678,6 +680,7 @@ class Tester extends SetList {
     setParam(warp.yFreq, 0.25);
     setCanvas(canvas2, warpSpeed);
     pushCanvas(canvas2, warp);
+    pushCanvas(canvas2, breather);
     pushCanvas(canvas2, speckle);
     wait(60.0);
   }
