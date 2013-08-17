@@ -16,7 +16,7 @@ class WaveTable {
     return size;
   }
 
-  private float[] getData() {
+  float[] getData() {
     return data;
   }
 }
