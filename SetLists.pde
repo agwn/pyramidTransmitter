@@ -639,14 +639,13 @@ class Tester extends SetList {
   }
 
   void setup() {
-    GenLerpColor lerpColor = new GenLerpColor();
-    lerpColor.c0 = color(255, 0, 0, 32);
-    lerpColor.c1 = color(255, 255, 0, 32);
+    GenLerpColor thisLerpColor = new GenLerpColor();
+    thisLerpColor.c0 = color(255, 0, 0, 255);
+    thisLerpColor.c1 = color(255, 255, 0, 255);
 
-    DNA dna = new DNA(64, 210, 8);
-    dna.genRandomColor = lerpColor;
-    dna.overrideColor = true;
-    setCanvas(canvas2, dna);
+    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
+    //warpSpeed.generateColor = thisLerpColor;
+    setCanvas(canvas2, warpSpeed);
     wait(1.0);
   }
 }

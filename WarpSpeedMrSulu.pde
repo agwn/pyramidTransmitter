@@ -1,6 +1,7 @@
 class WarpSpeedMrSulu extends CanvasRoutine {
   int NUM_STARS = 100;
   WarpStar[] warpstars;
+  GenerateColor generateColor = new GenWarpSpeedColor();
 
   WarpSpeedMrSulu() {
     warpstars = new WarpStar[NUM_STARS];
@@ -13,7 +14,7 @@ class WarpSpeedMrSulu extends CanvasRoutine {
 
   void reinit() {
     for (int i = 0; i<NUM_STARS; i++) {
-      warpstars[i] = new WarpStar(pg);
+      warpstars[i] = new WarpStar(this);
     }
   }
 
@@ -42,47 +43,29 @@ class WarpStar {
   float r;
   float g;
   float b;
+  float a;
   PGraphics pg;
+  WarpSpeedMrSulu parent;
   int w;
   int h;
 
-  public WarpStar(PGraphics pg_) {
-    pg = pg_;
+  GenerateColor generateColor;
+
+  public WarpStar(WarpSpeedMrSulu parent_) {
+    parent = parent_;
+    generateColor = parent.generateColor;
+    pg = parent.pg;
     w = pg.width;
     h = pg.height;
     this.reset();
   }
 
   public void reset() {
-
-    // RGB 252/23/218
-    //r = 252;
-    //g = 23;
-    //b = 218;
-    //r = int(map(y, 0, h, 0, 255));
-    //g = 0;
-    //b = 0;
-    //r = random(varMin[0], varMax[0]);
-    //g = random(varMin[1], varMax[1]);
-    //b = random(varMin[2], varMax[2]);
-    //r = random(varMax[0]);
-    //g = random(varMax[1]);
-    //b = random(varMax[2]);
-    r = random(varMax[0]>>2, varMax[0]);
-    g = random(varMax[1]>>2, varMax[1]);
-    b = random(varMax[2]>>2, varMax[2]);
-
-    // select color from hsv color space
-    //float tm = random(map(varMin[0],0,255,0,TWO_PI),map(varMax[0],0,255,0,TWO_PI));
-    //r = 128*(sin(tm)/2+1);
-    //g = 128*(sin(tm+TWO_PI/3)/2+1);
-    //b = 128*(sin(tm+2*TWO_PI/3)/2+1);
-
-    // scale brightness.
-    float bright = random(.5, 2);
-    r = constrain(bright*((long)r), 0, 255);
-    g = constrain(bright*((long)g), 0, 255);
-    b = constrain(bright*((long)b), 0, 255);
+    color thisColor = generateColor.get();
+    r = red(thisColor);
+    g = green(thisColor);
+    b = blue(thisColor);
+    a = alpha(thisColor);
 
     y = int(random(0, h));
 
@@ -99,33 +82,16 @@ class WarpStar {
       len = int((abs(vy)+1) * 10);
     }
 
-
-    // override values for testing
-    if (false) {
-      x = int(random(0, w));
-      vx = (random(0, 1)-0.5)*1.5;
-      vy = (random(0, 1)-0.45)*1.5;
-      //vx = 0;
-      //vy = 0;
-      len = int((abs(vx)+1) * 10);
-    }
-
     dx = int(random(0*w, 4*w));
     dy = int(random(0*h, 2*h));
-    //println("x: "+x+" vx: "+vx+" vy: "+vy+" len: "+len+" dx: "+dx+" dy: "+dy);
-
-    //if (y > h) this.reset();
-    //if (x > w) this.reset();
   }
 
   public void draw() {
-    float _r, _g, _b;
+    float _r, _g, _b, _a;
     float _x, _y;
 
     dx--;
     dy--;
-    //dx = dx - abs(vx);
-    //dy = dy - abs(vy);
 
     if ((dx > 0) || (dy > 0)) {
       x += vx;
@@ -135,7 +101,7 @@ class WarpStar {
       if (y < 0) y += h;
       if (y > w) y -= h;
 
-      pg.stroke(r, g, b);
+      pg.stroke(r, g, b, a);
 
       pg.noSmooth();
       pg.point(x, y);
@@ -148,7 +114,8 @@ class WarpStar {
         _r = int(scaler*r);
         _g = int(scaler*g);
         _b = int(scaler*b);
-        pg.stroke(color(_r, _g, _b));
+        _a = int(scaler*a);
+        pg.stroke(color(_r, _g, _b, _a));
 
         _x = int(x-(i*vx));
         _y = int(y-(i*vy));
@@ -165,4 +132,3 @@ class WarpStar {
     }
   }
 }
-

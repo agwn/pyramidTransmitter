@@ -31,3 +31,20 @@ class GenCampColor extends GenLerpColor {
   }
 }
 
+class GenWarpSpeedColor extends GenerateColor {
+  int[] varMin = { 64, 64, 64 };
+  int[] varMax = { 128, 128, 128 };
+
+  color get() {
+    float r = random(varMax[0]>>2, varMax[0]);
+    float g = random(varMax[1]>>2, varMax[1]);
+    float b = random(varMax[2]>>2, varMax[2]);
+    float bright = random(.5, 2);
+
+    r = constrain(bright*((long)r), 0, 255);
+    g = constrain(bright*((long)g), 0, 255);
+    b = constrain(bright*((long)b), 0, 255);
+
+    return color(r, g, b);
+  }
+}
