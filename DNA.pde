@@ -4,7 +4,7 @@
 // 2013-8-16
 
 public class DNA extends CanvasRoutine {
-  GenerateColor genRandomColor = new GenRandomColor();
+  GenerateColor generateColor = new GenRandomColor();
   boolean overrideColor = false;
 
   private int _w;		// grid width in number of cells
@@ -34,10 +34,10 @@ public class DNA extends CanvasRoutine {
       _sameStrands = sameStrands;
       
       setLeftAndRightCurColors();
-      _barsCur = genRandomColor.get();
+      _barsCur = generateColor.get();
 
       setLeftAndRightNextColors();
-      _barsNext = genRandomColor.get();
+      _barsNext = generateColor.get();
       
       _spacing = spacing;
       _wavelength = wavelength;
@@ -60,22 +60,22 @@ public class DNA extends CanvasRoutine {
      }
     
     private void setLeftAndRightCurColors() {
-      _leftCur = genRandomColor.get();
+      _leftCur = generateColor.get();
       if(_sameStrands) {
         _rightCur = _leftCur;
       }
       else {
-        _rightCur = genRandomColor.get();
+        _rightCur = generateColor.get();
       }
     }
   
     private void setLeftAndRightNextColors() {
-      _leftNext = genRandomColor.get();
+      _leftNext = generateColor.get();
       if(_sameStrands) {
         _rightNext = _leftNext;
       }
       else {
-        _rightNext = genRandomColor.get();
+        _rightNext = generateColor.get();
       }
     }
    

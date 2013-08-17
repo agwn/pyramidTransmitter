@@ -640,12 +640,19 @@ class Tester extends SetList {
 
   void setup() {
     GenLerpColor thisLerpColor = new GenLerpColor();
+    GenCampColor campColor = new GenCampColor(); 
+    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
+    DNA dna = new DNA(64, 210, 8);
+
     thisLerpColor.c0 = color(255, 0, 0, 64);
     thisLerpColor.c1 = color(255, 255, 0, 64);
 
-    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
-    warpSpeed.generateColor = thisLerpColor;
-    setCanvas(canvas2, warpSpeed);
+    warpSpeed.generateColor = campColor;
+
+    dna.overrideColor = true;
+    dna.generateColor = campColor;
+
+    setCanvas(canvas2, dna);
     wait(1.0);
   }
 }
