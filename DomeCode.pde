@@ -47,6 +47,7 @@ class DomePushCanvas extends DomeCode {
       if (canvas == canvases[i]) {
         controller.activeCanvases[i] = true;
         canvases[i].pushRoutine(canvasRoutine);
+        break;
       } 
     }
 

@@ -659,8 +659,6 @@ class Tester extends SetList {
     sparkle.nDots = 900;
     sparkle.dotToCrossRatio = 0.99;
 
-    crazyBars.setBlendMode(OVERLAY);
-
     setCanvas(canvas2, energize);
     pushCanvas(canvas2, crazyBars);
     pushCanvas(canvas2, mirror);
@@ -668,6 +666,8 @@ class Tester extends SetList {
     popCanvas(canvas2);
     wait(1.0);
     pushCanvas(canvas2, mirror);
+    wait(1.0);
+    popCanvas(canvas2);
     wait(1.0);
     popCanvas(canvas2);
     wait(1.0);
