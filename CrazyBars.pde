@@ -50,7 +50,9 @@ class CrazyBars extends CanvasRoutine {
     pg.colorMode(HSB);
 
     if(_iterations == 0) {
-      pg.background(getRandomInt(64));
+      if(_iterations % 24 == 0) {
+        pg.background(getRandomInt(64));
+      }
       
       int numHorizBars = getRandomBars(_h);
       boolean horizDiffColor = flipCoin();
