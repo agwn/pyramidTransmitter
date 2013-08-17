@@ -12,7 +12,7 @@ class Breather extends CanvasRoutine {
   private int h;
 
   public Breather() {
-    waveTable = gSineTable;
+    waveTable = sineTable;
   }
 
   void reinit() {

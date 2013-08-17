@@ -22,8 +22,8 @@ class Warp extends CanvasRoutine {
     yFreq = new ModFloat(1.0);
     xFreq = new ModFloat(1.0);
     setPaintMode(DIRECT);
-    xWaveTable = gSineTableNorm;
-    yWaveTable = gSineTableNorm;
+    xWaveTable = sineTableNorm;
+    yWaveTable = sineTableNorm;
   }
 
   void reinit() {

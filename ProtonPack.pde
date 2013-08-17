@@ -27,7 +27,7 @@ class ProtonPack extends CanvasRoutine {
   private int h;
 
   ProtonPack() {
-    waveTable = gSineTable;
+    waveTable = sineTable;
   }
 
   void reinit() {

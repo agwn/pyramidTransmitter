@@ -12,7 +12,7 @@ class SimpleWave extends CanvasRoutine {
   private int h;
 
   SimpleWave() {
-    waveTable = gSineTable;
+    waveTable = sineTable;
   }
 
   void reinit() {

@@ -28,7 +28,7 @@ class SineTable extends WaveTable {
 
   void generate() {
     for (int i = 0; i < size; i++) {
-      data[i] = sin(i * sineTableSizeInv * TWO_PI);
+      data[i] = sin(i * size * TWO_PI);
     }
   }
 }
