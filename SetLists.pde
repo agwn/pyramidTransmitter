@@ -639,41 +639,14 @@ class Tester extends SetList {
   }
 
   void setup() {
-    ArrayList<BitPoint> disorientBitPoints = disFont.getBitmap("disorient_3s").getBitmap(true, true, false).getBitPoints();
+    GenLerpColor lerpColor = new GenLerpColor();
+    lerpColor.c0 = color(255, 0, 0, 32);
+    lerpColor.c1 = color(255, 255, 0, 32);
 
-    Energize energize = new Energize(disorientBitPoints);
-    Mirror mirror = new Mirror();
-    Sparkle sparkle = new Sparkle();
-    CrazyBars crazyBars = new CrazyBars();
-    Warp warp = new Warp();
-
-    energize.x = 24;
-    energize.y = 9;
-    energize.yPad = 1;
-    energize.pointsPerFrame = 2;
-    energize.frames = 20;
-    energize.cStart = color(disorientOrange, 0);
-    energize.cEnd = pornj;
-    energize.verticalToHorizontalRatio = 0.5;
-    energize.size = 8;
-    sparkle.nDots = 900;
-    sparkle.dotToCrossRatio = 0.99;
-
-    setCanvas(canvas2, energize);
-    pushCanvas(canvas2, crazyBars);
-    pushCanvas(canvas2, mirror);
-    wait(1.0);
-    popCanvas(canvas2);
-    wait(1.0);
-    pushCanvas(canvas2, mirror);
-    wait(1.0);
-    popCanvas(canvas2);
-    wait(1.0);
-    popCanvas(canvas2);
-    wait(1.0);
-    pushCanvas(canvas2, mirror);
-    wait(1.0);
-    popCanvas(canvas2);
+    DNA dna = new DNA(64, 210, 8);
+    dna.genRandomColor = lerpColor;
+    dna.overrideColor = true;
+    setCanvas(canvas2, dna);
     wait(1.0);
   }
 }

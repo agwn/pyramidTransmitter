@@ -4,6 +4,9 @@
 // 2013-8-16
 
 public class DNA extends CanvasRoutine {
+  GenerateColor genRandomColor = new GenRandomColor();
+  boolean overrideColor = false;
+
   private int _w;		// grid width in number of cells
   private int _h;		// grid height in number of cells
   private Helix[] _helices;
@@ -30,10 +33,10 @@ public class DNA extends CanvasRoutine {
       _sameStrands = sameStrands;
       
       setLeftAndRightCurColors();
-      _barsCur = getRandomColor();
+      _barsCur = genRandomColor.get();
 
       setLeftAndRightNextColors();
-      _barsNext = getRandomColor();
+      _barsNext = genRandomColor.get();
       
       _spacing = spacing;
       _wavelength = wavelength;
@@ -56,33 +59,25 @@ public class DNA extends CanvasRoutine {
      }
     
     private void setLeftAndRightCurColors() {
-      _leftCur = getRandomColor();
+      _leftCur = genRandomColor.get();
       if(_sameStrands) {
         _rightCur = _leftCur;
       }
       else {
-        _rightCur = getRandomColor();
+        _rightCur = genRandomColor.get();
       }
     }
   
     private void setLeftAndRightNextColors() {
-      _leftNext = getRandomColor();
+      _leftNext = genRandomColor.get();
       if(_sameStrands) {
         _rightNext = _leftNext;
       }
       else {
-        _rightNext = getRandomColor();
+        _rightNext = genRandomColor.get();
       }
     }
-    
-    private color getRandomColor() {
-      return color(getRandomInt(256), getRandomInt(256), getRandomInt(256));
-    }
-    
-    private int getRandomInt(int max) {
-      return (int) Math.floor(Math.random() * max);
-    }
-    
+   
     public double getLeftX(int time, int offset, int panelNum) {
       double amplitude = (_helixWidth - 1) / 2.0;
       int panelCorrection = panelNum * _helixWidth;
@@ -182,6 +177,11 @@ public class DNA extends CanvasRoutine {
     
     makeHelices();
   }
+
+  void reinit() {
+    setModulus();
+    makeHelices(); 
+  }
  
  private void setModulus() {
    _modulus = 4 + ((int) Math.floor(Math.random() * 13));
@@ -212,7 +212,8 @@ public class DNA extends CanvasRoutine {
      }
      int spacingOffset = 3*i + 2;
      boolean sameStrands = i % 2 == 1;
-      if(i == _panels / 2 - 1) { // the center panel(s)
+
+      if(i == _panels / 2 - 1 && overrideColor == false) { // the center panel(s)
          System.out.println(i + ", " + (_panels - i - 1));
         _helices[i] = new Helix(pornj, disorientOrange, spacingOffset, wavelength);
         _helices[_panels - i - 1] = new Helix(disorientOrange, pornj, spacingOffset, wavelength);
