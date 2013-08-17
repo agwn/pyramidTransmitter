@@ -1,7 +1,10 @@
 // This should be 127.0.0.1, 58802
 String transmit_address = "127.0.0.1";
+//String transmit_address = "192.168.7.2";
 //String transmit_address = "192.168.111.20";
+
 int transmit_port = 58082;
+//int transmit_port = 9999;
 
 // Display configuration
 int displayWidth = 64;    // 8 columns x 8 pixels
