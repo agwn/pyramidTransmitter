@@ -14,7 +14,8 @@ void setup() {
   setupPyramid();
 
   // Set the SetList sequence here
-  theSetList = new Tester();
+  //theSetList = new Tester();
+  theSetList = new UncertainSetList();
 }
 
 void draw() {
