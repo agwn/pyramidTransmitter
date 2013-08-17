@@ -6,9 +6,14 @@ class SimpleWave extends CanvasRoutine {
   float bias = 0.5;
   float spread = 0.0;
   float freq = 1.0;
+  WaveTable waveTable;
   private float period;
   private int w;
   private int h;
+
+  SimpleWave() {
+    waveTable = gSineTable;
+  }
 
   void reinit() {
     w = pg.width;
@@ -17,16 +22,19 @@ class SimpleWave extends CanvasRoutine {
   }
 
   void draw() {
-    pg.beginDraw();
-    pg.background(0);
-    pg.stroke(theColor);
+    float[] table = waveTable.getData();
+    int size = waveTable.getSize();
     float drawPhase = phase;
     float ampScaled = amp * w;
     int biasScaled = (int) (bias * w);
     int s = (int) (spread * ampScaled);
+    pg.beginDraw();
+
+    pg.background(0);
+    pg.stroke(theColor);
 
     for (int y = 0; y < h; y++) {
-      int x = (int) (sineTable[(int) (drawPhase * sineTableSize)] * ampScaled);
+      int x = (int) (table[(int) (drawPhase * size)] * ampScaled);
       pg.line(biasScaled + x - s, y, biasScaled - x + s, y);
 
       drawPhase += period * nWaves;

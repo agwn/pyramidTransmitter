@@ -668,6 +668,7 @@ class Tester extends SetList {
     Speckle speckle = new Speckle();
     Breather breather = new Breather();
     ProtonPack protonPack = new ProtonPack();
+    SimpleWave simpleWave = new SimpleWave();
 
     warpSpeed.generateColor = campColor;
     speckle.amount = 1.0;
@@ -675,14 +676,16 @@ class Tester extends SetList {
 //    warp.yWaveTable = gPhasorTable;
     breather.waveTable = gPhasorTable;
     protonPack.waveTable = gSawTable;
+    simpleWave.waveTable = gSawTable;
+    simpleWave.theColor = color(pornj, 80);
 
     setParam(warp.xAmp, 1.0);
     setParam(warp.yAmp, 0.25);
     setParam(warp.xFreq, 0.25);
     setParam(warp.yFreq, 0.25);
     setCanvas(canvas2, warpSpeed);
+    pushCanvas(canvas2, simpleWave);
     pushCanvas(canvas2, warp);
-    pushCanvas(canvas2, protonPack);
     pushCanvas(canvas2, speckle);
     wait(60.0);
   }
