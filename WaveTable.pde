@@ -45,6 +45,19 @@ class SineTableNorm extends WaveTable {
   }
 }
 
+class SawTable extends WaveTable {
+  SawTable(int size) {
+    super(size);
+  }
+
+  void generate() {
+    for (int i = 0; i < size; i++) {
+      data[i] = ((float) i / size) * 2.0 - 1.0;
+      println(data[i]);
+    }
+  }
+}
+
 class PhasorTable extends WaveTable {
   PhasorTable(int size) {
     super(size);

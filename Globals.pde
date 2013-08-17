@@ -12,6 +12,7 @@ Bitmap selfPortraitMap;
 SineTable gSineTable = new SineTable(256);
 SineTableNorm gSineTableNorm = new SineTableNorm(256);
 PhasorTable gPhasorTable = new PhasorTable(256);
+SawTable gSawTable = new SawTable(256);
 
 
 void setupGlobals() {
