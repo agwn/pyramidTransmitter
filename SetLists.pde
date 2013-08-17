@@ -569,12 +569,35 @@ class UncertainSetList extends SetList {
   }
 
   void setup() {
+    // KochCurvesOne demo
+    {
+        float changesPerSecond = 2;
+        int x = 10;
+        int y = 100;
+        int len = 100;
+        for (int i=0; i<5; i++) {
+          KochCurvesOne kochCurve1 = new KochCurvesOne(changesPerSecond, x + i*len, y, len);
+          pushCanvas(canvas0, kochCurve1); 
+          wait(0.5);
+        }
+        wait(10.0);
+        fadeOut(3.0, canvas0);
+    }
+
+    // KochCurvesMany demo
+    {
+        float changesPerSecond = 2;
+        int numberOfCurves = 2;
+        KochCurvesMany kochCurves = new KochCurvesMany(numberOfCurves, changesPerSecond);
+        setCanvas(canvas0, kochCurves); 
+        wait(10.0);
+        fadeOut(3.0, canvas0);
+    }
+
     // PlantFractal demo
     {
-      int secondsToHoldTheBand = 6;
-      int PercentBandWidthMin = 2;
-      int PercentBandWidthMax = 15;
-        PlantFractal plantFractal = new PlantFractal(1);
+        int secondsToHold = 2;
+        PlantFractal plantFractal = new PlantFractal(secondsToHold);
         setCanvas(canvas0, plantFractal); 
         wait(18.0);
     }
