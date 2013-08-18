@@ -28,8 +28,8 @@ class SimpleWave extends CanvasRoutine {
     float ampScaled = amp * w;
     int biasScaled = (int) (bias * w);
     int s = (int) (spread * ampScaled);
-    pg.beginDraw();
 
+    pg.beginDraw();
     pg.background(0);
     pg.stroke(theColor);
 

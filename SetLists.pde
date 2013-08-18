@@ -672,17 +672,17 @@ class Tester extends SetList {
 
     warpSpeed.generateColor = campColor;
     speckle.amount = 1.0;
-    warp.xWaveTable = phasorTable;
+    //warp.xWaveTable = phasorTable;
 //    warp.yWaveTable = phasorTable;
     breather.waveTable = phasorTable;
     protonPack.waveTable = sawTable;
     simpleWave.waveTable = sawTable;
-    simpleWave.theColor = color(pornj, 80);
+    simpleWave.theColor = color(pornj, 32);
 
-    setParam(warp.xAmp, 1.0);
-    setParam(warp.yAmp, 0.25);
-    setParam(warp.xFreq, 0.25);
-    setParam(warp.yFreq, 0.25);
+    setParam(warp.xAmp, 0.0);
+    setParam(warp.yAmp, 1.25);
+    setParam(warp.xFreq, 0.75);
+    setParam(warp.yFreq, 0.9);
     setCanvas(canvas2, warpSpeed);
     pushCanvas(canvas2, simpleWave);
     pushCanvas(canvas2, warp);
