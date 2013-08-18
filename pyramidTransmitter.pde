@@ -14,7 +14,7 @@ void setup() {
   setupPyramid();
 
   // Set the SetList sequence here
-  theSetList = new Tester();
+  theSetList = new CloudFractalPlayer();
 }
 
 void draw() {

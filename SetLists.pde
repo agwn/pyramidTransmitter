@@ -662,31 +662,6 @@ class Tester extends SetList {
   }
 
   void setup() {
-    GenCampColor campColor = new GenCampColor(); 
-    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
-    Warp warp = new Warp();
-    Speckle speckle = new Speckle();
-    Breather breather = new Breather();
-    ProtonPack protonPack = new ProtonPack();
-    SimpleWave simpleWave = new SimpleWave();
-
-    warpSpeed.generateColor = campColor;
-    speckle.amount = 1.0;
-    //warp.xWaveTable = phasorTable;
-//    warp.yWaveTable = phasorTable;
-    breather.waveTable = phasorTable;
-    protonPack.waveTable = sawTable;
-    simpleWave.waveTable = sawTable;
-    simpleWave.theColor = color(pornj, 32);
-
-    setParam(warp.xAmp, 0.0);
-    setParam(warp.yAmp, 1.25);
-    setParam(warp.xFreq, 0.75);
-    setParam(warp.yFreq, 0.9);
-    setCanvas(canvas2, warpSpeed);
-    pushCanvas(canvas2, simpleWave);
-    pushCanvas(canvas2, warp);
-    pushCanvas(canvas2, speckle);
     wait(60.0);
   }
 }
