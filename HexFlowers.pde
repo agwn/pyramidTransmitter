@@ -11,18 +11,18 @@ public class HexFlowers extends CanvasRoutine {
   private int TRI_WIDTH = 2;
   private int TRI_HEIGHT = 4;
   private boolean[][] _grid;
-  private double _density = 0.1;
-  private int MAX_X_OFFSET = TRI_WIDTH - 1; // 0 or 1
-  private int MAX_Y_OFFSET = TRI_HEIGHT - 1; // 0, 1, 2, or 3
+  private int MAX_X_OFFSET = TRI_WIDTH - 1;
+  private int MAX_Y_OFFSET = TRI_HEIGHT - 1;
   private int _xOffset, _yOffset;
   private int _generations = 0;
   private boolean _drawConnected = true;
   private double _pornjDensity = 0.5;
   private boolean _drawGrid = true;
+  private double _density = 0.1;
   private double _gridDensity = 0.5;
   private double _starDensity = 0.5;
   private double _ringDensity = 0.5;
-  private int _gridIntensity = 128;
+  private int _gridIntensity = 96;
   private int _frequency = 2;
   private double _ringPartiality = 0.5;
   private int GRID_INTENSITY_FREQ = 27;
@@ -45,6 +45,12 @@ public class HexFlowers extends CanvasRoutine {
   }
   
   private void initGrid() {
+    if(Math.random() < 0.3) {
+      TRI_WIDTH = 2 + getRandomInt(4);
+      TRI_HEIGHT = 4 + getRandomInt(10);
+      MAX_X_OFFSET = TRI_WIDTH - 1;
+      MAX_Y_OFFSET = TRI_HEIGHT - 1;
+    }
     _grid = new boolean[_w][_h];
     for(int i = 0; i < _w; i++) {
       for(int j = 0; j < _h; j++) {
@@ -107,7 +113,7 @@ public class HexFlowers extends CanvasRoutine {
     }
     
     if(_generations % GRID_INTENSITY_FREQ == 0) {
-      _gridIntensity = getRandomInt(128);      
+      _gridIntensity = getRandomInt(96);      
     }
     if(_generations % GRID_DENSITY_FREQ == 0) {
       _gridDensity = Math.random();
@@ -131,7 +137,7 @@ public class HexFlowers extends CanvasRoutine {
       initGrid();
     }
     if(_generations % FREQUENCY_FREQ == 0) {
-      _frequency = 1 + getRandomInt(10);
+      _frequency = 1 + getRandomInt(15);
     }
     if(_generations % STAR_DENSITY_FREQ == 0) {
       _starDensity = Math.random();
