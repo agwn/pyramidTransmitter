@@ -54,7 +54,6 @@ class ModLine extends ModEvent {
   }
 }
 
-
 class ModFloat {
   private float value;
 

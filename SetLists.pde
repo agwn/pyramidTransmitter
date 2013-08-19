@@ -663,14 +663,28 @@ class Tester extends SetList {
 
   void setup() {
     Pxxxls pxxxls = new Pxxxls(20);
+    WarpSpeedMrSulu warpSpeed= new WarpSpeedMrSulu();
     GenColorSequence colorSequence = new GenColorSequence();
+    Flash flash = new Flash();
+    SingleColor singleColorFoo = new SingleColor();
 
-    colorSequence.colors.add(color(255, 0, 0));
-    colorSequence.colors.add(color(0, 255, 0));
-    colorSequence.colors.add(color(0, 0, 255));
-    pxxxls.generateColor = colorSequence;
+    colorSequence.colors.add(pornj);
+    colorSequence.colors.add(disorientOrange);
+    colorSequence.colors.add(pink);
+    warpSpeed.generateColor = new GenCampColor();
 
-    setCanvas(canvas2, pxxxls);
-    wait(60.0);
+    flash.generateColor = colorSequence;
+   
+    setParam(flash.minNextTime, 0.5);   
+    setParam(flash.maxNextTime, 0.5);   
+    setParam(flash.decayTime, 0.125);   
+    setCanvas(canvas2, warpSpeed);
+    pushCanvas(canvas2, flash);
+
+    wait(2.0);
+    setParam(flash.minNextTime, 0.5);   
+    setParam(flash.maxNextTime, 0.5);   
+    setParam(flash.decayTime, 0.25);   
+    wait(2.0);
   }
 }

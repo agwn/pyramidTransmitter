@@ -4,6 +4,22 @@ class GenerateColor {
   }
 }
 
+class SingleColor extends GenerateColor {
+  ModColor c;
+
+  SingleColor() {
+    c = new ModColor(color(0, 0));
+  }
+
+  SingleColor(color c_) {
+    c = new ModColor(c_);
+  }
+
+  color get() {
+    return c.get();
+  }
+}
+
 class GenRandomColor extends GenerateColor {
   color get() {
     return color(random(256), random(256), random(256));
@@ -78,6 +94,7 @@ class GenColorSequence extends GenerateColor {
     else {
       return color(0, 0);
     }
+    println("getColor: " + index + "  " + c);
 
     index++;    
     return c;
