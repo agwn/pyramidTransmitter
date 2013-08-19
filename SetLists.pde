@@ -663,7 +663,12 @@ class Tester extends SetList {
 
   void setup() {
     Pxxxls pxxxls = new Pxxxls(20);
-//    pxxxls.generateColor = new GenWarpSpeedColor();
+    GenColorSequence colorSequence = new GenColorSequence();
+
+    colorSequence.colors.add(color(255, 0, 0));
+    colorSequence.colors.add(color(0, 255, 0));
+    colorSequence.colors.add(color(0, 0, 255));
+    pxxxls.generateColor = colorSequence;
 
     setCanvas(canvas2, pxxxls);
     wait(60.0);
