@@ -662,6 +662,10 @@ class Tester extends SetList {
   }
 
   void setup() {
+    Pxxxls pxxxls = new Pxxxls(20);
+//    pxxxls.generateColor = new GenWarpSpeedColor();
+
+    setCanvas(canvas2, pxxxls);
     wait(60.0);
   }
 }

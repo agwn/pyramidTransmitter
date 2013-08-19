@@ -24,10 +24,18 @@ class GenLerpColor extends GenerateColor {
   }
 }
 
-class GenCampColor extends GenLerpColor {
-  GenCampColor() {
-    c0 = pornj;
-    c1 = disorientOrange;
+class GenCampColor extends GenerateColor {
+  color get() {
+    float r = random(1.0);
+
+    if (r < 0.333) {
+      return lerpColor(pornj, disorientOrange, random(1.0));
+    }
+    else if (r < 0.666) {
+      return lerpColor(pink, disorientOrange, random(1.0));
+    }
+
+    return lerpColor(pornj, pink, random(1.0));
   }
 }
 
@@ -39,11 +47,11 @@ class GenWarpSpeedColor extends GenerateColor {
     float r = random(varMax[0]>>2, varMax[0]);
     float g = random(varMax[1]>>2, varMax[1]);
     float b = random(varMax[2]>>2, varMax[2]);
-    float bright = random(.5, 2);
+    float bright = random(0.5, 2);
 
-    r = constrain(bright*((long)r), 0, 255);
-    g = constrain(bright*((long)g), 0, 255);
-    b = constrain(bright*((long)b), 0, 255);
+    r = constrain(bright * ((long) r), 0, 255);
+    g = constrain(bright * ((long) g), 0, 255);
+    b = constrain(bright * ((long) b), 0, 255);
 
     return color(r, g, b);
   }

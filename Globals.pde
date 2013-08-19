@@ -1,5 +1,6 @@
 color pornj = color(252, 23, 218);
 color disorientOrange = color(255, 128, 0);
+color pink = color(255, 128, 128);
 DisorientFont disFont;
 Bitmap selfPortraitMap;
 SineTable sineTable = new SineTable(256);
