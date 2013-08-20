@@ -7,22 +7,21 @@
 import java.util.Random;
 
 public class CloudFractal extends CanvasRoutine {
-  private int _w;		// grid width in number of cells
-  private int _h;		// grid height in number of cells
-  private float[][] _grid, _nextGrid;      // Plasma fractal grid
-  private float _roughness;
-  private Random _rand;
-  private float _minGridValue, _maxGridValue, _minNextGridValue, _maxNextGridValue;
-  private int PATTERN_LENGTH = 120;
-  private color _color1;
-  private color _color2;
-  private int _c1Red, _c1Green, _c1Blue, _c2Red, _c2Green, _c2Blue;
-  private double _exponent;
-  private boolean _choppy;
-  private int _choppiness = 1;
-  private int _generations = 0;
-  GenerateColor generateColor;    
-
+  protected int _w;   // grid width in number of cells
+  protected int _h;   // grid height in number of cells
+  protected float[][] _grid, _nextGrid;      // Plasma fractal grid
+  protected float _roughness;
+  protected Random _rand;
+  protected float _minGridValue, _maxGridValue, _minNextGridValue, _maxNextGridValue;
+  protected int PATTERN_LENGTH = 120;
+  protected color _color1 = pornj;
+  protected color _color2 = disorientOrange;
+  protected int _c1Red, _c1Green, _c1Blue, _c2Red, _c2Green, _c2Blue;
+  protected double _exponent;
+  protected boolean _choppy;
+  protected int _choppiness = 1;
+  protected int _generations = 0;
+    
   CloudFractal(Random rand, float roughness, int width, int height, double exponent) { 
     _roughness = roughness / width;
     _w = width;
@@ -32,22 +31,14 @@ public class CloudFractal extends CanvasRoutine {
     _rand = (rand == null) ? new Random() : rand;
     _exponent = exponent;
     _choppy = true;
-
-    GenColorSequence gcs = new GenColorSequence();
-    gcs.colors.add(pornj);
-    gcs.colors.add(disorientOrange);
-    generateColor = gcs;
+    initialize();
+  }
+ 
+  void reinit() {
     chooseColors();
+  } 
 
-  //  initialize();
-    constructNextFractal();
-  }
-
-  void setFreq(float f) {
-    PATTERN_LENGTH = (int) (FRAMERATE / f);
-  }
-  
-  private float checkExtremes(float value, boolean isNext) {
+  protected float checkExtremes(float value, boolean isNext) {
     if(isNext) {
       if(value < _minNextGridValue) {
         _minNextGridValue = value;
@@ -68,14 +59,14 @@ public class CloudFractal extends CanvasRoutine {
     }
   }
   
-  private float getInitCornerPoint(boolean isNext) {
+  protected float getInitCornerPoint(boolean isNext) {
     float result = _rand.nextFloat() - 0.5;
     checkExtremes(result, isNext);
     
     return result;
   }
   
-  private void resetExtremes() {
+  protected void resetExtremes() {
     _minGridValue = Float.MAX_VALUE;
     _maxGridValue = -Float.MAX_VALUE;
     
@@ -88,22 +79,12 @@ public class CloudFractal extends CanvasRoutine {
     constructFractals();
   }
   
-  private void constructFractals() {
+  protected void constructFractals() {
     constructFractal(_grid, false);
     constructFractal(_nextGrid, true); 
   }
-
-  private void constructNextFractal() {
-    for (int i = 0; i < _w; i++) {
-      for (int j = 0; j < _h; j++) {
-        _grid[i][j] = _nextGrid[i][j];
-      }
-    }
-
-    constructFractal(_nextGrid, true); 
-  }  
-
-  private void constructFractal(float[][] grid, boolean isNext) {
+  
+  protected void constructFractal(float[][] grid, boolean isNext) {
     int xh = _w - 1;
     int yh = _h - 1;
     
@@ -119,33 +100,6 @@ public class CloudFractal extends CanvasRoutine {
   
   void draw() {
     pg.beginDraw();
-    //originalRoutine();
-    modRoutine();
-    pg.endDraw();
-  }
-
-  private void modRoutine() {
-    for(int i = 0; i < _w; i++) {
-      for(int j = 0; j < _h; j++) {
-        pg.stroke(getInterpolatedColor(i, j, (PATTERN_LENGTH - _generations) / (double) PATTERN_LENGTH));
-        pg.point(i, j);
-      }
-    }
-
-    if(_generations < 0) {
-      chooseColors();
-      //resetExtremes();
-      //chooseRoughness();
-      //constructFractals();
-      constructNextFractal();
-      //chooseChoppiness();
-      //chooseExponent();
-      _generations = PATTERN_LENGTH;
-    }
-   
-    _generations--; 
-  }
-  private void originalRoutine() {
     
     //System.out.println("min: " + _minGridValue + ", max: " + _maxGridValue);
     
@@ -183,14 +137,15 @@ public class CloudFractal extends CanvasRoutine {
     }
     
     _generations++;
-  }  
-
-  private float chooseRoughness() {
+    pg.endDraw();
+  }
+  
+  protected float chooseRoughness() {
     _roughness = 0.1 + (float)Math.random();
     return _roughness;
   }
   
-  private double chooseExponent() {
+  protected double chooseExponent() {
     if(_choppy) {    
       _exponent = Math.random() * 0.5;
     }
@@ -200,7 +155,7 @@ public class CloudFractal extends CanvasRoutine {
     return _exponent;
   }
   
-  private double chooseChoppiness() {
+  protected double chooseChoppiness() {
     if(_choppy) {
       _choppiness = 1 + (int) Math.floor(Math.random() * 10);
     }
@@ -212,24 +167,34 @@ public class CloudFractal extends CanvasRoutine {
     return _choppiness;
   }
   
-  private int getRandomInt(int range) {
+  protected int getRandomInt(int range) {
     return (int) Math.floor(Math.random() * range);
   }
   
-  private int getRandomSingleColor() {
+  protected int getRandomSingleColor() {
     int result = getRandomInt(64);
     result += flipCoin() ? 192 : 0;
     return result;
   }
   
-  private boolean flipCoin() {
+  protected boolean flipCoin() {
     return Math.random() < 0.5;
   }
   
-  private void chooseColors() {
-    _color1 = generateColor.get();
-    _color2 = generateColor.get();
-
+  protected void chooseColors() {
+    if(Math.random() < 0.5) {
+      _color1 = pornj;
+      _color2 = disorientOrange;
+    }
+    else {
+      // make really nice contrasting colors? I hope so
+      int r = getRandomSingleColor();
+      int g = getRandomSingleColor();
+      int b = getRandomSingleColor();   
+      _color1 = color(r, g, b);
+      _color2 = color(255 - r, 255 - g, 255 - b);
+    }
+    
     _c1Red = (_color1 >> 16) & 0xFF;
     _c1Green = (_color1 >> 8) & 0xFF;
     _c1Blue = (_color1 >> 0) & 0xFF;
@@ -237,12 +202,12 @@ public class CloudFractal extends CanvasRoutine {
     _c2Green = (_color2 >> 8) & 0xFF;
     _c2Blue = (_color2 >> 0) & 0xFF;
   }
- 
-  private int getLinearInterpolation(int leftVal, int rightVal, double parameter) {
+  
+  protected int getLinearInterpolation(int leftVal, int rightVal, double parameter) {
     return (int) Math.round(leftVal - (leftVal - rightVal) * parameter);
   }
   
-  private double calculateParameter(int i, int j, boolean isNext) {
+  protected double calculateParameter(int i, int j, boolean isNext) {
     double minVal, maxVal;
     float gridValue;
     if(isNext) {
@@ -276,7 +241,7 @@ public class CloudFractal extends CanvasRoutine {
     return parameter;
   }
   
-  private int getColorValue(int i, int j, char rgb, boolean isNext) {    
+  protected int getColorValue(int i, int j, char rgb, boolean isNext) {    
     switch(rgb) {
       case 'r':
         return getLinearInterpolation(_c1Red, _c2Red, calculateParameter(i, j, isNext));
@@ -289,7 +254,7 @@ public class CloudFractal extends CanvasRoutine {
     }
   }
   
-  private color getPointColor(int i, int j) {
+  protected color getPointColor(int i, int j) {
     int r, g, b;
     r = getColorValue(i, j, 'r', false);
     g = getColorValue(i, j, 'g', false);
@@ -298,7 +263,7 @@ public class CloudFractal extends CanvasRoutine {
     return color(r, g, b);
   }
   
-  private color getInterpolatedColor(int i, int j, double step) {
+  protected color getInterpolatedColor(int i, int j, double step) {
     int r1, g1, b1, r2, g2, b2;
     int r, g, b;
     r1 = getColorValue(i, j, 'r', false);
@@ -307,6 +272,7 @@ public class CloudFractal extends CanvasRoutine {
     r2 = getColorValue(i, j, 'r', true);
     g2 = getColorValue(i, j, 'g', true);
     b2 = getColorValue(i, j, 'b', true);
+    //System.err.println("i: " + i + ", j: " + j + ", r1: " + r1 + ", g1: " + g1 + ", b1: " + b1 + ", r2: " + r2 + ", g2: " + g2 + ", b2: " + b2);
     r = getLinearInterpolation(r1, r2, step);
     g = getLinearInterpolation(g1, g2, step);
     b = getLinearInterpolation(b1, b2, step);
@@ -317,8 +283,7 @@ public class CloudFractal extends CanvasRoutine {
   }
     
   // generate the fractal
-  private void generate(float[][] grid, int xl, int yl, int xh, int yh, boolean isNext) {    
-    isNext = false;
+  protected void generate(float[][] grid, int xl, int yl, int xh, int yh, boolean isNext) {    
     int xm = (xl + xh) / 2;
     int ym = (yl + yh) / 2;
     if ((xl == xm) && (yl == ym)) return;
@@ -342,7 +307,7 @@ public class CloudFractal extends CanvasRoutine {
   }
     
     // Add a suitable amount of random displacement to a point
-    private float roughen(float v, int l, int h) {
+    protected float roughen(float v, int l, int h) {
         return v + _roughness * (float) (_rand.nextGaussian() * (h - l));
     }
 }
@@ -362,5 +327,68 @@ class CloudFractalPlayer extends SetList {
 
     setCanvas(canvas2, cloudFractal);
     wait(60.0);
+  }
+}
+
+public class CloudFractalPlasma extends CloudFractal {
+  private GenerateColor generateColor = new GenColorSequence();
+
+  CloudFractalPlasma(Random rand, float roughness, int width, int height, double exponent) { 
+    super(rand, roughness, width, height, exponent);
+    GenColorSequence gcs = new GenColorSequence();
+    gcs.colors.add(pornj);
+    gcs.colors.add(disorientOrange);
+    generateColor = gcs;
+    chooseColors();
+    constructNextFractal();
+  }
+
+  void setFreq(float f) {
+    PATTERN_LENGTH = (int) (FRAMERATE / f);
+  }
+  
+  protected void constructNextFractal() {
+    for (int i = 0; i < _w; i++) {
+      for (int j = 0; j < _h; j++) {
+        _grid[i][j] = _nextGrid[i][j];
+      }
+    }
+
+    constructFractal(_nextGrid, true); 
+  }  
+
+  void draw() {
+    pg.beginDraw();
+    drawRoutine();
+    pg.endDraw();
+  }
+
+  protected void drawRoutine() {
+    for(int i = 0; i < _w; i++) {
+      for(int j = 0; j < _h; j++) {
+        pg.stroke(getInterpolatedColor(i, j, (PATTERN_LENGTH - _generations) / (double) PATTERN_LENGTH));
+        pg.point(i, j);
+      }
+    }
+
+    if(_generations < 0) {
+      chooseColors();
+      constructNextFractal();
+      _generations = PATTERN_LENGTH;
+    }
+   
+    _generations--; 
+  }
+  
+  protected void chooseColors() {
+    _color1 = generateColor.get();
+    _color2 = generateColor.get();
+
+    _c1Red = (_color1 >> 16) & 0xFF;
+    _c1Green = (_color1 >> 8) & 0xFF;
+    _c1Blue = (_color1 >> 0) & 0xFF;
+    _c2Red = (_color2 >> 16) & 0xFF;
+    _c2Green = (_color2 >> 8) & 0xFF;
+    _c2Blue = (_color2 >> 0) & 0xFF;
   }
 }

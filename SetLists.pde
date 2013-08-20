@@ -679,8 +679,8 @@ class Tester extends SetList {
 
   void setup() {
     double exp = 0.3;
-    CloudFractal cloudFractal = new CloudFractal(null, 0.9, 64, 210, exp);
-    CloudFractal cloudFractal2 = new CloudFractal(null, 0.9, 64, 210, exp);
+    CloudFractalPlasma cloudFractalPlasma = new CloudFractalPlasma(null, 0.9, 64, 210, exp);
+    CloudFractalPlasma cloudFractalPlasma2 = new CloudFractalPlasma(null, 0.9, 64, 210, exp);
 
     GenColorSequence gcs = new GenColorSequence();
     gcs.colors.add(pornj);
@@ -712,13 +712,13 @@ class Tester extends SetList {
     gcs2.colors.add(pink);
     gcs2.colors.add(color(0));
 
-    cloudFractal.generateColor = gcs;
-    cloudFractal.setFreq(5);
-    cloudFractal2.generateColor = gcs2;
-    cloudFractal2.setFreq(3);
+    cloudFractalPlasma.generateColor = gcs;
+    cloudFractalPlasma.setFreq(5);
+    cloudFractalPlasma2.generateColor = gcs2;
+    cloudFractalPlasma2.setFreq(3);
 
-    setCanvas(canvas2, cloudFractal);
-    pushCanvas(canvas2, cloudFractal2);
+    setCanvas(canvas2, cloudFractalPlasma);
+    pushCanvas(canvas2, cloudFractalPlasma2);
     wait(200.0);
   }
 }
