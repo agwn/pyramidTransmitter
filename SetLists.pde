@@ -684,16 +684,38 @@ class Tester extends SetList {
 
     GenColorSequence gcs = new GenColorSequence();
     gcs.colors.add(pornj);
+    gcs.colors.add(color(0));
+    gcs.colors.add(pornj);
+    gcs.colors.add(color(0));
+    gcs.colors.add(pornj);
+    gcs.colors.add(color(0));
+    gcs.colors.add(pornj);
+    gcs.colors.add(color(0));
+    gcs.colors.add(pornj);
+    gcs.colors.add(color(0));
+    gcs.colors.add(pornj);
+    gcs.colors.add(color(0));
     gcs.colors.add(disorientOrange);
+    gcs.colors.add(color(0));
+    gcs.colors.add(disorientOrange);
+    gcs.colors.add(color(0));
+    gcs.colors.add(disorientOrange);
+    gcs.colors.add(color(0));
+    gcs.colors.add(disorientOrange);
+    gcs.colors.add(color(0));
+    gcs.colors.add(disorientOrange);
+    gcs.colors.add(color(0));
+    gcs.colors.add(disorientOrange);
+    gcs.colors.add(color(0));
 
     GenColorSequence gcs2 = new GenColorSequence();
-    gcs2.colors.add(color(0, 0, 128));
+    gcs2.colors.add(pink);
     gcs2.colors.add(color(0));
 
     cloudFractal.generateColor = gcs;
-    cloudFractal.setFreq(10);
+    cloudFractal.setFreq(5);
     cloudFractal2.generateColor = gcs2;
-    cloudFractal2.setFreq(4);
+    cloudFractal2.setFreq(3);
 
     setCanvas(canvas2, cloudFractal);
     pushCanvas(canvas2, cloudFractal2);
