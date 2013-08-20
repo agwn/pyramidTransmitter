@@ -653,6 +653,22 @@ class UncertainSetList extends SetList {
   }
 }
 
+class Contributions extends SetList {
+  Contributions() {
+  }
+
+  Contributions(SetList setList) {
+    super(setList);
+  }
+
+  void setup() {
+  }
+
+  void cloudFractal() {
+    //CloudFractal cf = new CloudFractal();
+  }
+}
+
 class Tester extends SetList {
   Tester() {
   }
@@ -662,29 +678,25 @@ class Tester extends SetList {
   }
 
   void setup() {
-    Pxxxls pxxxls = new Pxxxls(20);
-    WarpSpeedMrSulu warpSpeed= new WarpSpeedMrSulu();
-    GenColorSequence colorSequence = new GenColorSequence();
-    Flash flash = new Flash();
-    SingleColor singleColorFoo = new SingleColor();
+    double exp = 0.3;
+    CloudFractal cloudFractal = new CloudFractal(null, 0.9, 64, 210, exp);
+    CloudFractal cloudFractal2 = new CloudFractal(null, 0.9, 64, 210, exp);
 
-    colorSequence.colors.add(pornj);
-    colorSequence.colors.add(disorientOrange);
-    colorSequence.colors.add(pink);
-    warpSpeed.generateColor = new GenCampColor();
+    GenColorSequence gcs = new GenColorSequence();
+    gcs.colors.add(pornj);
+    gcs.colors.add(disorientOrange);
 
-    flash.generateColor = colorSequence;
-   
-    setParam(flash.minNextTime, 0.5);   
-    setParam(flash.maxNextTime, 0.5);   
-    setParam(flash.decayTime, 0.125);   
-    setCanvas(canvas2, warpSpeed);
-    pushCanvas(canvas2, flash);
+    GenColorSequence gcs2 = new GenColorSequence();
+    gcs2.colors.add(color(0, 0, 128));
+    gcs2.colors.add(color(0));
 
-    wait(2.0);
-    setParam(flash.minNextTime, 0.5);   
-    setParam(flash.maxNextTime, 0.5);   
-    setParam(flash.decayTime, 0.25);   
-    wait(2.0);
+    cloudFractal.generateColor = gcs;
+    cloudFractal.setFreq(10);
+    cloudFractal2.generateColor = gcs2;
+    cloudFractal2.setFreq(4);
+
+    setCanvas(canvas2, cloudFractal);
+    pushCanvas(canvas2, cloudFractal2);
+    wait(200.0);
   }
 }

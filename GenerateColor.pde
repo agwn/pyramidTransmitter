@@ -94,7 +94,6 @@ class GenColorSequence extends GenerateColor {
     else {
       return color(0, 0);
     }
-    println("getColor: " + index + "  " + c);
 
     index++;    
     return c;
