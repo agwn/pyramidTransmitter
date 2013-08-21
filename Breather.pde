@@ -24,8 +24,8 @@ class Breather extends CanvasRoutine {
     float[] table = waveTable.getData();
     int size = waveTable.getSize();
     float v = (table[(int) (phase * size)] + 1.0) * 0.5;
-    pg.beginDraw();
 
+    pg.beginDraw();
 
     color theColor = lerpColor(c0, c1, v);
     pg.pushStyle();

@@ -109,7 +109,6 @@ class PornjscachInkBlotter extends SetList {
   void setup() {
     Pxxxls pxxxls = new Pxxxls(15);
     Pxxxls pxxxlFilter = new Pxxxls(100);
-    //Waves waves = new Waves();
     SimpleWave waves = new SimpleWave();
     Mirror mirror = new Mirror();
     Warp warp = new Warp();
@@ -118,11 +117,9 @@ class PornjscachInkBlotter extends SetList {
     Sparkle sparkle = new Sparkle();
     Sparkle sparkle2 = new Sparkle();
     Breather breather = new Breather();
-    //float waitTime = 30.0;
-    float waitTime = 1.0;
+    float waitTime = 30.0;
 
     pxxxlFilter.setBlendMode(DODGE);
-
     pxxxlFilter.setPaintMode(pxxxlFilter.BLEND);
 
     warp.yFreq.set(0.17);
@@ -387,8 +384,8 @@ class PortalGel extends SetList {
     sparkle2.threshold = 16;
 
     breather.setBlendMode(MULTIPLY);
-    breather.c0 = color(pornj);
-    breather.c1 = color(disorientOrange);
+    breather.c0 = pornj;
+    breather.c1 = disorientOrange;
     breather.freq = 0.125;
 
     simpleWave.amp = 0.125;
