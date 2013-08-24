@@ -10,12 +10,17 @@ public class Snakes extends CanvasRoutine {
   boolean WRAP_VERT = true;		// grid is endless along the vertical axis
   int INIT_SNAKES = 1;
   int MAX_SNAKES = 450;
+  GenerateColor generateColor;
   private LinkedList<Snake> _snakes; 
   private int MIN_LENGTH = 10;  // min and max snake lengths
   private int MAX_LENGTH = 100; // max will be MAX_LENGTH - 1 actually
   private final int[] DIRECTIONS = {0, 1, 2, 3};
   private int _generations = 0;	// the number of generations run so far
   private int FREQUENCY = 10; // add a snake every FREQUENCY generations
+
+  Snakes() {
+      generateColor = new SingleColor(255);
+  }
 
   private class Snake {
     private LinkedList<PVector> _segments;
@@ -24,7 +29,8 @@ public class Snakes extends CanvasRoutine {
     private int _initDirection;
     
     public Snake() {
-      _bodyColor = getRandomDisorientColor();
+      //_bodyColor = getRandomDisorientColor();
+      _bodyColor = generateColor.get();
 
       _segments = new LinkedList<PVector>();
       PVector head = getRandomPoint();
@@ -56,9 +62,11 @@ public class Snakes extends CanvasRoutine {
     
     public PVector removeTail() {
       // occasionally change the snake's color
+/*
       if(Math.random() < 0.03) {
         _bodyColor = getRandomDisorientColor();
       }
+*/
       return _segments.removeLast();
     }
     

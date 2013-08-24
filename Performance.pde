@@ -14,6 +14,7 @@ class Disor13ntSequence extends SetList {
     pornjscach = new PornjscachInkBlotter(this);
     CloudFractalPresets cloudFractalPresets = new CloudFractalPresets(this);
 
+    lifeSequence();
     intro();
     playSetList(new DoSeizure(this));
     disorientAllTheThings();
@@ -39,6 +40,58 @@ class Disor13ntSequence extends SetList {
     wait(60.0);
     simpleCircleSequence();
     starBandSequence();
+  }
+
+  void lifeSequence() {
+    Conway conway = new Conway();
+    Snakes snakes = new Snakes();
+    DNA dna = new DNA(64, 210, 8);
+    Warp warp = new Warp();
+    Flash flash = new Flash();
+    GenColorSequence colorSequence = new GenColorSequence();
+    Trails trails = new Trails();
+
+    dna.generateColor = new GenCampColor();
+    snakes.generateColor = new GenCampColor();
+    
+    colorSequence.colors.add(color(pornj, 64)); 
+    colorSequence.colors.add(color(disorientOrange, 64));
+    flash.generateColor = colorSequence;
+
+    setParam(warp.yAmp, 0.0);
+    setParam(warp.yFreq, 0.0);
+    setParam(warp.xAmp, 0.0);
+    setParam(warp.xFreq, 0.0);
+    setCanvas(canvas2, dna);
+    pushCanvas(canvas2, warp);
+    wait(1.0);
+    line(15.0, warp.xAmp, 0.5);
+    line(15.0, warp.xFreq, 4.0);
+    wait(16.0);
+    setParam(warp.yAmp, 0.02);
+    setParam(warp.yFreq, 0.05);
+    setParam(warp.xAmp, 0.05);
+    setParam(warp.xFreq, 0.111);
+    setCanvas(canvas2, conway);
+    pushCanvas(canvas2, warp);
+    line(15.0, warp.xAmp, 0.45);
+    line(15.0, warp.xFreq, 0.05);
+    line(15.0, warp.xAmp, 0.6);
+    line(15.0, warp.xFreq, 0.05);
+    wait(15.0);
+    setCanvas(canvas3, snakes);
+    setParam(flash.minNextTime, 0.8);
+    setParam(flash.maxNextTime, 0.8);
+    pushCanvas(canvas3, flash);
+    fadeIn(15.0, canvas3);
+    fadeOut(15.0, canvas2);
+    popCanvas(canvas3);
+    setCanvas(canvas2, flash);
+    pushCanvas(canvas3, trails);
+    trails.fade.set(255.0);
+    line(15.0, trails.fade, 16.0);
+    wait(30.0);
+    disableCanvases();
   }
 
   void starBandSequence() {

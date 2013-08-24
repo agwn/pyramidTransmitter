@@ -674,11 +674,13 @@ class PresetTesting extends SetList {
     DisorientHeartBeatPresets dhbPresets = new DisorientHeartBeatPresets(this);
     SimpleCirclesPresets simpleCirclesPresets = new SimpleCirclesPresets(this);
 
+/*
     hexFlowers.thePreset(canvas2); 
     wait(waitTime);
     kochCurves.thePreset(canvas0); 
     wait(waitTime);
     disableCanvas(canvas0);
+*/
     dna.campColors(canvas2); 
     wait(waitTime);
     dna.thePreset(canvas2); 
