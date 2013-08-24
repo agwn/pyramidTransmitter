@@ -11,17 +11,12 @@ class Disor13ntSequence extends SetList {
   void setup() {
     states = new States(this);
 
-/*
     intro();
     playSetList(new DoSeizure(this));
     disorientAllTheThings();
     wait(60.0);
-*/
     snackPack();
-
-
   }
-
 
   void intro() {
     states.setDisor13ntColumns(canvas2);
@@ -139,90 +134,68 @@ class Disor13ntSequence extends SetList {
     warp.xFreq.set(0.05);
     warp.yFreq.set(0.3);
 
+    warp2.xFreq.set(0.2);
+    warp2.yFreq.set(0.0);
+    warp2.xAmp.set(1.0);
+    warp2.yAmp.set(1.0);
+    warp2.xWaveTable = phasorTable;
 
     breather.c0 = color(pornj);
     breather.c1 = color(disorientOrange);
     breather.freq = 0.333;
     breather.setBlendMode(MULTIPLY);
 
-
-/*
     setCanvas(canvas0, pxxxls);
-    wait(3.0);
+    wait(60.0);
 
     setCanvas(canvas2, protonPack);
     pushCanvas(canvas2, warp);
     pushCanvas(canvas2, sparkle);
-    crossfade(5.0, canvas0, canvas2); 
-    wait(3.0);
+    crossfade(15.0, canvas0, canvas2); 
+    wait(60.0);
 
     // Start warping here
     line(30.0, warp.xAmp, 0.0, 2.45);
     line(20.0, warp.yAmp, 0.0, 1.0);
 
     // Mirror
-    wait(30.0);
+    wait(60.0);
     pushCanvas(canvas2, mirror);
-    wait(30.0);
+    wait(60.0);
 
     line(30.0, warp.xAmp, 2.45, 0.0);
     line(20.0, warp.yAmp, 1.0, 0.0);
 
-    wait(45.0);
-*/
-
-    warp2.xFreq.set(0.1);
-    warp2.yFreq.set(0.0);
-    warp2.xAmp.set(1.0);
-    warp2.yAmp.set(1.0);
-    warp2.xWaveTable = phasorTable;
+    wait(60.0);
 
     setCanvas(canvas3, fire);
-    crossfade(1.0, canvas2, canvas3);
-    wait(1.0);
+    crossfade(6.0, canvas2, canvas3);
+    wait(6.0);
 
     setCanvas(canvas2, warpSpeed);
     pushCanvas(canvas2, warp2);
     pushCanvas(canvas2, breather);
-    fadeIn(3.0, canvas2);
+    fadeIn(15.0, canvas2);
 
-    wait(3.0);
-
-  
+    wait(15.0);
  
     line(20.0, warp2.xFreq, 1.5);
 
-    wait(20.0);
+    wait(60.0);
 
     line(20.0, warp2.xFreq, 0.1);
-    fadeOut(5.0, canvas3);
+    fadeOut(20.0, canvas3);
 
     line(20.0, warp2.yAmp, 1.0);
-    line(20.0, warp2.yFreq, 1.0);
+    line(20.0, warp2.yFreq, 0.5);
 
-    wait(10.0);
+    wait(60.0);
 
     line(20.0, warp2.xFreq, 1.0);
 
-    wait(40.0);
-/*
+    wait(60.0);
 
-    line(20.0, warp2.xfreq, 0.1, 1.5);
-
-    wait(40.0);
-
-    line(20.0, warp2.xfreq, 1.5, 0.1);
-    fadeout(5.0, canvas3);
-
-    line(20.0, warp2.yamp, 0.0, 1.0);
-    line(20.0, warp2.yfreq, 0.0, 1.0);
-
-    wait(10.0);
-
-    line(20.0, warp2.xfreq, 0.1, 1.0);
-
-    wait(40.0);
-*/
-    fadeOut(5.0, canvas2);
+    line(15.0, warp2.xFreq, -1.0);
+    fadeOut(15.0, canvas2);
   }
 }

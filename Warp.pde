@@ -55,9 +55,14 @@ class Warp extends CanvasRoutine {
       for (int x = 0; x < w; x++) {
         float v = table[(int) (tempPhase * size)];
         tempPhase += xPhaseInc;
-        if (tempPhase >= 1.0) {
+
+        while (tempPhase >= 1.0) {
           tempPhase -= 1.0;
         }
+
+        while (tempPhase < 0.0) {
+          tempPhase += 1.0;
+        };
 
         int offset = (int) (v * amp);
         offset += xBias * amp;
@@ -71,9 +76,13 @@ class Warp extends CanvasRoutine {
       }
 
       xPhase += thisXFreq / FRAMERATE;
-      if (xPhase >= 1.0) {
+      while (xPhase >= 1.0) {
         xPhase -= 1.0;
-      }      
+      }
+
+      while (xPhase < 0.0) {
+        xPhase += 1.0;
+      };
     }
 
     if (warpHorizontal) {
@@ -87,9 +96,14 @@ class Warp extends CanvasRoutine {
       for (int y = 0; y < h; y++) {
         float v = table[(int) (tempPhase * size)];
         tempPhase += yPhaseInc;
-        if (tempPhase >= 1.0) {
+
+        while (tempPhase >= 1.0) {
           tempPhase -= 1.0;
         }
+
+        while (tempPhase < 0.0) {
+          tempPhase += 1.0;
+        };
 
         int offset = (int) (v * amp);
         offset += yBias * amp;
@@ -103,9 +117,13 @@ class Warp extends CanvasRoutine {
       }
 
       yPhase += thisYFreq / FRAMERATE;
-      if (yPhase >= 1.0) {
+      while (yPhase >= 1.0) {
         yPhase -= 1.0;
-      }      
+      }
+
+      while (yPhase < 0.0) {
+        yPhase += 1.0;
+      };
     }
 
     pg.endDraw();
