@@ -55,10 +55,8 @@ class SimpleCircles extends CanvasRoutine {
         float size = dist(x, h/2, i, j);
         size = size/max_distance * circleSize;
         pg.pushStyle();
-        pg.pushMatrix();
         pg.ellipseMode(CENTER);
         pg.ellipse(i, j, size, size);
-        pg.popMatrix();
         pg.popStyle();
         pg.point(i, j);
       }

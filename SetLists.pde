@@ -662,10 +662,14 @@ class PresetTesting extends SetList {
   void setup() {
     float waitTime = 600.0;
 
+    StarBandPresets starBands = new StarBandPresets(this);
     CloudFractalPresets cloudFractals = new CloudFractalPresets(this);
     DisorientHeartBeatPresets dhbPresets = new DisorientHeartBeatPresets(this);
     SimpleCirclesPresets simpleCirclesPresets = new SimpleCirclesPresets(this);
 
+    starBands.thePreset(canvas0);
+    wait(waitTime);
+    disableCanvas(canvas0);
     simpleCirclesPresets.thePreset(canvas0);
     wait(waitTime);
     disableCanvas(canvas0);
