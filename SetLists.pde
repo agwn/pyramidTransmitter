@@ -662,6 +662,7 @@ class PresetTesting extends SetList {
   void setup() {
     float waitTime = 600.0;
 
+    PlantFractalPresets plantFractal = new PlantFractalPresets(this);
     CrazyBarsPresets crazyBars = new CrazyBarsPresets(this);
     SnakesPresets snakes = new SnakesPresets(this);
     ConwayPresets conway = new ConwayPresets(this);
@@ -670,6 +671,9 @@ class PresetTesting extends SetList {
     DisorientHeartBeatPresets dhbPresets = new DisorientHeartBeatPresets(this);
     SimpleCirclesPresets simpleCirclesPresets = new SimpleCirclesPresets(this);
 
+    plantFractal.thePreset(canvas0);
+    wait(waitTime);
+    disableCanvas(canvas0);
     crazyBars.thePreset(canvas2); 
     wait(waitTime);
     snakes.thePreset(canvas2); 
