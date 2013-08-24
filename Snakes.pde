@@ -207,3 +207,18 @@ class SnakesPlayer extends SetList {
     wait(60.0);
   }
 }
+
+class SnakesPresets extends SetList {
+  SnakesPresets() { 
+  }
+
+  SnakesPresets(SetList setList) {
+    super(setList);
+  }
+  
+  void thePreset(Canvas canvas) {
+    Snakes snakes = new Snakes();
+
+    setCanvas(canvas, snakes);
+  }
+}
