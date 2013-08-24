@@ -1,3 +1,12 @@
+/*
+  Importante!!
+
+  If x / y seems reversed, think of it this way:
+
+  x things go along the x-axis,
+  y things go along the y-axis.
+*/
+
 class Warp extends CanvasRoutine {
   boolean warpHorizontal;
   boolean warpVertical;

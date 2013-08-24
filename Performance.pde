@@ -1,4 +1,6 @@
 class Disor13ntSequence extends SetList {
+  States states;
+
   Disor13ntSequence() {
   }
 
@@ -7,9 +9,220 @@ class Disor13ntSequence extends SetList {
   }
 
   void setup() {
-    States states = new States(this);
+    states = new States(this);
 
+/*
+    intro();
+    playSetList(new DoSeizure(this));
+    disorientAllTheThings();
+    wait(60.0);
+*/
+    snackPack();
+
+
+  }
+
+
+  void intro() {
     states.setDisor13ntColumns(canvas2);
-    wait(100.0);
+    wait(15.0);
+    setCanvas(canvas3, presets.getBreather(pornj, disorientOrange, 0.6, BLEND));
+    fadeIn(30.0, canvas3);
+    wait(15.0);
+  }
+
+  void disorientAllTheThings() {
+    Waves waves = new Waves();
+    Warp warp = new Warp();
+    Trails trails = new Trails();
+    Trails trails2 = new Trails();
+    Sparkle sparkle = new Sparkle();
+    Sparkle sparkle2 = new Sparkle();
+    Breather breather = new Breather();
+    Breather breather2 = new Breather();
+    SimpleWave simpleWave = new SimpleWave();
+    DisplayDisorient displayDisorient = new DisplayDisorient();
+    DisplayDisorient displayDisorient2 = new DisplayDisorient();
+    ScrollDisorient disorientScroll = new ScrollDisorient();
+    ScrollDisorient disorientScroll2 = new ScrollDisorient();
+
+    warp.yFreq.set(0.17);
+    warp.xFreq.set(0.14);
+    trails.fade = 32;
+    sparkle.threshold = 16;
+    sparkle.nDots = 1200;
+    sparkle.dotToCrossRatio = 1.0;
+    sparkle.c = color(255, 128);
+    sparkle2.nDots = 1000;
+    sparkle2.threshold = 16;
+    sparkle2.setBlendMode(sparkle.DIRECT);
+    breather.setBlendMode(MULTIPLY);
+    breather.c0 = color(pornj, 255);
+    breather.c1 = color(disorientOrange, 255);
+    breather.freq = 0.25;
+    breather2.setBlendMode(MULTIPLY);
+    breather2.c0 = color(lerpColor(pornj, color(0), 0.8));
+    breather2.c1 = color(lerpColor(disorientOrange, color(0), 0.9));
+    breather2.freq = 0.333;
+    simpleWave.amp = 0.125;
+    simpleWave.spread = 1.5;
+    simpleWave.nWaves = 2;
+    simpleWave.bias = 0.25;
+    simpleWave.theColor = color(255, 180);
+    simpleWave.freq = -1.0;
+
+    ArrayList dsa = new ArrayList();
+
+    for (int i = 0; i < 8; i++) {
+      ScrollDisorient ds = new ScrollDisorient();
+      ds.xPad = 0;
+      ds.yPad = 2;
+      ds.x = i * 8;
+      ds.y = 210;
+      if (i < 4) {
+        ds.yLimitTop = 180 - i * 60;
+      }
+      else {
+        ds.yLimitTop = 180 - (7 - i) * 60;
+      }
+      ds.yLimitBottom = 210;
+      ds.doRotate = true;
+
+      if (i % 2 == 0) {
+        ds.xFlip = true;
+        ds.ySpeed = -4;
+      }
+      else {
+        ds.yFlip = true;
+        ds.ySpeed = 4;
+      }
+
+      dsa.add(ds);
+    }
+
+    setCanvas(canvas2, simpleWave);
+    pushCanvas(canvas2, warp);
+    pushCanvas(canvas2, sparkle2);
+    pushCanvas(canvas2, trails);
+    pushCanvas(canvas2, breather2);
+
+    setCanvas(canvas3, (ScrollDisorient) dsa.get(0));
+
+    for (int i = 1; i < 8; i++) {
+      pushCanvas(canvas3, (ScrollDisorient) dsa.get(i));
+    }
+
+    pushCanvas(canvas3, breather);
+    pushCanvas(canvas3, sparkle);
+  }
+
+  void snackPack() {
+    Pxxxls pxxxls = new Pxxxls(100);
+    ProtonPack protonPack = new ProtonPack();
+    Sparkle sparkle = new Sparkle();
+    Mirror mirror = new Mirror();
+    Warp warp = new Warp();
+    Warp warp2 = new Warp();
+    Fire fire = new Fire();
+    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu(200);
+    Breather breather = new Breather();
+
+    protonPack.strokeWeight0 = 3;
+    protonPack.strokeWeight1 = 3;
+    protonPack.freq = 0.333;
+    protonPack.nCycles = 0.5;
+
+    sparkle.nDots = 100;
+
+    warp.xAmp.set(0.0);
+    warp.yAmp.set(0.0);
+    warp.xFreq.set(0.05);
+    warp.yFreq.set(0.3);
+
+
+    breather.c0 = color(pornj);
+    breather.c1 = color(disorientOrange);
+    breather.freq = 0.333;
+    breather.setBlendMode(MULTIPLY);
+
+
+/*
+    setCanvas(canvas0, pxxxls);
+    wait(3.0);
+
+    setCanvas(canvas2, protonPack);
+    pushCanvas(canvas2, warp);
+    pushCanvas(canvas2, sparkle);
+    crossfade(5.0, canvas0, canvas2); 
+    wait(3.0);
+
+    // Start warping here
+    line(30.0, warp.xAmp, 0.0, 2.45);
+    line(20.0, warp.yAmp, 0.0, 1.0);
+
+    // Mirror
+    wait(30.0);
+    pushCanvas(canvas2, mirror);
+    wait(30.0);
+
+    line(30.0, warp.xAmp, 2.45, 0.0);
+    line(20.0, warp.yAmp, 1.0, 0.0);
+
+    wait(45.0);
+*/
+
+    warp2.xFreq.set(0.1);
+    warp2.yFreq.set(0.0);
+    warp2.xAmp.set(1.0);
+    warp2.yAmp.set(1.0);
+    warp2.xWaveTable = phasorTable;
+
+    setCanvas(canvas3, fire);
+    crossfade(1.0, canvas2, canvas3);
+    wait(1.0);
+
+    setCanvas(canvas2, warpSpeed);
+    pushCanvas(canvas2, warp2);
+    pushCanvas(canvas2, breather);
+    fadeIn(3.0, canvas2);
+
+    wait(3.0);
+
+  
+ 
+    line(20.0, warp2.xFreq, 1.5);
+
+    wait(20.0);
+
+    line(20.0, warp2.xFreq, 0.1);
+    fadeOut(5.0, canvas3);
+
+    line(20.0, warp2.yAmp, 1.0);
+    line(20.0, warp2.yFreq, 1.0);
+
+    wait(10.0);
+
+    line(20.0, warp2.xFreq, 1.0);
+
+    wait(40.0);
+/*
+
+    line(20.0, warp2.xfreq, 0.1, 1.5);
+
+    wait(40.0);
+
+    line(20.0, warp2.xfreq, 1.5, 0.1);
+    fadeout(5.0, canvas3);
+
+    line(20.0, warp2.yamp, 0.0, 1.0);
+    line(20.0, warp2.yfreq, 0.0, 1.0);
+
+    wait(10.0);
+
+    line(20.0, warp2.xfreq, 0.1, 1.0);
+
+    wait(40.0);
+*/
+    fadeOut(5.0, canvas2);
   }
 }
