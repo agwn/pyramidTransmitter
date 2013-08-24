@@ -650,19 +650,21 @@ class UncertainSetList extends SetList {
   }
 }
 
-class Contributions extends SetList {
-  Contributions() {
+class PresetTesting extends SetList {
+  PresetTesting() {
   }
 
-  Contributions(SetList setList) {
+  PresetTesting(SetList setList) {
     super(setList);
   }
 
   void setup() {
-  }
+    CloudFractalPresets cloudFractals = new CloudFractalPresets(this);
 
-  void cloudFractal() {
-    //CloudFractal cf = new CloudFractal();
+    cloudFractals.doPlasmaClouds(canvas2);
+    wait(3.0);
+    cloudFractals.doPlasmaCloudsMore(canvas2);
+    wait(3.0);
   }
 }
 
@@ -675,47 +677,11 @@ class Tester extends SetList {
   }
 
   void setup() {
-    double exp = 0.3;
-    CloudFractalPlasma cloudFractalPlasma = new CloudFractalPlasma(null, 0.9, 64, 210, exp);
-    CloudFractalPlasma cloudFractalPlasma2 = new CloudFractalPlasma(null, 0.9, 64, 210, exp);
+    DisorientHeartBeat disorientHeartBeat = new DisorientHeartBeat(1, 1);
+    Trails trails = new Trails();
 
-    GenColorSequence gcs = new GenColorSequence();
-    gcs.colors.add(pornj);
-    gcs.colors.add(color(0));
-    gcs.colors.add(pornj);
-    gcs.colors.add(color(0));
-    gcs.colors.add(pornj);
-    gcs.colors.add(color(0));
-    gcs.colors.add(pornj);
-    gcs.colors.add(color(0));
-    gcs.colors.add(pornj);
-    gcs.colors.add(color(0));
-    gcs.colors.add(pornj);
-    gcs.colors.add(color(0));
-    gcs.colors.add(disorientOrange);
-    gcs.colors.add(color(0));
-    gcs.colors.add(disorientOrange);
-    gcs.colors.add(color(0));
-    gcs.colors.add(disorientOrange);
-    gcs.colors.add(color(0));
-    gcs.colors.add(disorientOrange);
-    gcs.colors.add(color(0));
-    gcs.colors.add(disorientOrange);
-    gcs.colors.add(color(0));
-    gcs.colors.add(disorientOrange);
-    gcs.colors.add(color(0));
-
-    GenColorSequence gcs2 = new GenColorSequence();
-    gcs2.colors.add(pink);
-    gcs2.colors.add(color(0));
-
-    cloudFractalPlasma.generateColor = gcs;
-    cloudFractalPlasma.setFreq(5);
-    cloudFractalPlasma2.generateColor = gcs2;
-    cloudFractalPlasma2.setFreq(3);
-
-    setCanvas(canvas2, cloudFractalPlasma);
-    pushCanvas(canvas2, cloudFractalPlasma2);
-    wait(200.0);
+    setCanvas(canvas2, disorientHeartBeat);
+    pushCanvas(canvas2, trails);
+    wait(30.0);
   }
 }

@@ -392,3 +392,74 @@ public class CloudFractalPlasma extends CloudFractal {
     _c2Blue = (_color2 >> 0) & 0xFF;
   }
 }
+
+class CloudFractalPresets extends SetList {
+  CloudFractalPresets() {
+  }
+
+  CloudFractalPresets(SetList setList) {
+    super(setList);
+  }
+
+  void setup() {
+  }
+
+  void doPlasmaClouds(Canvas canvas) {
+    GenColorSequence gcs = new GenColorSequence();
+    CloudFractalPlasma cloudFractalPlasma = new CloudFractalPlasma(null, 0.9, 64, 210, 0.3);
+
+    gcs.colors.add(pornj);
+    gcs.colors.add(color(0));
+    gcs.colors.add(disorientOrange);
+    gcs.colors.add(color(0));
+    cloudFractalPlasma.generateColor = gcs;
+    cloudFractalPlasma.setFreq(5);
+
+    setCanvas(canvas, cloudFractalPlasma);
+  }
+
+  void doPlasmaCloudsMore(Canvas canvas) {
+    double exp = 0.3;
+    CloudFractalPlasma cloudFractalPlasma = new CloudFractalPlasma(null, 0.9, 64, 210, exp);
+    CloudFractalPlasma cloudFractalPlasma2 = new CloudFractalPlasma(null, 0.9, 64, 210, exp);
+
+    GenColorSequence gcs = new GenColorSequence();
+    gcs.colors.add(pornj);
+    gcs.colors.add(color(0));
+    gcs.colors.add(pornj);
+    gcs.colors.add(color(0));
+    gcs.colors.add(pornj);
+    gcs.colors.add(color(0));
+    gcs.colors.add(pornj);
+    gcs.colors.add(color(0));
+    gcs.colors.add(pornj);
+    gcs.colors.add(color(0));
+    gcs.colors.add(pornj);
+    gcs.colors.add(color(0));
+    gcs.colors.add(disorientOrange);
+    gcs.colors.add(color(0));
+    gcs.colors.add(disorientOrange);
+    gcs.colors.add(color(0));
+    gcs.colors.add(disorientOrange);
+    gcs.colors.add(color(0));
+    gcs.colors.add(disorientOrange);
+    gcs.colors.add(color(0));
+    gcs.colors.add(disorientOrange);
+    gcs.colors.add(color(0));
+    gcs.colors.add(disorientOrange);
+    gcs.colors.add(color(0));
+
+    GenColorSequence gcs2 = new GenColorSequence();
+    gcs2.colors.add(pink);
+    gcs2.colors.add(color(0));
+
+    cloudFractalPlasma.generateColor = gcs;
+    cloudFractalPlasma.setFreq(5);
+    cloudFractalPlasma2.generateColor = gcs2;
+    cloudFractalPlasma2.setFreq(3);
+
+    setCanvas(canvas, cloudFractalPlasma);
+    pushCanvas(canvas, cloudFractalPlasma2);
+  }
+}
+

@@ -13,8 +13,7 @@ void setup() {
   frameRate(FRAMERATE);
   setupPyramid();
 
-  // Set the SetList sequence here
-  theSetList = new PyramidPartyDemo();
+  theSetList = new Tester();
 }
 
 void draw() {
