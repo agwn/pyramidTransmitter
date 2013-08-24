@@ -13,7 +13,7 @@ void setup() {
   frameRate(FRAMERATE);
   setupPyramid();
 
-  theSetList = new PresetTesting();
+  theSetList = new Disor13ntSequence();
 }
 
 void draw() {

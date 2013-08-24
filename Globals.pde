@@ -7,6 +7,7 @@ SineTable sineTable = new SineTable(256);
 SineTableNorm sineTableNorm = new SineTableNorm(256);
 PhasorTable phasorTable = new PhasorTable(256);
 SawTable sawTable = new SawTable(256);
+Presets presets = new Presets();
 
 void setupGlobals() {
   disFont = new DisorientFont();

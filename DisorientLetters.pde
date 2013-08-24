@@ -14,6 +14,8 @@ class DisorientFont extends HashMap {
     generateBitmap("disorient_3s", "disorient", 3);
     generateBitmap("disorient_4s", "disorient", 4);
     generateBitmap("disor13nt");
+    generateBitmap("disor13nt_3s", "disor13nt", 3);
+    generateBitmap("disor13nt_4s", "disori3nt", 4);
   }
 
   Bitmap getBitmap(String s) {
