@@ -33,6 +33,37 @@ class Presets {
     trails.fade.set(fade);
     return trails;
   }
+
+  CanvasRoutine getWarp(float xAmp, float xFreq, float yAmp, float yFreq) {
+    Warp warp = new Warp();
+
+    warp.xAmp.set(xAmp);
+    warp.xFreq.set(xFreq);
+    warp.yAmp.set(yAmp);
+    warp.yFreq.set(yFreq);
+
+    return warp;
+  }
+
+  CanvasRoutine getSparkle(int nDots, float dotToCrossRatio, float threshold, color c) {
+    Sparkle sparkle = new Sparkle();
+
+    sparkle.nDots = nDots;
+    sparkle.dotToCrossRatio = dotToCrossRatio;
+    sparkle.threshold = threshold;
+    sparkle.c = c;
+
+    return sparkle;
+  }
+
+  CanvasRoutine getSpeckle(float threshold, float amount) {
+    Speckle speckle = new Speckle();
+
+    speckle.threshold = threshold;
+    speckle.amount = amount;
+
+    return speckle;
+  }
 }
 
 class States extends SetList {

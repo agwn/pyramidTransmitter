@@ -12,6 +12,7 @@ class Disor13ntSequence extends SetList {
   void setup() {
     states = new States(this);
     pornjscach = new PornjscachInkBlotter(this);
+    CloudFractalPresets cloudFractalPresets = new CloudFractalPresets(this);
 
     intro();
     playSetList(new DoSeizure(this));
@@ -20,6 +21,7 @@ class Disor13ntSequence extends SetList {
     disorientAllTheThingsEnd(15.0);
     snackPack();
     portalGel();
+    wait(120.0);
     pornjscach.setPattern_1(canvas2);
     wait(60.0);
     pornjscach.setPattern_2(canvas2);
@@ -28,11 +30,69 @@ class Disor13ntSequence extends SetList {
     wait(60.0);
     pornjscach.setPattern_4(canvas2);
     wait(60.0);
-    pornjscach.setPattern_5(canvas2);
-    wait(60.0);
+//    pornjscach.setPattern_5(canvas2);
+//    wait(60.0);
     pornjscach.setPattern_6(canvas2, 60.0);
     wait(60.0);
     fadeOut(20.0, canvas2);
+    cloudFractalPresets.doPlasmaClouds(canvas2);
+    wait(60.0);
+    simpleCircleSequence();
+    starBandSequence();
+  }
+
+  void starBandSequence() {
+    float waitTime = 20.0;
+    float secondsToHoldTheBand = 1.0;
+    int PercentBandWidthMin = 15;
+    int PercentBandWidthMax = 40;
+
+    StarBand starBand = new StarBand(secondsToHoldTheBand, PercentBandWidthMin, PercentBandWidthMax);
+    Warp warp = new Warp();
+
+    warp.yWaveTable = phasorTable;
+    setParam(warp.xAmp, 0.0);
+    setParam(warp.yAmp, 1.0);
+    setParam(warp.xFreq, 0.0);
+    setParam(warp.yFreq, 0.25);
+
+    starBand.generateColor = new GenCampColor();
+
+    setCanvas(canvas2, starBand);
+    pushCanvas(canvas2, warp);
+    pushCanvas(canvas2, presets.getTrails(32));
+    pushCanvas(canvas2, presets.getMirror());
+    line(waitTime, warp.yFreq, 1.0);
+    wait(waitTime);
+    line(waitTime, warp.xFreq, 0.25);
+    line(waitTime, warp.xAmp, 0.5);
+    wait(waitTime);
+    line(waitTime, warp.yFreq, 0.0);
+    wait(waitTime);
+    line(waitTime, warp.xFreq, 0.0);
+    line(waitTime, warp.xAmp, 0.0);
+    wait(waitTime);
+    disableCanvas(canvas2);
+  }
+
+  void simpleCircleSequence() {
+    SimpleCirclesPresets simpleCirclesPresets = new SimpleCirclesPresets(this);
+
+    simpleCirclesPresets.thePreset(canvas0);
+    pushCanvas(canvas0, presets.getBreather(pornj, disorientOrange, 2.333, MULTIPLY));
+
+    setCanvas(canvas2, presets.getBlackBackground());
+    wait(60.0);
+    pushCanvas(canvas2, presets.getDisor13ntVertical());
+    pushCanvas(canvas2, presets.getMirror());
+    pushCanvas(canvas2, presets.getBreather(pornj, disorientOrange, 3.0, MULTIPLY));
+    pushCanvas(canvas2, presets.getSparkle(1000, 1.0, 1.0, color(255)));
+    wait(60.0);
+    setCanvas(canvas3, presets.getBreather(pornj, disorientOrange, 3.333, BLEND));
+    fadeIn(15.0, canvas3);
+    fadeOut(15.0, canvas0);
+    fadeOut(15.0, canvas2);
+    fadeOut(15.0, canvas3);
   }
 
   void intro() {
@@ -58,8 +118,8 @@ class Disor13ntSequence extends SetList {
     ScrollDisorient disorientScroll = new ScrollDisorient();
     ScrollDisorient disorientScroll2 = new ScrollDisorient();
 
-    warp.yFreq.set(0.17);
-    warp.xFreq.set(0.14);
+    setParam(warp.yFreq, 0.17);
+    setParam(warp.xFreq, 0.14);
     trails.fade.set(32);
     sparkle.threshold = 16;
     sparkle.nDots = 1200;
@@ -151,15 +211,15 @@ class Disor13ntSequence extends SetList {
 
     sparkle.nDots = 100;
 
-    warp.xAmp.set(0.0);
-    warp.yAmp.set(0.0);
-    warp.xFreq.set(0.05);
-    warp.yFreq.set(0.3);
+    setParam(warp.xAmp, 0.0);
+    setParam(warp.yAmp, 0.0);
+    setParam(warp.xFreq, 0.05);
+    setParam(warp.yFreq, 0.3);
 
-    warp2.xFreq.set(0.2);
-    warp2.yFreq.set(0.0);
-    warp2.xAmp.set(1.0);
-    warp2.yAmp.set(1.0);
+    setParam(warp2.xFreq, 0.2);
+    setParam(warp2.yFreq, 0.0);
+    setParam(warp2.xAmp, 1.0);
+    setParam(warp2.yAmp, 1.0);
     warp2.xWaveTable = phasorTable;
 
     breather.c0 = color(pornj);
@@ -190,6 +250,7 @@ class Disor13ntSequence extends SetList {
 
     wait(60.0);
 
+    // Fire
     setCanvas(canvas3, fire);
     crossfade(6.0, canvas2, canvas3);
     wait(6.0);
@@ -218,6 +279,7 @@ class Disor13ntSequence extends SetList {
     wait(60.0);
 
     line(15.0, warp2.xFreq, -1.0);
+    line(15.0, warp2.yFreq, 0.0);
     fadeOut(15.0, canvas2);
   }
 
@@ -229,11 +291,17 @@ class Disor13ntSequence extends SetList {
     SimpleWave simpleWave = new SimpleWave();
     CanvasRoutine breather = presets.getBreather(pornj, disorientOrange, 0.125, MULTIPLY);
 
+    setParam(warp.yAmp, 0.25);
+    setParam(warp.xAmp, 1.5);
+    setParam(warp.yFreq, 0.17);
+    setParam(warp.xFreq, 0.25);
+
+/*
     warp.yAmp.set(0.25);
     warp.xAmp.set(1.5);
     warp.yFreq.set(0.17);
     warp.xFreq.set(0.24);
-
+*/
     sparkle.nDots = 200;
     sparkle.threshold = 16;
 

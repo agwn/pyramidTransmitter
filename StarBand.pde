@@ -11,6 +11,7 @@
 class StarBand extends CanvasRoutine {
   private int w;
   private int h;
+  GenerateColor generateColor;
   private color c0 = color(pornj, 128);
   private int strokeWeight0=2;
   int bandHeightPercentMin=2;
@@ -23,6 +24,7 @@ class StarBand extends CanvasRoutine {
     SecondsToHold = secondsToDisplay;
     bandHeightPercentMin = minBandWidthPercent;
     bandHeightPercentMax = maxBandWidthPercent;
+    generateColor = new SingleColor(pornj);
   }
 
   void reinit() {
@@ -33,8 +35,9 @@ class StarBand extends CanvasRoutine {
   }
   
   void draw() {
-
+    pg.pushStyle();
     if (frameCounter <= 0) {
+      c0 = generateColor.get();
       pg.beginDraw();
       pg.background(0);
 
@@ -56,10 +59,13 @@ class StarBand extends CanvasRoutine {
     }
 
     frameCounter--;
+    pg.popStyle();
   }
 }
 
 class StarBandPresets extends SetList {
+  StarBand starBand;
+
   StarBandPresets() {
   }
 
@@ -72,7 +78,7 @@ class StarBandPresets extends SetList {
     int PercentBandWidthMin = 2;
     int PercentBandWidthMax = 15;
 
-    StarBand starBand = new StarBand(secondsToHoldTheBand, PercentBandWidthMin, PercentBandWidthMax);
+    starBand = new StarBand(secondsToHoldTheBand, PercentBandWidthMin, PercentBandWidthMax);
 
     setCanvas(canvas, starBand); 
   }
