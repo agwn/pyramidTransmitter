@@ -192,3 +192,23 @@ class KochCurve {
   }
 }
 
+class KochCurvesPresets extends SetList {
+  KochCurvesPresets() {
+  }
+
+  KochCurvesPresets(SetList setList) {
+    super(setList);
+  }
+
+  void thePreset(Canvas canvas) {
+    float changesPerSecond = 1.0;
+    int x = 0;
+    int y = 200;
+    int len = 105;
+
+    for (int i=0; i<5; i++) {
+      KochCurvesOne kochCurve1 = new KochCurvesOne(changesPerSecond, x + i*len, y, len);
+      pushCanvas(canvas, kochCurve1); 
+    }
+  }
+}
