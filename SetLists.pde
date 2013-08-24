@@ -662,6 +662,7 @@ class PresetTesting extends SetList {
   void setup() {
     float waitTime = 600.0;
 
+    HexFlowersPresets hexFlowers = new HexFlowersPresets(this);
     KochCurvesPresets kochCurves = new KochCurvesPresets(this);
     DNAPresets dna = new DNAPresets(this);
     PlantFractalPresets plantFractal = new PlantFractalPresets(this);
@@ -673,6 +674,8 @@ class PresetTesting extends SetList {
     DisorientHeartBeatPresets dhbPresets = new DisorientHeartBeatPresets(this);
     SimpleCirclesPresets simpleCirclesPresets = new SimpleCirclesPresets(this);
 
+    hexFlowers.thePreset(canvas2); 
+    wait(waitTime);
     kochCurves.thePreset(canvas0); 
     wait(waitTime);
     disableCanvas(canvas0);

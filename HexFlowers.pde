@@ -231,3 +231,19 @@ class HexFlowersPlayer extends SetList {
     wait(60.0);
   }
 }
+
+class HexFlowersPresets extends SetList {
+  HexFlowersPresets() { 
+  }
+
+  HexFlowersPresets(SetList setList) {
+    super(setList);
+  }
+  
+  void thePreset(Canvas canvas) {
+    double exp = 0.3;
+    HexFlowers hexFlowers = new HexFlowers(64, 210);
+
+    setCanvas(canvas, hexFlowers);
+  }
+}
