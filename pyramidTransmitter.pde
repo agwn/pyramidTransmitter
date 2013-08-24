@@ -13,7 +13,7 @@ void setup() {
   frameRate(FRAMERATE);
   setupPyramid();
 
-  theSetList = new Tester();
+  theSetList = new PresetTesting();
 }
 
 void draw() {

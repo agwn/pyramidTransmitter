@@ -651,6 +651,7 @@ class UncertainSetList extends SetList {
 }
 
 class PresetTesting extends SetList {
+
   PresetTesting() {
   }
 
@@ -659,12 +660,21 @@ class PresetTesting extends SetList {
   }
 
   void setup() {
-    CloudFractalPresets cloudFractals = new CloudFractalPresets(this);
+    float waitTime = 600.0;
 
+    CloudFractalPresets cloudFractals = new CloudFractalPresets(this);
+    DisorientHeartBeatPresets dhbPresets = new DisorientHeartBeatPresets(this);
+    SimpleCirclesPresets simpleCirclesPresets = new SimpleCirclesPresets(this);
+
+    simpleCirclesPresets.thePreset(canvas0);
+    wait(waitTime);
+    disableCanvas(canvas0);
+    dhbPresets.singleBeat(canvas2); 
+    wait(waitTime);
     cloudFractals.doPlasmaClouds(canvas2);
-    wait(3.0);
+    wait(waitTime);
     cloudFractals.doPlasmaCloudsMore(canvas2);
-    wait(3.0);
+    wait(waitTime);
   }
 }
 

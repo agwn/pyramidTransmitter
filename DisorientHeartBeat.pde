@@ -103,3 +103,20 @@ class DisorientHeartBeat extends CanvasRoutine {
     }
   }
 }
+
+class DisorientHeartBeatPresets extends SetList {
+  DisorientHeartBeatPresets() {
+  }
+
+  DisorientHeartBeatPresets(SetList setList) {
+    super(setList);
+  }
+
+  void singleBeat(Canvas canvas) {
+    DisorientHeartBeat disorientHeartBeat = new DisorientHeartBeat(1, 1);
+    Trails trails = new Trails();
+
+    setCanvas(canvas, disorientHeartBeat);
+    pushCanvas(canvas, trails);
+  }
+}
