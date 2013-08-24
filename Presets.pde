@@ -27,6 +27,12 @@ class Presets {
 
     return breather;
   }
+
+  CanvasRoutine getTrails(int fade) {
+    Trails trails = new Trails();
+    trails.fade = fade;
+    return trails;
+  }
 }
 
 class States extends SetList {

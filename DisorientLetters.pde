@@ -15,7 +15,7 @@ class DisorientFont extends HashMap {
     generateBitmap("disorient_4s", "disorient", 4);
     generateBitmap("disor13nt");
     generateBitmap("disor13nt_3s", "disor13nt", 3);
-    generateBitmap("disor13nt_4s", "disori3nt", 4);
+    generateBitmap("disor13nt_4s", "disor13nt", 4);
   }
 
   Bitmap getBitmap(String s) {
@@ -87,7 +87,7 @@ class ScrollDisorient extends ScrollImage {
 
   void reinit() {
     super.reinit();
-    Bitmap bitmap = (Bitmap) disFont.get("disorient");
+    Bitmap bitmap = (Bitmap) disFont.get("disor13nt_4s");
     bitmap = bitmap.getBitmap(doRotate, xFlip, yFlip);
     img = bitmap.getAsPImage(c, xPad, yPad);
   }

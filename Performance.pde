@@ -10,12 +10,15 @@ class Disor13ntSequence extends SetList {
 
   void setup() {
     states = new States(this);
-
+/*
     intro();
     playSetList(new DoSeizure(this));
     disorientAllTheThings();
-    wait(60.0);
+    wait(2.0);
+    disorientAllTheThingsEnd(15.0);
     snackPack();
+    portalGel();
+*/
   }
 
   void intro() {
@@ -111,6 +114,11 @@ class Disor13ntSequence extends SetList {
     pushCanvas(canvas3, sparkle);
   }
 
+  void disorientAllTheThingsEnd(float time) {
+    fadeOut(time * 0.5, canvas2);
+    fadeOut(time * 0.5, canvas3);
+  }
+
   void snackPack() {
     Pxxxls pxxxls = new Pxxxls(100);
     ProtonPack protonPack = new ProtonPack();
@@ -197,5 +205,36 @@ class Disor13ntSequence extends SetList {
 
     line(15.0, warp2.xFreq, -1.0);
     fadeOut(15.0, canvas2);
+  }
+
+  void portalGel() {
+    Mirror mirror = new Mirror();
+    Warp warp = new Warp();
+    Trails trails = new Trails();
+    Sparkle sparkle = new Sparkle();
+    SimpleWave simpleWave = new SimpleWave();
+    CanvasRoutine breather = presets.getBreather(pornj, disorientOrange, 0.125, MULTIPLY);
+
+    warp.yAmp.set(0.25);
+    warp.xAmp.set(1.5);
+    warp.yFreq.set(0.17);
+    warp.xFreq.set(0.24);
+
+    sparkle.nDots = 200;
+    sparkle.threshold = 16;
+
+    simpleWave.amp = 0.125;
+    simpleWave.spread = 0.5;
+    simpleWave.nWaves = 2;
+    simpleWave.bias = 0.25;
+    simpleWave.theColor = color(255, 180);
+    simpleWave.freq = -0.5;
+
+    setCanvas(canvas2, simpleWave);
+    pushCanvas(canvas2, breather);
+    pushCanvas(canvas2, warp);
+    pushCanvas(canvas2, presets.getTrails(64));
+    pushCanvas(canvas2, mirror);
+    pushCanvas(canvas2, sparkle);
   }
 }
