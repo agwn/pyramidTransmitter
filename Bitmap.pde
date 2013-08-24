@@ -73,7 +73,6 @@ class Bitmap {
     int imgHeight = h + h * yPad;
     PImage img;
     
-    println("imgwidth: " + imgWidth + "  imgHeight: " + imgHeight);
     img = createImage(imgWidth, imgHeight, ARGB);
 
     for (int y = 0; y < h; y++) {
