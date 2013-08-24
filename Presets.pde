@@ -30,7 +30,7 @@ class Presets {
 
   CanvasRoutine getTrails(int fade) {
     Trails trails = new Trails();
-    trails.fade = fade;
+    trails.fade.set(fade);
     return trails;
   }
 }
@@ -56,4 +56,140 @@ class States extends SetList {
     pushCanvas(canvas, presets.getBreather(pornj, pink, 0.5, MULTIPLY));
     pushCanvas(canvas, sparkle);
   } 
+}
+
+class PornjscachInkBlotter extends SetList {
+  Pxxxls pxxxls;
+  Pxxxls pxxxlFilter;
+  SimpleWave waves;
+  Mirror mirror;
+  Warp warp;
+  Grid grid;
+  Trails trails;
+  Sparkle sparkle;
+  Sparkle sparkle2;
+  Breather breather;
+ 
+
+  PornjscachInkBlotter() {
+  }
+
+  PornjscachInkBlotter(SetList setList) {
+    super(setList);
+  }
+
+  void setup() {
+    pxxxls = new Pxxxls(15);
+    pxxxlFilter = new Pxxxls(100);
+    waves = new SimpleWave();
+    mirror = new Mirror();
+    warp = new Warp();
+    grid = new Grid();
+    trails = new Trails();
+    sparkle = new Sparkle();
+    sparkle2 = new Sparkle();
+    breather = new Breather();
+    resetParams();
+  }
+
+  private void resetParams() {
+    pxxxlFilter.setBlendMode(DODGE);
+    pxxxlFilter.setPaintMode(pxxxlFilter.BLEND);
+    warp.yFreq.set(0.17);
+    warp.xFreq.set(0.24);
+
+    trails.fade.set(240);
+
+    sparkle.threshold = 16;
+    sparkle.nDots = 1200;
+    sparkle.dotToCrossRatio = 0.95;
+    sparkle.setBlendMode(sparkle.DIRECT);
+    sparkle.c = color(255, 128);
+
+    sparkle2.nDots = 200;
+
+    breather.setBlendMode(MULTIPLY);
+    breather.c0 = color(pornj);
+    breather.c1 = color(disorientOrange);
+    breather.freq = 0.01;
+  }
+
+  void setPattern_1(Canvas canvas) {
+    setCanvas(canvas, pxxxls);
+    pushCanvas(canvas, warp);
+    pushCanvas(canvas, trails);
+    pushCanvas(canvas, mirror);
+    pushCanvas(canvas, sparkle);
+    pushCanvas(canvas, breather);
+    pushCanvas(canvas, pxxxlFilter);
+    pushCanvas(canvas, sparkle2);
+  }
+
+  void setPattern_2(Canvas canvas) {
+    setCanvas(canvas, waves);
+    pushCanvas(canvas, warp);
+    pushCanvas(canvas, trails);
+    pushCanvas(canvas, mirror);
+    pushCanvas(canvas, sparkle);
+    pushCanvas(canvas, breather);
+    pushCanvas(canvas, pxxxlFilter);
+    pushCanvas(canvas, sparkle2);
+  }
+
+  void setPattern_3(Canvas canvas) {
+    setCanvas(canvas, pxxxls);
+    pushCanvas(canvas, warp);
+    pushCanvas(canvas, trails);
+    pushCanvas(canvas, sparkle);
+    pushCanvas(canvas, breather);
+    pushCanvas(canvas, trails);
+    pushCanvas(canvas, pxxxlFilter);
+    pushCanvas(canvas, mirror);
+    pushCanvas(canvas, sparkle2);
+  }
+
+  void setPattern_4(Canvas canvas) {
+    setCanvas(canvas, pxxxls);
+    pushCanvas(canvas, warp);
+    pushCanvas(canvas, trails);
+    pushCanvas(canvas, mirror);
+    pushCanvas(canvas, sparkle);
+    pushCanvas(canvas, breather);
+    pushCanvas(canvas, trails);
+    pushCanvas(canvas, pxxxlFilter);
+    pushCanvas(canvas, sparkle2);
+  }
+
+  void setPattern_5(Canvas canvas) {
+    setCanvas(canvas, pxxxls);
+    pushCanvas(canvas, warp);
+    pushCanvas(canvas, presets.getTrails(63));
+    pushCanvas(canvas, mirror);
+    pushCanvas(canvas, sparkle);
+    pushCanvas(canvas, breather);
+    pushCanvas(canvas, presets.getTrails(63));
+    pushCanvas(canvas, pxxxlFilter);
+    pushCanvas(canvas, sparkle2);
+  }
+
+  void setPattern_6(Canvas canvas, float riseTime) {
+    Trails trails1 = new Trails();
+    Trails trails2 = new Trails();
+
+    trails1.fade.set(255);
+    trails2.fade.set(255);
+    setCanvas(canvas, pxxxls);
+    pushCanvas(canvas, warp);
+    pushCanvas(canvas, trails1);
+    pushCanvas(canvas, mirror);
+    pushCanvas(canvas, sparkle);
+    pushCanvas(canvas, breather);
+    pushCanvas(canvas, trails2);
+    pushCanvas(canvas, pxxxlFilter);
+    pushCanvas(canvas, sparkle2);
+
+    line(riseTime, trails1.fade, 2);
+    line(riseTime, trails2.fade, 64);
+    wait(riseTime);
+  }
 }

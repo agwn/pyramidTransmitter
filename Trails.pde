@@ -2,10 +2,12 @@ class Trails extends CanvasRoutine {
   int w;
   int h;
   PGraphics pgLast;
-  int fade = 0;
+  ModFloat fade;
 
   public Trails() {
     setPaintMode(DIRECT);
+    fade = new ModFloat();
+    fade.set(0);
   }
 
   void reinit() {
@@ -21,7 +23,7 @@ class Trails extends CanvasRoutine {
     pgLast.beginDraw();
     pg.blend(pgLast.get(), 0, 0, w, h, 0, 0, w, h, SCREEN);
     pgLast.copy(pg.get(), 0, 0, w, h, 0, 0, w, h);
-    pgLast.fill(0, fade);
+    pgLast.fill(0, (int) fade.get());
     pgLast.rect(0, 0, w, h);
     pgLast.endDraw();
     pg.endDraw();

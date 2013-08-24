@@ -69,6 +69,10 @@ class ModLine extends ModEvent {
 class ModFloat {
   private float value;
 
+  ModFloat() {
+    value = 0.0;
+  }
+
   ModFloat(float value_) {
     value = value_;
   }

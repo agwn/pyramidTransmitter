@@ -25,7 +25,7 @@ class PyramidPartyDemo extends SetList {
     playSetList(new DisorientAllTheThings(this));
     playSetList(new Other(this));
     playSetList(new PortalGel(this));
-    playSetList(new PornjscachInkBlotter(this));
+    playSetList(new PornjscachInkBlotterDemo(this));
   }
 }
 
@@ -98,11 +98,11 @@ class Other extends SetList {
   }
 }
 
-class PornjscachInkBlotter extends SetList {
-  PornjscachInkBlotter() {
+class PornjscachInkBlotterDemo extends SetList {
+  PornjscachInkBlotterDemo() {
   }
 
-  PornjscachInkBlotter(SetList setList) {
+  PornjscachInkBlotterDemo(SetList setList) {
     super(setList);
   }
 
@@ -125,7 +125,7 @@ class PornjscachInkBlotter extends SetList {
     warp.yFreq.set(0.17);
     warp.xFreq.set(0.24);
 
-    trails.fade = 240;
+    trails.fade.set(240);
 
     sparkle.threshold = 16;
     sparkle.nDots = 1200;
@@ -287,7 +287,7 @@ class DisorientAllTheThings extends SetList {
 
     warp.yFreq.set(0.17);
     warp.xFreq.set(0.14);
-    trails.fade = 32;
+    trails.fade.set(32);
     sparkle.threshold = 16;
     sparkle.nDots = 1200;
     sparkle.dotToCrossRatio = 1.0;
@@ -378,7 +378,7 @@ class PortalGel extends SetList {
     warp.yFreq.set(0.17);
     warp.xFreq.set(0.24);
 
-    trails.fade = 64;
+    trails.fade.set(64);
 
     sparkle2.nDots = 200;
     sparkle2.threshold = 16;

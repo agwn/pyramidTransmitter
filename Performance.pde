@@ -1,5 +1,6 @@
 class Disor13ntSequence extends SetList {
   States states;
+  PornjscachInkBlotter pornjscach;
 
   Disor13ntSequence() {
   }
@@ -10,7 +11,8 @@ class Disor13ntSequence extends SetList {
 
   void setup() {
     states = new States(this);
-/*
+    pornjscach = new PornjscachInkBlotter(this);
+
     intro();
     playSetList(new DoSeizure(this));
     disorientAllTheThings();
@@ -18,7 +20,19 @@ class Disor13ntSequence extends SetList {
     disorientAllTheThingsEnd(15.0);
     snackPack();
     portalGel();
-*/
+    pornjscach.setPattern_1(canvas2);
+    wait(60.0);
+    pornjscach.setPattern_2(canvas2);
+    wait(60.0);
+    pornjscach.setPattern_3(canvas2);
+    wait(60.0);
+    pornjscach.setPattern_4(canvas2);
+    wait(60.0);
+    pornjscach.setPattern_5(canvas2);
+    wait(60.0);
+    pornjscach.setPattern_6(canvas2, 60.0);
+    wait(60.0);
+    fadeOut(20.0, canvas2);
   }
 
   void intro() {
@@ -46,7 +60,7 @@ class Disor13ntSequence extends SetList {
 
     warp.yFreq.set(0.17);
     warp.xFreq.set(0.14);
-    trails.fade = 32;
+    trails.fade.set(32);
     sparkle.threshold = 16;
     sparkle.nDots = 1200;
     sparkle.dotToCrossRatio = 1.0;
