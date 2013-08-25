@@ -14,7 +14,6 @@ class Disor13ntSequence extends SetList {
     pornjscach = new PornjscachInkBlotter(this);
     CloudFractalPresets cloudFractalPresets = new CloudFractalPresets(this);
 
-    lifeSequence();
     intro();
     playSetList(new DoSeizure(this));
     disorientAllTheThings();
@@ -40,6 +39,7 @@ class Disor13ntSequence extends SetList {
     wait(60.0);
     simpleCircleSequence();
     starBandSequence();
+    lifeSequence();
   }
 
   void lifeSequence() {

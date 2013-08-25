@@ -75,6 +75,17 @@ class States extends SetList {
   }
 
   void setDisor13ntColumns(Canvas canvas) {
+    ArrayList<BitPoint> disorientBitPoints = disFont.getBitmap("disor13nt_3s").getBitmap(true, true, false).getBitPoints();
+    Energize energize = new Energize(disorientBitPoints);
+    energize.x = 24;
+    energize.y = 6;
+    energize.yPad = 1;
+    energize.pointsPerFrame = 2;
+    energize.frames = 20;
+    energize.cStart = color(disorientOrange, 0);
+    energize.cEnd = pornj;
+    energize.verticalToHorizontalRatio = 0.5;
+    energize.size = 9;
     Sparkle sparkle = new Sparkle();
     sparkle.threshold = 16;
     sparkle.nDots = 1200;
@@ -82,7 +93,7 @@ class States extends SetList {
     sparkle.c = color(255, 128);
 
     setCanvas(canvas, presets.getBlackBackground());
-    pushCanvas(canvas, presets.getDisor13ntVertical()); 
+    pushCanvas(canvas, energize);
     pushCanvas(canvas, presets.getMirror());
     pushCanvas(canvas, presets.getBreather(pornj, pink, 0.5, MULTIPLY));
     pushCanvas(canvas, sparkle);
