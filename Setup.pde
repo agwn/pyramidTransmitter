@@ -1,10 +1,17 @@
 // This should be 127.0.0.1, 58802
-String transmit_address = "127.0.0.1";
-//String transmit_address = "192.168.7.2";
+//String transmit_address = "127.0.0.1";
+String transmit_address = "192.168.1.10";
+String[] transmit_addresses = {
+	"192.168.1.10",
+	"192.168.1.11",
+	"192.168.1.12",
+	"192.168.1.13",
+	"192.168.1.14",
+};
 //String transmit_address = "192.168.111.20";
 
-int transmit_port = 58082;
-//int transmit_port = 9999;
+//int transmit_port = 58082;
+int transmit_port = 9999;
 
 // Display configuration
 int displayWidth = 64;    // 8 columns x 8 pixels
@@ -41,7 +48,7 @@ void setupCanvases() {
 }
 
 void setupSign() {
-  sign = new LEDDisplay(this, displayWidth, displayHeight, true, transmit_address, transmit_port);
+  sign = new LEDDisplay(this, displayWidth, displayHeight, true, transmit_addresses, transmit_port);
   sign.bright = 1.0;
   sign.setAddressingMode(LEDDisplay.ADDRESSING_HORIZONTAL_NORMAL);
   //sign.setEnableGammaCorrection(true);

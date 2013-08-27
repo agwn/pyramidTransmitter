@@ -76,7 +76,7 @@ public class LEDDisplay {
 
   PApplet parent;
   UDP udp;
-  String address;
+  String[] addresses;
   int port;
   int w;
   int h;
@@ -89,10 +89,10 @@ public class LEDDisplay {
   boolean isRGB = false;
   float bright = 1.0;
 
-  public LEDDisplay(PApplet parent, int w, int h, boolean isRGB, String address, int port) {
+  public LEDDisplay(PApplet parent, int w, int h, boolean isRGB, String[] addresses, int port) {
     this.parent = parent;
     this.udp = new UDP(parent);
-    this.address = address;
+    this.addresses = addresses;
     this.port = port;
     this.w = w;
     this.h = h;
@@ -106,10 +106,6 @@ public class LEDDisplay {
     for (int i=0; i<bufferSize; i++) {
       buffer[i] = 0;
     }
-  }
-
-  public void setAddress(String address) {
-    this.address = address;
   }
 
   public void setPort(int port) {
@@ -181,7 +177,10 @@ public class LEDDisplay {
       modeBuffer[i+1] = (byte)modeName.charAt(i);
     }
 
-    udp.send(modeBuffer, address, port);
+    for(String address : addresses)
+    {
+        udp.send(modeBuffer, address, port);
+    }
   }
 
   public void sendData() {
@@ -236,6 +235,9 @@ public class LEDDisplay {
     }
     //updatePixels();
 
-    udp.send(buffer, address, port);
+    for(String address : addresses)
+    {
+        udp.send(buffer, address, port);
+    }
   }
 }
