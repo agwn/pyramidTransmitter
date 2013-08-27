@@ -33,7 +33,7 @@ class Fire extends CanvasRoutine {
       //Hue goes from 0 to 85: red to yellow
       //Saturation is always the maximum: 255
       //Lightness is 0..255 for x=0..128, and 255 for x=128..255
-      palette[x] = color(x/3.5, 255, constrain(x*3, 0, 255));
+      palette[x] = color(x/3.5, 255, constrain(x*3, 0, 180));
       //palette[x] = color(constrain(135+x/2, 0, 255), 255, constrain(x*3, 0, 255));
     }
 
