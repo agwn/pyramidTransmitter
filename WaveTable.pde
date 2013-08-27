@@ -16,7 +16,7 @@ class WaveTable {
     return size;
   }
 
-  private float[] getData() {
+  float[] getData() {
     return data;
   }
 }
@@ -28,7 +28,7 @@ class SineTable extends WaveTable {
 
   void generate() {
     for (int i = 0; i < size; i++) {
-      data[i] = sin(i * sineTableSizeInv * TWO_PI);
+      data[i] = sin((float) i * inverse * TWO_PI);
     }
   }
 }
@@ -40,7 +40,19 @@ class SineTableNorm extends WaveTable {
 
   void generate() {
     for (int i = 0; i < size; i++) {
-      data[i] = sin(i * inverse * TWO_PI) * 0.5 + 0.5;
+      data[i] = sin((float) i * inverse * TWO_PI) * 0.5 + 0.5;
+    }
+  }
+}
+
+class SawTable extends WaveTable {
+  SawTable(int size) {
+    super(size);
+  }
+
+  void generate() {
+    for (int i = 0; i < size; i++) {
+      data[i] = ((float) i / size) * 2.0 - 1.0;
     }
   }
 }

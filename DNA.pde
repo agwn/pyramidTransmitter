@@ -329,3 +329,28 @@ class DNAPlayer extends SetList {
     wait(60.0);
   }
 }
+
+class DNAPresets extends SetList {
+  
+  DNAPresets() { 
+  }
+
+  DNAPresets(SetList setList) {
+    super(setList);
+  }
+  
+  void thePreset(Canvas canvas) {
+    int panels = 8;
+    DNA dna = new DNA(64, 210, panels);
+
+    setCanvas(canvas, dna);
+  }
+
+  void campColors(Canvas canvas) {
+    int panels = 8;
+    DNA dna = new DNA(64, 210, panels);
+    dna.generateColor = new GenCampColor();
+
+    setCanvas(canvas, dna);
+  }
+}

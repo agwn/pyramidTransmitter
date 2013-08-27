@@ -18,6 +18,7 @@ class ModLine extends ModEvent {
   float startValue;
   float endValue;
   float change;
+  boolean initStartValue = false;
 
   ModLine(CanvasRoutineController controller_, ModFloat modFloat_, int frames_, float startValue_, float endValue_) {
     controller = controller_;
@@ -25,6 +26,14 @@ class ModLine extends ModEvent {
     startValue = startValue_;
     endValue = endValue_;
     modFloat = modFloat_;
+  }
+
+  ModLine(CanvasRoutineController controller_, ModFloat modFloat_, int frames_, float endValue_) {
+    controller = controller_;
+    frames = frames_;
+    endValue = endValue_;
+    modFloat = modFloat_;
+    initStartValue = true;
   }
 
   void run() {
@@ -44,6 +53,9 @@ class ModLine extends ModEvent {
   void init() {
     isInitialized = true;
     frameCounter = frames;
+    if (initStartValue) {
+      startValue = modFloat.get();
+    }
     modFloat.set(startValue);
     change = (startValue - endValue) / frames;
   }
@@ -54,9 +66,12 @@ class ModLine extends ModEvent {
   }
 }
 
-
 class ModFloat {
   private float value;
+
+  ModFloat() {
+    value = 0.0;
+  }
 
   ModFloat(float value_) {
     value = value_;

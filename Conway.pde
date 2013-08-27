@@ -174,3 +174,18 @@ class ConwayPlayer extends SetList {
     wait(20.0);
   }
 }
+
+class ConwayPresets extends SetList {
+  ConwayPresets() { }
+
+  ConwayPresets(SetList setList) {
+    super(setList);
+  }
+  
+  void thePreset(Canvas canvas) {
+    Conway conway = new Conway();
+
+    setCanvas(canvas, conway);
+  }
+}
+

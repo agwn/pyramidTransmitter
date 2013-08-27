@@ -139,6 +139,11 @@ class CanvasRoutineController {
     domeCode.add(new DomeLine(masterControl, modLine));
   }
 
+  void line(float seconds, ModFloat m, float end) {
+    ModLine modLine = new ModLine(masterControl, m, (int) (seconds * FRAMERATE), end);
+    domeCode.add(new DomeLine(masterControl, modLine));
+  }
+
   void removeModEvent(ModEvent m) {
     modEventsGarbage.add(m);
   }

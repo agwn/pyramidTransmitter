@@ -25,7 +25,7 @@ class PyramidPartyDemo extends SetList {
     playSetList(new DisorientAllTheThings(this));
     playSetList(new Other(this));
     playSetList(new PortalGel(this));
-    playSetList(new PornjscachInkBlotter(this));
+    playSetList(new PornjscachInkBlotterDemo(this));
   }
 }
 
@@ -98,18 +98,17 @@ class Other extends SetList {
   }
 }
 
-class PornjscachInkBlotter extends SetList {
-  PornjscachInkBlotter() {
+class PornjscachInkBlotterDemo extends SetList {
+  PornjscachInkBlotterDemo() {
   }
 
-  PornjscachInkBlotter(SetList setList) {
+  PornjscachInkBlotterDemo(SetList setList) {
     super(setList);
   }
 
   void setup() {
     Pxxxls pxxxls = new Pxxxls(15);
     Pxxxls pxxxlFilter = new Pxxxls(100);
-    //Waves waves = new Waves();
     SimpleWave waves = new SimpleWave();
     Mirror mirror = new Mirror();
     Warp warp = new Warp();
@@ -118,17 +117,15 @@ class PornjscachInkBlotter extends SetList {
     Sparkle sparkle = new Sparkle();
     Sparkle sparkle2 = new Sparkle();
     Breather breather = new Breather();
-    //float waitTime = 30.0;
-    float waitTime = 1.0;
+    float waitTime = 30.0;
 
     pxxxlFilter.setBlendMode(DODGE);
-
     pxxxlFilter.setPaintMode(pxxxlFilter.BLEND);
 
     warp.yFreq.set(0.17);
     warp.xFreq.set(0.24);
 
-    trails.fade = 240;
+    trails.fade.set(240);
 
     sparkle.threshold = 16;
     sparkle.nDots = 1200;
@@ -290,7 +287,7 @@ class DisorientAllTheThings extends SetList {
 
     warp.yFreq.set(0.17);
     warp.xFreq.set(0.14);
-    trails.fade = 32;
+    trails.fade.set(32);
     sparkle.threshold = 16;
     sparkle.nDots = 1200;
     sparkle.dotToCrossRatio = 1.0;
@@ -381,14 +378,14 @@ class PortalGel extends SetList {
     warp.yFreq.set(0.17);
     warp.xFreq.set(0.24);
 
-    trails.fade = 64;
+    trails.fade.set(64);
 
     sparkle2.nDots = 200;
     sparkle2.threshold = 16;
 
     breather.setBlendMode(MULTIPLY);
-    breather.c0 = color(pornj);
-    breather.c1 = color(disorientOrange);
+    breather.c0 = pornj;
+    breather.c1 = disorientOrange;
     breather.freq = 0.125;
 
     simpleWave.amp = 0.125;
@@ -653,6 +650,65 @@ class UncertainSetList extends SetList {
   }
 }
 
+class PresetTesting extends SetList {
+
+  PresetTesting() {
+  }
+
+  PresetTesting(SetList setList) {
+    super(setList);
+  }
+
+  void setup() {
+    float waitTime = 600.0;
+
+    HexFlowersPresets hexFlowers = new HexFlowersPresets(this);
+    KochCurvesPresets kochCurves = new KochCurvesPresets(this);
+    DNAPresets dna = new DNAPresets(this);
+    PlantFractalPresets plantFractal = new PlantFractalPresets(this);
+    CrazyBarsPresets crazyBars = new CrazyBarsPresets(this);
+    SnakesPresets snakes = new SnakesPresets(this);
+    ConwayPresets conway = new ConwayPresets(this);
+    StarBandPresets starBands = new StarBandPresets(this);
+    CloudFractalPresets cloudFractals = new CloudFractalPresets(this);
+    DisorientHeartBeatPresets dhbPresets = new DisorientHeartBeatPresets(this);
+    SimpleCirclesPresets simpleCirclesPresets = new SimpleCirclesPresets(this);
+
+/*
+    hexFlowers.thePreset(canvas2); 
+    wait(waitTime);
+    kochCurves.thePreset(canvas0); 
+    wait(waitTime);
+    disableCanvas(canvas0);
+*/
+    dna.campColors(canvas2); 
+    wait(waitTime);
+    dna.thePreset(canvas2); 
+    wait(waitTime);
+    plantFractal.thePreset(canvas0);
+    wait(waitTime);
+    disableCanvas(canvas0);
+    crazyBars.thePreset(canvas2); 
+    wait(waitTime);
+    snakes.thePreset(canvas2); 
+    wait(waitTime);
+    conway.thePreset(canvas2); 
+    wait(waitTime);
+    starBands.thePreset(canvas0);
+    wait(waitTime);
+    disableCanvas(canvas0);
+    simpleCirclesPresets.thePreset(canvas0);
+    wait(waitTime);
+    disableCanvas(canvas0);
+    dhbPresets.singleBeat(canvas2); 
+    wait(waitTime);
+    cloudFractals.doPlasmaClouds(canvas2);
+    wait(waitTime);
+    cloudFractals.doPlasmaCloudsMore(canvas2);
+    wait(waitTime);
+  }
+}
+
 class Tester extends SetList {
   Tester() {
   }
@@ -662,23 +718,11 @@ class Tester extends SetList {
   }
 
   void setup() {
-    GenCampColor campColor = new GenCampColor(); 
-    WarpSpeedMrSulu warpSpeed = new WarpSpeedMrSulu();
-    Warp warp = new Warp();
-    Speckle speckle = new Speckle();
+    DisorientHeartBeat disorientHeartBeat = new DisorientHeartBeat(1, 1);
+    Trails trails = new Trails();
 
-    warpSpeed.generateColor = campColor;
-    speckle.amount = 1.0;
-    warp.xWaveTable = gPhasorTable;
-    warp.yWaveTable = gPhasorTable;
-
-    setParam(warp.xAmp, 1.0);
-    setParam(warp.yAmp, 1.0);
-    setParam(warp.xFreq, 0.25);
-    setParam(warp.yFreq, 0.25);
-    setCanvas(canvas2, warpSpeed);
-    pushCanvas(canvas2, warp);
-    pushCanvas(canvas2, speckle);
-    wait(60.0);
+    setCanvas(canvas2, disorientHeartBeat);
+    pushCanvas(canvas2, trails);
+    wait(30.0);
   }
 }

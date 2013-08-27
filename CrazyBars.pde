@@ -109,3 +109,18 @@ class CrazyBarsPlayer extends SetList {
     wait(5.0);
   }
 }
+
+class CrazyBarsPresets extends SetList {
+  CrazyBarsPresets() { }
+
+  CrazyBarsPresets(SetList setList) {
+    super(setList);
+  }
+  
+  void thePreset(Canvas canvas) {
+    CrazyBars crazyBars = new CrazyBars();
+
+    setCanvas(canvas, crazyBars);
+  }
+}
+

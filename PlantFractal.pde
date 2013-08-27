@@ -103,3 +103,20 @@ class PlantFractal extends CanvasRoutine {
     }
   }
 }
+
+
+class PlantFractalPresets extends SetList {
+  PlantFractalPresets() {
+  }
+
+  PlantFractalPresets(SetList setList) {
+    super(setList);
+  }
+  
+  void thePreset(Canvas canvas) {
+    int secondsToHold = 1;
+
+    PlantFractal plantFractal = new PlantFractal(secondsToHold);
+    setCanvas(canvas, plantFractal); 
+  }
+}

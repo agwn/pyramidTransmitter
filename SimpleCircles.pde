@@ -8,6 +8,7 @@
   .......... .. .......... .......... ..     ...  .. .......... ..      ..     ..
   .........  .. .........   ........  ..      ..  .. ........   ..      ..     ..
 */
+
 class SimpleCircles extends CanvasRoutine {
   private int w;
   private int h;
@@ -17,13 +18,14 @@ class SimpleCircles extends CanvasRoutine {
   float max_distance;
   int x=0;
   boolean moving_right = true;
-  int circleSize = 66;
+  int circleSize = 35;
+  int step;
 
   
   SimpleCircles(float secondsOfOneTravel) {
     SecondsOfOneTravel = secondsOfOneTravel;
   }
-  int step;
+
   void reinit() {
     w = pg.width;
     h = pg.height;
@@ -31,6 +33,7 @@ class SimpleCircles extends CanvasRoutine {
     max_distance = dist(0, 0, width, height);
     step = (int)(w/(SecondsOfOneTravel*FRAMERATE));
   }
+
   void draw() {
     pg.beginDraw();
     pg.background(0);
@@ -46,15 +49,35 @@ class SimpleCircles extends CanvasRoutine {
     }
     
     x = moving_right ? ((x+step)) : x-step; 
-  
-    for(int i = 0; i <= w; i += 20) {
-      for(int j = 0; j <= h; j += 20) {
+ 
+    for(int i = 4; i <= w; i += 15) {
+      for(int j = 0; j <= h; j += 15) {
         float size = dist(x, h/2, i, j);
-        size = size/max_distance * 35;
+        size = size/max_distance * circleSize;
+        pg.pushStyle();
+        pg.ellipseMode(CENTER);
         pg.ellipse(i, j, size, size);
+        pg.popStyle();
+        pg.point(i, j);
       }
     }
 
     pg.endDraw();
+  }
+}
+
+class SimpleCirclesPresets extends SetList {
+  SimpleCirclesPresets() {
+  }
+
+  SimpleCirclesPresets(SetList setList) {
+    super(setList);
+  }
+
+  void thePreset(Canvas canvas) {
+    SimpleCircles simpleCircles = new SimpleCircles(1.0);
+    simpleCircles.circleSize = 24;
+
+    setCanvas(canvas, simpleCircles);
   }
 }

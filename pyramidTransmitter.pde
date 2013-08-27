@@ -13,9 +13,8 @@ void setup() {
   frameRate(FRAMERATE);
   setupPyramid();
 
-  // Set the SetList sequence here
-  //theSetList = new Tester();
-  theSetList = new UncertainSetList();
+  //theSetList = new PresetTesting();
+  theSetList = new Disor13ntSequence();
 }
 
 void draw() {

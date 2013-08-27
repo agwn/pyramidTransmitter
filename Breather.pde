@@ -7,10 +7,13 @@ class Breather extends CanvasRoutine {
   int y = 0;
   int theWidth = width;
   int theHeight = height;
+  WaveTable waveTable;
   private int w;
   private int h;
 
-  public Breather() { }
+  public Breather() {
+    waveTable = sineTable;
+  }
 
   void reinit() {
     w = pg.width;
@@ -18,11 +21,13 @@ class Breather extends CanvasRoutine {
   }
 
   void draw() {
+    float[] table = waveTable.getData();
+    int size = waveTable.getSize();
+    float v = (table[(int) (phase * size)] + 1.0) * 0.5;
+
     pg.beginDraw();
 
-    float v = (sineTable[(int) (phase * sineTableSize)] + 1.0) * 0.5;
     color theColor = lerpColor(c0, c1, v);
-    //pg.background(theColor);
     pg.pushStyle();
     pg.noStroke();
     pg.fill(theColor);

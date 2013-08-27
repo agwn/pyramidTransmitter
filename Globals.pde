@@ -1,33 +1,17 @@
 color pornj = color(252, 23, 218);
 color disorientOrange = color(255, 128, 0);
-
-int sineTableSize = 256;
-float sineTableSizeInv = 1.0 / sineTableSize;
-float[] sineTable;
-float sineTableNormSizeInv = 1.0 / sineTableSize;
-float[] sineTableNorm;
+color pink = color(255, 128, 128);
 DisorientFont disFont;
 Bitmap selfPortraitMap;
-
-SineTable gSineTable = new SineTable(256);
-SineTableNorm gSineTableNorm = new SineTableNorm(256);
-PhasorTable gPhasorTable = new PhasorTable(256);
-
+SineTable sineTable = new SineTable(256);
+SineTableNorm sineTableNorm = new SineTableNorm(256);
+PhasorTable phasorTable = new PhasorTable(256);
+SawTable sawTable = new SawTable(256);
+Presets presets = new Presets();
 
 void setupGlobals() {
-  initSineTable();
   disFont = new DisorientFont();
   selfPortraitMap = new Bitmap(SELF_PORTRAIT, 32, 32);
-}
-
-void initSineTable() {
-  sineTable = new float[sineTableSize];
-  sineTableNorm = new float[sineTableSize];
-
-  for (int i = 0; i < sineTableSize; i++) {
-    sineTable[i] = sin(i * sineTableSizeInv * TWO_PI);
-    sineTableNorm[i] = sin(i * sineTableNormSizeInv * TWO_PI) * 0.5 + 0.5;
-  }
 }
 
 

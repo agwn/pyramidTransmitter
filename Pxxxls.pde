@@ -8,25 +8,15 @@
   ~~      ~~ ~~         ~~ ~~      ~~ ~~~~~~~~~  ~~ ~~         ~~      ~~     ~~
   ~~~~~~~~~~ ~~ ~~~~~~~~~~ ~~~~~~~~~~ ~~     ~~~ ~~ ~~~~~~~~~  ~~      ~~     ~~
   ~~~~~~~~~  ~~ ~~~~~~~~~   ~~~~~~~~  ~~      ~~ ~~  ~~~~~~~~  ~~      ~~     ~~
-
-  ~~~~~~~~~  ~~  ~~~~~~~~~
-  ~~~~~~~~~~ ~~~ ~~~~~~~~~~         |  |
-  ~~      ~~  ~~         ~~         |  |
-  ~~      ~~  ~~   ~~~~~~~~       | |  | |
-  ~~      ~~  ~~   ~~~~~~~~       | |  | |
-  ~~      ~~  ~~         ~~     | | |  | | |
-  ~~~~~~~~~~  ~~ ~~~~~~~~~~     | | |  | | | 
-  ~~~~~~~~~   ~~ ~~~~~~~~~    | | | |  | | | |
-
 */
 
-
-
 class Pxxxls extends CanvasRoutine {
-  ArrayList pxxxls;
-  int nPxxxls;
+  GenerateColor generateColor;
+  private ArrayList pxxxls;
+  private int nPxxxls;
 
   Pxxxls(int nPxxxls_) {
+    generateColor = new GenCampColor();
     nPxxxls = nPxxxls_;
   }
 
@@ -37,13 +27,10 @@ class Pxxxls extends CanvasRoutine {
   void breedPixxls() {
     pxxxls = new ArrayList();
     for (int i = 0; i < nPxxxls; i++) {
-      Pxxxl pxxxl = new Pxxxl(pg);
+      Pxxxl pxxxl = new Pxxxl(this);
       pxxxls.add(pxxxl);
     }
   }
-
-
-
 
   void draw() {
     pg.beginDraw();
@@ -69,10 +56,12 @@ class Pxxxl {
   float flashTriggerOdds = 0.98;
   float flashDecay = 0.06125;
   float speed = 1.0 / 8.0;
+  Pxxxls parent;
   PGraphics pg;
 
-  Pxxxl(PGraphics pg_) {
-    pg = pg_;
+  Pxxxl(Pxxxls parent_) {
+    parent = parent_;
+    pg = parent.pg;
     init();
   }
 
@@ -80,7 +69,8 @@ class Pxxxl {
     s = random(minSize, maxSize);
     posY = pg.height + s;
     posX = random(-s, pg.width + s);
-    thisColor = lerpColor(pornj, disorientOrange, random(1.0));
+    thisColor = parent.generateColor.get();
+    //thisColor = lerpColor(pornj, disorientOrange, random(1.0));
   }
 
   void update() {

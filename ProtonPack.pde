@@ -19,10 +19,16 @@ class ProtonPack extends CanvasRoutine {
   color c1 = color(disorientOrange, 128);
   float freq = 1.0;
   float nCycles = 1.0;
+  WaveTable waveTable;
+
   private float bias;
   private float amp;
   private int w;
   private int h;
+
+  ProtonPack() {
+    waveTable = sineTable;
+  }
 
   void reinit() {
     w = pg.width;
@@ -65,12 +71,15 @@ class ProtonPack extends CanvasRoutine {
   }
 
   void drawSine(float bias, float amp) {
-    pg.beginShape();
+    float[] table = waveTable.getData();
+    int size = waveTable.getSize();
+
     float drawPhase = phase;
     float drawPhaseInc = nCycles / ((float) w / resolution);
+    pg.beginShape();
 
     for (int i = -resolution; i <= w + resolution * 2; i = i + resolution) {
-      pg.curveVertex(i, bias + sineTable[(int) (drawPhase * sineTableSize)] * amp);
+      pg.curveVertex(i, bias + table[(int) (drawPhase * size)] * amp);
 
       drawPhase += drawPhaseInc;
       while (drawPhase >= 1.0) {
