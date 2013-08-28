@@ -14,7 +14,7 @@ class Disor13ntSequence extends SetList {
     states = new States(this);
     pornjscach = new PornjscachInkBlotter(this);
     CloudFractalPresets cloudFractalPresets = new CloudFractalPresets(this);
-/*
+
     intro();
     playSetList(new DoSeizure(this));
     disorientAllTheThings();
@@ -24,9 +24,8 @@ class Disor13ntSequence extends SetList {
     snackPack();
     portalGel();
     wait(120.0);
-*/
 
-    float pTime = 2.0;
+    float pTime = 60.0;
     pornjscach.setPattern_1(canvas2);
     fadeIn(2.0, canvas2);
     wait(pTime);
