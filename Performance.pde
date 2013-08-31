@@ -14,17 +14,27 @@ class Disor13ntSequence extends SetList {
     pornjscach = new PornjscachInkBlotter(this);
     CloudFractalPresets cloudFractalPresets = new CloudFractalPresets(this);
 
+
+/*
+    scrollDisSparkle(canvas2);
+    wait(60.0);
+    fadeOut(2.0, canvas2);
+
     seizureIt();
     intro();
     seizureIt();
+
     disorientAllTheThings();
     wait(2.0);
     disorientAllTheThingsEnd(15.0);
+    
+
     seizureIt();
+*/
     snackPack();
- 
+
     portalGel();
-    wait(2.0);
+    wait(120.0);
 
     seizureIt();
     disor13ntEnergize();
@@ -45,6 +55,12 @@ class Disor13ntSequence extends SetList {
     setCanvas(canvas2, seizure);
     wait(0.25);
     disableCanvas(canvas2);
+  }
+
+  void scrollDisSparkle(Canvas canvas) {
+    scrollDis(canvas);
+    pushCanvas(canvas, presets.getBreather(pornj, disorientOrange, 1.0, MULTIPLY)); 
+    pushCanvas(canvas, presets.getSparkle(2000, 0.95, 1, color(255)));
   }
 
   void pornjscachBaby() {
@@ -319,6 +335,8 @@ class Disor13ntSequence extends SetList {
     breather.setBlendMode(MULTIPLY);
 
     setCanvas(canvas0, pxxxls);
+    pushCanvas(canvas0, presets.getSpeckle(1.0, 1.0));
+    pushCanvas(canvas0, presets.getSparkle(1000, 0.9, 128.0, color(255)));
     wait(60.0);
 
     setCanvas(canvas2, protonPack);
@@ -411,4 +429,45 @@ class Disor13ntSequence extends SetList {
     pushCanvas(canvas2, sparkle);
     fadeIn(6.0, canvas2);
   }
+
+  void scrollDis(Canvas canvas) {
+    ScrollDisorient disorientScroll = new ScrollDisorient();
+    ScrollDisorient disorientScroll2 = new ScrollDisorient();
+
+    ArrayList dsa = new ArrayList();
+
+    for (int i = 0; i < 8; i++) {
+      ScrollDisorient ds = new ScrollDisorient();
+      ds.xPad = 0;
+      ds.yPad = 2;
+      ds.x = i * 8;
+      ds.y = 210;
+      if (i < 4) {
+        ds.yLimitTop = 180 - i * 60;
+      }
+      else {
+        ds.yLimitTop = 180 - (7 - i) * 60;
+      }
+      ds.yLimitBottom = 210;
+      ds.doRotate = true;
+
+      if (i % 2 == 0) {
+        ds.xFlip = true;
+        ds.ySpeed = -4;
+      }
+      else {
+        ds.yFlip = true;
+        ds.ySpeed = 4;
+      }
+
+      dsa.add(ds);
+    }
+
+    setCanvas(canvas, (ScrollDisorient) dsa.get(0));
+
+    for (int i = 1; i < 8; i++) {
+      pushCanvas(canvas, (ScrollDisorient) dsa.get(i));
+    }
+  }
+
 }
