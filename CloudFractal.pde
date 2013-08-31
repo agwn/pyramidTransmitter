@@ -408,9 +408,9 @@ class CloudFractalPresets extends SetList {
     GenColorSequence gcs = new GenColorSequence();
     CloudFractalPlasma cloudFractalPlasma = new CloudFractalPlasma(null, 0.9, 64, 210, 0.3);
 
-    gcs.colors.add(pornj);
+    gcs.colors.add(color(pornj, 128));
     gcs.colors.add(color(0));
-    gcs.colors.add(disorientOrange);
+    gcs.colors.add(color(disorientOrange, 128));
     gcs.colors.add(color(0));
     cloudFractalPlasma.generateColor = gcs;
     cloudFractalPlasma.setFreq(5);

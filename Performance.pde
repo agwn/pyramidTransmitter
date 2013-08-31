@@ -10,7 +10,6 @@ class Disor13ntSequence extends SetList {
   }
 
   void setup() {
-
     states = new States(this);
     pornjscach = new PornjscachInkBlotter(this);
     CloudFractalPresets cloudFractalPresets = new CloudFractalPresets(this);
@@ -23,9 +22,13 @@ class Disor13ntSequence extends SetList {
     disorientAllTheThingsEnd(15.0);
     seizureIt();
     snackPack();
+ 
     portalGel();
-    wait(120.0);
+    wait(2.0);
 
+    seizureIt();
+    disor13ntEnergize();
+    seizureIt();
     pornjscachBaby();
 
     cloudFractalPresets.doPlasmaClouds(canvas2);
@@ -35,36 +38,38 @@ class Disor13ntSequence extends SetList {
     starBandSequence();
     seizureIt();
     lifeSequence();
-    seizureIt();
   }
 
   void seizureIt() {
     Seizure seizure = new Seizure();
     setCanvas(canvas2, seizure);
     wait(0.25);
+    disableCanvas(canvas2);
   }
 
   void pornjscachBaby() {
+    CloudFractalPresets cloudFractalPresets = new CloudFractalPresets(this);
     float pTime = 60.0;
-    pornjscach.setPattern_1(canvas2);
-    fadeIn(2.0, canvas2);
+
+    seizureIt();
+
+    cloudFractalPresets.doPlasmaClouds(canvas2);
     wait(pTime);
-    fadeOut(2.0, canvas2);
-    pornjscach.setPattern_2(canvas2);
-    fadeIn(2.0, canvas2);
-    wait(pTime);
-    fadeOut(2.0, canvas2);
-    pornjscach.setPattern_3(canvas2);
-    fadeIn(2.0, canvas2);
-    wait(pTime);
-    fadeOut(2.0, canvas2);
-    pornjscach.setPattern_4(canvas2);
-    fadeIn(2.0, canvas2);
-    wait(pTime);
-    fadeOut(2.0, canvas2);
-    pornjscach.setPattern_6(canvas2, pTime);
-    wait(pTime);
-    fadeOut(20.0, canvas2);
+
+    seizureIt();
+    disorientAllTheThingsEnd(15.0);
+    seizureIt();
+
+    simpleCircleSequence();
+    seizureIt();
+    starBandSequence();
+
+    seizureIt();
+    disorientAllTheThingsEnd(15.0);
+    seizureIt();
+
+    lifeSequence();
+    seizureIt();
   }
 
 
@@ -172,6 +177,11 @@ class Disor13ntSequence extends SetList {
     fadeOut(15.0, canvas0);
     fadeOut(15.0, canvas2);
     fadeOut(15.0, canvas3);
+  }
+
+  void disor13ntEnergize() {
+    states.setDisor13ntColumns(canvas2);
+    wait(20.0);
   }
 
   void intro() {
