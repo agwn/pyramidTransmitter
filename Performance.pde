@@ -15,11 +15,6 @@ class Disor13ntSequence extends SetList {
     CloudFractalPresets cloudFractalPresets = new CloudFractalPresets(this);
 
 
-/*
-    scrollDisSparkle(canvas2);
-    wait(60.0);
-    fadeOut(2.0, canvas2);
-
     seizureIt();
     intro();
     seizureIt();
@@ -30,13 +25,23 @@ class Disor13ntSequence extends SetList {
     
 
     seizureIt();
+
+    scrollDisSparkle(canvas2);
+    wait(60.0);
+    fadeOut(2.0, canvas2);
+
+    seizureIt();
     snackPack();
+
+    scrollDisSparkle(canvas2);
+    wait(60.0);
+    fadeOut(2.0, canvas2);
 
     portalGel();
     wait(120.0);
 
     seizureIt();
-*/
+
     disor13ntEnergize();
     seizureIt();
     pornjscachBaby();
@@ -45,7 +50,15 @@ class Disor13ntSequence extends SetList {
     wait(60.0);
     simpleCircleSequence();
     seizureIt();
+
+    scrollDisSparkle(canvas2);
+    wait(60.0);
+    fadeOut(2.0, canvas2);
+
+    seizureIt();
     starBandSequence();
+    seizureIt();
+    disor13ntEnergize();
     seizureIt();
     lifeSequence();
   }
@@ -476,6 +489,26 @@ class Disor13ntSequence extends SetList {
     for (int i = 1; i < 8; i++) {
       pushCanvas(canvas, (ScrollDisorient) dsa.get(i));
     }
+  }
+
+  void scrollDisHorizontal(Canvas canvas) {
+    ScrollDisorient ds = new ScrollDisorient();
+    ds.xPad = 0;
+    ds.yPad = 210;
+    ds.x = 0;
+    ds.y = 4;
+
+    ds.doRotate = true;
+    ds.xFlip = false;
+    ds.yFlip = false;
+    ds.yLimitBottom = 210;
+
+    ds.doRotate = true;
+
+    ds.xSpeed = 0;
+
+
+    setCanvas(canvas, (ScrollDisorient) ds);
   }
 
 }
