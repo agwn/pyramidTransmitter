@@ -314,7 +314,7 @@ class Disor13ntSequence extends SetList {
     protonPack.freq = 0.333;
     protonPack.nCycles = 0.5;
 
-    sparkle.nDots = 100;
+    sparkle.nDots = 1000;
 
     setParam(warp.xAmp, 0.0);
     setParam(warp.yAmp, 0.0);
@@ -334,15 +334,17 @@ class Disor13ntSequence extends SetList {
     breather.freq = 0.333;
     breather.setBlendMode(MULTIPLY);
 
+/*
     setCanvas(canvas0, pxxxls);
     pushCanvas(canvas0, presets.getSpeckle(1.0, 1.0));
     pushCanvas(canvas0, presets.getSparkle(1000, 0.9, 128.0, color(255)));
     wait(60.0);
+*/
 
     setCanvas(canvas2, protonPack);
     pushCanvas(canvas2, warp);
     pushCanvas(canvas2, sparkle);
-    crossfade(15.0, canvas0, canvas2); 
+    crossfade(1.0, canvas0, canvas2); 
     wait(60.0);
 
     // Start warping here
