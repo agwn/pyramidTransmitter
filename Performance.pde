@@ -26,14 +26,16 @@ class Disor13ntSequence extends SetList {
       cFlash.nextTime = new ModFloat(4.0 / speed);
       pushCanvas(canvas, cFlash);
     }
-    
-    wait(60.0);
+
+    pushCanvas(canvas2, presets.getSparkle(1000, 1.0, 5, color(255)));
+
   }
 
   void setup() {
     states = new States(this);
     pornjscach = new PornjscachInkBlotter(this);
     CloudFractalPresets cloudFractalPresets = new CloudFractalPresets(this);
+  
 
 
     seizureIt();
@@ -79,7 +81,13 @@ class Disor13ntSequence extends SetList {
     seizureIt();
     starBandSequence();
     seizureIt();
+
     columnFlashing(canvas2);
+    wait(60.0);
+    setCanvas(canvas3, presets.getDisScrollHorizontal());
+    wait(120.0);
+    disableCanvas(canvas3);
+
     seizureIt();
     disor13ntEnergize();
     seizureIt();
@@ -470,7 +478,6 @@ class Disor13ntSequence extends SetList {
 
   void scrollDis(Canvas canvas) {
     ScrollDisorient disorientScroll = new ScrollDisorient();
-    ScrollDisorient disorientScroll2 = new ScrollDisorient();
 
     ArrayList dsa = new ArrayList();
 
@@ -510,19 +517,18 @@ class Disor13ntSequence extends SetList {
 
   void scrollDisHorizontal(Canvas canvas) {
     ScrollDisorient ds = new ScrollDisorient();
-    ds.xPad = 0;
-    ds.yPad = 210;
+    ds.xPad = 2;
+    ds.yPad = 16;
     ds.x = 0;
-    ds.y = 4;
+    ds.y = 48;
 
-    ds.doRotate = true;
     ds.xFlip = false;
     ds.yFlip = false;
     ds.yLimitBottom = 210;
 
-    ds.doRotate = true;
+    ds.doRotate = false;
 
-    ds.xSpeed = 0;
+    ds.xSpeed = -1;
 
 
     setCanvas(canvas, (ScrollDisorient) ds);
