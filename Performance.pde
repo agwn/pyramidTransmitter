@@ -25,6 +25,19 @@ class Disor13ntSequence extends SetList {
     portalGel();
     wait(120.0);
 
+    pornjscachBaby();
+
+    cloudFractalPresets.doPlasmaClouds(canvas2);
+    wait(60.0);
+    simpleCircleSequence();
+    playSetList(new DoSeizure(this));
+    starBandSequence();
+    playSetList(new DoSeizure(this));
+    lifeSequence();
+    playSetList(new DoSeizure(this));
+  }
+
+  void pornjscachBaby() {
     float pTime = 60.0;
     pornjscach.setPattern_1(canvas2);
     fadeIn(2.0, canvas2);
@@ -43,18 +56,10 @@ class Disor13ntSequence extends SetList {
     wait(pTime);
     fadeOut(2.0, canvas2);
     pornjscach.setPattern_6(canvas2, pTime);
- //   fadeIn(2.0, canvas2);
     wait(pTime);
     fadeOut(20.0, canvas2);
-    cloudFractalPresets.doPlasmaClouds(canvas2);
-    wait(pTime);
-    simpleCircleSequence();
-    playSetList(new DoSeizure(this));
-    starBandSequence();
-    playSetList(new DoSeizure(this));
-    lifeSequence();
-    playSetList(new DoSeizure(this));
   }
+
 
   void lifeSequence() {
     Conway conway = new Conway();
@@ -288,6 +293,8 @@ class Disor13ntSequence extends SetList {
     setParam(warp2.xAmp, 1.0);
     setParam(warp2.yAmp, 1.0);
     warp2.xWaveTable = phasorTable;
+
+    warpSpeed.generateColor = new GenCampColor();
 
     breather.c0 = color(pornj);
     breather.c1 = color(disorientOrange);
