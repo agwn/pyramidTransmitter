@@ -9,6 +9,27 @@ class Disor13ntSequence extends SetList {
     super(setList);
   }
 
+  void columnFlashing(Canvas canvas) {
+    GenColorSequence campColors = new GenColorSequence();
+    float speed = 1.0;
+
+    campColors.colors.add(pornj);
+    campColors.colors.add(disorientOrange);
+
+    for (int i = 0; i < 8; i++) {
+      ColumnFlash cFlash = new ColumnFlash();
+
+      cFlash.setLocation(i * 8, 0, 8, 210);
+      cFlash.timeOffset = new ModFloat((float) i / 2.0 / speed);
+      cFlash.generateColor = campColors;
+      cFlash.decayTime = new ModFloat(0.5 / speed);
+      cFlash.nextTime = new ModFloat(4.0 / speed);
+      pushCanvas(canvas, cFlash);
+    }
+    
+    wait(60.0);
+  }
+
   void setup() {
     states = new States(this);
     pornjscach = new PornjscachInkBlotter(this);
@@ -57,6 +78,8 @@ class Disor13ntSequence extends SetList {
 
     seizureIt();
     starBandSequence();
+    seizureIt();
+    columnFlashing(canvas2);
     seizureIt();
     disor13ntEnergize();
     seizureIt();
@@ -426,12 +449,6 @@ class Disor13ntSequence extends SetList {
     setParam(warp.yFreq, 0.17);
     setParam(warp.xFreq, 0.25);
 
-/*
-    warp.yAmp.set(0.25);
-    warp.xAmp.set(1.5);
-    warp.yFreq.set(0.17);
-    warp.xFreq.set(0.24);
-*/
     sparkle.nDots = 200;
     sparkle.threshold = 16;
 
