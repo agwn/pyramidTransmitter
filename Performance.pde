@@ -15,12 +15,13 @@ class Disor13ntSequence extends SetList {
     pornjscach = new PornjscachInkBlotter(this);
     CloudFractalPresets cloudFractalPresets = new CloudFractalPresets(this);
 
+    seizureIt();
     intro();
-    playSetList(new DoSeizure(this));
+    seizureIt();
     disorientAllTheThings();
     wait(2.0);
     disorientAllTheThingsEnd(15.0);
-    playSetList(new DoSeizure(this));
+    seizureIt();
     snackPack();
     portalGel();
     wait(120.0);
@@ -30,11 +31,17 @@ class Disor13ntSequence extends SetList {
     cloudFractalPresets.doPlasmaClouds(canvas2);
     wait(60.0);
     simpleCircleSequence();
-    playSetList(new DoSeizure(this));
+    seizureIt();
     starBandSequence();
-    playSetList(new DoSeizure(this));
+    seizureIt();
     lifeSequence();
-    playSetList(new DoSeizure(this));
+    seizureIt();
+  }
+
+  void seizureIt() {
+    Seizure seizure = new Seizure();
+    setCanvas(canvas2, seizure);
+    wait(0.25);
   }
 
   void pornjscachBaby() {
