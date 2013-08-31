@@ -64,6 +64,22 @@ class Presets {
 
     return speckle;
   }
+
+  CanvasRoutine getDisScrollHorizontal() {
+    ScrollDisorient ds = new ScrollDisorient();
+    ds.xPad = 2;
+    ds.yPad = 16;
+    ds.x = 63;
+    ds.y = 48;
+
+    ds.xFlip = false;
+    ds.yFlip = false;
+    ds.yLimitBottom = 210;
+    ds.doRotate = false;
+    ds.xSpeed = -1;
+
+    return ds;
+  }
 }
 
 class States extends SetList {
