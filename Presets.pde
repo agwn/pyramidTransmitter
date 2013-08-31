@@ -87,8 +87,8 @@ class States extends SetList {
     energize.verticalToHorizontalRatio = 0.5;
     energize.size = 9;
     Sparkle sparkle = new Sparkle();
-    sparkle.threshold = 16;
-    sparkle.nDots = 1200;
+    sparkle.threshold = 1;
+    sparkle.nDots = 2000;
     sparkle.dotToCrossRatio = 1.0;
     sparkle.c = color(255, 128);
 
@@ -111,7 +111,6 @@ class PornjscachInkBlotter extends SetList {
   Sparkle sparkle;
   Sparkle sparkle2;
   Breather breather;
- 
 
   PornjscachInkBlotter() {
   }

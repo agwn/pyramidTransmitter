@@ -30,13 +30,13 @@ class Disor13ntSequence extends SetList {
     
 
     seizureIt();
-*/
     snackPack();
 
     portalGel();
     wait(120.0);
 
     seizureIt();
+*/
     disor13ntEnergize();
     seizureIt();
     pornjscachBaby();
@@ -196,7 +196,15 @@ class Disor13ntSequence extends SetList {
   }
 
   void disor13ntEnergize() {
-    states.setDisor13ntColumns(canvas2);
+    Flash flash = new Flash();
+
+    flash.generateColor = new GenCampColor();
+    flash.minNextTime = new ModFloat(0.05);
+    flash.maxNextTime = new ModFloat(0.5);
+    flash.decayTime = new ModFloat(0.05);
+
+    states.setDisor13ntColumns(canvas2);    
+    pushCanvas(canvas2, flash);
     wait(20.0);
   }
 
@@ -334,12 +342,10 @@ class Disor13ntSequence extends SetList {
     breather.freq = 0.333;
     breather.setBlendMode(MULTIPLY);
 
-/*
     setCanvas(canvas0, pxxxls);
     pushCanvas(canvas0, presets.getSpeckle(1.0, 1.0));
     pushCanvas(canvas0, presets.getSparkle(1000, 0.9, 128.0, color(255)));
     wait(60.0);
-*/
 
     setCanvas(canvas2, protonPack);
     pushCanvas(canvas2, warp);
