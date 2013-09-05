@@ -2,16 +2,19 @@
 //String transmit_address = "127.0.0.1";
 String transmit_address = "192.168.1.10";
 String[] transmit_addresses = {
+    "127.0.0.1",
+/*
 	"192.168.1.10",
 	"192.168.1.11",
 	//"192.168.1.12",
 	"192.168.1.13",
 	"192.168.1.14",
+*/
 };
 //String transmit_address = "192.168.111.20";
 
-//int transmit_port = 58082;
-int transmit_port = 9999;
+int transmit_port = 58082;
+//int transmit_port = 9999;
 
 // Display configuration
 int displayWidth = 64;    // 8 columns x 8 pixels
