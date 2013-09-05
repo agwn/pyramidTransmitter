@@ -9,33 +9,13 @@ class Disor13ntSequence extends SetList {
     super(setList);
   }
 
-  void columnFlashing(Canvas canvas) {
-    GenColorSequence campColors = new GenColorSequence();
-    float speed = 1.0;
-
-    campColors.colors.add(pornj);
-    campColors.colors.add(disorientOrange);
-
-    for (int i = 0; i < 8; i++) {
-      ColumnFlash cFlash = new ColumnFlash();
-
-      cFlash.setLocation(i * 8, 0, 8, 210);
-      cFlash.timeOffset = new ModFloat((float) i / 2.0 / speed);
-      cFlash.generateColor = campColors;
-      cFlash.decayTime = new ModFloat(0.5 / speed);
-      cFlash.nextTime = new ModFloat(4.0 / speed);
-      pushCanvas(canvas, cFlash);
-    }
-
-    pushCanvas(canvas2, presets.getSparkle(1000, 1.0, 5, color(255)));
-
-  }
 
   void setup() {
     states = new States(this);
     pornjscach = new PornjscachInkBlotter(this);
     CloudFractalPresets cloudFractalPresets = new CloudFractalPresets(this);
-  
+ 
+/* 
     seizureIt();
     intro();
     seizureIt();
@@ -71,7 +51,7 @@ class Disor13ntSequence extends SetList {
 
     seizureIt();
     starBandSequence();
-    seizureIt();
+*/    seizureIt();
 
     columnFlashing(canvas2);
     wait(60.0);
@@ -86,6 +66,33 @@ class Disor13ntSequence extends SetList {
     disor13ntEnergize();
     seizureIt();
     lifeSequence();
+  }
+
+  void columnFlashing(Canvas canvas) {
+    GenColorSequence campColors = new GenColorSequence();
+    float speed = 1.0;
+
+    campColors.colors.add(pornj);
+    campColors.colors.add(disorientOrange);
+
+    for (int i = 0; i < 8; i++) {
+      ColumnFlash cFlash = new ColumnFlash();
+
+      cFlash.setLocation(i * 8, 0, 8, 210);
+      cFlash.timeOffset = new ModFloat((float) i / 2.0 / speed);
+      cFlash.generateColor = campColors;
+      cFlash.decayTime = new ModFloat(0.5 / speed);
+      cFlash.nextTime = new ModFloat(4.0 / speed);
+
+      if (i == 0) {
+        setCanvas(canvas, cFlash);
+      }
+      else {
+        pushCanvas(canvas, cFlash);
+      }
+    }
+
+    pushCanvas(canvas, presets.getSparkle(2000, 1.0, 5, color(255, 128)));
   }
 
   void seizureIt() {
