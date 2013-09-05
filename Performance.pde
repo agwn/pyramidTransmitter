@@ -36,7 +36,6 @@ class Disor13ntSequence extends SetList {
     pornjscach = new PornjscachInkBlotter(this);
     CloudFractalPresets cloudFractalPresets = new CloudFractalPresets(this);
   
-
     seizureIt();
     intro();
     seizureIt();
@@ -46,11 +45,6 @@ class Disor13ntSequence extends SetList {
     disorientAllTheThingsEnd(15.0);
     seizureIt();
 
-    scrollDisSparkle(canvas2);
-    wait(60.0);
-    fadeOut(2.0, canvas2);
-
-    seizureIt();
     snackPack();
 
     scrollDisSparkle(canvas2);
