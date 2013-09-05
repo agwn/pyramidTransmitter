@@ -37,7 +37,6 @@ class Disor13ntSequence extends SetList {
     CloudFractalPresets cloudFractalPresets = new CloudFractalPresets(this);
   
 
-
     seizureIt();
     intro();
     seizureIt();
@@ -45,8 +44,6 @@ class Disor13ntSequence extends SetList {
     disorientAllTheThings();
     wait(2.0);
     disorientAllTheThingsEnd(15.0);
-    
-
     seizureIt();
 
     scrollDisSparkle(canvas2);
@@ -84,7 +81,10 @@ class Disor13ntSequence extends SetList {
 
     columnFlashing(canvas2);
     wait(60.0);
+
     setCanvas(canvas3, presets.getDisScrollHorizontal());
+    pushCanvas(canvas3, presets.getBreather(pornj, disorientOrange, 0.5, MULTIPLY));
+    pushCanvas(canvas3, presets.getSparkle(2000, 0.96, 1, color(255, 128)));
     wait(120.0);
     disableCanvas(canvas3);
 
@@ -96,9 +96,11 @@ class Disor13ntSequence extends SetList {
 
   void seizureIt() {
     Seizure seizure = new Seizure();
+
+    disableCanvases();
     setCanvas(canvas2, seizure);
     wait(0.25);
-    disableCanvas(canvas2);
+    disableCanvases();
   }
 
   void scrollDisSparkle(Canvas canvas) {
@@ -108,30 +110,28 @@ class Disor13ntSequence extends SetList {
   }
 
   void pornjscachBaby() {
-    CloudFractalPresets cloudFractalPresets = new CloudFractalPresets(this);
     float pTime = 60.0;
 
-    seizureIt();
-
-    cloudFractalPresets.doPlasmaClouds(canvas2);
+    pornjscach.setPattern_1(canvas2);
+    fadeIn(2.0, canvas2);
     wait(pTime);
-
-    seizureIt();
-    disorientAllTheThingsEnd(15.0);
-    seizureIt();
-
-    simpleCircleSequence();
-    seizureIt();
-    starBandSequence();
-
-    seizureIt();
-    disorientAllTheThingsEnd(15.0);
-    seizureIt();
-
-    lifeSequence();
-    seizureIt();
+    fadeOut(2.0, canvas2);
+    pornjscach.setPattern_2(canvas2);
+    fadeIn(2.0, canvas2);
+    wait(pTime);
+    fadeOut(2.0, canvas2);
+    pornjscach.setPattern_3(canvas2);
+    fadeIn(2.0, canvas2);
+    wait(pTime);
+    fadeOut(2.0, canvas2);
+    pornjscach.setPattern_4(canvas2);
+    fadeIn(2.0, canvas2);
+    wait(pTime);
+    fadeOut(2.0, canvas2);
+    pornjscach.setPattern_6(canvas2, pTime);
+    wait(pTime);
+    fadeOut(20.0, canvas2);
   }
-
 
   void lifeSequence() {
     Conway conway = new Conway();

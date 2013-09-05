@@ -70,7 +70,7 @@ class Presets {
     ds.xPad = 2;
     ds.yPad = 16;
     ds.x = 63;
-    ds.y = 48;
+    ds.y = 60;
 
     ds.xFlip = false;
     ds.yFlip = false;
