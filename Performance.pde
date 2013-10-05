@@ -14,7 +14,7 @@ class Disor13ntSequence extends SetList {
     states = new States(this);
     pornjscach = new PornjscachInkBlotter(this);
     CloudFractalPresets cloudFractalPresets = new CloudFractalPresets(this);
- 
+
     seizureIt();
     intro();
     seizureIt();

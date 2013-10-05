@@ -94,8 +94,9 @@ class States extends SetList {
     ArrayList<BitPoint> disorientBitPoints = disFont.getBitmap("disor13nt_3s").getBitmap(true, true, false).getBitPoints();
     Energize energize = new Energize(disorientBitPoints);
     energize.x = 24;
-    energize.y = 6;
-    energize.yPad = 1;
+    energize.y = 80;
+    //energize.yPad = 1;
+    energize.yPad = 0;
     energize.pointsPerFrame = 2;
     energize.frames = 20;
     energize.cStart = color(disorientOrange, 0);
